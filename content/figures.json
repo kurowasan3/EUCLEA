@@ -1,6 +1,7 @@
 {
 "AL-03-014":{"h":"d08510801ad0","mode":"2d","exprs":["y^2+2=x^3"],"after":false},
 "AL-04-012":{"h":"1718c53e067c","mode":"2d","exprs":["y=x^3-3x+1"],"after":false},
+"AM-01-007":{"h":"ca479087314d","mode":"2d","exprs":["0<x<y<1"],"after":false},
 "AN-01-010":{"h":"7b431442dff4","mode":"2d","exprs":["y=x^3+x-1"],"after":false},
 "AN-01-012":{"h":"5226e4201a2f","mode":"2d","exprs":["y=x^3","y=e^x"],"after":false},
 "AN-01-014":{"h":"fb4ec13c5ef2","mode":"2d","exprs":["y=x^2","y=sqrt(x)","y=sin (1/x)","(0,1)"],"after":false},
@@ -31,6 +32,7 @@
 "GE-04-015":{"h":"e3e8f63a8574","mode":"3d","exprs":["x^2+y^2-z^2=1"],"after":false},
 "GE-05-004":{"h":"14f6f19fee3b","mode":"2d","exprs":["x^2+y^2<1","x^2+y^2<=1/4"],"after":false},
 "GE-05-018":{"h":"04b20684c4f1","mode":"3d","exprs":["z=x^2+y^2"],"after":false},
+"NL-01-002":{"h":"05891ad864a2","mode":"2d","exprs":["y=(1/1000)e^(-x/1000)"],"after":false},
 "OT-04-001":{"h":"2c033f96acf0","mode":"2d","exprs":["y=x^2-2"],"after":false},
 "OT-04-003":{"h":"1821e965d074","mode":"2d","exprs":["y=e^(-a|x|)"],"after":false},
 "OT-04-006":{"h":"0219444be747","mode":"2d","exprs":["x+3y<=9","2x+y<=7"],"after":false},

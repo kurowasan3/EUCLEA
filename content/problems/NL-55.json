@@ -1,0 +1,809 @@
+[
+ {
+  "id": "NL-03-001",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "NL-55",
+  "level": 1,
+  "minutes": 10,
+  "theme": "支払備金／チェインラダー法の基本",
+  "unit": "支払備金",
+  "topic": "チェインラダー法の基本",
+  "statement": {
+   "tex": "累計支払保険金の推移（単位：百万円）が次のように与えられている．\n\\begin{tabular}{c|ccc}\n事故年度 & 経過1年 & 経過2年 & 経過3年 \\\\ \\hline\n1 & 100 & 150 & 165 \\\\\n2 & 120 & 180 & \\\\\n3 & 140 & &\n\\end{tabular}\n経過3年で支払いが完了するものとし，チェインラダー法（加重平均の進展係数）を用いる．\n\\begin{enumerate}\n\\item 経過1年から2年への進展係数 $f_1$ を求めよ．\n\\item 事故年度3の最終支払保険金を求めよ．\n\\item 3事故年度合計の支払備金を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac32$ \\quad (2) $231$ \\quad (3) $109$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　進展係数は「次の経過年数まで観測されている事故年度」の累計の比 $f_j=\\sum C_{i,j+1}/\\sum C_{i,j}$ で求め，未観測部分を順に掛けて最終値を予測する．\n\n(1) $f_1=\\frac{150+180}{100+120}=\\boldsymbol{\\frac32}$．$f_2=\\frac{165}{150}=1.1$．\n\n(2) $140\\times1.5\\times1.1=\\boldsymbol{231}$．\n\n(3) 事故年度2の最終値は $180\\times1.1=198$．支払備金は $(198-180)+(231-140)=18+91=\\boldsymbol{109}$．"
+   }
+  ],
+  "idea": {
+   "tex": "各事故年度は同じ割合で進展すると仮定し，観測された比を未観測のセルに当てはめる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 3/2\n(2) 231\n(3) 109"
+  },
+  "techniques": [
+   "chain-ladder"
+  ],
+  "methods": [],
+  "tags": [
+   "チェインラダー法",
+   "支払備金",
+   "進展係数",
+   "ロストライアングル"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "NL-03-002",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "NL-55",
+  "level": 1,
+  "minutes": 8,
+  "theme": "再保険／比例再保険（クォータシェア）の効果",
+  "unit": "再保険",
+  "topic": "比例再保険（クォータシェア）の効果",
+  "statement": {
+   "tex": "ある保険会社の年間総クレーム額 $S$ は $E[S]=1000$，標準偏差 $300$ である．出再割合 $40\\%$ のクォータシェア再保険を手配する（各クレームの $40\\%$ を再保険者が負担する）．\n\\begin{enumerate}\n\\item 保有部分の総クレーム額の期待値を求めよ．\n\\item 保有部分の総クレーム額の標準偏差を求めよ．\n\\item クォータシェア再保険について正しい記述を次から選び，番号で答えよ．\\\\\n①保有部分の変動係数（標準偏差÷平均）は小さくなる．\\\\\n②保有部分の変動係数は変わらない．\\\\\n③保有部分の変動係数は大きくなる．\\\\\n④保有部分の標準偏差は変わらない．\\\\\n⑤大きなクレームほど出再割合が高くなる．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $600$ \\quad (2) $180$ \\quad (3) $2$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　保有分は $0.6S$ なので，平均・標準偏差ともに $0.6$ 倍になる．\n\n(1) $0.6\\times1000=\\boldsymbol{600}$．\n\n(2) $0.6\\times300=\\boldsymbol{180}$．\n\n(3) 変動係数は $\\frac{180}{600}=\\frac{300}{1000}=0.3$ で変わらない．答えは $\\boldsymbol{②}$，すなわち $2$．クォータシェアは規模を縮めるが，相対的なばらつきは減らさない．大きなクレームを切り取るには超過損害額再保険（XL）やサープラス再保険を使う．"
+   }
+  ],
+  "idea": {
+   "tex": "比例再保険は損害を定数倍するだけなので，平均と標準偏差が同じ割合で縮み，変動係数は変わらない．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 600\n(2) 180\n(3) 2"
+  },
+  "techniques": [
+   "reinsurance-treaties"
+  ],
+  "methods": [],
+  "tags": [
+   "比例再保険",
+   "クォータシェア",
+   "変動係数",
+   "再保険"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "NL-03-003",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "NL-55",
+  "level": 1,
+  "minutes": 10,
+  "theme": "再保険／1リスクごとの超過損害額再保険（指数分布）",
+  "unit": "再保険",
+  "topic": "1リスクごとの超過損害額再保険（指数分布）",
+  "statement": {
+   "tex": "1事故あたりの損害額 $X$ は平均 $2000$ の指数分布に従い，年間の事故件数は平均 $10$ のポアソン分布に従う．保有額 $1000$ の1リスクごとの超過損害額再保険（限度なし）を手配する．すなわち1事故につき再保険者は $(X-1000)_+$ を負担する．$e^{-0.5}=0.60653$ を用いてよい．\n\\begin{enumerate}\n\\item 1事故あたりの再保険者の負担額の期待値を小数第1位まで求めよ．\n\\item 1事故あたりの元受保険会社の保有額の期待値 $E[X\\wedge1000]$ を小数第1位まで求めよ．\n\\item 再保険者が支払う年間の件数の期待値を有効数字4桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx 1213.1$ \\quad (2) $\\approx 786.9$ \\quad (3) $\\approx 6.065$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　平均 $\\theta$ の指数分布では $E[(X-d)_+]=\\theta e^{-d/\\theta}$，$E[X\\wedge d]=\\theta(1-e^{-d/\\theta})$．再保険者が支払う件数は，ポアソン分布の間引きで平均 $\\lambda P(X>d)$ のポアソン分布になる．\n\n(1) $2000e^{-0.5}=\\boldsymbol{1213.1}$．\n\n(2) $2000(1-e^{-0.5})=\\boldsymbol{786.9}$．（(1) との和は $E[X]=2000$．）\n\n(3) $10\\,P(X>1000)=10e^{-0.5}=\\boldsymbol{6.065}$．"
+   }
+  ],
+  "idea": {
+   "tex": "超過損害額再保険は損害額を $X\\wedge d$ と $(X-d)_+$ に分けることであり，制限期待値の計算そのものである．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈1213.1\n(2) ≈786.9\n(3) ≈6.065"
+  },
+  "techniques": [
+   "reinsurance-treaties",
+   "severity-limited-expected"
+  ],
+  "methods": [],
+  "tags": [
+   "超過損害額再保険",
+   "指数分布",
+   "制限期待値",
+   "再保険"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "NL-03-004",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "NL-55",
+  "level": 1,
+  "minutes": 10,
+  "theme": "破産理論／指数クレームの調整係数とルンドベリの不等式",
+  "unit": "破産理論",
+  "topic": "指数クレームの調整係数とルンドベリの不等式",
+  "statement": {
+   "tex": "古典的リスク過程 $U(t)=u+ct-S(t)$ を考える．$S(t)$ は強度 $\\lambda$ の複合ポアソン過程で，クレーム額は平均 $1$ の指数分布に従い，保険料率は $c=(1+\\theta)\\lambda$，安全割増率は $\\theta=0.25$ である．\n\\begin{enumerate}\n\\item 調整係数 $R$ を求めよ．\n\\item 初期サープラス $u=10$ のとき，ルンドベリの不等式による破産確率 $\\psi(10)$ の上限を求めよ．\n\\item クレーム額が指数分布のときの破産確率の厳密な式 $\\psi(u)=\\dfrac{1}{1+\\theta}e^{-Ru}$ を用いて $\\psi(10)$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac15$ \\quad (2) $e^{-2}$ \\quad (3) $\\frac45e^{-2}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　調整係数は $\\lambda+cR=\\lambda M_X(R)$ の正の解．指数分布（率 $1$）では $M_X(r)=\\frac{1}{1-r}$．\n\n(1) $1+1.25R=\\frac{1}{1-R}$ より $(1+1.25R)(1-R)=1$，$0.25R-1.25R^2=0$，よって $R=\\boldsymbol{\\frac15}$．一般には $R=\\frac{\\theta}{(1+\\theta)\\mu}$（$\\mu$ は平均クレーム額）．\n\n(2) $\\psi(10)\\le e^{-10R}=\\boldsymbol{e^{-2}}\\approx0.135$．\n\n(3) $\\psi(10)=\\frac{1}{1.25}e^{-2}=\\boldsymbol{\\frac45e^{-2}}\\approx0.108$．"
+   }
+  ],
+  "idea": {
+   "tex": "調整係数は保険料とクレームの積率母関数の釣り合いで決まり，破産確率は $e^{-Ru}$ で指数的に減る．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 1/5\n(2) e^(-2)\n(3) 4/5 e^(-2)"
+  },
+  "techniques": [
+   "adjustment-coefficient"
+  ],
+  "methods": [],
+  "tags": [
+   "調整係数",
+   "ルンドベリの不等式",
+   "破産確率",
+   "指数分布",
+   "複合ポアソン過程"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "NL-03-005",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "NL-55",
+  "level": 1,
+  "minutes": 8,
+  "theme": "支払備金／ボーンヒュッター＝ファーガソン法",
+  "unit": "支払備金",
+  "topic": "ボーンヒュッター＝ファーガソン法",
+  "statement": {
+   "tex": "ある事故年度の既経過保険料は $1000$，予定損害率は $0.7$，現時点の累計支払保険金は $400$，最終までの累積進展係数（CDF）は $2.0$ である．\n\\begin{enumerate}\n\\item チェインラダー法による最終支払保険金を求めよ．\n\\item ボーンヒュッター＝ファーガソン法による最終支払保険金を求めよ．\n\\item ボーンヒュッター＝ファーガソン法による支払備金を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $800$ \\quad (2) $750$ \\quad (3) $350$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　BF 法では「未報告（未払）割合 $1-1/\\text{CDF}$」に，実績ではなく事前の予想最終損害額（保険料×予定損害率）を掛ける．\n\n(1) $400\\times2.0=\\boldsymbol{800}$．\n\n予想最終損害額は $1000\\times0.7=700$，未払割合は $1-\\frac12=\\frac12$．\n\n(3) 支払備金 $=700\\times\\frac12=\\boldsymbol{350}$．\n\n(2) 最終支払保険金 $=400+350=\\boldsymbol{750}$．\n\nチェインラダー法は実績 $400$ を2倍に拡大するので，実績の偶然の変動もそのまま拡大する．BF 法は未払部分を事前の見込みで推定するので安定している．"
+   }
+  ],
+  "idea": {
+   "tex": "BF 法は，既払分は実績，未払分は事前の予想損害額という組み合わせで最終値を推定する．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 800\n(2) 750\n(3) 350"
+  },
+  "techniques": [
+   "bornhuetter-ferguson",
+   "chain-ladder"
+  ],
+  "methods": [],
+  "tags": [
+   "ボーンヒュッター＝ファーガソン法",
+   "チェインラダー法",
+   "支払備金",
+   "予定損害率"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "NL-03-006",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "NL-55",
+  "level": 2,
+  "minutes": 18,
+  "theme": "支払備金／4事故年度のチェインラダー法",
+  "unit": "支払備金",
+  "topic": "4事故年度のチェインラダー法",
+  "statement": {
+   "tex": "累計支払保険金の推移（単位：百万円）が次のように与えられている．\n\\begin{tabular}{c|cccc}\n事故年度 & 経過1年 & 経過2年 & 経過3年 & 経過4年 \\\\ \\hline\n1 & 1000 & 1500 & 1650 & 1700 \\\\\n2 & 1100 & 1700 & 1850 & \\\\\n3 & 1200 & 1750 & & \\\\\n4 & 1300 & & &\n\\end{tabular}\n経過4年で支払いが完了するものとし，チェインラダー法（加重平均の進展係数）を用いる．\n\\begin{enumerate}\n\\item 経過2年から3年への進展係数 $f_2$ を求めよ．\n\\item 事故年度4の最終支払保険金を整数に丸めて求めよ．\n\\item 4事故年度合計の支払備金を小数第1位まで求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{35}{32}$ \\quad (2) $\\approx 2197$ \\quad (3) $\\approx 1175.6$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　進展係数を $f_1,f_2,f_3$ と順に求め，各事故年度の最新値に残りの係数の積（累積進展係数）を掛ける．\n\n$f_1=\\frac{1500+1700+1750}{1000+1100+1200}=\\frac{4950}{3300}=1.5$．\n\n(1) $f_2=\\frac{1650+1850}{1500+1700}=\\frac{3500}{3200}=\\boldsymbol{\\frac{35}{32}}=1.09375$．\n\n$f_3=\\frac{1700}{1650}=1.030303$．\n\n(2) $1300\\times1.5\\times1.09375\\times1.030303=\\boldsymbol{2197}$（$2197.44$）．\n\n(3) 事故年度2：$1850\\times1.030303=1906.06$，備金 $56.06$．\n事故年度3：$1750\\times1.09375\\times1.030303=1972.06$，備金 $222.06$．\n事故年度4：備金 $2197.44-1300=897.44$．\n合計 $56.06+222.06+897.44=\\boldsymbol{1175.6}$．"
+   }
+  ],
+  "idea": {
+   "tex": "累積進展係数は残りの進展係数の積であり，最新の対角線の値に掛けると最終値の予測になる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 35/32\n(2) ≈2197\n(3) ≈1175.6"
+  },
+  "techniques": [
+   "chain-ladder"
+  ],
+  "methods": [],
+  "tags": [
+   "チェインラダー法",
+   "支払備金",
+   "進展係数",
+   "累積進展係数"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "NL-03-007",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "NL-55",
+  "level": 2,
+  "minutes": 15,
+  "theme": "支払備金／ロストライアングルからの BF 法",
+  "unit": "支払備金",
+  "topic": "ロストライアングルからの BF 法",
+  "statement": {
+   "tex": "累計支払保険金（単位：百万円）と既経過保険料が次のように与えられている．\n\\begin{tabular}{c|ccc|c}\n事故年度 & 経過1年 & 経過2年 & 経過3年 & 既経過保険料 \\\\ \\hline\n1 & 200 & 300 & 330 & 440 \\\\\n2 & 240 & 360 & & 500 \\\\\n3 & 250 & & & 550\n\\end{tabular}\n経過3年で支払いが完了するものとし，進展係数はチェインラダー法（加重平均）で求める．予定損害率は $0.75$ とする．\n\\begin{enumerate}\n\\item 事故年度3の支払進捗率（$1/\\text{CDF}$）を求めよ．\n\\item ボーンヒュッター＝ファーガソン法による事故年度2の支払備金を求めよ．\n\\item ボーンヒュッター＝ファーガソン法による3事故年度合計の支払備金を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{20}{33}$ \\quad (2) $\\frac{375}{11}$ \\quad (3) $\\frac{4325}{22}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　三角形から進展係数と CDF を出し，BF 法の備金 $=$（保険料×予定損害率）$\\times(1-1/\\text{CDF})$ を事故年度ごとに計算する．\n\n$f_1=\\frac{300+360}{200+240}=1.5$，$f_2=\\frac{330}{300}=1.1$．CDF：事故年度2は $1.1$，事故年度3は $1.65$．\n\n(1) $\\frac{1}{1.65}=\\boldsymbol{\\frac{20}{33}}$．\n\n(2) 予想最終損害額 $500\\times0.75=375$，未払割合 $1-\\frac1{1.1}=\\frac1{11}$．備金 $=\\boldsymbol{\\frac{375}{11}}\\approx34.09$．\n\n(3) 事故年度3：$550\\times0.75=412.5$，未払割合 $1-\\frac{20}{33}=\\frac{13}{33}$，備金 $=412.5\\times\\frac{13}{33}=162.5$．\n合計 $\\frac{375}{11}+\\frac{325}{2}=\\boldsymbol{\\frac{4325}{22}}\\approx196.6$．\n\n（チェインラダー法では事故年度2が $36$，事故年度3が $162.5$ で合計 $198.5$．）"
+   }
+  ],
+  "idea": {
+   "tex": "BF 法でも進展パターン（CDF）は三角形から推定し，未払割合だけを使う．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 20/33\n(2) 375/11\n(3) 4325/22"
+  },
+  "techniques": [
+   "bornhuetter-ferguson",
+   "chain-ladder"
+  ],
+  "methods": [],
+  "tags": [
+   "ボーンヒュッター＝ファーガソン法",
+   "チェインラダー法",
+   "支払備金",
+   "累積進展係数"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "NL-03-008",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "NL-55",
+  "level": 2,
+  "minutes": 18,
+  "theme": "再保険／複合ポアソン分布のストップロス再保険料",
+  "unit": "再保険",
+  "topic": "複合ポアソン分布のストップロス再保険料",
+  "statement": {
+   "tex": "年間総クレーム額 $S$ は，件数が平均 $1$ のポアソン分布，クレーム額が $P(X=1)=P(X=2)=\\frac12$ の複合ポアソン分布に従う．保有額（免責）$2$ のストップロス再保険を手配する．再保険者の負担は $(S-2)_+$ である．\n\\begin{enumerate}\n\\item $P(S=1)$ を求めよ．\n\\item $E[S\\wedge2]$ を求めよ．\n\\item 純再保険料 $E[(S-2)_+]$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac12e^{-1}$ \\quad (2) $2-\\frac52e^{-1}$ \\quad (3) $\\frac52e^{-1}-\\frac12$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　$S$ は整数値なので，$E[(S-d)_+]=E[S]-E[S\\wedge d]$ と小さい値の確率だけで計算できる．\n\n$P(S=0)=e^{-1}$．\n\n(1) $S=1$ は「$N=1$ かつ $X=1$」だけなので $P(S=1)=e^{-1}\\cdot\\frac12=\\boldsymbol{\\frac12e^{-1}}$．\n\n(2) $E[S\\wedge2]=1\\cdot P(S=1)+2\\,P(S\\ge2)=\\frac12e^{-1}+2\\left(1-e^{-1}-\\frac12e^{-1}\\right)=\\boldsymbol{2-\\frac52e^{-1}}$．\n\n(3) $E[S]=1\\times\\frac32=\\frac32$ より\n\\[E[(S-2)_+]=\\frac32-\\left(2-\\frac52e^{-1}\\right)=\\boldsymbol{\\frac52e^{-1}-\\frac12}\\approx0.4197.\\]"
+   }
+  ],
+  "idea": {
+   "tex": "ストップロス再保険料は $E[S]-E[S\\wedge d]$ とすれば，無限和を避けて $d$ 未満の確率だけで計算できる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 1/2 e^(-1)\n(2) 2-5/2 e^(-1)\n(3) 5/2 e^(-1)-1/2"
+  },
+  "techniques": [
+   "reinsurance-treaties",
+   "panjer-recursion"
+  ],
+  "methods": [],
+  "tags": [
+   "ストップロス再保険",
+   "複合ポアソン分布",
+   "制限期待値",
+   "再保険"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "NL-03-009",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "NL-55",
+  "level": 2,
+  "minutes": 18,
+  "theme": "破産理論／離散クレーム額の調整係数と近似",
+  "unit": "破産理論",
+  "topic": "離散クレーム額の調整係数と近似",
+  "statement": {
+   "tex": "古典的リスク過程で，クレーム件数は強度 $\\lambda$ のポアソン過程，クレーム額は $P(X=1)=P(X=2)=\\frac12$，安全割増率は $\\theta=0.2$（保険料率 $c=1.2\\lambda E[X]$）とする．\n\\begin{enumerate}\n\\item 調整係数の方程式の積率母関数を2次まで展開して得られる近似値 $\\tilde R=\\dfrac{2\\theta E[X]}{E[X^2]}$ を求めよ．\n\\item 調整係数 $R$ を数値的に解き，有効数字3桁で求めよ．\n\\item 初期サープラス $u=10$ のとき，ルンドベリの不等式による破産確率の上限 $e^{-Ru}$ を有効数字3桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{6}{25}$ \\quad (2) $\\approx 0.211$ \\quad (3) $\\approx 0.122$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　調整係数は $1+(1+\\theta)E[X]r=M_X(r)$ の正の解．$e^{r}$ の展開で近似値を出し，それを初期値にして数値的に解く．\n\n$E[X]=1.5$，$E[X^2]=2.5$．方程式は $1+1.8r=\\frac12(e^r+e^{2r})$．\n\n(1) $M_X(r)\\approx1+E[X]r+\\frac12E[X^2]r^2$ とすると $\\theta E[X]r=\\frac12E[X^2]r^2$，$\\tilde R=\\frac{2\\cdot0.2\\cdot1.5}{2.5}=\\boldsymbol{\\frac6{25}}=0.24$．\n\n(2) $h(r)=\\frac12(e^r+e^{2r})-1-1.8r$ とおく．$h(0.21)\\approx-0.00018$，$h(0.22)\\approx0.0034$ で，ニュートン法などで $R=\\boldsymbol{0.211}$（$0.21053$）．3次以上の項が正なので，真の値は近似値 $0.24$ より小さい．\n\n(3) $e^{-10\\times0.21053}=\\boldsymbol{0.122}$．"
+   }
+  ],
+  "idea": {
+   "tex": "調整係数の方程式は一般に解析的に解けないので，2次近似で見当をつけて数値的に解く．近似値は上側にずれる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 6/25\n(2) ≈0.211\n(3) ≈0.122"
+  },
+  "techniques": [
+   "adjustment-coefficient",
+   "mgf"
+  ],
+  "methods": [],
+  "tags": [
+   "調整係数",
+   "ルンドベリの不等式",
+   "積率母関数",
+   "数値解法",
+   "破産確率"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "NL-03-010",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "NL-55",
+  "level": 2,
+  "minutes": 20,
+  "theme": "破産理論／比例再保険が調整係数に与える効果",
+  "unit": "破産理論",
+  "topic": "比例再保険が調整係数に与える効果",
+  "statement": {
+   "tex": "古典的リスク過程で，クレーム件数は強度 $\\lambda=1$ のポアソン過程，クレーム額は平均 $1$ の指数分布，元受の安全割増率は $\\theta=0.3$（保険料率 $1.3$）とする．保有割合 $80\\%$ の比例再保険を手配し，再保険者は出再部分に安全割増率 $\\xi=0.4$ を課す（再保険料率は $0.2\\times1.4$）．\n\\begin{enumerate}\n\\item 再保険がないときの調整係数 $R$ を求めよ．\n\\item 再保険後の元受の正味の保険料率 $c$ を求めよ．\n\\item 再保険後の元受の調整係数を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{3}{13}$ \\quad (2) $\\frac{51}{50}$ \\quad (3) $\\frac{55}{204}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　保有クレームは $0.8X$（平均 $0.8$ の指数分布）．正味の保険料率で調整係数の方程式 $\\lambda+cR=\\lambda M_{0.8X}(R)$ を立てる．\n\n(1) $R=\\frac{\\theta}{1+\\theta}=\\frac{0.3}{1.3}=\\boldsymbol{\\frac3{13}}\\approx0.2308$．\n\n(2) $c=1.3-0.2\\times1.4=1.02=\\boldsymbol{\\frac{51}{50}}$．\n\n(3) $1+1.02R=\\frac{1}{1-0.8R}$ より $(1+1.02R)(1-0.8R)=1$，$0.22R-0.816R^2=0$．よって $R=\\frac{0.22}{0.816}=\\boldsymbol{\\frac{55}{204}}\\approx0.2696$．\n\n再保険者の割増率の方が高いが，保有するばらつきが小さくなる効果が上回り，調整係数は大きくなる（破産確率の上限は小さくなる）．"
+   }
+  ],
+  "idea": {
+   "tex": "再保険の効果は，正味保険料の減少と保有クレームのばらつきの減少の両方を調整係数の方程式に入れて比べる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 3/13\n(2) 51/50\n(3) 55/204"
+  },
+  "techniques": [
+   "adjustment-coefficient",
+   "reinsurance-treaties"
+  ],
+  "methods": [],
+  "tags": [
+   "調整係数",
+   "比例再保険",
+   "破産確率",
+   "指数分布"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "NL-03-011",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "NL-55",
+  "level": 2,
+  "minutes": 10,
+  "theme": "再保険／サープラス再保険の出再割合と負担額",
+  "unit": "再保険",
+  "topic": "サープラス再保険の出再割合と負担額",
+  "statement": {
+   "tex": "保有ライン（1ライン）を保険金額 $1000$ とする4ラインのサープラス再保険を考える．すなわち，保険金額のうち $1000$ を超える部分を最大 $4000$ まで再保険に出し，各損害は保険金額に対する出再部分の割合で再保険者が負担する．再保険の引受能力を超える部分は元受が保有する．\n\\begin{enumerate}\n\\item 保険金額 $3000$ の物件の出再割合を求めよ．\n\\item (1) の物件に損害額 $1200$ が生じたとき，再保険者の負担額を求めよ．\n\\item 保険金額 $6000$ の物件に損害額 $3000$ が生じたとき，元受の保有額を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac23$ \\quad (2) $800$ \\quad (3) $1000$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　出再額 $=\\min\\{(\\text{保険金額}-1000)_+,\\,4000\\}$，出再割合 $=$ 出再額 $\\div$ 保険金額．損害はこの割合で按分する．\n\n(1) 出再額 $2000$，出再割合 $\\frac{2000}{3000}=\\boldsymbol{\\frac23}$．\n\n(2) $1200\\times\\frac23=\\boldsymbol{800}$．\n\n(3) 出再額は上限の $4000$，出再割合 $\\frac{4000}{6000}=\\frac23$．再保険者は $2000$ を負担し，元受の保有額は $3000-2000=\\boldsymbol{1000}$．（このうち保有ライン分が $500$，引受能力を超える分が $500$．）\n\nサープラス再保険は物件ごとに割合が変わる比例再保険で，保険金額の大きい物件ほど出再割合が高くなり，保有のばらつきを均す．"
+   }
+  ],
+  "idea": {
+   "tex": "サープラス再保険は保険金額で出再割合を決める比例再保険であり，損害額ではなく保険金額で割合が決まる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 2/3\n(2) 800\n(3) 1000"
+  },
+  "techniques": [
+   "reinsurance-treaties"
+  ],
+  "methods": [],
+  "tags": [
+   "サープラス再保険",
+   "比例再保険",
+   "再保険"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "NL-03-012",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "NL-55",
+  "level": 2,
+  "minutes": 18,
+  "theme": "再保険／パレート損害の超過損害額再保険の年間負担",
+  "unit": "再保険",
+  "topic": "パレート損害の超過損害額再保険の年間負担",
+  "statement": {
+   "tex": "1事故あたりの損害額 $X$ はパレート分布 $F(x)=1-\\left(\\dfrac{2000}{x+2000}\\right)^3$（$x>0$）に従い，年間の事故件数は平均 $20$ のポアソン分布に従う．保有額 $4000$ の1リスクごとの超過損害額再保険（限度なし）を手配する．\n\\begin{enumerate}\n\\item 1事故が保有額を超える確率を求めよ．\n\\item 1年間に再保険者の支払いがまったく生じない確率を求めよ．\n\\item 再保険者の年間の負担額の期待値を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{1}{27}$ \\quad (2) $e^{-\\frac{20}{27}}$ \\quad (3) $\\frac{20000}{9}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　保有額を超える事故の件数は間引きで平均 $20\\,P(X>4000)$ のポアソン分布．パレート分布の超過額 $X-d\\mid X>d$ は $\\theta$ を $\\theta+d$ に変えたパレート分布になる．\n\n(1) $\\left(\\frac{2000}{6000}\\right)^3=\\boldsymbol{\\frac1{27}}$．\n\n(2) 超過する件数は平均 $\\frac{20}{27}$ のポアソン分布なので $\\boldsymbol{e^{-20/27}}\\approx0.477$．\n\n(3) $X-4000\\mid X>4000$ は $\\alpha=3$，$\\theta=6000$ のパレート分布で平均 $\\frac{6000}{2}=3000$．年間の期待負担額は $\\frac{20}{27}\\times3000=\\boldsymbol{\\frac{20000}{9}}\\approx2222$．"
+   }
+  ],
+  "idea": {
+   "tex": "超過損害額再保険の年間負担は「超過する件数（ポアソンの間引き）」×「超過額の平均（パレートの超過分布）」に分ける．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 1/27\n(2) e^(-20/27)\n(3) 20000/9"
+  },
+  "techniques": [
+   "reinsurance-treaties",
+   "poisson-conditioning"
+  ],
+  "methods": [],
+  "tags": [
+   "超過損害額再保険",
+   "パレート分布",
+   "ポアソン分布",
+   "再保険"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "NL-03-013",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "NL-55",
+  "level": 3,
+  "minutes": 25,
+  "theme": "支払備金／増分三角形からのチェインラダー法・BF 法・ベンクタンダー法",
+  "unit": "支払備金",
+  "topic": "増分三角形からのチェインラダー法・BF 法・ベンクタンダー法",
+  "statement": {
+   "tex": "支払保険金の増分（各経過年に支払われた額，単位：百万円）が次のように与えられている．\n\\begin{tabular}{c|cccc}\n事故年度 & 経過1年 & 経過2年 & 経過3年 & 経過4年 \\\\ \\hline\n1 & 400 & 200 & 100 & 20 \\\\\n2 & 450 & 250 & 90 & \\\\\n3 & 500 & 240 & & \\\\\n4 & 520 & & &\n\\end{tabular}\n経過4年で支払いが完了するものとし，進展係数はチェインラダー法（累計値の加重平均）で求める．事故年度4の既経過保険料は $1100$，予定損害率は $0.8$ とする．\n\\begin{enumerate}\n\\item チェインラダー法による4事故年度合計の支払備金を小数第1位まで求めよ．\n\\item ボーンヒュッター＝ファーガソン法による事故年度4の支払備金を小数第1位まで求めよ．\n\\item ベンクタンダー法（BF 法で得た最終値 $U_{BF}$ を事前の予想最終損害額の代わりに使って BF 法をもう一度行う：$U_{GB}=C+(1-1/\\text{CDF})\\,U_{BF}$，$C$ は現在の累計）による事故年度4の支払備金を小数第1位まで求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx 561.3$ \\quad (2) $\\approx 386.0$ \\quad (3) $\\approx 397.4$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　まず増分を累計に直す．累計は事故年度1：$400,600,700,720$，2：$450,700,790$，3：$500,740$，4：$520$．\n\n進展係数：$f_1=\\frac{600+700+740}{400+450+500}=\\frac{2040}{1350}=1.51111$，$f_2=\\frac{700+790}{600+700}=\\frac{1490}{1300}=1.14615$，$f_3=\\frac{720}{700}=1.02857$．\n\n(1) 事故年度2：$790\\times1.02857=812.57$，備金 $22.57$．\n事故年度3：$740\\times1.14615\\times1.02857=872.39$，備金 $132.39$．\n事故年度4：CDF $=1.51111\\times1.14615\\times1.02857=1.78145$，最終値 $926.35$，備金 $406.35$．\n合計 $\\boldsymbol{561.3}$．\n\n(2) 未払割合 $1-\\frac1{1.78145}=0.43866$．予想最終損害額 $1100\\times0.8=880$ より備金 $=880\\times0.43866=\\boldsymbol{386.0}$．$U_{BF}=906.02$．\n\n(3) 備金 $=0.43866\\times906.02=\\boldsymbol{397.4}$．\n\nベンクタンダー法の値は BF 法（$386.0$）とチェインラダー法（$406.4$）の間に入る．実際，未払割合を $q$ とすると，ベンクタンダー法は BF 法とチェインラダー法を $1-q:q$ で加重したものになっている．"
+   }
+  ],
+  "idea": {
+   "tex": "BF 法の最終値を事前の見込みとして使い直すと，BF 法とチェインラダー法の間を内分する推定値が得られる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈561.3\n(2) ≈386.0\n(3) ≈397.4"
+  },
+  "techniques": [
+   "chain-ladder",
+   "bornhuetter-ferguson"
+  ],
+  "methods": [],
+  "tags": [
+   "チェインラダー法",
+   "ボーンヒュッター＝ファーガソン法",
+   "ベンクタンダー法",
+   "支払備金"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "NL-03-014",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "NL-55",
+  "level": 3,
+  "minutes": 25,
+  "theme": "破産理論／指数クレームの破産確率と必要な初期サープラス・安全割増率",
+  "unit": "破産理論",
+  "topic": "指数クレームの破産確率と必要な初期サープラス・安全割増率",
+  "statement": {
+   "tex": "古典的リスク過程で，クレーム額は平均 $1$ の指数分布に従い，安全割増率を $\\theta$ とする．このとき破産確率は\n\\[\\psi(u)=\\frac{1}{1+\\theta}\\exp\\left(-\\frac{\\theta}{1+\\theta}u\\right)\\]\nである．\n\\begin{enumerate}\n\\item $\\theta=0.25$ のとき，初期サープラスが $0$ の場合の破産確率 $\\psi(0)$ を求めよ．\n\\item $\\theta=0.25$ のとき，$\\psi(u)\\le0.01$ となる最小の初期サープラス $u$ を小数第2位まで求めよ．$\\log80=4.3820$ を用いてよい．\n\\item $u=10$ のとき，$\\psi(10)\\le0.01$ となる最小の安全割増率 $\\theta$ を数値的に求め，有効数字3桁で答えよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac45$ \\quad (2) $\\approx 21.91$ \\quad (3) $\\approx 0.689$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　与えられた式を $u$ または $\\theta$ について解く．$\\theta$ については単調性を確かめて数値的に解く．\n\n(1) $\\psi(0)=\\frac{1}{1.25}=\\boldsymbol{\\frac45}$．\n\n(2) $0.8e^{-0.2u}\\le0.01\\iff u\\ge5\\log80=5\\times4.3820=\\boldsymbol{21.91}$．\n\n(3) $g(\\theta)=\\frac{1}{1+\\theta}\\exp\\left(-\\frac{10\\theta}{1+\\theta}\\right)$ は $\\theta$ について単調減少である．$g(0.68)\\approx0.0104$，$g(0.70)\\approx0.0096$ であり，$g(\\theta)=0.01$ を解くと $\\theta=\\boldsymbol{0.689}$．\n\n破産確率を小さくするには初期サープラスを積むか割増率を上げるかであり，(2)(3) はその2つの選択肢の量的な比較になっている．"
+   }
+  ],
+  "idea": {
+   "tex": "指数クレームでは破産確率が閉じた式になるので，目標の破産確率から必要な資本や割増率を逆算できる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 4/5\n(2) ≈21.91\n(3) ≈0.689"
+  },
+  "techniques": [
+   "adjustment-coefficient"
+  ],
+  "methods": [],
+  "tags": [
+   "破産確率",
+   "調整係数",
+   "指数分布",
+   "安全割増率",
+   "初期サープラス"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "NL-03-015",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "NL-55",
+  "level": 3,
+  "minutes": 25,
+  "theme": "破産理論／離散時間モデルの調整係数と必要保険料",
+  "unit": "破産理論",
+  "topic": "離散時間モデルの調整係数と必要保険料",
+  "statement": {
+   "tex": "毎年の総クレーム額 $S_1,S_2,\\dots$ は独立に正規分布 $N(100,400)$ に従い，毎年の保険料は $c$ である．サープラス $U_n=u+nc-(S_1+\\dots+S_n)$ が負になることを破産とし，その確率を $\\psi(u)$ とする．調整係数 $R>0$ は $E[e^{R(S_1-c)}]=1$ の解であり，$\\psi(u)\\le e^{-Ru}$ が成り立つ．\n\\begin{enumerate}\n\\item $c=110$ のとき，調整係数 $R$ を求めよ．\n\\item $c=110$，$u=60$ のとき，破産確率の上限 $e^{-Ru}$ を求めよ．\n\\item $u=60$ のとき，上限 $e^{-Ru}$ が $0.01$ 以下になる最小の保険料 $c$ を小数第2位まで求めよ．$\\log100=4.6052$ を用いてよい．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{1}{20}$ \\quad (2) $e^{-3}$ \\quad (3) $\\approx 115.35$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　正規分布の積率母関数 $E[e^{rS}]=e^{\\mu r+\\sigma^2r^2/2}$ を使うと，調整係数の方程式は2次方程式になる．\n\n(1) $\\mu R+\\frac12\\sigma^2R^2-cR=0$ より $R=\\frac{2(c-\\mu)}{\\sigma^2}=\\frac{2\\times10}{400}=\\boldsymbol{\\frac1{20}}$．\n\n(2) $e^{-60/20}=\\boldsymbol{e^{-3}}\\approx0.0498$．\n\n(3) $e^{-60R}\\le0.01\\iff R\\ge\\frac{\\log100}{60}=0.076753$．$c=\\mu+\\frac{\\sigma^2R}{2}=100+200\\times0.076753=\\boldsymbol{115.35}$．\n\n\\textbf{補足}（上限が成り立つ理由）$M_n=e^{-RU_n}$ とおくと $E[M_{n+1}\\mid M_n]=M_nE[e^{R(S_{n+1}-c)}]=M_n$ なので $M_n$ はマルチンゲールである．破産時刻を $T$ とすると，任意停止定理より $e^{-Ru}=M_0=E[M_{T\\wedge n}]\\ge E[M_T\\,;\\,T\\le n]\\ge P(T\\le n)$（破産時は $U_T<0$ で $M_T>1$）．$n\\to\\infty$ として $\\psi(u)\\le e^{-Ru}$．"
+   }
+  ],
+  "idea": {
+   "tex": "調整係数は $e^{-RU_n}$ をマルチンゲールにする指数であり，任意停止定理から破産確率の指数型の上限が出る．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 1/20\n(2) e^(-3)\n(3) ≈115.35"
+  },
+  "techniques": [
+   "adjustment-coefficient",
+   "stopping-time-ost"
+  ],
+  "methods": [],
+  "tags": [
+   "調整係数",
+   "ルンドベリの不等式",
+   "マルチンゲール",
+   "正規分布",
+   "破産確率"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ }
+]

@@ -1,0 +1,813 @@
+[
+ {
+  "id": "AM-01-001",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-47",
+  "level": 1,
+  "minutes": 6,
+  "theme": "条件付き確率／ベイズの定理によるリスク区分の推定",
+  "unit": "条件付き確率",
+  "topic": "ベイズの定理によるリスク区分の推定",
+  "statement": {
+   "tex": "ある保険の契約者は高リスク群と低リスク群に分かれ，その割合は $30\\%$ と $70\\%$ である．1年間に事故を起こす確率は，高リスク群で $0.2$，低リスク群で $0.05$ である．各年の事故の有無は，群が与えられたもとで独立とする．\n\\begin{enumerate}\n\\item 無作為に選んだ契約者が1年間に事故を起こす確率を求めよ．\n\\item 1年間に事故を起こした契約者が高リスク群に属する確率を求めよ．\n\\item 2年続けて事故を起こした契約者が高リスク群に属する確率を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{19}{200}$ \\quad (2) $\\frac{12}{19}$ \\quad (3) $\\frac{48}{55}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　群で場合分けして全確率の公式を使い，ベイズの定理で「結果から原因」の確率に直す．\n\n(1) 全確率の公式より $P(A)=0.3\\times0.2+0.7\\times0.05=0.06+0.035=0.095=\\boldsymbol{\\frac{19}{200}}$．\n\n(2) ベイズの定理より $P(H\\mid A)=\\dfrac{0.06}{0.095}=\\boldsymbol{\\frac{12}{19}}\\approx0.632$．\n\n(3) 群が与えられたもとで各年は独立だから，$P(A_1A_2\\mid H)=0.04$，$P(A_1A_2\\mid L)=0.0025$．よって\n\\[P(H\\mid A_1A_2)=\\frac{0.3\\times0.04}{0.3\\times0.04+0.7\\times0.0025}=\\frac{0.012}{0.01375}=\\boldsymbol{\\frac{48}{55}}\\approx0.873．\\]\n事故の記録が重なるほど高リスク群である確からしさが増す．これは経験料率の考え方の出発点である．"
+   }
+  ],
+  "idea": {
+   "tex": "全確率の公式で分母を作り，ベイズの定理で事後確率を求める．観測が増えたら尤度を掛け重ねる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 19/200\n(2) 12/19\n(3) 48/55"
+  },
+  "techniques": [
+   "bayes-theorem",
+   "prob-cond-independence"
+  ],
+  "methods": [],
+  "tags": [
+   "条件付き確率",
+   "ベイズの定理",
+   "全確率の公式",
+   "リスク区分"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-01-002",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-47",
+  "level": 1,
+  "minutes": 6,
+  "theme": "離散分布／ポアソン分布による事故件数",
+  "unit": "離散分布",
+  "topic": "ポアソン分布による事故件数",
+  "statement": {
+   "tex": "ある契約群の1年間の事故件数 $N$ は平均 $1.5$ のポアソン分布に従う．\n\\begin{enumerate}\n\\item $P(N=0)$ を求めよ．\n\\item $P(N\\ge2)$ を求めよ．\n\\item $N$ について正しい記述を選べ． \\\\ ① $N$ の分散は $1.5^2=2.25$ である． \\\\ ② $P(N=1)=P(N=2)$ である． \\\\ ③ $E[N(N-1)]=1.5^2$ である． \\\\ ④ 最頻値は $2$ である． \\\\ ⑤ 独立な2年分の件数の和は平均 $3$ の二項分布に従う． \\\\ 番号で答えよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $e^{-3/2}$ \\quad (2) $1-\\frac{5}{2}e^{-3/2}$ \\quad (3) ③（番号 3）"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　$P(N=k)=e^{-\\lambda}\\lambda^k/k!$ に $\\lambda=1.5$ を入れる．\n\n(1) $P(N=0)=\\boldsymbol{e^{-3/2}}\\approx0.2231$．\n\n(2) $P(N\\ge2)=1-P(N=0)-P(N=1)=1-e^{-1.5}(1+1.5)=\\boldsymbol{1-\\frac52e^{-3/2}}\\approx0.4422$．\n\n(3) ポアソン分布は平均と分散がともに $\\lambda$ だから①は誤り．$P(N=1)=1.5e^{-1.5}$，$P(N=2)=1.125e^{-1.5}$ で②は誤り．階乗モーメントは $E[N(N-1)]=\\lambda^2$ で③は正しい．$P(N=k)/P(N=k-1)=1.5/k$ より最頻値は $1$ で④は誤り．独立なポアソン分布の和はポアソン分布（再生性）で⑤は誤り．答えは $\\boldsymbol{③}$．"
+   }
+  ],
+  "idea": {
+   "tex": "ポアソン分布の確率関数・平均＝分散・階乗モーメント・再生性を確かめる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) exp(-3/2)\n(2) 1-5/2 exp(-3/2)\n(3) 3"
+  },
+  "techniques": [
+   "discrete-distributions",
+   "mgf"
+  ],
+  "methods": [],
+  "tags": [
+   "ポアソン分布",
+   "階乗モーメント",
+   "再生性",
+   "事故件数"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-01-003",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-47",
+  "level": 1,
+  "minutes": 5,
+  "theme": "連続分布／指数分布の無記憶性",
+  "unit": "連続分布",
+  "topic": "指数分布の無記憶性",
+  "statement": {
+   "tex": "ある機械の寿命 $T$（年）は平均 $10$ の指数分布に従う．\n\\begin{enumerate}\n\\item $P(T>5)$ を求めよ．\n\\item すでに $10$ 年動いている機械が，さらに $5$ 年以上動く確率 $P(T>15\\mid T>10)$ を求めよ．\n\\item $T$ の中央値を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $e^{-1/2}$ \\quad (2) $e^{-1/2}$ \\quad (3) $10\\log 2$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　生存関数 $S(t)=P(T>t)=e^{-t/10}$ を使う．\n\n(1) $S(5)=\\boldsymbol{e^{-1/2}}\\approx0.6065$．\n\n(2) $P(T>15\\mid T>10)=S(15)/S(10)=e^{-1.5}/e^{-1}=\\boldsymbol{e^{-1/2}}$．(1) と同じになる．これが指数分布の無記憶性である．\n\n(3) $e^{-m/10}=1/2$ より $m=\\boldsymbol{10\\log2}\\approx6.93$（年）．平均 $10$ より小さい（右に裾の長い分布）．"
+   }
+  ],
+  "idea": {
+   "tex": "生存関数の比で条件付き確率を出すと，指数分布では経過時間が消える（無記憶性）．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) exp(-1/2)\n(2) exp(-1/2)\n(3) 10log(2)"
+  },
+  "techniques": [
+   "memoryless-exp-poisson",
+   "hazard-survival"
+  ],
+  "methods": [],
+  "tags": [
+   "指数分布",
+   "無記憶性",
+   "生存関数",
+   "中央値"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-01-004",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-47",
+  "level": 1,
+  "minutes": 8,
+  "theme": "同時分布／同時密度の正規化と周辺分布",
+  "unit": "同時分布",
+  "topic": "同時密度の正規化と周辺分布",
+  "statement": {
+   "tex": "確率変数 $(X,Y)$ の同時確率密度関数が，$0<x<1$，$0<y<1$ で $f(x,y)=c(x+2y)$，それ以外で $0$ である．\n\\begin{enumerate}\n\\item 定数 $c$ を求めよ．\n\\item $E[X]$ を求めよ．\n\\item $P(X+Y<1)$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{2}{3}$ \\quad (2) $\\frac{5}{9}$ \\quad (3) $\\frac{1}{3}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　全体の積分が $1$ になることから $c$ を決め，周辺密度は他方の変数で積分して出す．\n\n(1) $\\int_0^1\\int_0^1(x+2y)\\,dx\\,dy=\\frac12+1=\\frac32$ より $c=\\boldsymbol{\\frac23}$．\n\n(2) $f_X(x)=\\int_0^1c(x+2y)\\,dy=\\frac23(x+1)$．$E[X]=\\int_0^1x\\cdot\\frac23(x+1)\\,dx=\\frac23\\left(\\frac13+\\frac12\\right)=\\boldsymbol{\\frac59}$．\n\n(3) 領域 $0<y<1-x$ で積分する．\n\\[\\int_0^1\\int_0^{1-x}\\frac23(x+2y)\\,dy\\,dx=\\frac23\\int_0^1\\{x(1-x)+(1-x)^2\\}\\,dx=\\frac23\\int_0^1(1-x)\\,dx=\\boldsymbol{\\frac13}．\\]"
+   }
+  ],
+  "idea": {
+   "tex": "正規化で定数を決め，周辺密度・領域上の確率は積分範囲を正しく取って計算する．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 2/3\n(2) 5/9\n(3) 1/3"
+  },
+  "techniques": [
+   "joint-marginal-conditional"
+  ],
+  "methods": [],
+  "tags": [
+   "同時確率密度",
+   "周辺分布",
+   "正規化",
+   "重積分"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-01-005",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-47",
+  "level": 1,
+  "minutes": 6,
+  "theme": "確率変数の変換／一様分布から指数分布を作る",
+  "unit": "確率変数の変換",
+  "topic": "一様分布から指数分布を作る",
+  "statement": {
+   "tex": "$U$ は区間 $(0,1)$ 上の一様分布に従う．$Y=-2\\log U$ とおく．\n\\begin{enumerate}\n\\item $P(Y>2)$ を求めよ．\n\\item $Y$ の確率密度関数 $f_Y(y)$ の $y=2$ での値を求めよ．\n\\item $E[Y]$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $e^{-1}$ \\quad (2) $\\frac{1}{2}e^{-1}$ \\quad (3) $2$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　分布関数法：$Y$ の事象を $U$ の事象に直す．\n\n(1) $Y>y\\iff U<e^{-y/2}$ だから $P(Y>y)=e^{-y/2}$（$y>0$）．$y=2$ として $\\boldsymbol{e^{-1}}\\approx0.368$．\n\n(2) $F_Y(y)=1-e^{-y/2}$ を微分して $f_Y(y)=\\frac12e^{-y/2}$．$y=2$ で $\\boldsymbol{\\frac12e^{-1}}$．$Y$ は平均 $2$ の指数分布（自由度 $2$ の $\\chi^2$ 分布）である．\n\n(3) $E[Y]=\\int_0^\\infty P(Y>y)\\,dy=\\int_0^\\infty e^{-y/2}dy=\\boldsymbol{2}$．"
+   }
+  ],
+  "idea": {
+   "tex": "単調な変換は分布関数を経由すると符号の間違いが起きにくい．これは逆関数法による乱数生成の裏返しである．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) exp(-1)\n(2) exp(-1)/2\n(3) 2"
+  },
+  "techniques": [
+   "var-transform",
+   "random-variate-generation",
+   "survival-integral-expectation"
+  ],
+  "methods": [],
+  "tags": [
+   "変数変換",
+   "分布関数法",
+   "一様分布",
+   "指数分布"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-01-006",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-47",
+  "level": 2,
+  "minutes": 8,
+  "theme": "積率母関数／モーメントと分布の同定",
+  "unit": "積率母関数",
+  "topic": "モーメントと分布の同定",
+  "statement": {
+   "tex": "確率変数 $X$ の積率母関数が $M_X(t)=(1-2t)^{-3}$（$t<\\frac12$）である．\n\\begin{enumerate}\n\\item $E[X]$ を求めよ．\n\\item $V[X]$ を求めよ．\n\\item $Y$ を $X$ と独立で同じ分布に従う確率変数とするとき，$E\\left[e^{(X+Y)/8}\\right]$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $6$ \\quad (2) $12$ \\quad (3) $\\frac{4096}{729}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　$M'(0)=E[X]$，$M''(0)=E[X^2]$．独立和の積率母関数は積になる．\n\n(1) $M'(t)=6(1-2t)^{-4}$ より $E[X]=\\boldsymbol{6}$．\n\n(2) $M''(t)=48(1-2t)^{-5}$ より $E[X^2]=48$，$V[X]=48-36=\\boldsymbol{12}$．$X$ は形状 $3$・尺度 $2$ のガンマ分布（自由度 $6$ の $\\chi^2$ 分布）で，平均 $3\\cdot2$，分散 $3\\cdot2^2$ と合う．\n\n(3) $M_{X+Y}(t)=(1-2t)^{-6}$．$t=\\frac18$ を代入して $\\left(\\frac34\\right)^{-6}=\\boldsymbol{\\frac{4096}{729}}\\approx5.62$．"
+   }
+  ],
+  "idea": {
+   "tex": "積率母関数を微分してモーメントを出し，形から分布を見抜く．独立和は積．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 6\n(2) 12\n(3) 4096/729"
+  },
+  "techniques": [
+   "mgf",
+   "gamma-beta-kernel"
+  ],
+  "methods": [],
+  "tags": [
+   "積率母関数",
+   "ガンマ分布",
+   "カイ二乗分布",
+   "独立和"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-01-007",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-47",
+  "level": 2,
+  "minutes": 12,
+  "theme": "条件付き分布／条件付き期待値と全分散の公式",
+  "unit": "条件付き分布",
+  "topic": "条件付き期待値と全分散の公式",
+  "statement": {
+   "tex": "$(X,Y)$ の同時確率密度関数が，$0<x<y<1$ で $f(x,y)=8xy$，それ以外で $0$ である．\n\\begin{enumerate}\n\\item $E[Y]$ を求めよ．\n\\item $0<y<1$ のとき，条件付き期待値 $E[X\\mid Y=y]$ を $y$ の式で求めよ．\n\\item $V[X]$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{4}{5}$ \\quad (2) $\\frac{2y}{3}$ \\quad (3) $\\frac{11}{225}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　周辺密度 $f_Y$ を出し，$f(x\\mid y)=f(x,y)/f_Y(y)$ で条件付き分布を作る．分散は全分散の公式でも直接でも出せる．\n\n(1) $f_Y(y)=\\int_0^y8xy\\,dx=4y^3$．$E[Y]=\\int_0^14y^4dy=\\boldsymbol{\\frac45}$．\n\n(2) $f(x\\mid y)=\\dfrac{2x}{y^2}$（$0<x<y$）．$E[X\\mid Y=y]=\\int_0^y\\dfrac{2x^2}{y^2}dx=\\boldsymbol{\\frac{2y}{3}}$．\n\n(3) $E[X^2\\mid Y=y]=\\int_0^y\\frac{2x^3}{y^2}dx=\\frac{y^2}{2}$ より $V[X\\mid Y=y]=\\frac{y^2}{2}-\\frac{4y^2}{9}=\\frac{y^2}{18}$．$E[Y^2]=\\frac23$，$V[Y]=\\frac23-\\frac{16}{25}=\\frac2{75}$．全分散の公式より\n\\[V[X]=E\\left[\\frac{Y^2}{18}\\right]+V\\left[\\frac{2Y}{3}\\right]=\\frac1{27}+\\frac49\\cdot\\frac2{75}=\\boldsymbol{\\frac{11}{225}}．\\]\n検算：$f_X(x)=4x(1-x^2)$ から $E[X]=\\frac8{15}$，$E[X^2]=\\frac13$ で $V[X]=\\frac13-\\frac{64}{225}=\\frac{11}{225}$．"
+   }
+  ],
+  "idea": {
+   "tex": "三角形の台では積分範囲に注意して周辺・条件付き密度を作り，全分散の公式で組み立てる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 4/5\n(2) 2y/3\n(3) 11/225"
+  },
+  "techniques": [
+   "joint-marginal-conditional",
+   "cond-expect"
+  ],
+  "methods": [],
+  "tags": [
+   "条件付き分布",
+   "条件付き期待値",
+   "全分散の公式",
+   "同時確率密度"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-01-008",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-47",
+  "level": 2,
+  "minutes": 10,
+  "theme": "損害額分布／免責金額と支払限度額のある支払額の期待値",
+  "unit": "損害額分布",
+  "topic": "免責金額と支払限度額のある支払額の期待値",
+  "statement": {
+   "tex": "1件の損害額 $X$（万円）は平均 $1000$ の指数分布に従う．\n\\begin{enumerate}\n\\item 免責金額 $200$ を設けたとき，1件あたりの支払額 $(X-200)_+=\\max(X-200,0)$ の期待値を求めよ．\n\\item (1) の契約で，支払いが生じた（$X>200$）ときの支払額の期待値を求めよ．\n\\item 免責金額 $200$ に加え，損害額 $1000$ を超える部分は支払わない（支払額は $\\min\\{(X-200)_+,\\,800\\}$）とき，支払額の期待値を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $1000e^{-1/5}$ \\quad (2) $1000$ \\quad (3) $1000(e^{-1/5}-e^{-1})$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　非負の確率変数では $E[(X-d)_+]=\\int_d^\\infty S(x)\\,dx$，$E[\\min(X,u)]=\\int_0^uS(x)\\,dx$．生存関数は $S(x)=e^{-x/1000}$．\n\n(1) $E[(X-200)_+]=\\int_{200}^\\infty e^{-x/1000}dx=\\boldsymbol{1000e^{-1/5}}\\approx818.7$．\n\n(2) $E[X-200\\mid X>200]=\\dfrac{E[(X-200)_+]}{S(200)}=\\boldsymbol{1000}$．無記憶性から，超過分も平均 $1000$ の指数分布になる．\n\n(3) 支払額は $\\min(X,1000)-\\min(X,200)$ だから\n\\[\\int_{200}^{1000}e^{-x/1000}dx=\\boldsymbol{1000(e^{-1/5}-e^{-1})}\\approx450.9．\\]"
+   }
+  ],
+  "idea": {
+   "tex": "免責・限度額の支払額は生存関数の区間積分で表せる．支払い1件あたりは超過確率で割る．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 1000exp(-1/5)\n(2) 1000\n(3) 1000(exp(-1/5)-exp(-1))"
+  },
+  "techniques": [
+   "survival-integral-expectation",
+   "memoryless-exp-poisson"
+  ],
+  "methods": [],
+  "tags": [
+   "免責金額",
+   "支払限度額",
+   "生存関数",
+   "制限期待値",
+   "指数分布"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-01-009",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-47",
+  "level": 2,
+  "minutes": 12,
+  "theme": "損害額分布／パレート分布の制限期待値とインフレ",
+  "unit": "損害額分布",
+  "topic": "パレート分布の制限期待値とインフレ",
+  "statement": {
+   "tex": "損害額 $X$ の生存関数が $S(x)=\\left(\\dfrac{2000}{x+2000}\\right)^3$（$x\\ge0$）で与えられる（パレート分布）．\n\\begin{enumerate}\n\\item $E[X]$ を求めよ．\n\\item $E[\\min(X,2000)]$ を求めよ．\n\\item 損害額が一律に $10\\%$ 上昇して $1.1X$ になったとき，免責金額 $2000$ の支払額 $(1.1X-2000)_+$ の期待値を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $1000$ \\quad (2) $750$ \\quad (3) $\\frac{133100}{441}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　期待値・制限期待値を生存関数の積分で計算する．$1.1X$ の生存関数は尺度を $1.1$ 倍したパレート分布になる．\n\n(1) $E[X]=\\int_0^\\infty\\frac{2000^3}{(x+2000)^3}dx=\\frac{2000^3}{2\\cdot2000^2}=\\boldsymbol{1000}$．\n\n(2) $\\int_0^{2000}\\frac{2000^3}{(x+2000)^3}dx=1000\\left\\{1-\\left(\\frac{2000}{4000}\\right)^2\\right\\}=\\boldsymbol{750}$．\n\n(3) $P(1.1X>y)=S(y/1.1)=\\left(\\frac{2200}{y+2200}\\right)^3$．よって\n\\[E[(1.1X-2000)_+]=\\int_{2000}^\\infty\\left(\\frac{2200}{y+2200}\\right)^3dy=1100\\left(\\frac{2200}{4200}\\right)^2=\\boldsymbol{\\frac{133100}{441}}\\approx301.8．\\]\nインフレ前は $1000\\times(1/2)^2=250$ で，損害額の上昇率 $10\\%$ を上回って約 $20.7\\%$ 増える（免責のてこ効果）．"
+   }
+  ],
+  "idea": {
+   "tex": "パレート分布の生存関数は積分しやすい．インフレは尺度母数の変更として扱う．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 1000\n(2) 750\n(3) 133100/441"
+  },
+  "techniques": [
+   "survival-integral-expectation"
+  ],
+  "methods": [],
+  "tags": [
+   "パレート分布",
+   "制限期待値",
+   "インフレ",
+   "免責金額",
+   "生存関数"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-01-010",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-47",
+  "level": 2,
+  "minutes": 12,
+  "theme": "複合分布／複合ポアソン分布の平均・分散・確率",
+  "unit": "複合分布",
+  "topic": "複合ポアソン分布の平均・分散・確率",
+  "statement": {
+   "tex": "1年間の事故件数 $N$ は平均 $2$ のポアソン分布に従い，各事故の損害額 $X_1,X_2,\\dots$ は $N$ と独立に同じ分布 $P(X=1)=0.5$，$P(X=2)=0.3$，$P(X=3)=0.2$ に従う．年間総損害額を $S=X_1+\\dots+X_N$（$N=0$ なら $S=0$）とする．\n\\begin{enumerate}\n\\item $E[S]$ を求めよ．\n\\item $V[S]$ を求めよ．\n\\item $P(S\\le2)$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{17}{5}$ \\quad (2) $7$ \\quad (3) $\\frac{31}{10}e^{-2}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　$N$ で条件付ける．$E[S]=E[N]E[X]$，$V[S]=E[N]V[X]+V[N]E[X]^2$．ポアソンなら $V[S]=\\lambda E[X^2]$．\n\n$E[X]=0.5+0.6+0.6=1.7$，$E[X^2]=0.5+1.2+1.8=3.5$．\n\n(1) $E[S]=2\\times1.7=\\boldsymbol{\\frac{17}{5}}$．\n\n(2) $V[S]=2\\times3.5=\\boldsymbol{7}$．\n\n(3) $S$ の値ごとに $N$ の場合分けをする．\n$P(S=0)=e^{-2}$，$P(S=1)=P(N=1)\\cdot0.5=e^{-2}$，$P(S=2)=P(N=1)\\cdot0.3+P(N=2)\\cdot0.5^2=2e^{-2}\\cdot0.3+2e^{-2}\\cdot0.25=1.1e^{-2}$．\nよって $P(S\\le2)=\\boldsymbol{\\frac{31}{10}e^{-2}}\\approx0.4195$．"
+   }
+  ],
+  "idea": {
+   "tex": "ランダムな個数の和は件数で条件付けると，平均・分散・小さい値の確率が出る．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 17/5\n(2) 7\n(3) 31/10 exp(-2)"
+  },
+  "techniques": [
+   "compound-sum-moments",
+   "cond-expect"
+  ],
+  "methods": [],
+  "tags": [
+   "複合ポアソン分布",
+   "ランダム和",
+   "全分散の公式",
+   "集合リスクモデル"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-01-011",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-47",
+  "level": 2,
+  "minutes": 10,
+  "theme": "極限定理／二項分布の正規近似と連続修正",
+  "unit": "極限定理",
+  "topic": "二項分布の正規近似と連続修正",
+  "statement": {
+   "tex": "独立な $400$ 件の契約がそれぞれ確率 $0.1$ で保険金請求を起こす．請求件数を $N$ とする．標準正規分布の分布関数 $\\Phi$ について $\\Phi(0.92)=0.8212$，$\\Phi(1.58)=0.9429$ を用いよ．\n\\begin{enumerate}\n\\item $N$ の標準偏差を求めよ．\n\\item 連続修正をした正規近似で $P(N\\ge50)$ の近似値を小数第4位まで求めよ．\n\\item 連続修正をした正規近似で $P(35\\le N\\le45)$ の近似値を小数第4位まで求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $6$ \\quad (2) $\\approx0.0571$ \\quad (3) $\\approx0.6424$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　中心極限定理で $N\\approx\\mathcal N(40,36)$．整数値の分布を連続分布で近似するので，境界を $0.5$ ずらす．\n\n(1) $V[N]=400\\times0.1\\times0.9=36$ より標準偏差は $\\boldsymbol{6}$．\n\n(2) $P(N\\ge50)=P(N>49.5)\\approx1-\\Phi\\left(\\frac{49.5-40}{6}\\right)=1-\\Phi(1.58)=\\boldsymbol{0.0571}$．（正確な値は約 $0.0601$．）\n\n(3) $P(34.5<N<45.5)\\approx2\\Phi\\left(\\frac{5.5}{6}\\right)-1=2\\Phi(0.92)-1=\\boldsymbol{0.6424}$．（正確な値は約 $0.6409$．）"
+   }
+  ],
+  "idea": {
+   "tex": "離散分布を正規近似するときは，求める整数の範囲を $\\pm0.5$ 広げてから標準化する．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 6\n(2) ≈0.0571\n(3) ≈0.6424"
+  },
+  "techniques": [
+   "continuity-correction",
+   "clt",
+   "normal-standardize"
+  ],
+  "methods": [],
+  "tags": [
+   "中心極限定理",
+   "正規近似",
+   "連続修正",
+   "二項分布"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-01-012",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-47",
+  "level": 2,
+  "minutes": 10,
+  "theme": "連続分布／対数正規分布の積率と確率",
+  "unit": "連続分布",
+  "topic": "対数正規分布の積率と確率",
+  "statement": {
+   "tex": "損害額 $X$ は対数正規分布に従い，$\\log X\\sim\\mathcal N(5,\\,0.4^2)$ である．$\\log300=5.7038$，$\\Phi(1.76)=0.9608$ を用いよ．\n\\begin{enumerate}\n\\item $E[X]$ を求めよ．\n\\item $X$ の中央値を求めよ．\n\\item $P(X>300)$ の近似値を小数第4位まで求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $e^{127/25}$ \\quad (2) $e^{5}$ \\quad (3) $\\approx0.0392$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　$Y=\\log X\\sim\\mathcal N(\\mu,\\sigma^2)$ なら $E[X]=E[e^Y]=M_Y(1)=e^{\\mu+\\sigma^2/2}$．確率は対数をとって標準化する．\n\n(1) $E[X]=e^{5+0.08}=\\boldsymbol{e^{127/25}}\\approx160.8$．\n\n(2) $\\log$ は単調だから，中央値は $e^{(\\log X\\text{ の中央値})}=\\boldsymbol{e^5}\\approx148.4$．平均より小さい．\n\n(3) $P(X>300)=P\\left(Z>\\frac{5.7038-5}{0.4}\\right)=1-\\Phi(1.76)=\\boldsymbol{0.0392}$．"
+   }
+  ],
+  "idea": {
+   "tex": "対数正規分布のモーメントは正規分布の積率母関数の値，確率は対数をとって正規分布に戻す．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) exp(127/25)\n(2) exp(5)\n(3) ≈0.0392"
+  },
+  "techniques": [
+   "lognormal-moments",
+   "normal-standardize"
+  ],
+  "methods": [],
+  "tags": [
+   "対数正規分布",
+   "積率母関数",
+   "中央値",
+   "正規分布"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-01-013",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-47",
+  "level": 3,
+  "minutes": 18,
+  "theme": "極限定理／集合リスクの正規近似と安全割増",
+  "unit": "極限定理",
+  "topic": "集合リスクの正規近似と安全割増",
+  "statement": {
+   "tex": "同じ条件の契約が $n$ 件あり，契約ごとの年間支払総額 $S_i$ は独立同分布で，事故件数が平均 $0.1$ のポアソン分布，1件の損害額が平均 $50$ の指数分布の複合ポアソン分布に従う．保険料は1件あたり $(1+\\theta)E[S_i]$ とする．正規近似を用い，$z_{0.05}=1.645$（標準正規分布の上側 $5\\%$ 点）とする．\n\\begin{enumerate}\n\\item $V[S_i]$ を求めよ．\n\\item $n=100$ のとき，保険料総額が支払総額 $S=\\sum S_i$ を下回る確率が $5\\%$ となる安全割増率 $\\theta$ を小数第3位まで求めよ．\n\\item $\\theta=0.2$ のとき，同じ条件（下回る確率が $5\\%$ 以下）を満たす最小の $n$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $500$ \\quad (2) $\\approx0.736$ \\quad (3) $1354$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　複合ポアソン分布の平均・分散を出し，独立和 $S$ を中心極限定理で正規近似する．\n\n(1) $E[X]=50$，$E[X^2]=2\\cdot50^2=5000$．$E[S_i]=0.1\\times50=5$，$V[S_i]=0.1\\times5000=\\boldsymbol{500}$．\n\n(2) $E[S]=500$，$V[S]=50000$．$P(S>500(1+\\theta))=0.05$ より $500\\theta=1.645\\sqrt{50000}=367.8$，$\\theta=\\boldsymbol{0.736}$．\n\n(3) 条件は $0.2\\times5n\\ge1.645\\sqrt{500n}$，すなわち $\\sqrt n\\ge1.645\\sqrt{500}$，$n\\ge1.645^2\\times500=1353.01$．よって最小の $n$ は $\\boldsymbol{1354}$．\n割増率は $1/\\sqrt n$ の速さでしか小さくならない（大数の法則の速さ）．"
+   }
+  ],
+  "idea": {
+   "tex": "集合リスクは平均・分散を出して正規近似する．必要な割増は標準偏差に比例し，契約数の平方根で効く．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 500\n(2) ≈0.736\n(3) 1354"
+  },
+  "techniques": [
+   "compound-sum-moments",
+   "clt"
+  ],
+  "methods": [],
+  "tags": [
+   "中心極限定理",
+   "複合ポアソン分布",
+   "安全割増",
+   "正規近似"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-01-014",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-47",
+  "level": 3,
+  "minutes": 18,
+  "theme": "連続分布／対数正規分布のストップロス保険料",
+  "unit": "連続分布",
+  "topic": "対数正規分布のストップロス保険料",
+  "statement": {
+   "tex": "$\\log X\\sim\\mathcal N(4,\\,0.5^2)$ とし，$d=e^{4.25}$ とおく．$\\Phi(0.5)=0.6915$，$e^{4.125}=61.87$，$e^{4.25}=70.11$ を用いよ．\n\\begin{enumerate}\n\\item $E[X]$ を求めよ．\n\\item $P(X>d)$ を小数第4位まで求めよ．\n\\item $E[(X-d)_+]$ の近似値を小数第2位まで求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $e^{33/8}$ \\quad (2) $\\approx0.3085$ \\quad (3) $\\approx9.30$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　$E[(X-d)_+]=E[X;X>d]-dP(X>d)$ と分け，前者は $e^{y}$ と正規密度の積を平方完成して正規分布の確率に直す．$\\mu=4$，$\\sigma=0.5$．\n\n(1) $E[X]=e^{\\mu+\\sigma^2/2}=\\boldsymbol{e^{33/8}}\\approx61.87$．\n\n(2) $P(X>d)=P\\left(Z>\\frac{4.25-4}{0.5}\\right)=1-\\Phi(0.5)=\\boldsymbol{0.3085}$．\n\n(3) $Y=\\log X$ の密度を $\\phi_{\\mu,\\sigma}$ とすると $e^y\\phi_{\\mu,\\sigma}(y)=e^{\\mu+\\sigma^2/2}\\phi_{\\mu+\\sigma^2,\\sigma}(y)$（平方完成）．よって\n\\[E[X;X>d]=e^{\\mu+\\sigma^2/2}\\,\\Phi\\!\\left(\\frac{\\mu+\\sigma^2-\\log d}{\\sigma}\\right)=e^{4.125}\\Phi(0)=30.93．\\]\n$E[(X-d)_+]=30.93-e^{4.25}\\times0.3085=30.93-21.63=\\boldsymbol{9.30}$．\n一般に $E[(X-d)_+]=e^{\\mu+\\sigma^2/2}\\Phi(d_1)-d\\,\\Phi(d_1-\\sigma)$，$d_1=\\frac{\\mu+\\sigma^2-\\log d}{\\sigma}$（ブラック＝ショールズ式と同じ形）．"
+   }
+  ],
+  "idea": {
+   "tex": "$e^y$ を掛けた正規密度は平均が $\\sigma^2$ ずれた正規密度になる．これでストップロスの期待値が正規分布の確率で書ける．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) exp(33/8)\n(2) ≈0.3085\n(3) ≈9.30"
+  },
+  "techniques": [
+   "lognormal-moments",
+   "survival-integral-expectation"
+  ],
+  "methods": [],
+  "tags": [
+   "対数正規分布",
+   "ストップロス",
+   "制限期待値",
+   "平方完成"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-01-015",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-47",
+  "level": 3,
+  "minutes": 15,
+  "theme": "確率過程の初歩／ランダムウォークの破産確率と平均継続時間",
+  "unit": "確率過程の初歩",
+  "topic": "ランダムウォークの破産確率と平均継続時間",
+  "statement": {
+   "tex": "資産は毎期，確率 $0.4$ で $1$ 増え，確率 $0.6$ で $1$ 減る（各期独立）．初期資産を $3$ とし，資産が $0$ または $6$ になった時点で停止する．\n\\begin{enumerate}\n\\item 資産が $6$ に達して停止する確率を求めよ．\n\\item 資産が $0$ に達して停止する（破産する）確率を求めよ．\n\\item 停止までの期数の期待値を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{8}{35}$ \\quad (2) $\\frac{27}{35}$ \\quad (3) $\\frac{57}{7}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　資産 $k$ から始めたときの値を $h_k$ とおき，1期目で場合分けした漸化式（第1ステップ解析）を解く．$p=0.4$，$q=0.6$，$r=q/p=\\frac32$．\n\n(1) $h_k=0.4h_{k+1}+0.6h_{k-1}$，$h_0=0$，$h_6=1$．特性方程式の根は $1,r$ で，$h_k=\\dfrac{1-r^k}{1-r^6}$．$h_3=\\dfrac{1-27/8}{1-729/64}=\\boldsymbol{\\frac{8}{35}}$．\n\n(2) 有限の時間で必ず停止するから $1-\\frac8{35}=\\boldsymbol{\\frac{27}{35}}$．\n\n(3) $D_k=1+0.4D_{k+1}+0.6D_{k-1}$，$D_0=D_6=0$．特解 $\\frac{k}{q-p}=5k$ を加えて $D_k=5k-30h_k$．$D_3=15-30\\cdot\\frac8{35}=\\boldsymbol{\\frac{57}{7}}\\approx8.14$．"
+   }
+  ],
+  "idea": {
+   "tex": "吸収壁のあるランダムウォークは，1歩目で条件付けた線形漸化式を境界条件で解く．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 8/35\n(2) 27/35\n(3) 57/7"
+  },
+  "techniques": [
+   "markov-first-step"
+  ],
+  "methods": [],
+  "tags": [
+   "ランダムウォーク",
+   "破産確率",
+   "第1ステップ解析",
+   "漸化式"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ }
+]

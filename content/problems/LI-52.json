@@ -1,0 +1,804 @@
+[
+ {
+  "id": "LI-03-001",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "LI-52",
+  "level": 1,
+  "minutes": 5,
+  "theme": "連生／共存者と最終生存者の生存・死亡確率",
+  "unit": "連生",
+  "topic": "共存者と最終生存者の生存・死亡確率",
+  "statement": {
+   "tex": "$x$ 歳と $y$ 歳の2人の生死は独立で，$p_x=0.98$，$p_y=0.97$ とする．\n\\begin{enumerate}\n\\item 共存者（2人とも生存している状態）の生存確率 $p_{xy}$ を求めよ．\n\\item 1年以内に共存状態が消滅する確率 $q_{xy}$ を求めよ．\n\\item 1年以内に最終生存者状態が消滅する（2人とも死亡する）確率 $q_{\\overline{xy}}$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $0.9506$\n(2) $0.0494$\n(3) $0.0006$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　共存者状態 $xy$ は「2人とも生存」，最終生存者状態 $\\overline{xy}$ は「少なくとも1人生存」．独立性で積に分ける．\n\n(1) $p_{xy}=p_xp_y=0.98\\times0.97=\\boldsymbol{0.9506}$．\n\n(2) $q_{xy}=1-p_{xy}=\\boldsymbol{0.0494}$（少なくとも1人が死亡）．\n\n(3) $q_{\\overline{xy}}=q_xq_y=0.02\\times0.03=\\boldsymbol{0.0006}$．$p_{\\overline{xy}}=p_x+p_y-p_{xy}=0.9994$ と一致する．"
+   }
+  ],
+  "idea": {
+   "tex": "共存者は「全員生存」で積，最終生存者は「全員死亡」の余事象で $p_{\\overline{xy}}=p_x+p_y-p_{xy}$．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 0.9506\n(2) 0.0494\n(3) 0.0006"
+  },
+  "techniques": [
+   "joint-life-status"
+  ],
+  "methods": [],
+  "tags": [
+   "連生",
+   "共存者",
+   "最終生存者",
+   "生存確率"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "LI-03-002",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "LI-52",
+  "level": 1,
+  "minutes": 6,
+  "theme": "多重脱退／多重脱退表の脱退率と残存率",
+  "unit": "多重脱退",
+  "topic": "多重脱退表の脱退率と残存率",
+  "statement": {
+   "tex": "死亡（第1原因）と退職（第2原因）の2つの脱退がある多重脱退表の一部が次のとおりである．\n\\begin{tabular}{c|ccc} $x$ & $l^{(\\tau)}_x$ & $d^{(1)}_x$ & $d^{(2)}_x$ \\\\ \\hline 30 & 1000 & 20 & 80 \\\\ 31 & 900 & 25 & 60 \\end{tabular}\n\\begin{enumerate}\n\\item 30歳の退職による脱退率 $q^{(2)}_{30}$ を求めよ．\n\\item 31歳の全脱退率 $q^{(\\tau)}_{31}$ を求めよ．\n\\item 30歳の者が2年間在職する確率 ${}_2p^{(\\tau)}_{30}$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $0.08$\n(2) $\\frac{17}{180}$\n(3) $0.815$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　多重脱退表では $l^{(\\tau)}_{x+1}=l^{(\\tau)}_x-\\sum_jd^{(j)}_x$，$q^{(j)}_x=d^{(j)}_x/l^{(\\tau)}_x$，$q^{(\\tau)}_x=\\sum_jq^{(j)}_x$．\n\n(1) $q^{(2)}_{30}=\\frac{80}{1000}=\\boldsymbol{0.08}$．\n\n(2) $q^{(\\tau)}_{31}=\\frac{25+60}{900}=\\boldsymbol{\\frac{17}{180}}$．\n\n(3) $l^{(\\tau)}_{32}=900-85=815$ より ${}_2p^{(\\tau)}_{30}=\\frac{815}{1000}=\\boldsymbol{0.815}$．"
+   }
+  ],
+  "idea": {
+   "tex": "多重脱退表の脱退率は「その原因の脱退数÷全体の残存数」で，全脱退率は各原因の脱退率の和．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 0.08\n(2) 17/180\n(3) 0.815"
+  },
+  "techniques": [
+   "multiple-decrement",
+   "life-table-functions"
+  ],
+  "methods": [],
+  "tags": [
+   "多重脱退",
+   "多重脱退表",
+   "脱退率"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "LI-03-003",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "LI-52",
+  "level": 1,
+  "minutes": 10,
+  "theme": "連生／ド・モアブルの法則での共存・最終生存の平均余命",
+  "unit": "連生",
+  "topic": "ド・モアブルの法則での共存・最終生存の平均余命",
+  "statement": {
+   "tex": "2人の生死は独立で，ともに $\\omega=100$ のド・モアブルの法則 ${}_tp_x=1-\\frac{t}{100-x}$ に従うとする．$x=60$，$y=70$ とする．\n\\begin{enumerate}\n\\item ${}_{10}p_{xy}$ を求めよ．\n\\item 共存の完全平均余命 $\\mathring e_{xy}$ を求めよ．\n\\item 最終生存者の完全平均余命 $\\mathring e_{\\overline{xy}}$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $0.5$\n(2) $11.25$\n(3) $23.75$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　${}_tp_{xy}={}_tp_x\\,{}_tp_y$ を積分する．最終生存者は $\\mathring e_{\\overline{xy}}=\\mathring e_x+\\mathring e_y-\\mathring e_{xy}$．\n\n(1) ${}_{10}p_{xy}=\\frac{30}{40}\\cdot\\frac{20}{30}=\\boldsymbol{0.5}$．\n\n(2) \\[\\mathring e_{xy}=\\int_0^{30}\\left(1-\\frac t{40}\\right)\\left(1-\\frac t{30}\\right)dt=30-\\frac{900}{80}-\\frac{900}{60}+\\frac{27000}{3\\cdot1200}=\\boldsymbol{11.25}.\\]\n\n(3) $\\mathring e_x=20$，$\\mathring e_y=15$ より $\\mathring e_{\\overline{xy}}=20+15-11.25=\\boldsymbol{23.75}$．"
+   }
+  ],
+  "idea": {
+   "tex": "共存の生存確率は積，最終生存者は包除原理 ${}_tp_{\\overline{xy}}={}_tp_x+{}_tp_y-{}_tp_{xy}$ で単生命に直す．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 0.5\n(2) 11.25\n(3) 23.75"
+  },
+  "techniques": [
+   "joint-life-status",
+   "mortality-laws"
+  ],
+  "methods": [],
+  "tags": [
+   "連生",
+   "共存者",
+   "最終生存者",
+   "ド・モアブルの法則",
+   "平均余命"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "LI-03-004",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "LI-52",
+  "level": 1,
+  "minutes": 7,
+  "theme": "連生／一定死力での平均余命・保険・年金",
+  "unit": "連生",
+  "topic": "一定死力での平均余命・保険・年金",
+  "statement": {
+   "tex": "2人の生死は独立で，死力はそれぞれ $\\mu_x=0.02$，$\\mu_y=0.03$（一定）とする．利力を $\\delta=0.05$ とする．\n\\begin{enumerate}\n\\item 共存の完全平均余命 $\\mathring e_{xy}$ を求めよ．\n\\item 共存状態の消滅時に1を支払う保険の一時払純保険料 $\\bar A_{xy}$ を求めよ．\n\\item 最終生存者に対する連続払年金（年額1）の現価 $\\bar a_{\\overline{xy}}$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $20$\n(2) $\\frac{1}{2}$\n(3) $\\frac{235}{14}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　独立なら共存状態の死力は $\\mu_x+\\mu_y=0.05$ の一定死力で，単生命と同じ公式が使える．\n\n(1) $\\mathring e_{xy}=\\frac{1}{0.05}=\\boldsymbol{20}$．\n\n(2) $\\bar A_{xy}=\\frac{0.05}{0.05+0.05}=\\boldsymbol{\\frac12}$．\n\n(3) $\\bar a_x=\\frac{1}{0.07}$，$\\bar a_y=\\frac{1}{0.08}$，$\\bar a_{xy}=\\frac{1}{0.1}$ より\n\\[\\bar a_{\\overline{xy}}=\\bar a_x+\\bar a_y-\\bar a_{xy}=\\frac{100}{7}+12.5-10=\\boldsymbol{\\frac{235}{14}}\\approx16.79.\\]"
+   }
+  ],
+  "idea": {
+   "tex": "独立な一定死力の共存状態は死力 $\\mu_x+\\mu_y$ の単生命と同じ．最終生存者は包除原理．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 20\n(2) 1/2\n(3) 235/14"
+  },
+  "techniques": [
+   "joint-life-status",
+   "present-value-basics"
+  ],
+  "methods": [],
+  "tags": [
+   "連生",
+   "一定死力",
+   "共存者",
+   "最終生存者",
+   "生命年金"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "LI-03-005",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "LI-52",
+  "level": 1,
+  "minutes": 8,
+  "theme": "多重脱退／多重脱退率から絶対脱退率を求める",
+  "unit": "多重脱退",
+  "topic": "多重脱退率から絶対脱退率を求める",
+  "statement": {
+   "tex": "ある年齢で，死亡の脱退率 $q^{(1)}_x=0.02$，退職の脱退率 $q^{(2)}_x=0.10$ とする．各原因の脱退が多重脱退表の中で年齢 $x$ と $x+1$ の間に一様に起こる（${}_tq^{(j)}_x=tq^{(j)}_x$）と仮定する．\n\\begin{enumerate}\n\\item 死亡の絶対脱退率 $q'^{(1)}_x$ を有効数字4桁で求めよ．\n\\item 退職の絶対脱退率 $q'^{(2)}_x$ を有効数字4桁で求めよ．\n\\item $(1-q'^{(1)}_x)(1-q'^{(2)}_x)$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx 0.02108$\n(2) $\\approx 0.1010$\n(3) $0.88$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　各原因の脱退力は $\\mu^{(j)}_{x+t}=\\frac{q^{(j)}_x}{{}_tp^{(\\tau)}_x}$（分子が一定）なので $\\mu^{(j)}=\\frac{q^{(j)}}{q^{(\\tau)}}\\mu^{(\\tau)}$．積分して $p'^{(j)}_x=\\left(p^{(\\tau)}_x\\right)^{q^{(j)}_x/q^{(\\tau)}_x}$．\n\n(1) $p^{(\\tau)}_x=0.88$ より $q'^{(1)}_x=1-0.88^{1/6}\\approx\\boldsymbol{0.02108}$．\n\n(2) $q'^{(2)}_x=1-0.88^{5/6}\\approx\\boldsymbol{0.1010}$．\n\n(3) 指数の和が1なので $(1-q'^{(1)})(1-q'^{(2)})=0.88^{1/6+5/6}=\\boldsymbol{0.88}=p^{(\\tau)}_x$．絶対脱退率は他の原因がなかった場合の脱退率で，多重脱退率より大きい．"
+   }
+  ],
+  "idea": {
+   "tex": "脱退力の比が一定なら $p'^{(j)}=(p^{(\\tau)})^{q^{(j)}/q^{(\\tau)}}$．絶対残存率の積が全残存率になる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈0.02108\n(2) ≈0.1010\n(3) 0.88"
+  },
+  "techniques": [
+   "multiple-decrement"
+  ],
+  "methods": [],
+  "tags": [
+   "多重脱退",
+   "絶対脱退率",
+   "脱退力"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "LI-03-006",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "LI-52",
+  "level": 2,
+  "minutes": 10,
+  "theme": "多重脱退／絶対脱退率から多重脱退率を求める（2原因）",
+  "unit": "多重脱退",
+  "topic": "絶対脱退率から多重脱退率を求める（2原因）",
+  "statement": {
+   "tex": "死亡と退職の2つの脱退がある．絶対脱退率を $q'^{(1)}_x=0.04$（死亡），$q'^{(2)}_x=0.10$（退職）とし，それぞれの単一脱退表の中で脱退が年齢 $x$ と $x+1$ の間に一様に起こると仮定する．\n\\begin{enumerate}\n\\item 死亡の多重脱退率 $q^{(1)}_x$ を求めよ．\n\\item 退職の多重脱退率 $q^{(2)}_x$ を求めよ．\n\\item 一般に，2原因で各絶対脱退率が $0$ より大きく $1$ 未満のとき，正しいものを次の ①〜⑤ から選び，番号で答えよ．\\\\ ① $q^{(1)}_x>q'^{(1)}_x$ \\quad ② $q^{(1)}_x=q'^{(1)}_x$ \\quad ③ $q^{(1)}_x<q'^{(1)}_x$ \\quad ④ $q^{(1)}_x+q^{(2)}_x=q'^{(1)}_x+q'^{(2)}_x$ \\quad ⑤ $q^{(\\tau)}_x>q'^{(1)}_x+q'^{(2)}_x$\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $0.038$\n(2) $0.098$\n(3) ③（番号 3）"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　死亡で脱退するのは，時点 $t$ まで退職せず（確率 ${}_tp'^{(2)}$），そこで死亡するとき．$q^{(1)}_x=\\int_0^1{}_tp'^{(2)}_x\\,{}_tp'^{(1)}_x\\mu^{(1)}_{x+t}dt$ で，単一脱退表内の一様性から ${}_tp'^{(1)}\\mu^{(1)}=q'^{(1)}$，${}_tp'^{(2)}=1-tq'^{(2)}$．\n\n(1) $q^{(1)}_x=q'^{(1)}\\int_0^1(1-tq'^{(2)})dt=0.04\\left(1-\\frac{0.10}{2}\\right)=\\boldsymbol{0.038}$．\n\n(2) $q^{(2)}_x=0.10\\left(1-\\frac{0.04}{2}\\right)=\\boldsymbol{0.098}$．\n\n(3) 他の原因で先に脱退する人の分だけ死亡による脱退は減るので $q^{(1)}<q'^{(1)}$，答えは $\\boldsymbol{③}$．なお $q^{(\\tau)}=1-(1-q'^{(1)})(1-q'^{(2)})=0.136=0.038+0.098$ で，$q'^{(1)}+q'^{(2)}=0.14$ より小さい．"
+   }
+  ],
+  "idea": {
+   "tex": "単一脱退表で一様なら $q^{(1)}=q'^{(1)}(1-\\frac12q'^{(2)})$．競合する原因の分だけ多重脱退率は絶対脱退率より小さい．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 0.038\n(2) 0.098\n(3) 3"
+  },
+  "techniques": [
+   "multiple-decrement"
+  ],
+  "methods": [],
+  "tags": [
+   "多重脱退",
+   "絶対脱退率",
+   "UDD"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "LI-03-007",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "LI-52",
+  "level": 2,
+  "minutes": 12,
+  "theme": "連生／条件付き死亡確率（先に死亡する確率）",
+  "unit": "連生",
+  "topic": "条件付き死亡確率（先に死亡する確率）",
+  "statement": {
+   "tex": "2人の生死は独立で，ともに $\\omega=100$ のド・モアブルの法則に従うとする．$x=60$，$y=70$ とする．\n\\begin{enumerate}\n\\item $x$ が $y$ より先に死亡する確率 ${}_\\infty q^{1}_{xy}$ を求めよ．\n\\item $x$ が $y$ より先に，かつ10年以内に死亡する確率 ${}_{10}q^{1}_{xy}$ を求めよ．\n\\item $x$ が $y$ より後に死亡する確率 ${}_\\infty q^{2}_{xy}$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{3}{8}$\n(2) $\\frac{5}{24}$\n(3) $\\frac{5}{8}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　${}_nq^{1}_{xy}=\\int_0^n{}_tp_x\\,\\mu_{x+t}\\,{}_tp_y\\,dt$（時点 $t$ に $x$ が死亡し，そのとき $y$ が生存）．ド・モアブルでは ${}_tp_x\\mu_{x+t}=\\frac{1}{40}$（一様密度）．\n\n(1) ${}_\\infty q^{1}_{xy}=\\int_0^{30}\\frac{1}{40}\\left(1-\\frac{t}{30}\\right)dt=\\frac{15}{40}=\\boldsymbol{\\frac38}$．$y$ は30年以内に必ず死亡するので積分は30まで．\n\n(2) ${}_{10}q^{1}_{xy}=\\frac{1}{40}\\int_0^{10}\\left(1-\\frac{t}{30}\\right)dt=\\frac{1}{40}\\cdot\\frac{25}{3}=\\boldsymbol{\\frac{5}{24}}$．\n\n(3) 同時に死亡する確率は0なので ${}_\\infty q^{2}_{xy}=1-{}_\\infty q^{1}_{xy}=\\boldsymbol{\\frac58}$．"
+   }
+  ],
+  "idea": {
+   "tex": "条件付き死亡確率は「一方の死亡密度×他方の生存確率」を積分する．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 3/8\n(2) 5/24\n(3) 5/8"
+  },
+  "techniques": [
+   "joint-life-status",
+   "mortality-laws"
+  ],
+  "methods": [],
+  "tags": [
+   "連生",
+   "条件付き死亡確率",
+   "ド・モアブルの法則"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "LI-03-008",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "LI-52",
+  "level": 2,
+  "minutes": 12,
+  "theme": "連生／遺族年金（復帰年金）と最終生存者保険",
+  "unit": "連生",
+  "topic": "遺族年金（復帰年金）と最終生存者保険",
+  "statement": {
+   "tex": "2人の生死は独立で，死力はそれぞれ $\\mu_x=0.02$，$\\mu_y=0.03$（一定），利力は $\\delta=0.04$ とする．年金・保険はすべて連続型とする．\n\\begin{enumerate}\n\\item 共存者年金の現価 $\\bar a_{xy}$ を求めよ．\n\\item $x$ の死亡後 $y$ が生存している間支払う遺族年金（年額1）の現価 $\\bar a_{x|y}$ を求めよ．\n\\item 2人目の死亡時に1を支払う保険の一時払純保険料 $\\bar A_{\\overline{xy}}$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{100}{9}$\n(2) $\\frac{200}{63}$\n(3) $\\frac{13}{63}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　遺族年金は「$y$ の年金から，$x$ が生きている間の分（共存者年金）を引いたもの」：$\\bar a_{x|y}=\\bar a_y-\\bar a_{xy}$．最終生存者保険は包除原理で $\\bar A_{\\overline{xy}}=\\bar A_x+\\bar A_y-\\bar A_{xy}$．\n\n(1) 共存状態の死力は $0.05$ なので $\\bar a_{xy}=\\frac{1}{0.05+0.04}=\\boldsymbol{\\frac{100}{9}}$．\n\n(2) $\\bar a_y=\\frac{1}{0.07}$ より $\\bar a_{x|y}=\\frac{100}{7}-\\frac{100}{9}=\\boldsymbol{\\frac{200}{63}}\\approx3.175$．\n\n(3) $\\bar A_x=\\frac{0.02}{0.06}=\\frac13$，$\\bar A_y=\\frac{0.03}{0.07}=\\frac37$，$\\bar A_{xy}=\\frac{0.05}{0.09}=\\frac59$ より $\\bar A_{\\overline{xy}}=\\frac13+\\frac37-\\frac59=\\boldsymbol{\\frac{13}{63}}$．"
+   }
+  ],
+  "idea": {
+   "tex": "遺族年金 $\\bar a_{x|y}=\\bar a_y-\\bar a_{xy}$，最終生存者は包除原理で単生命と共存者に分解する．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 100/9\n(2) 200/63\n(3) 13/63"
+  },
+  "techniques": [
+   "joint-life-status",
+   "present-value-basics"
+  ],
+  "methods": [],
+  "tags": [
+   "連生",
+   "遺族年金",
+   "最終生存者",
+   "共存者",
+   "生命年金"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "LI-03-009",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "LI-52",
+  "level": 2,
+  "minutes": 12,
+  "theme": "多重脱退／原因別に保険金の異なる保険の純保険料",
+  "unit": "多重脱退",
+  "topic": "原因別に保険金の異なる保険の純保険料",
+  "statement": {
+   "tex": "災害死亡（第1原因），その他の死亡（第2原因），解約（第3原因）の3つの脱退がある多重脱退表の一部が次のとおりである．\n\\begin{tabular}{c|cccc} $x$ & $l^{(\\tau)}_x$ & $d^{(1)}_x$ & $d^{(2)}_x$ & $d^{(3)}_x$ \\\\ \\hline 40 & 1000 & 2 & 8 & 50 \\\\ 41 & 940 & 3 & 10 & 45 \\end{tabular}\n40歳加入，保険期間2年で，災害死亡なら2，その他の死亡なら1を年度末に支払い，解約時の払戻しはない保険を考える．$i=0.03$ とする．\n\\begin{enumerate}\n\\item ${}_1p^{(\\tau)}_{40}$ を求めよ．\n\\item 給付の期待現価（一時払純保険料）を有効数字4桁で求めよ．\n\\item 保険料を年始に2回払い込むときの年払純保険料を有効数字4桁で求めよ（保険料は在籍者だけが払う）．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $0.94$\n(2) $\\approx 0.02673$\n(3) $\\approx 0.01398$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　多重脱退では，原因ごとの脱退数に給付額をかけて割り引く．保険料は在籍者（全脱退をくぐり抜けた者）が払う．\n\n(1) $\\frac{940}{1000}=\\boldsymbol{0.94}$．\n\n(2) \\[\\frac{v(2\\cdot2+1\\cdot8)+v^2(2\\cdot3+1\\cdot10)}{1000}=\\frac{12v+16v^2}{1000}\\approx\\boldsymbol{0.02673}.\\]\n\n(3) 保険料の現価は $P(1+0.94v)$ なので $P=\\frac{0.02673}{1+0.94v}\\approx\\boldsymbol{0.01398}$．"
+   }
+  ],
+  "idea": {
+   "tex": "多重脱退の保険は原因別脱退数×給付額で期待現価を作り，保険料は全体の残存者で割り引く．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 0.94\n(2) ≈0.02673\n(3) ≈0.01398"
+  },
+  "techniques": [
+   "multiple-decrement",
+   "equivalence-principle"
+  ],
+  "methods": [],
+  "tags": [
+   "多重脱退",
+   "多重脱退表",
+   "一時払純保険料",
+   "年払純保険料"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "LI-03-010",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "LI-52",
+  "level": 2,
+  "minutes": 12,
+  "theme": "就業不能／回復のない3状態モデルの推移確率と給付現価",
+  "unit": "就業不能",
+  "topic": "回復のない3状態モデルの推移確率と給付現価",
+  "statement": {
+   "tex": "就業者（$a$），就業不能者（$i$），死亡の3状態モデルを考える．1年間の推移確率は年齢によらず次のとおりとし，就業不能からの回復はないとする．\n\\\\ 就業者から：就業者のまま $0.94$，就業不能になる $0.05$，死亡 $0.01$ \\\\ 就業不能者から：就業不能のまま $0.90$，死亡 $0.10$\n\\begin{enumerate}\n\\item 現在就業者である者が2年後も就業者である確率 ${}_2p^{aa}$ を求めよ．\n\\item 現在就業者である者が2年後に就業不能者である確率 ${}_2p^{ai}$ を求めよ．\n\\item 現在就業者である者に，第1・第2年度末にその時点で就業不能であれば1を支払う．$i=0.02$ として給付の期待現価を有効数字4桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $0.8836$\n(2) $0.092$\n(3) $\\approx 0.1374$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　推移確率は「1年目の状態」で場合分けして足す（チャップマン＝コルモゴロフの式）．就業不能年金の現価は，各支払時点で就業不能である確率を割り引いて足す．\n\n(1) ${}_2p^{aa}=0.94^2=\\boldsymbol{0.8836}$．\n\n(2) 1年目に就業不能になって2年目もそのまま：$0.05\\times0.90=0.045$．1年目は就業者で2年目に就業不能：$0.94\\times0.05=0.047$．合計 ${}_2p^{ai}=\\boldsymbol{0.092}$．\n\n(3) $v\\,p^{ai}+v^2\\,{}_2p^{ai}=\\frac{0.05}{1.02}+\\frac{0.092}{1.02^2}\\approx\\boldsymbol{0.1374}$．"
+   }
+  ],
+  "idea": {
+   "tex": "多状態モデルの推移確率は中間の状態で場合分けして足す．就業不能給付は各時点の就業不能確率を割り引いて足す．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 0.8836\n(2) 0.092\n(3) ≈0.1374"
+  },
+  "techniques": [
+   "multistate-disability"
+  ],
+  "methods": [],
+  "tags": [
+   "就業不能",
+   "多状態モデル",
+   "推移確率",
+   "生命年金"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "LI-03-011",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "LI-52",
+  "level": 2,
+  "minutes": 10,
+  "theme": "連生／$A=1-d\\ddot a$ による連生保険の保険料",
+  "unit": "連生",
+  "topic": "$A=1-d\\ddot a$ による連生保険の保険料",
+  "statement": {
+   "tex": "2人の生死は独立で，$\\ddot a_x=15$，$\\ddot a_y=17$，$\\ddot a_{xy}=12$，割引率 $d=0.03$ とする．保険金はすべて1で年度末払とする．\n\\begin{enumerate}\n\\item 共存状態の消滅時（最初の死亡時）に支払う保険の一時払純保険料 $A_{xy}$ を求めよ．\n\\item 2人目の死亡時に支払う保険の一時払純保険料 $A_{\\overline{xy}}$ を求めよ．\n\\item (2) の保険の保険料を，2人がともに生存している間だけ年始に払い込むとき，年払純保険料を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $0.64$\n(2) $0.4$\n(3) $\\frac{1}{30}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　どの「状態」についても $A=1-d\\ddot a$ が成り立つ．最終生存者は包除原理．保険料の払込期間に合った年金で割る．\n\n(1) $A_{xy}=1-0.03\\times12=\\boldsymbol{0.64}$．\n\n(2) $A_x=1-0.45=0.55$，$A_y=1-0.51=0.49$ より $A_{\\overline{xy}}=0.55+0.49-0.64=\\boldsymbol{0.4}$．$\\ddot a_{\\overline{xy}}=15+17-12=20$ から $1-0.03\\times20=0.4$ としても同じ．\n\n(3) 保険料は共存者年金で払うので $\\frac{A_{\\overline{xy}}}{\\ddot a_{xy}}=\\frac{0.4}{12}=\\boldsymbol{\\frac{1}{30}}$．"
+   }
+  ],
+  "idea": {
+   "tex": "$A=1-d\\ddot a$ は共存者・最終生存者の状態にもそのまま使える．保険料は払込の状態の年金で割る．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 0.64\n(2) 0.4\n(3) 1/30"
+  },
+  "techniques": [
+   "joint-life-status",
+   "equivalence-principle"
+  ],
+  "methods": [],
+  "tags": [
+   "連生",
+   "共存者",
+   "最終生存者",
+   "年払純保険料"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "LI-03-012",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "LI-52",
+  "level": 2,
+  "minutes": 10,
+  "theme": "多重脱退／一定の脱退力での原因別脱退確率と保険",
+  "unit": "多重脱退",
+  "topic": "一定の脱退力での原因別脱退確率と保険",
+  "statement": {
+   "tex": "2つの脱退原因があり，脱退力がそれぞれ $\\mu^{(1)}=0.01$，$\\mu^{(2)}=0.04$（一定）であるとする．利力を $\\delta=0.05$ とする．\n\\begin{enumerate}\n\\item いつか第1原因で脱退する確率を求めよ．\n\\item 10年以内に第1原因で脱退する確率 ${}_{10}q^{(1)}$ を有効数字4桁で求めよ．\n\\item 第1原因で脱退した時点で1を支払う保険の一時払純保険料を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $0.2$\n(2) $\\approx 0.07869$\n(3) $0.1$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　全脱退力は $\\mu^{(\\tau)}=0.05$ で，${}_tp^{(\\tau)}=e^{-0.05t}$．第1原因で脱退する確率は ${}_nq^{(1)}=\\int_0^n{}_tp^{(\\tau)}\\mu^{(1)}dt$．\n\n(1) $\\int_0^\\infty e^{-0.05t}\\times0.01\\,dt=\\frac{0.01}{0.05}=\\boldsymbol{0.2}$．\n\n(2) ${}_{10}q^{(1)}=\\frac{0.01}{0.05}(1-e^{-0.5})\\approx\\boldsymbol{0.07869}$．\n\n(3) $\\int_0^\\infty e^{-0.05t}e^{-0.05t}\\times0.01\\,dt=\\frac{0.01}{0.05+0.05}=\\boldsymbol{0.1}$．"
+   }
+  ],
+  "idea": {
+   "tex": "脱退力が一定なら，原因別の確率は全脱退確率を脱退力の比 $\\mu^{(j)}/\\mu^{(\\tau)}$ で分けたもの．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 0.2\n(2) ≈0.07869\n(3) 0.1"
+  },
+  "techniques": [
+   "multiple-decrement",
+   "present-value-basics"
+  ],
+  "methods": [],
+  "tags": [
+   "多重脱退",
+   "脱退力",
+   "一時払純保険料"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "LI-03-013",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "LI-52",
+  "level": 3,
+  "minutes": 20,
+  "theme": "就業不能／回復のある3状態モデルと就業不能年金",
+  "unit": "就業不能",
+  "topic": "回復のある3状態モデルと就業不能年金",
+  "statement": {
+   "tex": "就業者（$a$），就業不能者（$i$），死亡の3状態モデルで，1年間の推移確率が年齢によらず次のとおりであるとする．\n\\begin{tabular}{c|ccc} 現在＼1年後 & $a$ & $i$ & 死亡 \\\\ \\hline $a$ & 0.88 & 0.10 & 0.02 \\\\ $i$ & 0.30 & 0.60 & 0.10 \\end{tabular}\n現在就業者である者について答えよ．\n\\begin{enumerate}\n\\item 2年後に就業不能者である確率 ${}_2p^{ai}$ を求めよ．\n\\item 3年後に就業不能者である確率 ${}_3p^{ai}$ を有効数字4桁で求めよ．\n\\item 第1〜第3年度末に，その時点で就業不能であれば1を支払う給付の期待現価を $i=0.03$ として有効数字4桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $0.148$\n(2) $\\approx 0.1692$\n(3) $\\approx 0.3915$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　回復があると就業者・就業不能者の間を行き来するので，2状態のベクトル $({}_tp^{aa},{}_tp^{ai})$ を1年ずつ推移させる：\n\\[{}_{t+1}p^{aa}=0.88\\,{}_tp^{aa}+0.30\\,{}_tp^{ai},\\quad {}_{t+1}p^{ai}=0.10\\,{}_tp^{aa}+0.60\\,{}_tp^{ai}.\\]\n\n(1) $({}_1p^{aa},{}_1p^{ai})=(0.88,0.10)$ より ${}_2p^{ai}=0.10\\times0.88+0.60\\times0.10=\\boldsymbol{0.148}$．（${}_2p^{aa}=0.88^2+0.30\\times0.10=0.8044$．）\n\n(2) ${}_3p^{ai}=0.10\\times0.8044+0.60\\times0.148\\approx\\boldsymbol{0.1692}$．\n\n(3) \\[\\frac{0.10}{1.03}+\\frac{0.148}{1.03^2}+\\frac{0.1692}{1.03^3}\\approx\\boldsymbol{0.3915}.\\]\n回復を考えないと（就業不能のまま死亡のみ）就業不能の確率を過大に見積もる点に注意．"
+   }
+  ],
+  "idea": {
+   "tex": "回復のあるモデルでは状態確率のベクトルを推移行列で1年ずつ進める．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 0.148\n(2) ≈0.1692\n(3) ≈0.3915"
+  },
+  "techniques": [
+   "multistate-disability",
+   "markov-first-step"
+  ],
+  "methods": [],
+  "tags": [
+   "就業不能",
+   "多状態モデル",
+   "推移確率",
+   "マルコフ連鎖"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "LI-03-014",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "LI-52",
+  "level": 3,
+  "minutes": 18,
+  "theme": "連生／ゴンペルツの法則での共存者の単生命への置き換え",
+  "unit": "連生",
+  "topic": "ゴンペルツの法則での共存者の単生命への置き換え",
+  "statement": {
+   "tex": "2人の生死は独立で，死力はともにゴンペルツの法則 $\\mu_x=Bc^x$（$B=0.00002$，$c=1.1$）に従う．$x=60$，$y=70$ とする．\n\\begin{enumerate}\n\\item ${}_tp_{xy}={}_tp_w$ がすべての $t\\ge0$ で成り立つ年齢 $w$ を有効数字4桁で求めよ．\n\\item ${}_{10}p_{xy}$ を有効数字4桁で求めよ．\n\\item $x$ が $y$ より先に死亡する確率 ${}_\\infty q^{1}_{xy}$ を有効数字4桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx 73.42$\n(2) $\\approx 0.6935$\n(3) $\\approx 0.2783$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　共存状態の死力は $\\mu_{x+t}+\\mu_{y+t}=B(c^x+c^y)c^t$．これが1人の死力 $Bc^{w+t}$ と一致すれば生存確率も一致するので，$c^w=c^x+c^y$．\n\n(1) $w=\\frac{\\log(1.1^{60}+1.1^{70})}{\\log1.1}\\approx\\boldsymbol{73.42}$．年長の $y=70$ より約 $3.4$ 歳上の1人に置き換えられる．\n\n(2) \\[{}_{10}p_{xy}=\\exp\\left(-\\frac{B(c^{60}+c^{70})(c^{10}-1)}{\\log c}\\right)\\approx\\boldsymbol{0.6935}.\\]\n\n(3) ${}_\\infty q^{1}_{xy}=\\int_0^\\infty{}_tp_{xy}\\,\\mu_{x+t}dt$ で，$\\mu_{x+t}=\\frac{c^x}{c^x+c^y}(\\mu_{x+t}+\\mu_{y+t})$ が常に成り立つ．$\\int_0^\\infty{}_tp_{xy}(\\mu_{x+t}+\\mu_{y+t})dt=1$ より\n\\[{}_\\infty q^{1}_{xy}=\\frac{c^x}{c^x+c^y}=\\frac{1}{1+1.1^{10}}\\approx\\boldsymbol{0.2783}.\\]"
+   }
+  ],
+  "idea": {
+   "tex": "ゴンペルツでは $c^w=c^x+c^y$ で共存者を1人に置き換えられ，先に死亡する確率は死力の比 $c^x/(c^x+c^y)$．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈73.42\n(2) ≈0.6935\n(3) ≈0.2783"
+  },
+  "techniques": [
+   "joint-life-status",
+   "mortality-laws"
+  ],
+  "methods": [],
+  "tags": [
+   "連生",
+   "ゴンペルツの法則",
+   "共存者",
+   "条件付き死亡確率"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "LI-03-015",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "LI-52",
+  "level": 3,
+  "minutes": 18,
+  "theme": "多重脱退／3原因の絶対脱退率から多重脱退率を求める",
+  "unit": "多重脱退",
+  "topic": "3原因の絶対脱退率から多重脱退率を求める",
+  "statement": {
+   "tex": "死亡・就業不能・退職の3つの脱退があり，絶対脱退率を $q'^{(1)}_x=0.05$，$q'^{(2)}_x=0.10$，$q'^{(3)}_x=0.20$ とする．それぞれの単一脱退表の中で脱退が年齢 $x$ と $x+1$ の間に一様に起こると仮定する．\n\\begin{enumerate}\n\\item 死亡の多重脱退率 $q^{(1)}_x$ を求めよ．\n\\item 退職の多重脱退率 $q^{(3)}_x$ を求めよ．\n\\item 全脱退率 $q^{(\\tau)}_x$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{257}{6000}$\n(2) $\\frac{139}{750}$\n(3) $\\frac{79}{250}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　単一脱退表内の一様性から ${}_tp'^{(j)}\\mu^{(j)}_{x+t}=q'^{(j)}$，${}_tp'^{(k)}=1-tq'^{(k)}$．\n\\[q^{(1)}_x=\\int_0^1q'^{(1)}(1-tq'^{(2)})(1-tq'^{(3)})dt=q'^{(1)}\\left(1-\\frac{q'^{(2)}+q'^{(3)}}{2}+\\frac{q'^{(2)}q'^{(3)}}{3}\\right).\\]\n\n(1) $q^{(1)}_x=0.05\\left(1-0.15+\\frac{0.02}{3}\\right)=\\boldsymbol{\\frac{257}{6000}}\\approx0.04283$．\n\n(2) $q^{(3)}_x=0.20\\left(1-0.075+\\frac{0.005}{3}\\right)=\\boldsymbol{\\frac{139}{750}}\\approx0.1853$．\n\n(3) $q^{(\\tau)}_x=1-0.95\\times0.90\\times0.80=\\boldsymbol{\\frac{79}{250}}=0.316$．$q^{(2)}_x=0.10\\left(1-0.125+\\frac{0.01}{3}\\right)\\approx0.08783$ を加えた3つの和とも一致する．"
+   }
+  ],
+  "idea": {
+   "tex": "3原因では $q^{(1)}=q'^{(1)}\\int_0^1(1-tq'^{(2)})(1-tq'^{(3)})dt$．全脱退率は絶対残存率の積から出す．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 257/6000\n(2) 139/750\n(3) 79/250"
+  },
+  "techniques": [
+   "multiple-decrement"
+  ],
+  "methods": [],
+  "tags": [
+   "多重脱退",
+   "絶対脱退率",
+   "UDD"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ }
+]

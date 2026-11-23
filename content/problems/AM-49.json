@@ -1,0 +1,816 @@
+[
+ {
+  "id": "AM-03-001",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-49",
+  "level": 1,
+  "minutes": 8,
+  "theme": "ポアソン過程／件数の分布・到着時刻・条件付き分布",
+  "unit": "ポアソン過程",
+  "topic": "件数の分布・到着時刻・条件付き分布",
+  "statement": {
+   "tex": "保険金請求は強度 $2$（件／日）のポアソン過程 $\\{N(t)\\}$ に従って発生する．\n\\begin{enumerate}\n\\item $3$ 日間にちょうど $4$ 件の請求がある確率を求めよ．\n\\item $3$ 件目の請求が起きるまでの時間の期待値（日）を求めよ．\n\\item $3$ 日間に $4$ 件の請求があったとき，最初の $1$ 日にちょうど $1$ 件である条件付き確率を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $54e^{-6}$ \\quad (2) $\\frac{3}{2}$ \\quad (3) $\\frac{32}{81}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　$N(t)\\sim\\mathrm{Po}(2t)$，到着間隔は独立に平均 $1/2$ の指数分布．件数で条件付けると到着時刻は区間上で一様．\n\n(1) $P(N(3)=4)=e^{-6}\\frac{6^4}{4!}=\\boldsymbol{54e^{-6}}\\approx0.1339$．\n\n(2) $3$ 件目の到着時刻は到着間隔3つの和で，期待値 $3\\times\\frac12=\\boldsymbol{\\frac32}$（ガンマ分布）．\n\n(3) $N(3)=4$ のもとで各請求は独立に確率 $\\frac13$ で最初の $1$ 日に入る．$\\binom41\\frac13\\left(\\frac23\\right)^3=\\boldsymbol{\\frac{32}{81}}$．"
+   }
+  ],
+  "idea": {
+   "tex": "ポアソン過程は「件数はポアソン分布・間隔は指数分布・件数で条件付けると一様」の3つの見方を使い分ける．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 54exp(-6)\n(2) 3/2\n(3) 32/81"
+  },
+  "techniques": [
+   "memoryless-exp-poisson",
+   "poisson-conditioning"
+  ],
+  "methods": [],
+  "tags": [
+   "ポアソン過程",
+   "指数分布",
+   "ガンマ分布",
+   "条件付き分布"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-03-002",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-49",
+  "level": 1,
+  "minutes": 8,
+  "theme": "マルコフ連鎖／2状態の推移確率行列のべきと定常分布",
+  "unit": "マルコフ連鎖",
+  "topic": "2状態の推移確率行列のべきと定常分布",
+  "statement": {
+   "tex": "契約者の状態を「優良（状態1）」「不良（状態2）」とし，毎年の推移を推移確率行列\n\\[P=\\begin{pmatrix}0.9&0.1\\\\0.3&0.7\\end{pmatrix}\\]\nのマルコフ連鎖とする（$(i,j)$ 成分が状態 $i$ から $j$ への推移確率）．\n\\begin{enumerate}\n\\item 今年優良の契約者が2年後に不良である確率を求めよ．\n\\item 定常分布における優良の割合を求めよ．\n\\item 今年優良の契約者が $n$ 年後に不良である確率 $p_{12}^{(n)}$ を $n$ の式で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{4}{25}$ \\quad (2) $\\frac{3}{4}$ \\quad (3) $\\frac{1}{4}\\left(1-\\left(\\frac{3}{5}\\right)^n\\right)$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　$n$ 年後の推移確率は $P^n$ の成分．2状態なら固有値 $1$ と $1-a-b$（$a=0.1$，$b=0.3$）で表せる．\n\n(1) $(P^2)_{12}=0.9\\times0.1+0.1\\times0.7=\\boldsymbol{\\frac4{25}}$．\n\n(2) $\\pi P=\\pi$ より $0.1\\pi_1=0.3\\pi_2$，$\\pi_1+\\pi_2=1$ から $\\pi_1=\\boldsymbol{\\frac34}$．\n\n(3) $n$ 年後に優良か不良かで場合分けすると $p_{12}^{(n+1)}=p_{12}^{(n)}\\cdot0.7+(1-p_{12}^{(n)})\\cdot0.1=0.1+0.6p_{12}^{(n)}$．不動点 $\\frac14$ を引くと $p_{12}^{(n)}-\\frac14=0.6^n\\left(0-\\frac14\\right)$．よって $p_{12}^{(n)}=\\boldsymbol{\\frac14\\left(1-\\left(\\frac35\\right)^n\\right)}$．$n=2$ で $\\frac14(1-0.36)=0.16$ と (1) に合う．"
+   }
+  ],
+  "idea": {
+   "tex": "2状態の連鎖は1次の漸化式に帰着し，第2固有値 $1-a-b$ の速さで定常分布へ近づく．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 4/25\n(2) 3/4\n(3) (1-(3/5)^n)/4"
+  },
+  "techniques": [
+   "markov-matrix-power",
+   "markov-first-step"
+  ],
+  "methods": [],
+  "tags": [
+   "マルコフ連鎖",
+   "推移確率行列",
+   "定常分布",
+   "行列のべき"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-03-003",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-49",
+  "level": 1,
+  "minutes": 8,
+  "theme": "シミュレーション／線形合同法による一様乱数",
+  "unit": "シミュレーション",
+  "topic": "線形合同法による一様乱数",
+  "statement": {
+   "tex": "線形合同法 $x_{k+1}=(5x_k+3)\\bmod 16$，$x_0=1$ で整数列を作り，$u_k=x_k/16$ を一様乱数とする．\n\\begin{enumerate}\n\\item $x_3$ を求めよ．\n\\item この数列の周期を求めよ．\n\\item $u_2$ を用いて，逆関数法で平均 $2$ の指数分布に従う乱数 $y=-2\\log(1-u_2)$ を作るとき，$y$ の値を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $10$ \\quad (2) $16$ \\quad (3) $2\\log\\frac{16}{5}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　漸化式を順に計算する．周期については，法 $m=2^4$ で $c$ が奇数，$a-1$ が $4$ の倍数なら最大周期 $m$ になる（ハル＝ドーベルの条件）．\n\n(1) $x_1=8$，$x_2=43\\bmod16=11$，$x_3=58\\bmod16=\\boldsymbol{10}$．\n\n(2) $c=3$ は $16$ と互いに素，$a-1=4$ は $2$ の倍数かつ $4$ の倍数なので，周期は最大の $\\boldsymbol{16}$．実際 $8,11,10,5,12,15,14,9,0,3,2,13,4,7,6,1$ と $16$ 個の値をすべてとって $x_{16}=1$ に戻る．\n\n(3) $u_2=\\frac{11}{16}$，$y=-2\\log\\frac5{16}=\\boldsymbol{2\\log\\frac{16}5}\\approx2.33$．"
+   }
+  ],
+  "idea": {
+   "tex": "線形合同法の周期は法・乗数・増分の条件で決まる．一様乱数は逆関数法で他の分布に変換する．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 10\n(2) 16\n(3) 2log(16/5)"
+  },
+  "techniques": [
+   "random-variate-generation"
+  ],
+  "methods": [],
+  "tags": [
+   "線形合同法",
+   "一様乱数",
+   "周期",
+   "逆関数法",
+   "シミュレーション"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-03-004",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-49",
+  "level": 1,
+  "minutes": 8,
+  "theme": "シミュレーション／逆関数法（連続・離散）",
+  "unit": "シミュレーション",
+  "topic": "逆関数法（連続・離散）",
+  "statement": {
+   "tex": "一様乱数 $u$ から逆関数法で乱数を作る．\n\\begin{enumerate}\n\\item 分布関数 $F(x)=1-\\left(\\dfrac{1000}{x+1000}\\right)^2$（$x\\ge0$）のパレート分布について，$u=0.75$ から得られる値を求めよ．\n\\item $P(N=0)=0.5$，$P(N=1)=0.3$，$P(N=2)=0.2$ の離散分布について，「$F(n-1)<u\\le F(n)$ なら $n$」とする方法で，$u=0.85$ から得られる値を求めよ．\n\\item 分布関数 $F(x)=1-e^{-(x/10)^2}$（$x\\ge0$）のワイブル分布について，$u=0.6$ から得られる値を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $1000$ \\quad (2) $2$ \\quad (3) $10\\sqrt{\\log\\frac{5}{2}}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　$U$ が一様なら $F^{-1}(U)$ は分布関数 $F$ に従う．$u=F(x)$ を $x$ について解く．\n\n(1) $\\left(\\frac{1000}{x+1000}\\right)^2=0.25$ より $x+1000=2000$，$x=\\boldsymbol{1000}$．\n\n(2) $F(0)=0.5$，$F(1)=0.8$，$F(2)=1$．$0.8<0.85\\le1$ なので $\\boldsymbol{2}$．\n\n(3) $e^{-(x/10)^2}=0.4$ より $x=10\\sqrt{\\log2.5}=\\boldsymbol{10\\sqrt{\\log\\frac52}}\\approx9.57$．"
+   }
+  ],
+  "idea": {
+   "tex": "逆関数法は $u=F(x)$ を解くだけ．離散分布では累積確率の表を引く．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 1000\n(2) 2\n(3) 10sqrt(log(5/2))"
+  },
+  "techniques": [
+   "random-variate-generation"
+  ],
+  "methods": [],
+  "tags": [
+   "逆関数法",
+   "乱数生成",
+   "パレート分布",
+   "ワイブル分布",
+   "シミュレーション"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-03-005",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-49",
+  "level": 1,
+  "minutes": 8,
+  "theme": "ブラウン運動／正規増分と共分散",
+  "unit": "ブラウン運動",
+  "topic": "正規増分と共分散",
+  "statement": {
+   "tex": "$\\{W(t)\\}$ を標準ブラウン運動とする．$\\Phi(1)=0.8413$ を用いよ．\n\\begin{enumerate}\n\\item $P(W(4)>2)$ を小数第4位まで求めよ．\n\\item $\\mathrm{Cov}(W(2),W(5))$ を求めよ．\n\\item $V[W(1)+W(3)]$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx0.1587$ \\quad (2) $2$ \\quad (3) $6$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　$W(t)\\sim\\mathcal N(0,t)$，増分は独立，$\\mathrm{Cov}(W(s),W(t))=\\min(s,t)$．\n\n(1) $P(W(4)>2)=P(Z>2/2)=1-\\Phi(1)=\\boldsymbol{0.1587}$．\n\n(2) $W(5)=W(2)+(W(5)-W(2))$ で後の項は $W(2)$ と独立だから，$\\mathrm{Cov}=V[W(2)]=\\boldsymbol{2}$．\n\n(3) $V[W(1)]+V[W(3)]+2\\mathrm{Cov}=1+3+2\\times1=\\boldsymbol{6}$．別解：$W(1)+W(3)=2W(1)+(W(3)-W(1))$ で $4+2=6$．"
+   }
+  ],
+  "idea": {
+   "tex": "ブラウン運動は独立な正規増分に分けて計算する．共分散は $\\min(s,t)$．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈0.1587\n(2) 2\n(3) 6"
+  },
+  "techniques": [
+   "brownian-motion-increments",
+   "normal-standardize"
+  ],
+  "methods": [],
+  "tags": [
+   "ブラウン運動",
+   "正規分布",
+   "共分散",
+   "独立増分"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-03-006",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-49",
+  "level": 2,
+  "minutes": 10,
+  "theme": "時系列／AR(1) の分散・自己相関・予測",
+  "unit": "時系列",
+  "topic": "AR(1) の分散・自己相関・予測",
+  "statement": {
+   "tex": "AR(1) モデル $X_t=0.6X_{t-1}+\\varepsilon_t$（$\\varepsilon_t$ は独立に平均 $0$，分散 $1.6$）を定常過程とする．\n\\begin{enumerate}\n\\item $V[X_t]$ を求めよ．\n\\item 3次の自己相関係数 $\\rho(3)$ を求めよ．\n\\item $X_n=5$ のとき，2期先の予測値 $\\hat X_{n+2}$ と予測誤差の分散を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{5}{2}$ \\quad (2) $\\frac{27}{125}$ \\quad (3) 予測値 $\\frac{9}{5}$，予測誤差の分散 $\\frac{272}{125}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　定常なら $V[X_t]=\\phi^2V[X_{t-1}]+\\sigma^2$，$\\rho(h)=\\phi^h$．予測は $\\varepsilon$ の将来分を $0$ にする．\n\n(1) $V=\\frac{1.6}{1-0.36}=\\boldsymbol{\\frac52}$．\n\n(2) $\\rho(3)=0.6^3=\\boldsymbol{\\frac{27}{125}}$．\n\n(3) $X_{n+2}=0.36X_n+0.6\\varepsilon_{n+1}+\\varepsilon_{n+2}$．予測値 $0.36\\times5=\\boldsymbol{\\frac95}$，誤差の分散 $1.6(1+0.36)=\\boldsymbol{\\frac{272}{125}}=2.176$．先へ行くほど $V[X_t]=2.5$ に近づく．"
+   }
+  ],
+  "idea": {
+   "tex": "AR(1) は代入を繰り返して過去の値と将来の誤差に分け，分散・自己相関・予測を読む．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 5/2\n(2) 27/125\n(3) 予測値：9/5 ; 予測誤差の分散：272/125"
+  },
+  "techniques": [
+   "ar-yule-walker",
+   "ts-forecast"
+  ],
+  "methods": [],
+  "tags": [
+   "ARモデル",
+   "自己相関",
+   "予測",
+   "定常性",
+   "時系列"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-03-007",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-49",
+  "level": 2,
+  "minutes": 10,
+  "theme": "時系列／MA(1) の自己共分散と反転可能性",
+  "unit": "時系列",
+  "topic": "MA(1) の自己共分散と反転可能性",
+  "statement": {
+   "tex": "MA(1) モデル $X_t=\\varepsilon_t+\\theta\\varepsilon_{t-1}$（$\\varepsilon_t$ は独立に平均 $0$，分散 $\\sigma^2$）を考える．\n\\begin{enumerate}\n\\item $\\theta=0.5$，$\\sigma^2=4$ のとき，$\\gamma(0)=V[X_t]$ と $\\gamma(1)=\\mathrm{Cov}(X_t,X_{t-1})$ を求めよ．\n\\item 1次の自己相関係数が $\\rho(1)=0.4$ であるとき，反転可能な $\\theta$ を求めよ．\n\\item 正しい記述を選べ． \\\\ ① AR(1) の自己相関係数は2次以降で $0$ になる． \\\\ ② MA(1) の偏自己相関係数は2次以降で $0$ になる． \\\\ ③ MA(1) の自己相関係数は2次以降で $0$ になる． \\\\ ④ MA(1) では $\\rho(1)=0.6$ となる $\\theta$ がある． \\\\ ⑤ $|\\phi|>1$ の AR(1) は定常である． \\\\ 番号で答えよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\gamma(0)=5$，$\\gamma(1)=2$ \\quad (2) $\\frac{1}{2}$ \\quad (3) ③（番号 3）"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　共通の $\\varepsilon$ の項だけが共分散に残る．$\\rho(1)=\\frac{\\theta}{1+\\theta^2}$ を解き，$|\\theta|<1$ を選ぶ．\n\n(1) $\\gamma(0)=(1+\\theta^2)\\sigma^2=\\boldsymbol5$，$\\gamma(1)=\\theta\\sigma^2=\\boldsymbol2$．\n\n(2) $\\frac\\theta{1+\\theta^2}=0.4$ より $2\\theta^2-5\\theta+2=0$，$\\theta=2,\\frac12$．同じ自己相関を与える2つのうち，反転可能なのは $\\theta=\\boldsymbol{\\frac12}$．\n\n(3) MA(1) の自己相関は2次以降 $0$（切断）で③が正しい．①・②は AR と MA が逆．$|\\rho(1)|=\\frac{|\\theta|}{1+\\theta^2}\\le\\frac12$ なので④は誤り．⑤は定常にならない．答えは $\\boldsymbol{③}$．"
+   }
+  ],
+  "idea": {
+   "tex": "MA(q) の自己相関は q 次で切れ，AR(p) の偏自己相関は p 次で切れる．MA の母数は反転可能性で一つに決める．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) γ(0)：5 ; γ(1)：2\n(2) 1/2\n(3) 3"
+  },
+  "techniques": [
+   "ma-psi-weights",
+   "acf-pacf-ident"
+  ],
+  "methods": [],
+  "tags": [
+   "MAモデル",
+   "自己共分散",
+   "反転可能性",
+   "自己相関",
+   "偏自己相関",
+   "時系列"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-03-008",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-49",
+  "level": 2,
+  "minutes": 10,
+  "theme": "ポアソン過程／分割（間引き）と独立性",
+  "unit": "ポアソン過程",
+  "topic": "分割（間引き）と独立性",
+  "statement": {
+   "tex": "保険金請求は強度 $5$（件／月）のポアソン過程に従い，各請求は他と独立に確率 $0.2$ で高額請求である．\n\\begin{enumerate}\n\\item 1か月に高額請求が $1$ 件もない確率を求めよ．\n\\item 1か月の高額請求が $3$ 件であったとき，同じ月の高額でない請求の件数の条件付き期待値を求めよ．\n\\item 1か月の請求が合計 $10$ 件であったとき，そのうち高額請求がちょうど $2$ 件である条件付き確率を小数第3位まで求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $e^{-1}$ \\quad (2) $4$ \\quad (3) $\\approx0.302$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　ポアソン過程を確率 $p$ で分けると，強度 $\\lambda p$ と $\\lambda(1-p)$ の**独立な**ポアソン過程になる．逆に合計で条件付けると二項分布．\n\n(1) 高額請求は強度 $1$ のポアソン過程．$P=\\boldsymbol{e^{-1}}$．\n\n(2) 高額でない請求（強度 $4$）は高額請求と独立なので，条件付き期待値は $\\boldsymbol4$ のまま．\n\n(3) 合計 $10$ のもとで高額件数は $\\mathrm{Bin}(10,0.2)$．$\\binom{10}2(0.2)^2(0.8)^8=\\boldsymbol{0.302}$．"
+   }
+  ],
+  "idea": {
+   "tex": "間引いたポアソン過程どうしは独立．合計を固定すると二項分布になる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) exp(-1)\n(2) 4\n(3) ≈0.302"
+  },
+  "techniques": [
+   "poisson-conditioning",
+   "memoryless-exp-poisson"
+  ],
+  "methods": [],
+  "tags": [
+   "ポアソン過程",
+   "間引き",
+   "二項分布",
+   "独立性"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-03-009",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-49",
+  "level": 2,
+  "minutes": 10,
+  "theme": "ポアソン過程／非斉時ポアソン過程の平均関数",
+  "unit": "ポアソン過程",
+  "topic": "非斉時ポアソン過程の平均関数",
+  "statement": {
+   "tex": "強度関数 $\\lambda(t)=2t$（$t\\ge0$）の非斉時ポアソン過程 $\\{N(t)\\}$ を考える．\n\\begin{enumerate}\n\\item $E[N(2)]$ を求めよ．\n\\item 区間 $(1,2]$ に事象が $1$ 件も起きない確率を求めよ．\n\\item 最初の事象が起きる時刻 $T_1$ の期待値を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $4$ \\quad (2) $e^{-3}$ \\quad (3) $\\frac{\\sqrt{\\pi}}{2}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　平均関数 $\\Lambda(t)=\\int_0^t\\lambda(s)\\,ds=t^2$ を作る．$N(b)-N(a)\\sim\\mathrm{Po}(\\Lambda(b)-\\Lambda(a))$．\n\n(1) $\\Lambda(2)=\\boldsymbol4$．\n\n(2) $\\Lambda(2)-\\Lambda(1)=3$ より $\\boldsymbol{e^{-3}}$．\n\n(3) $P(T_1>t)=P(N(t)=0)=e^{-t^2}$．$E[T_1]=\\int_0^\\infty e^{-t^2}dt=\\boldsymbol{\\frac{\\sqrt\\pi}2}$．到着間隔はもはや指数分布でない．"
+   }
+  ],
+  "idea": {
+   "tex": "非斉時ポアソン過程は強度の積分 $\\Lambda$ を「時間」とみれば斉時の場合と同じ計算になる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 4\n(2) exp(-3)\n(3) sqrt(pi)/2"
+  },
+  "techniques": [
+   "nhpp-mean-function",
+   "hazard-survival"
+  ],
+  "methods": [],
+  "tags": [
+   "非斉時ポアソン過程",
+   "平均関数",
+   "強度関数",
+   "生存関数"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-03-010",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-49",
+  "level": 2,
+  "minutes": 14,
+  "theme": "シミュレーション／モンテカルロ積分と対称変数法",
+  "unit": "シミュレーション",
+  "topic": "モンテカルロ積分と対称変数法",
+  "statement": {
+   "tex": "$\\theta=\\int_0^1e^x\\,dx$ を，独立な一様乱数 $U_1,\\dots,U_n$ による推定量 $\\hat\\theta=\\frac1n\\sum e^{U_i}$ で推定する．\n\\begin{enumerate}\n\\item $V[e^{U}]$ を $e$ の式で求めよ．\n\\item $\\hat\\theta$ の標準偏差を $0.01$ 以下にする最小の $n$ を求めよ．\n\\item 対称変数法（アンチセティック法）で $Y=\\frac12\\left(e^U+e^{1-U}\\right)$ を使うとき，$V[Y]$ の値を小数第4位まで求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{e^2-1}{2}-(e-1)^2$ \\quad (2) $2421$ \\quad (3) $\\approx0.0039$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　モンテカルロ推定量の分散は $V[e^U]/n$．対称変数法は負の相関を使って分散を減らす．\n\n(1) $E[e^{2U}]=\\frac{e^2-1}2$，$E[e^U]=e-1$ より $V=\\boldsymbol{\\frac{e^2-1}2-(e-1)^2}\\approx0.2420$．\n\n(2) $0.2420/n\\le10^{-4}$ より $n\\ge2420.4$，最小は $\\boldsymbol{2421}$．\n\n(3) $\\mathrm{Cov}(e^U,e^{1-U})=E[e]-(e-1)^2=e-(e-1)^2\\approx-0.2342$．\n\\[V[Y]=\\frac{V+\\mathrm{Cov}}{2}=\\frac{0.2420-0.2342}{2}=\\boldsymbol{0.0039}．\\]\n乱数2個を使う通常の平均の分散 $0.1210$ と比べ，約 $1/31$ に減る．"
+   }
+  ],
+  "idea": {
+   "tex": "モンテカルロ法の誤差は $\\sigma/\\sqrt n$．単調な関数なら $U$ と $1-U$ の組で負の相関を作ると分散が減る．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) (e^2-1)/2-(e-1)^2\n(2) 2421\n(3) ≈0.0039"
+  },
+  "techniques": [
+   "monte-carlo-sim"
+  ],
+  "methods": [],
+  "tags": [
+   "モンテカルロ法",
+   "分散減少法",
+   "対称変数法",
+   "シミュレーション"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-03-011",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-49",
+  "level": 2,
+  "minutes": 14,
+  "theme": "マルコフ連鎖／吸収的マルコフ連鎖の吸収時間と滞在回数",
+  "unit": "マルコフ連鎖",
+  "topic": "吸収的マルコフ連鎖の吸収時間と滞在回数",
+  "statement": {
+   "tex": "健康（H）・疾病（S）・死亡（D）の3状態を毎年推移するマルコフ連鎖を考える．D は吸収状態で，推移確率は次のとおり．\n\\[\\begin{array}{c|ccc} & H & S & D \\\\ \\hline H & 0.8 & 0.15 & 0.05 \\\\ S & 0.4 & 0.4 & 0.2 \\end{array}\\]\n\\begin{enumerate}\n\\item 現在 H の人が D に吸収されるまでの年数の期待値を求めよ．\n\\item 現在 H の人が D に吸収されるまでに S にいる年数の期待値（今年は数えず，翌年以降に S にいる年の数）を求めよ．\n\\item 現在 H の人が，D に入る前に一度でも S を経験する確率を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{25}{2}$ \\quad (2) $\\frac{5}{2}$ \\quad (3) $\\frac{3}{4}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　1年目の推移で場合分けして連立方程式を立てる（第1ステップ解析）．\n\n(1) $m_H=1+0.8m_H+0.15m_S$，$m_S=1+0.4m_H+0.4m_S$．第2式から $m_S=\\frac{1+0.4m_H}{0.6}$．代入して $0.2m_H=1.25+0.1m_H$，$m_H=\\boldsymbol{\\frac{25}2}$（$m_S=10$）．\n\n(2) S にいる年数（今いる年を含む）を $v$ とすると $v_S=1+0.4v_H+0.4v_S$，H から（今年は数えない）は $v_H=0.8v_H+0.15v_S$．$v_S=\\frac43v_H$ を第1式に入れて $v_H=\\boldsymbol{\\frac52}$．基本行列 $(I-Q)^{-1}$ の $(H,S)$ 成分でもある．\n\n(3) $a_H=0.15+0.8a_H$ より $a_H=\\boldsymbol{\\frac34}$．"
+   }
+  ],
+  "idea": {
+   "tex": "吸収的マルコフ連鎖では，期待吸収時間・滞在回数・到達確率がすべて1歩目で条件付けた連立1次方程式で求まる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 25/2\n(2) 5/2\n(3) 3/4"
+  },
+  "techniques": [
+   "markov-first-step"
+  ],
+  "methods": [],
+  "tags": [
+   "マルコフ連鎖",
+   "吸収状態",
+   "第1ステップ解析",
+   "基本行列",
+   "多重状態モデル"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-03-012",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-49",
+  "level": 2,
+  "minutes": 12,
+  "theme": "ブラウン運動／幾何ブラウン運動による株価モデル",
+  "unit": "ブラウン運動",
+  "topic": "幾何ブラウン運動による株価モデル",
+  "statement": {
+   "tex": "株価を $S_t=100\\exp\\left\\{(\\mu-\\tfrac12\\sigma^2)t+\\sigma W(t)\\right\\}$（$W$ は標準ブラウン運動，$\\mu=0.05$，$\\sigma=0.2$）とする．$\\Phi(0.15)=0.5596$，$\\Phi(0.58)=0.7190$，$\\log0.9=-0.1054$ を用いよ．\n\\begin{enumerate}\n\\item $E[S_1]$ を求めよ．\n\\item $P(S_1>100)$ を小数第4位まで求めよ．\n\\item $P(S_2<90)$ を小数第3位まで求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $100e^{1/20}$ \\quad (2) $\\approx0.5596$ \\quad (3) $\\approx0.281$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　$\\log(S_t/100)\\sim\\mathcal N\\left((\\mu-\\frac{\\sigma^2}2)t,\\ \\sigma^2t\\right)$ で，$S_t$ は対数正規分布．\n\n(1) $E[e^{\\sigma W(1)}]=e^{\\sigma^2/2}$ より $E[S_1]=100e^{\\mu}=\\boldsymbol{100e^{1/20}}\\approx105.13$．\n\n(2) $\\log(S_1/100)\\sim\\mathcal N(0.03,0.04)$．$P(S_1>100)=P\\left(Z>-\\frac{0.03}{0.2}\\right)=\\Phi(0.15)=\\boldsymbol{0.5596}$．\n\n(3) $\\log(S_2/100)\\sim\\mathcal N(0.06,0.08)$．$\\frac{-0.1054-0.06}{\\sqrt{0.08}}=-0.58$ より $P=1-\\Phi(0.58)=\\boldsymbol{0.281}$．"
+   }
+  ],
+  "idea": {
+   "tex": "幾何ブラウン運動は対数をとると平均 $(\\mu-\\sigma^2/2)t$・分散 $\\sigma^2t$ の正規分布になる．期待値は $\\sigma^2/2$ の補正で $e^{\\mu t}$ 倍．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 100exp(1/20)\n(2) ≈0.5596\n(3) ≈0.281"
+  },
+  "techniques": [
+   "brownian-motion-increments",
+   "lognormal-moments"
+  ],
+  "methods": [],
+  "tags": [
+   "幾何ブラウン運動",
+   "ブラウン運動",
+   "対数正規分布",
+   "株価モデル"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-03-013",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-49",
+  "level": 3,
+  "minutes": 16,
+  "theme": "時系列／ARIMA(1,1,0) の予測と予測誤差分散",
+  "unit": "時系列",
+  "topic": "ARIMA(1,1,0) の予測と予測誤差分散",
+  "statement": {
+   "tex": "$X_t$ の階差 $Y_t=X_t-X_{t-1}$ が AR(1) モデル $Y_t=0.5Y_{t-1}+\\varepsilon_t$（$\\varepsilon_t$ は独立に平均 $0$，分散 $1$）に従う（ARIMA(1,1,0)）．$X_n=100$，$X_{n-1}=98$ が観測された．\n\\begin{enumerate}\n\\item 1期先の予測値 $\\hat X_{n+1}$ を求めよ．\n\\item 2期先の予測値 $\\hat X_{n+2}$ を求めよ．\n\\item 2期先の予測誤差 $X_{n+2}-\\hat X_{n+2}$ の分散を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $101$ \\quad (2) $\\frac{203}{2}$ \\quad (3) $\\frac{13}{4}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　階差を予測してから足し戻す．誤差は将来の $\\varepsilon$ の1次結合で書く．\n\n$Y_n=2$．$Y_{n+1}=0.5Y_n+\\varepsilon_{n+1}$，$Y_{n+2}=0.25Y_n+0.5\\varepsilon_{n+1}+\\varepsilon_{n+2}$．\n\n(1) $\\hat X_{n+1}=X_n+\\hat Y_{n+1}=100+1=\\boldsymbol{101}$．\n\n(2) $\\hat X_{n+2}=101+0.25\\times2=\\boldsymbol{\\frac{203}2}$．\n\n(3) $X_{n+2}-\\hat X_{n+2}=\\varepsilon_{n+1}+(0.5\\varepsilon_{n+1}+\\varepsilon_{n+2})=1.5\\varepsilon_{n+1}+\\varepsilon_{n+2}$．分散は $2.25+1=\\boldsymbol{\\frac{13}4}$．和分過程なので，予測誤差の分散は先へ行くほど際限なく大きくなる．"
+   }
+  ],
+  "idea": {
+   "tex": "ARIMA は階差の ARMA を予測して積み上げる．予測誤差は ψ 重みの累積和で決まる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 101\n(2) 203/2\n(3) 13/4"
+  },
+  "techniques": [
+   "ts-forecast",
+   "stationarity-diff"
+  ],
+  "methods": [],
+  "tags": [
+   "ARIMAモデル",
+   "予測",
+   "予測誤差分散",
+   "階差",
+   "時系列"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-03-014",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-49",
+  "level": 3,
+  "minutes": 18,
+  "theme": "ポアソン過程／季節変動のある請求発生と複合過程",
+  "unit": "ポアソン過程",
+  "topic": "季節変動のある請求発生と複合過程",
+  "statement": {
+   "tex": "保険金請求は，強度関数 $\\lambda(t)=10\\{1+\\sin(2\\pi t)\\}$（$t$ は年）の非斉時ポアソン過程に従って発生し，各請求額は独立に平均 $2$，2次の積率 $6$ の分布に従う（発生とも独立）．\n\\begin{enumerate}\n\\item 最初の $\\frac14$ 年の請求件数の期待値を求めよ．\n\\item 1年間の請求総額 $S$ の分散を求めよ．\n\\item 1年間の請求件数が $20$ 件であったとき，そのうち最初の $\\frac14$ 年に起きた件数の条件付き期待値を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{5}{2}+\\frac{5}{\\pi}$ \\quad (2) $60$ \\quad (3) $5+\\frac{10}{\\pi}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　平均関数 $\\Lambda(t)=\\int_0^t\\lambda(s)\\,ds$ を求める．件数で条件付けると，各事象の時刻は独立に密度 $\\lambda(t)/\\Lambda(1)$ に従う．\n\n(1) $\\Lambda\\left(\\frac14\\right)=10\\left[\\frac14+\\frac{1-\\cos(\\pi/2)}{2\\pi}\\right]=\\boldsymbol{\\frac52+\\frac5\\pi}\\approx4.09$．\n\n(2) $\\Lambda(1)=10$．$S$ は複合ポアソン分布で $V[S]=\\Lambda(1)E[X^2]=\\boldsymbol{60}$（平均は $20$）．\n\n(3) 各請求が最初の $\\frac14$ 年に入る確率は $\\Lambda(1/4)/\\Lambda(1)=\\frac14+\\frac1{2\\pi}$．$20$ 件のうちの件数は二項分布で，期待値 $20\\left(\\frac14+\\frac1{2\\pi}\\right)=\\boldsymbol{5+\\frac{10}\\pi}\\approx8.18$．"
+   }
+  ],
+  "idea": {
+   "tex": "非斉時でも期間の件数はポアソン分布で，複合分布の公式がそのまま使える．件数で条件付けた時刻は強度に比例する密度の独立標本．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 5/2+5/pi\n(2) 60\n(3) 5+10/pi"
+  },
+  "techniques": [
+   "nhpp-mean-function",
+   "compound-sum-moments"
+  ],
+  "methods": [],
+  "tags": [
+   "非斉時ポアソン過程",
+   "複合ポアソン分布",
+   "平均関数",
+   "条件付き分布"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-03-015",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-49",
+  "level": 3,
+  "minutes": 18,
+  "theme": "マルコフ連鎖／ボーナス・マルス制度の推移と定常分布",
+  "unit": "マルコフ連鎖",
+  "topic": "ボーナス・マルス制度の推移と定常分布",
+  "statement": {
+   "tex": "自動車保険の等級を $0,1,2$ の3段階とし，1年間無事故なら1段階上がり（等級 $2$ はそのまま），事故があれば1段階下がる（等級 $0$ はそのまま）．無事故の確率は毎年独立に $0.8$ とする．保険料は等級 $0,1,2$ でそれぞれ $100,80,60$ である．\n\\begin{enumerate}\n\\item 現在等級 $2$ の契約者が3年後に等級 $0$ にいる確率を求めよ．\n\\item 定常分布における等級 $2$ の割合を求めよ．\n\\item 定常状態での平均保険料を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{1}{25}$ \\quad (2) $\\frac{16}{21}$ \\quad (3) $\\frac{460}{7}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　推移確率行列\n\\[P=\\begin{pmatrix}0.2&0.8&0\\\\0.2&0&0.8\\\\0&0.2&0.8\\end{pmatrix}\\]\nのべきを計算する．定常分布は隣接する等級間の釣り合い $\\pi_i\\cdot0.8=\\pi_{i+1}\\cdot0.2$ で解ける．\n\n(1) 3年で等級 $2$ から $0$ に至る道は $2\\to1\\to0\\to0$（確率 $0.2^3=0.008$）と $2\\to2\\to1\\to0$（確率 $0.8\\times0.2^2=0.032$）だけである（等級 $1$ から無事故なら $2$ に戻り，残り1年では $0$ に届かない）．合計 $0.008+0.032=\\boldsymbol{\\frac1{25}}$．$(P^3)_{20}$ と一致する．\n\n(2) $\\pi_1=4\\pi_0$，$\\pi_2=4\\pi_1=16\\pi_0$，和が $1$ より $\\pi=\\frac1{21}(1,4,16)$．等級 $2$ は $\\boldsymbol{\\frac{16}{21}}$．\n\n(3) $\\frac{100+320+960}{21}=\\boldsymbol{\\frac{460}7}\\approx65.71$．"
+   }
+  ],
+  "idea": {
+   "tex": "ボーナス・マルス制度はマルコフ連鎖で，n 年後の分布は行列のべき，長期の平均保険料は定常分布で求める．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 1/25\n(2) 16/21\n(3) 460/7"
+  },
+  "techniques": [
+   "markov-matrix-power",
+   "markov-first-step"
+  ],
+  "methods": [],
+  "tags": [
+   "マルコフ連鎖",
+   "ボーナス・マルス",
+   "定常分布",
+   "推移確率行列",
+   "行列のべき"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ }
+]

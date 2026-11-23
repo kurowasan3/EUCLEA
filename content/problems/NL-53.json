@@ -1,0 +1,814 @@
+[
+ {
+  "id": "NL-01-001",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "NL-53",
+  "level": 1,
+  "minutes": 8,
+  "theme": "クレーム件数分布／ポアソン分布の確率と条件付き期待値",
+  "unit": "クレーム件数分布",
+  "topic": "ポアソン分布の確率と条件付き期待値",
+  "statement": {
+   "tex": "ある契約群の1年間のクレーム件数 $N$ は平均 $2$ のポアソン分布 $P(N=k)=e^{-2}\\dfrac{2^k}{k!}$（$k=0,1,2,\\dots$）に従う．\n\\begin{enumerate}\n\\item $P(N=0)$ を求めよ．\n\\item $P(N\\ge 2)$ を求めよ．\n\\item クレームが少なくとも1件発生したという条件のもとでの件数の期待値 $E[N\\mid N\\ge 1]$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $e^{-2}$ \\quad (2) $1-3e^{-2}$ \\quad (3) $\\frac{2}{1-e^{-2}}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　ポアソン分布の確率を直接書き，条件付き期待値は「$N=0$ の項は期待値に寄与しない」ことを使う．\n\n(1) $P(N=0)=\\boldsymbol{e^{-2}}$．\n\n(2) $P(N\\ge2)=1-P(N=0)-P(N=1)=1-e^{-2}-2e^{-2}=\\boldsymbol{1-3e^{-2}}$（$\\approx0.594$）．\n\n(3) $E[N\\,;\\,N\\ge1]=\\sum_{k\\ge1}kP(N=k)=E[N]=2$ である（$k=0$ の項は $0$）．よって\n\\[E[N\\mid N\\ge1]=\\frac{E[N\\,;\\,N\\ge1]}{P(N\\ge1)}=\\boldsymbol{\\frac{2}{1-e^{-2}}}\\approx2.313.\\]"
+   }
+  ],
+  "idea": {
+   "tex": "$N=0$ の項は期待値に寄与しないので $E[N\\mid N\\ge1]=E[N]/P(N\\ge1)$ となる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) e^(-2)\n(2) 1-3e^(-2)\n(3) 2/(1-e^(-2))"
+  },
+  "techniques": [
+   "discrete-distributions"
+  ],
+  "methods": [],
+  "tags": [
+   "ポアソン分布",
+   "クレーム件数",
+   "条件付き期待値"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "NL-01-002",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "NL-53",
+  "level": 1,
+  "minutes": 8,
+  "theme": "免責と損害額／指数分布の控除免責と削減率",
+  "unit": "免責と損害額",
+  "topic": "指数分布の控除免責と削減率",
+  "statement": {
+   "tex": "1事故あたりの損害額 $X$ は平均 $1000$ の指数分布（密度 $f(x)=\\frac{1}{1000}e^{-x/1000}$，$x>0$）に従う．この保険には控除免責金額 $d=200$ が設定されており，1事故あたりの支払額は $(X-200)_+=\\max(X-200,0)$ である．$e^{-0.2}=0.81873$ を用いてよい．\n\\begin{enumerate}\n\\item 1事故あたりの支払額の期待値 $E[(X-200)_+]$ を小数第1位まで求めよ．\n\\item 免責による損害額の削減率 $E[X\\wedge 200]/E[X]$ を有効数字4桁で求めよ．\n\\item 支払いが生じた事故1件あたりの支払額の期待値 $E[X-200\\mid X>200]$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx 818.7$ \\quad (2) $\\approx 0.1813$ \\quad (3) $1000$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　$E[(X-d)_+]=\\int_d^\\infty S(x)\\,dx$（$S$ は生存関数）を使う．指数分布は無記憶性をもつ．\n\n(1) $S(x)=e^{-x/1000}$ より\n\\[E[(X-200)_+]=\\int_{200}^\\infty e^{-x/1000}dx=1000e^{-0.2}=\\boldsymbol{818.7}.\\]\n\n(2) $E[X\\wedge200]=E[X]-E[(X-200)_+]=1000(1-e^{-0.2})=181.27$ なので，削減率は $1-e^{-0.2}=\\boldsymbol{0.1813}$．\n\n(3) 無記憶性より $X-200\\mid X>200$ は再び平均 $1000$ の指数分布に従う．よって $\\boldsymbol{1000}$．実際，$E[(X-200)_+]/P(X>200)=1000e^{-0.2}/e^{-0.2}=1000$ である．"
+   }
+  ],
+  "idea": {
+   "tex": "支払額の期待値は生存関数の積分 $\\int_d^\\infty S(x)dx$ であり，指数分布では無記憶性から支払い1件あたりの期待値が免責によらない．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈818.7\n(2) ≈0.1813\n(3) 1000"
+  },
+  "techniques": [
+   "severity-limited-expected",
+   "memoryless-exp-poisson"
+  ],
+  "methods": [],
+  "tags": [
+   "指数分布",
+   "控除免責",
+   "制限期待値",
+   "損害額分布"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "NL-01-003",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "NL-53",
+  "level": 1,
+  "minutes": 10,
+  "theme": "複合ポアソン分布／総クレーム額のモーメントと正規近似",
+  "unit": "複合ポアソン分布",
+  "topic": "総クレーム額のモーメントと正規近似",
+  "statement": {
+   "tex": "クレーム件数 $N$ は平均 $4$ のポアソン分布に従い，各クレーム額 $X_1,X_2,\\dots$ は $N$ と独立に同一分布 $P(X=1)=\\frac58$，$P(X=3)=\\frac38$ に従う．総クレーム額を $S=X_1+\\dots+X_N$ とする．\n\\begin{enumerate}\n\\item $E[S]$ を求めよ．\n\\item $V(S)$ を求めよ．\n\\item 正規近似により $P(S>13)$ を小数第4位まで求めよ．$\\Phi(1.5)=0.9332$（$\\Phi$ は標準正規分布の分布関数）を用い，連続補正はしない．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $7$ \\quad (2) $16$ \\quad (3) $\\approx 0.0668$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　複合ポアソン分布では $E[S]=\\lambda E[X]$，$V(S)=\\lambda E[X^2]$ である（全分散の公式で $V(N)=E[N]=\\lambda$ を使う）．\n\n$E[X]=\\frac58+\\frac98=\\frac74$，$E[X^2]=\\frac58+\\frac{27}8=4$．\n\n(1) $E[S]=4\\cdot\\frac74=\\boldsymbol{7}$．\n\n(2) $V(S)=E[N]V(X)+V(N)E[X]^2=\\lambda E[X^2]=4\\cdot4=\\boldsymbol{16}$．\n\n(3) $S\\approx N(7,16)$ とみて\n\\[P(S>13)\\approx1-\\Phi\\left(\\frac{13-7}{4}\\right)=1-\\Phi(1.5)=\\boldsymbol{0.0668}.\\]"
+   }
+  ],
+  "idea": {
+   "tex": "複合ポアソン分布の分散は $\\lambda E[X^2]$ であり，$V(X)$ ではなく2次の原点モーメントが現れる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 7\n(2) 16\n(3) ≈0.0668"
+  },
+  "techniques": [
+   "compound-moments",
+   "normal-standardize"
+  ],
+  "methods": [],
+  "tags": [
+   "複合ポアソン分布",
+   "総クレーム額",
+   "正規近似",
+   "全分散の公式"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "NL-01-004",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "NL-53",
+  "level": 1,
+  "minutes": 8,
+  "theme": "クレーム件数分布／(a,b,0) クラスの判定",
+  "unit": "クレーム件数分布",
+  "topic": "(a,b,0) クラスの判定",
+  "statement": {
+   "tex": "クレーム件数 $N$ の分布 $p_k=P(N=k)$ は $(a,b,0)$ クラスに属する，すなわち $k\\ge1$ に対して $\\dfrac{p_k}{p_{k-1}}=a+\\dfrac bk$ を満たす．さらに $\\dfrac{p_1}{p_0}=2$，$\\dfrac{p_2}{p_1}=\\dfrac54$ である．\n\\begin{enumerate}\n\\item $a$ を求めよ．\n\\item $b$ を求めよ．\n\\item $N$ の分布を次から選び，番号で答えよ．\\\\\n①ポアソン分布　②二項分布　③負の二項分布（幾何分布を除く）　④幾何分布　⑤ $(a,b,0)$ クラスの分布ではありえない\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac12$ \\quad (2) $\\frac32$ \\quad (3) $3$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　$a+b=2$，$a+\\frac b2=\\frac54$ を解き，$a$ の符号で分布の種類を判定する（$a=0$：ポアソン，$a<0$：二項，$0<a<1$：負の二項）．\n\n(1)(2) 2式の差から $\\frac b2=\\frac34$，よって $\\boldsymbol{b=\\frac32}$，$\\boldsymbol{a=\\frac12}$．\n\n(3) $0<a<1$ なので負の二項分布である．負の二項分布 $NB(r,\\beta)$ では $a=\\frac{\\beta}{1+\\beta}$，$b=(r-1)a$ であるから $\\beta=1$，$r=4$．$b\\ne0$ なので幾何分布（$r=1$）ではない．答えは $\\boldsymbol{③}$，すなわち $3$ である．このとき $E[N]=r\\beta=4$，$V(N)=r\\beta(1+\\beta)=8$．"
+   }
+  ],
+  "idea": {
+   "tex": "$(a,b,0)$ クラスは $a$ の符号でポアソン・二項・負の二項に分かれ，2つの比から $a,b$ が決まる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 1/2\n(2) 3/2\n(3) 3"
+  },
+  "techniques": [
+   "ab0-class",
+   "discrete-distributions"
+  ],
+  "methods": [],
+  "tags": [
+   "(a",
+   "b",
+   "0)クラス",
+   "負の二項分布",
+   "クレーム件数"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "NL-01-005",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "NL-53",
+  "level": 1,
+  "minutes": 10,
+  "theme": "損害額分布／パレート分布の平均と制限期待値",
+  "unit": "損害額分布",
+  "topic": "パレート分布の平均と制限期待値",
+  "statement": {
+   "tex": "損害額 $X$ はパレート分布 $F(x)=1-\\left(\\dfrac{2000}{x+2000}\\right)^3$（$x>0$）に従う．\n\\begin{enumerate}\n\\item $E[X]$ を求めよ．\n\\item $P(X>2000)$ を求めよ．\n\\item 支払限度額を $2000$ としたときの1事故あたり支払額の期待値 $E[X\\wedge2000]$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $1000$ \\quad (2) $\\frac18$ \\quad (3) $750$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　非負の確率変数では $E[X\\wedge u]=\\int_0^uS(x)\\,dx$ である．パレート分布の生存関数は積分しやすい．\n\n$S(x)=\\left(\\frac{2000}{x+2000}\\right)^3$．\n\n(1) $E[X]=\\int_0^\\infty\\frac{2000^3}{(x+2000)^3}dx=\\frac{2000^3}{2\\cdot2000^2}=\\boldsymbol{1000}$．\n\n(2) $P(X>2000)=\\left(\\frac{2000}{4000}\\right)^3=\\boldsymbol{\\frac18}$．\n\n(3) \\[E[X\\wedge2000]=\\int_0^{2000}\\frac{2000^3}{(x+2000)^3}dx=1000\\left[1-\\left(\\frac{2000}{4000}\\right)^2\\right]=\\boldsymbol{750}.\\]\n一般に $\\alpha>1$ なら $E[X\\wedge u]=\\frac{\\theta}{\\alpha-1}\\left[1-\\left(\\frac{\\theta}{u+\\theta}\\right)^{\\alpha-1}\\right]$ である．"
+   }
+  ],
+  "idea": {
+   "tex": "制限期待値は生存関数を $0$ から $u$ まで積分したものであり，パレート分布では閉じた式になる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 1000\n(2) 1/8\n(3) 750"
+  },
+  "techniques": [
+   "severity-limited-expected"
+  ],
+  "methods": [],
+  "tags": [
+   "パレート分布",
+   "支払限度額",
+   "制限期待値",
+   "損害額分布"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "NL-01-006",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "NL-53",
+  "level": 2,
+  "minutes": 15,
+  "theme": "クレーム件数分布／ポアソン＝ガンマ混合と負の二項分布",
+  "unit": "クレーム件数分布",
+  "topic": "ポアソン＝ガンマ混合と負の二項分布",
+  "statement": {
+   "tex": "ある契約者のクレーム件数 $N$ は，危険度 $\\Lambda$ が与えられたとき平均 $\\Lambda$ のポアソン分布に従う．$\\Lambda$ は密度 $g(\\lambda)=4\\lambda e^{-2\\lambda}$（$\\lambda>0$）のガンマ分布に従う．\n\\begin{enumerate}\n\\item $V(N)$ を求めよ．\n\\item $P(N=0)$ を求めよ．\n\\item $P(N=1)$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac32$ \\quad (2) $\\frac49$ \\quad (3) $\\frac{8}{27}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　全分散の公式と，$\\Lambda$ についての積分（混合）で周辺分布を出す．結果は負の二項分布になる．\n\n$\\Lambda$ は形状 $2$・尺度 $\\frac12$ のガンマ分布なので $E[\\Lambda]=1$，$V(\\Lambda)=2\\cdot\\frac14=\\frac12$．\n\n(1) $V(N)=E[V(N\\mid\\Lambda)]+V(E[N\\mid\\Lambda])=E[\\Lambda]+V(\\Lambda)=\\boldsymbol{\\frac32}$．\n\n(2) $P(N=0)=E[e^{-\\Lambda}]=\\int_0^\\infty4\\lambda e^{-3\\lambda}d\\lambda=\\frac49$，すなわち $\\boldsymbol{\\frac49}$．\n\n(3) $P(N=1)=E[\\Lambda e^{-\\Lambda}]=\\int_0^\\infty4\\lambda^2e^{-3\\lambda}d\\lambda=4\\cdot\\frac{2}{27}=\\boldsymbol{\\frac{8}{27}}$．\n\n実際，$N$ は $r=2$，$\\beta=\\frac12$ の負の二項分布 $P(N=k)=\\binom{k+1}{k}\\left(\\frac23\\right)^2\\left(\\frac13\\right)^k$ に従い，平均 $r\\beta=1$，分散 $r\\beta(1+\\beta)=\\frac32$ と一致する．"
+   }
+  ],
+  "idea": {
+   "tex": "ポアソン分布の平均をガンマ分布で混合すると負の二項分布になり，分散が平均より大きくなる（過分散）．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 3/2\n(2) 4/9\n(3) 8/27"
+  },
+  "techniques": [
+   "mixture-hierarchical",
+   "ab0-class"
+  ],
+  "methods": [],
+  "tags": [
+   "ポアソン分布",
+   "ガンマ分布",
+   "負の二項分布",
+   "混合分布",
+   "全分散の公式"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "NL-01-007",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "NL-53",
+  "level": 2,
+  "minutes": 15,
+  "theme": "複合分布／パンジャーの再帰式（複合ポアソン）",
+  "unit": "複合分布",
+  "topic": "パンジャーの再帰式（複合ポアソン）",
+  "statement": {
+   "tex": "クレーム件数 $N$ は平均 $2$ のポアソン分布に従い，各クレーム額 $X$ は $N$ と独立に $P(X=1)=P(X=2)=\\frac12$ に従う．総クレーム額 $S$ の確率関数を $f_S(s)=P(S=s)$ と書く．パンジャーの再帰式\n\\[f_S(s)=\\frac{\\lambda}{s}\\sum_{j=1}^{s}j\\,f_X(j)\\,f_S(s-j)\\quad(s\\ge1)\\]\nを用いて次を求めよ．\n\\begin{enumerate}\n\\item $f_S(0)$\n\\item $f_S(2)$\n\\item $f_S(3)$\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $e^{-2}$ \\quad (2) $\\frac32e^{-2}$ \\quad (3) $\\frac76e^{-2}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　$f_X(0)=0$ なので $f_S(0)=P(N=0)$．あとは再帰式を $s=1,2,3$ と順に使う．\n\n(1) $f_S(0)=P(N=0)=\\boldsymbol{e^{-2}}$．\n\n$s=1$：$f_S(1)=2\\cdot1\\cdot\\frac12e^{-2}=e^{-2}$．\n\n(2) $f_S(2)=\\frac22\\left(1\\cdot\\frac12f_S(1)+2\\cdot\\frac12f_S(0)\\right)=\\frac12e^{-2}+e^{-2}=\\boldsymbol{\\frac32e^{-2}}$．\n\n(3) $f_S(3)=\\frac23\\left(1\\cdot\\frac12\\cdot\\frac32e^{-2}+2\\cdot\\frac12e^{-2}\\right)=\\frac23\\cdot\\frac74e^{-2}=\\boldsymbol{\\frac76e^{-2}}$．\n\n検算：$S=3$ となるのは「$N=2$ で $\\{1,2\\}$ の並び2通り」と「$N=3$ ですべて $1$」で，$2e^{-2}\\cdot\\frac12+\\frac43e^{-2}\\cdot\\frac18=\\frac76e^{-2}$ と一致する．"
+   }
+  ],
+  "idea": {
+   "tex": "クレーム額が整数値なら，総クレーム額の確率は畳み込みを全部計算せずに再帰式で順に求められる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) e^(-2)\n(2) 3/2 e^(-2)\n(3) 7/6 e^(-2)"
+  },
+  "techniques": [
+   "panjer-recursion"
+  ],
+  "methods": [],
+  "tags": [
+   "パンジャーの再帰式",
+   "複合ポアソン分布",
+   "総クレーム額"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "NL-01-008",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "NL-53",
+  "level": 2,
+  "minutes": 18,
+  "theme": "損害額分布／対数正規分布の制限期待値と削減率",
+  "unit": "損害額分布",
+  "topic": "対数正規分布の制限期待値と削減率",
+  "statement": {
+   "tex": "損害額 $X$ は $\\log X\\sim N(6,1)$ の対数正規分布に従う．支払限度額を $u=e^7$ とする．$\\Phi$ を標準正規分布の分布関数とし，$\\Phi(1)=0.8413$，$\\Phi(0)=0.5$，$e^{6.5}=665.14$，$e^7=1096.63$ を用いてよい．\n\\begin{enumerate}\n\\item $E[X]$ を小数第1位まで求めよ．\n\\item $E[X\\wedge u]$ を小数第1位まで求めよ．\n\\item 支払限度額による削減後の割合 $E[X\\wedge u]/E[X]$ を有効数字4桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx 665.1$ \\quad (2) $\\approx 506.6$ \\quad (3) $\\approx 0.7617$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　$X=e^Y$（$Y\\sim N(\\mu,\\sigma^2)$）について $E[X\\,;\\,X\\le u]=e^{\\mu+\\sigma^2/2}\\Phi\\!\\left(\\frac{\\log u-\\mu-\\sigma^2}{\\sigma}\\right)$ を使う（指数を平方完成すると平均が $\\sigma^2$ だけずれた正規分布の積分になる）．\n\n(1) $E[X]=e^{\\mu+\\sigma^2/2}=e^{6.5}=\\boldsymbol{665.1}$．\n\n(2) $E[X\\wedge u]=E[X\\,;\\,X\\le u]+uP(X>u)$．$\\frac{\\log u-\\mu-\\sigma^2}{\\sigma}=0$，$\\frac{\\log u-\\mu}{\\sigma}=1$ なので\n\\[E[X\\wedge u]=665.14\\cdot\\Phi(0)+1096.63\\,(1-\\Phi(1))=332.57+174.04=\\boldsymbol{506.6}.\\]\n\n(3) $506.61/665.14=\\boldsymbol{0.7617}$．限度額 $e^7$ を超える損害は約 $16\\%$ しかないが，それが損害額の期待値の約 $24\\%$ を占めている．"
+   }
+  ],
+  "idea": {
+   "tex": "対数正規分布の部分期待値は，指数の平方完成で $\\Phi$ の引数を $\\sigma^2$ ずらした形になる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈665.1\n(2) ≈506.6\n(3) ≈0.7617"
+  },
+  "techniques": [
+   "severity-limited-expected",
+   "normal-standardize"
+  ],
+  "methods": [],
+  "tags": [
+   "対数正規分布",
+   "制限期待値",
+   "支払限度額",
+   "損害額分布"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "NL-01-009",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "NL-53",
+  "level": 2,
+  "minutes": 15,
+  "theme": "免責と損害額／インフレーションと控除免責のてこ効果",
+  "unit": "免責と損害額",
+  "topic": "インフレーションと控除免責のてこ効果",
+  "statement": {
+   "tex": "現在の損害額 $X$ は平均 $500$ の指数分布に従い，控除免責金額は $100$ である．翌年はすべての損害額が一律 $10\\%$ 上昇する（損害額は $1.1X$）が，免責金額は $100$ のまま据え置く．$e^{-0.2}=0.81873$，$e^{-2/11}=0.83374$ を用いてよい．\n\\begin{enumerate}\n\\item 現在の1事故あたり支払額の期待値 $E[(X-100)_+]$ を小数第1位まで求めよ．\n\\item 翌年の1事故あたり支払額の期待値 $E[(1.1X-100)_+]$ を小数第1位まで求めよ．\n\\item 1事故あたり支払額の期待値の上昇率を有効数字3桁で求めよ（例：$5\\%$ なら $0.0500$ と答える）．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx 409.4$ \\quad (2) $\\approx 458.6$ \\quad (3) $\\approx 0.120$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　$1.1X$ は平均 $550$ の指数分布に従う（尺度分布族）．平均 $\\theta$ の指数分布では $E[(X-d)_+]=\\theta e^{-d/\\theta}$．\n\n(1) $500e^{-100/500}=500\\cdot0.81873=\\boldsymbol{409.4}$．\n\n(2) $550e^{-100/550}=550e^{-2/11}=550\\cdot0.83374=\\boldsymbol{458.6}$．\n\n(3) $\\frac{458.56}{409.37}-1=\\boldsymbol{0.120}$．\n\n損害額の上昇率 $10\\%$ より支払額の上昇率（約 $12\\%$）が大きい．免責金額が据え置かれると，免責で削られる部分の割合が減るためである（控除免責のてこ効果）．"
+   }
+  ],
+  "idea": {
+   "tex": "インフレで損害額が一律に上がっても免責金額が固定なら，支払額はそれ以上の率で上がる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈409.4\n(2) ≈458.6\n(3) ≈0.120"
+  },
+  "techniques": [
+   "severity-limited-expected"
+  ],
+  "methods": [],
+  "tags": [
+   "インフレーション",
+   "控除免責",
+   "指数分布",
+   "制限期待値"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "NL-01-010",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "NL-53",
+  "level": 2,
+  "minutes": 15,
+  "theme": "免責と損害額／パレート分布のレイヤーの期待値",
+  "unit": "免責と損害額",
+  "topic": "パレート分布のレイヤーの期待値",
+  "statement": {
+   "tex": "損害額 $X$ はパレート分布 $F(x)=1-\\left(\\dfrac{1000}{x+1000}\\right)^2$（$x>0$）に従う．損害額のうち $500$ を超え $2500$ までの部分（レイヤー）を引き受ける契約を考える．すなわち1事故あたりの支払額は $Y=\\min\\{(X-500)_+,\\,2000\\}$ である．\n\\begin{enumerate}\n\\item $E[X\\wedge500]$ を求めよ．\n\\item $E[Y]$ を求めよ．\n\\item このレイヤーで支払いが生じた事故1件あたりの支払額の期待値 $E[Y\\mid X>500]$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{1000}{3}$ \\quad (2) $\\frac{8000}{21}$ \\quad (3) $\\frac{6000}{7}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　レイヤーの期待値は制限期待値の差 $E[Y]=E[X\\wedge2500]-E[X\\wedge500]$ で求める．\n\n$\\alpha=2$，$\\theta=1000$ のパレート分布では $E[X\\wedge u]=\\int_0^u\\frac{1000^2}{(x+1000)^2}dx=\\frac{1000u}{u+1000}$．\n\n(1) $E[X\\wedge500]=\\frac{1000\\cdot500}{1500}=\\boldsymbol{\\frac{1000}{3}}$．\n\n(2) $E[X\\wedge2500]=\\frac{1000\\cdot2500}{3500}=\\frac{5000}{7}$ なので\n\\[E[Y]=\\frac{5000}{7}-\\frac{1000}{3}=\\boldsymbol{\\frac{8000}{21}}\\approx380.95.\\]\n\n(3) $P(X>500)=\\left(\\frac{1000}{1500}\\right)^2=\\frac49$ より $E[Y\\mid X>500]=\\frac{8000}{21}\\cdot\\frac94=\\boldsymbol{\\frac{6000}{7}}\\approx857.1$．"
+   }
+  ],
+  "idea": {
+   "tex": "$Y=X\\wedge(d+L)-X\\wedge d$ と分解すれば，レイヤーの期待値は制限期待値の差になる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 1000/3\n(2) 8000/21\n(3) 6000/7"
+  },
+  "techniques": [
+   "severity-limited-expected"
+  ],
+  "methods": [],
+  "tags": [
+   "レイヤー",
+   "パレート分布",
+   "制限期待値",
+   "超過損害"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "NL-01-011",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "NL-53",
+  "level": 2,
+  "minutes": 15,
+  "theme": "複合分布／複合負の二項分布のモーメントと分位点",
+  "unit": "複合分布",
+  "topic": "複合負の二項分布のモーメントと分位点",
+  "statement": {
+   "tex": "クレーム件数 $N$ は負の二項分布 $P(N=k)=\\binom{k+2}{k}\\left(\\frac13\\right)^3\\left(\\frac23\\right)^k$（$r=3$，$\\beta=2$）に従い，各クレーム額 $X$ は $N$ と独立に形状 $2$・尺度 $100$ のガンマ分布（平均 $200$）に従う．総クレーム額を $S$ とする．\n\\begin{enumerate}\n\\item $E[S]$ を求めよ．\n\\item $V(S)$ を求めよ．\n\\item 正規近似により $S$ の $95\\%$ 点（$P(S\\le s)=0.95$ となる $s$）を整数で求めよ．$z_{0.05}=1.645$，$\\sqrt{840000}=916.52$ を用いてよい．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $1200$ \\quad (2) $840000$ \\quad (3) $\\approx 2708$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　全分散の公式 $V(S)=E[N]V(X)+V(N)E[X]^2$ を使う．\n\n$E[N]=r\\beta=6$，$V(N)=r\\beta(1+\\beta)=18$，$E[X]=200$，$V(X)=2\\cdot100^2=20000$．\n\n(1) $E[S]=6\\cdot200=\\boldsymbol{1200}$．\n\n(2) $V(S)=6\\cdot20000+18\\cdot200^2=120000+720000=\\boldsymbol{840000}$．件数の変動による部分（$720000$）が大きい．\n\n(3) $s\\approx1200+1.645\\cdot916.52=\\boldsymbol{2708}$．"
+   }
+  ],
+  "idea": {
+   "tex": "総クレーム額の分散は「件数一定でのクレーム額の変動」と「件数の変動」の和に分かれる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 1200\n(2) 840000\n(3) ≈2708"
+  },
+  "techniques": [
+   "compound-moments",
+   "cond-expect"
+  ],
+  "methods": [],
+  "tags": [
+   "複合分布",
+   "負の二項分布",
+   "ガンマ分布",
+   "全分散の公式",
+   "正規近似"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "NL-01-012",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "NL-53",
+  "level": 2,
+  "minutes": 15,
+  "theme": "クレーム件数分布／免責による件数分布の変換（負の二項分布の間引き）",
+  "unit": "クレーム件数分布",
+  "topic": "免責による件数分布の変換（負の二項分布の間引き）",
+  "statement": {
+   "tex": "1年間の事故件数 $N$ は負の二項分布 $P(N=k)=\\binom{k+1}{k}\\left(\\frac15\\right)^2\\left(\\frac45\\right)^k$（$r=2$，$\\beta=4$）に従う．免責金額が設定されており，各事故は互いに独立に確率 $\\frac14$ で免責金額を超え，支払いの対象になる．支払いの対象となる件数を $N_P$ とする．\n\\begin{enumerate}\n\\item $E[N_P]$ を求めよ．\n\\item $V(N_P)$ を求めよ．\n\\item $P(N_P=0)$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $2$ \\quad (2) $4$ \\quad (3) $\\frac14$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　確率母関数で $P_{N_P}(z)=P_N(1-v+vz)$（$v=\\frac14$）を計算する．負の二項分布は $\\beta$ が $v\\beta$ に置き換わるだけである．\n\n$P_N(z)=\\{1-\\beta(z-1)\\}^{-r}$ より\n\\[P_{N_P}(z)=\\{1-\\beta v(z-1)\\}^{-r},\\]\nしたがって $N_P\\sim NB(r=2,\\ \\beta=1)$．\n\n(1) $E[N_P]=2\\cdot1=\\boldsymbol{2}$．\n\n(2) $V(N_P)=2\\cdot1\\cdot2=\\boldsymbol{4}$．\n\n(3) $P(N_P=0)=(1+1)^{-2}=\\boldsymbol{\\frac14}$．（$E[(3/4)^N]=P_N(3/4)$ として直接求めても同じ．）"
+   }
+  ],
+  "idea": {
+   "tex": "各件を独立に確率 $v$ で残すと確率母関数は $P_N(1-v+vz)$ になり，$(a,b,0)$ クラスの分布は同じ族の中で母数だけが変わる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 2\n(2) 4\n(3) 1/4"
+  },
+  "techniques": [
+   "ab0-class",
+   "mgf"
+  ],
+  "methods": [],
+  "tags": [
+   "負の二項分布",
+   "確率母関数",
+   "控除免責",
+   "(a",
+   "b",
+   "0)クラス"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "NL-01-013",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "NL-53",
+  "level": 3,
+  "minutes": 20,
+  "theme": "複合分布／パンジャーの再帰式（複合幾何分布）",
+  "unit": "複合分布",
+  "topic": "パンジャーの再帰式（複合幾何分布）",
+  "statement": {
+   "tex": "クレーム件数 $N$ は幾何分布 $P(N=k)=\\left(\\frac12\\right)^{k+1}$（$k=0,1,2,\\dots$）に従い，各クレーム額 $X$ は $N$ と独立に $P(X=1)=P(X=2)=\\frac12$ に従う．総クレーム額を $S$ とする．\n\\begin{enumerate}\n\\item $f_S(1)=P(S=1)$ を求めよ．\n\\item $f_S(2)=P(S=2)$ を求めよ．\n\\item $P(S\\le3)$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac18$ \\quad (2) $\\frac{5}{32}$ \\quad (3) $\\frac{109}{128}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　幾何分布は $(a,b,0)$ クラスで $a=\\frac{\\beta}{1+\\beta}=\\frac12$，$b=0$．$f_X(0)=0$ なのでパンジャーの再帰式は\n\\[f_S(s)=\\sum_{j=1}^{s}\\left(a+\\frac{bj}{s}\\right)f_X(j)f_S(s-j)=\\frac12\\sum_{j}f_X(j)f_S(s-j).\\]\n\n$f_S(0)=P(N=0)=\\frac12$．\n\n(1) $f_S(1)=\\frac12\\cdot\\frac12\\cdot\\frac12=\\boldsymbol{\\frac18}$．\n\n(2) $f_S(2)=\\frac12\\left(\\frac12\\cdot\\frac18+\\frac12\\cdot\\frac12\\right)=\\boldsymbol{\\frac5{32}}$．\n\n$f_S(3)=\\frac12\\left(\\frac12\\cdot\\frac5{32}+\\frac12\\cdot\\frac18\\right)=\\frac9{128}$．\n\n(3) $P(S\\le3)=\\frac{64+16+20+9}{128}=\\boldsymbol{\\frac{109}{128}}$．\n\n検算：$S=2$ となるのは $N=1,X=2$（$\\frac14\\cdot\\frac12$）と $N=2$ で $1,1$（$\\frac18\\cdot\\frac14$）で，和は $\\frac18+\\frac1{32}=\\frac5{32}$．"
+   }
+  ],
+  "idea": {
+   "tex": "件数分布が $(a,b,0)$ クラスなら，係数 $a+bj/s$ を差し替えるだけで同じ再帰式が使える．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 1/8\n(2) 5/32\n(3) 109/128"
+  },
+  "techniques": [
+   "panjer-recursion",
+   "ab0-class"
+  ],
+  "methods": [],
+  "tags": [
+   "パンジャーの再帰式",
+   "幾何分布",
+   "(a",
+   "b",
+   "0)クラス",
+   "総クレーム額"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "NL-01-014",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "NL-53",
+  "level": 3,
+  "minutes": 20,
+  "theme": "複合分布／独立な複合ポアソン分布の和",
+  "unit": "複合分布",
+  "topic": "独立な複合ポアソン分布の和",
+  "statement": {
+   "tex": "2つの独立な契約群の総クレーム額を $S_1,S_2$ とする．$S_1$ はクレーム件数が平均 $2$ のポアソン分布でクレーム額はつねに $1$，$S_2$ はクレーム件数が平均 $3$ のポアソン分布でクレーム額は $P(X=1)=\\frac13$，$P(X=2)=\\frac23$ に従う．$S=S_1+S_2$ は複合ポアソン分布に従う．\n\\begin{enumerate}\n\\item $S$ のクレーム件数分布の平均 $\\lambda$ を求めよ．\n\\item $S$ のクレーム額分布における $P(X=2)$ を求めよ．\n\\item $P(S=2)$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $5$ \\quad (2) $\\frac25$ \\quad (3) $\\frac{13}{2}e^{-5}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　独立な複合ポアソン分布の和は，件数の平均を足し，クレーム額分布を件数の平均で重み付けて混ぜた複合ポアソン分布になる（積率母関数 $\\exp\\{\\lambda_i(M_{X_i}(t)-1)\\}$ の積から分かる）．\n\n(1) $\\lambda=2+3=\\boldsymbol5$．\n\n(2) $P(X=1)=\\frac{2\\cdot1+3\\cdot\\frac13}{5}=\\frac35$，$P(X=2)=\\frac{3\\cdot\\frac23}{5}=\\boldsymbol{\\frac25}$．\n\n(3) パンジャーの再帰式で $f_S(0)=e^{-5}$，$f_S(1)=5\\cdot\\frac35e^{-5}=3e^{-5}$，\n\\[f_S(2)=\\frac52\\left(1\\cdot\\frac35\\cdot3e^{-5}+2\\cdot\\frac25\\cdot e^{-5}\\right)=\\frac52\\cdot\\frac{13}{5}e^{-5}=\\boldsymbol{\\frac{13}2e^{-5}}.\\]\n検算：$P(S_1=0,1,2)=e^{-2},\\,2e^{-2},\\,2e^{-2}$，$P(S_2=0,1,2)=e^{-3},\\,e^{-3},\\,\\frac52e^{-3}$ を畳み込むと $\\left(\\frac52+2+2\\right)e^{-5}=\\frac{13}2e^{-5}$ で一致する．"
+   }
+  ],
+  "idea": {
+   "tex": "独立な複合ポアソン分布の和は再び複合ポアソン分布で，クレーム額分布は件数の平均で重み付けた混合になる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 5\n(2) 2/5\n(3) 13/2 e^(-5)"
+  },
+  "techniques": [
+   "panjer-recursion",
+   "poisson-conditioning"
+  ],
+  "methods": [],
+  "tags": [
+   "複合ポアソン分布",
+   "パンジャーの再帰式",
+   "積率母関数",
+   "総クレーム額"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "NL-01-015",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "NL-53",
+  "level": 3,
+  "minutes": 25,
+  "theme": "免責と損害額／免責と支払限度額がある場合の総支払額の分散",
+  "unit": "免責と損害額",
+  "topic": "免責と支払限度額がある場合の総支払額の分散",
+  "statement": {
+   "tex": "損害額 $X$ は平均 $1000$ の指数分布に従う．控除免責金額を $500$，1事故あたりの支払限度額を $2000$ とし，1事故あたりの支払額を $Y=\\min\\{(X-500)_+,\\,2000\\}$ とする．年間の事故件数は平均 $4$ のポアソン分布に従い，損害額とは独立である．$e^{-0.5}=0.60653$，$e^{-2}=0.13534$，$e^{-2.5}=0.082085$ を用いてよい．\n\\begin{enumerate}\n\\item $E[Y]$ を小数第1位まで求めよ．\n\\item $E[Y^2]$ を有効数字4桁で求めよ．\n\\item 年間の総支払額 $S$ の分散 $V(S)$ を有効数字4桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx 524.4$ \\quad (2) $\\approx 7.206\\times10^{5}$ \\quad (3) $\\approx 2.882\\times10^{6}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　$Y>0$ となるのは $X>500$ のときで，無記憶性より $X-500\\mid X>500$ は再び平均 $\\theta=1000$ の指数分布 $X'$ に従う．よって $Y$ の分布は「確率 $e^{-0.5}$ で $X'\\wedge2000$，残りは $0$」である．\n\n(1) $E[X'\\wedge2000]=\\theta(1-e^{-2})$ なので\n\\[E[Y]=e^{-0.5}\\cdot1000(1-e^{-2})=1000(e^{-0.5}-e^{-2.5})=\\boldsymbol{524.4}.\\]\n\n(2) $E[(X'\\wedge L)^2]=\\int_0^L2x\\,e^{-x/\\theta}dx=2\\theta^2(1-e^{-L/\\theta})-2\\theta Le^{-L/\\theta}$．$L=2000$ では $2\\cdot10^6-6\\cdot10^6e^{-2}=1.18799\\times10^6$．よって\n\\[E[Y^2]=e^{-0.5}\\times1.18799\\times10^6=\\boldsymbol{7.206\\times10^5}.\\]\n\n(3) 複合ポアソン分布なので $V(S)=\\lambda E[Y^2]=4\\times7.2055\\times10^5=\\boldsymbol{2.882\\times10^6}$．"
+   }
+  ],
+  "idea": {
+   "tex": "免責で切った支払額は「支払いの有無」と「超過額」の混合と見る．指数分布なら超過額は再び同じ指数分布である．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈524.4\n(2) ≈7.206e5\n(3) ≈2.882e6"
+  },
+  "techniques": [
+   "severity-limited-expected",
+   "compound-moments",
+   "memoryless-exp-poisson"
+  ],
+  "methods": [],
+  "tags": [
+   "控除免責",
+   "支払限度額",
+   "指数分布",
+   "複合ポアソン分布",
+   "制限期待値"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ }
+]

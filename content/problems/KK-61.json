@@ -1,0 +1,817 @@
+[
+ {
+  "id": "KK-03-001",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "KK-61",
+  "level": 1,
+  "minutes": 6,
+  "theme": "債券／価格と直接利回り",
+  "unit": "債券",
+  "topic": "価格と直接利回り",
+  "statement": {
+   "tex": "額面 $100$，クーポン年 $3$\\%（年 1 回後払い），残存期間 $3$ 年の固定利付債を考える．最終利回り（年複利）は $2$\\% である．\n\n\\begin{enumerate}\n\\item この債券の価格を有効数字 5 桁で求めよ．\n\\item 直接利回り（クーポン $\\div$ 価格，\\%）を有効数字 4 桁で求めよ．\n\\item 1 年後（クーポン受取直後）に最終利回りが $2$\\% のままであるときの価格を有効数字 5 桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx102.88$\n(2) $\\approx2.916$\n(3) $\\approx101.94$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "債券価格は将来のキャッシュ・フローを最終利回りで割り引いた現在価値である．\n\n(1) $\\dfrac{3}{1.02}+\\dfrac{3}{1.02^2}+\\dfrac{103}{1.02^3}\\approx2.9412+2.8835+97.0592=\\boldsymbol{102.88}$ である．クーポン率が利回りより高いのでオーバーパーになる．\n\n(2) $3/102.884\\approx\\boldsymbol{2.916}$\\% である．\n\n(3) $\\dfrac{3}{1.02}+\\dfrac{103}{1.02^2}\\approx\\boldsymbol{101.94}$ である．利回りが変わらなくても，満期に近づくにつれて価格は額面 $100$ に近づく（プルトゥパー）．"
+   }
+  ],
+  "idea": {
+   "tex": "債券価格＝キャッシュ・フローの現在価値．クーポン率＞利回りならオーバーパー．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈102.88\n(2) ≈2.916\n(3) ≈101.94"
+  },
+  "techniques": [
+   "bond-price-duration"
+  ],
+  "methods": [],
+  "tags": [
+   "債券",
+   "債券価格",
+   "最終利回り",
+   "直接利回り",
+   "現在価値"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "KK-03-002",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "KK-61",
+  "level": 1,
+  "minutes": 6,
+  "theme": "ポートフォリオ理論／2 資産の期待収益率とリスク",
+  "unit": "ポートフォリオ理論",
+  "topic": "2 資産の期待収益率とリスク",
+  "statement": {
+   "tex": "資産 A の期待収益率は $5$\\%，標準偏差は $10$\\%，資産 B の期待収益率は $10$\\%，標準偏差は $20$\\%，両者の相関係数は $0.3$ である．A に $60$\\%，B に $40$\\% 投資するポートフォリオを考える．\n\n\\begin{enumerate}\n\\item ポートフォリオの期待収益率（\\%）を求めよ．\n\\item ポートフォリオの標準偏差（\\%）を有効数字 4 桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $7$\n(2) $\\approx11.35$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "期待収益率は加重平均，分散は共分散項を含む 2 次式で計算する．\n\n(1) $0.6\\times5+0.4\\times10=\\boldsymbol{7}$\\% である．\n\n(2) 分散は\n\\[\n0.6^2(0.1)^2+0.4^2(0.2)^2+2(0.6)(0.4)(0.3)(0.1)(0.2)=0.0036+0.0064+0.00288=0.01288\n\\]\nで，標準偏差は $\\sqrt{0.01288}\\approx0.1135$，すなわち $\\boldsymbol{11.35}$\\% である．加重平均 $14$\\% より小さいのは，相関係数が $1$ 未満であることによる分散効果である．"
+   }
+  ],
+  "idea": {
+   "tex": "$\\sigma_p^2=w_1^2\\sigma_1^2+w_2^2\\sigma_2^2+2w_1w_2\\rho\\sigma_1\\sigma_2$．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 7\n(2) ≈11.35"
+  },
+  "techniques": [
+   "mean-variance-capm"
+  ],
+  "methods": [],
+  "tags": [
+   "ポートフォリオ理論",
+   "期待収益率",
+   "分散",
+   "相関係数",
+   "分散効果"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "KK-03-003",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "KK-61",
+  "level": 1,
+  "minutes": 6,
+  "theme": "CAPM／要求収益率とリスクの分解",
+  "unit": "CAPM",
+  "topic": "要求収益率とリスクの分解",
+  "statement": {
+   "tex": "無リスク利子率を $1$\\%，市場ポートフォリオの期待収益率を $6$\\%，標準偏差を $15$\\% とする．株式 X のベータは $1.2$，標準偏差は $25$\\% である．CAPM が成り立つとする．\n\n\\begin{enumerate}\n\\item 株式 X の期待収益率（\\%）を求めよ．\n\\item 株式 X の分散のうち，市場（システマティック）リスクによる部分の割合を求めよ．\n\\item ある投資家が株式 X の期待収益率を $9$\\% と予想している．この予想のもとでのジェンセンのアルファ（\\%）を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $7$\n(2) $0.5184$\n(3) $2$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "CAPM は $E(R_i)=r_f+\\beta_i\\{E(R_M)-r_f\\}$ である．また市場モデルでは $\\sigma_i^2=\\beta_i^2\\sigma_M^2+\\sigma_{\\varepsilon}^2$ と分解できる．\n\n(1) $1+1.2\\times(6-1)=\\boldsymbol{7}$\\% である．\n\n(2) システマティック・リスク $\\beta^2\\sigma_M^2=1.44\\times0.0225=0.0324$，総分散 $0.0625$．割合は $0.0324/0.0625=\\boldsymbol{0.5184}$ である（市場モデルの決定係数）．残りの非システマティック・リスクは分散投資で消せるので，CAPM では報われない．\n\n(3) $9-7=\\boldsymbol{2}$\\% である．予想どおりなら証券市場線より上にあり，割安と判断される．"
+   }
+  ],
+  "idea": {
+   "tex": "CAPM：$E(R)=r_f+\\beta(E(R_M)-r_f)$．報われるのはシステマティック・リスクだけ．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 7\n(2) 0.5184\n(3) 2"
+  },
+  "techniques": [
+   "mean-variance-capm"
+  ],
+  "methods": [],
+  "tags": [
+   "CAPM",
+   "ベータ",
+   "システマティック・リスク",
+   "証券市場線",
+   "ジェンセンのアルファ"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "KK-03-004",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "KK-61",
+  "level": 1,
+  "minutes": 6,
+  "theme": "先物／理論価格と裁定取引",
+  "unit": "先物",
+  "topic": "理論価格と裁定取引",
+  "statement": {
+   "tex": "現在の株価指数は $1{,}000$，無リスク利子率は年 $2$\\%（連続複利），配当利回りは年 $1$\\%（連続複利），先物の満期は $0.5$ 年後である．\n\n\\begin{enumerate}\n\\item 先物の理論価格を有効数字 6 桁で求めよ．\n\\item 市場の先物価格が $1{,}012$ であるとき，裁定利益を得る取引として正しいものを ①〜⑤ から 1 つ選び，番号で答えよ． \\\\ ① 先物を買い，現物を空売りして代金を無リスク利子率で運用する． \\\\ ② 先物を売り，資金を借り入れて現物を買い，満期まで保有する． \\\\ ③ 先物を買い，資金を借り入れて現物を買う． \\\\ ④ 先物を売り，現物を空売りする． \\\\ ⑤ 裁定機会は存在しない．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx1005.01$\n(2) ②（番号 2）"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "現物を買って満期まで保有する戦略と先物の買いは同じ結果になるので，理論価格はキャリー・コスト（金利 $-$ 配当）を反映して $F=Se^{(r-q)T}$ である．\n\n(1) $F=1000e^{(0.02-0.01)\\times0.5}=1000e^{0.005}\\approx\\boldsymbol{1005.01}$ である．\n\n(2) 市場価格 $1012$ は理論価格より高い（先物が割高）．割高な先物を売り，資金を借り入れて割安な現物を買い，満期に現物を先物で引き渡す（キャッシュ・アンド・キャリー）と，1 単位あたり約 $7$ の裁定利益が得られる．答えは $\\boldsymbol{2}$ である．"
+   }
+  ],
+  "idea": {
+   "tex": "$F=Se^{(r-q)T}$．割高なほうを売り，割安なほうを買う．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈1005.01\n(2) 2"
+  },
+  "techniques": [
+   "no-arbitrage-pricing"
+  ],
+  "methods": [],
+  "tags": [
+   "先物",
+   "先物理論価格",
+   "裁定取引",
+   "キャッシュ・アンド・キャリー",
+   "連続複利"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "KK-03-005",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "KK-61",
+  "level": 1,
+  "minutes": 5,
+  "theme": "オプション／プット・コール・パリティ",
+  "unit": "オプション",
+  "topic": "プット・コール・パリティ",
+  "statement": {
+   "tex": "配当のない株式の現在の株価は $100$，無リスク利子率は年 $3$\\%（連続複利）である．行使価格 $105$，満期 $1$ 年のヨーロピアン・コールの価格は $8$ である．\n\n\\begin{enumerate}\n\\item 同じ行使価格・満期のヨーロピアン・プットの価格を有効数字 4 桁で求めよ．\n\\item (1) のプットの時間価値（価格 $-$ 本質的価値）を有効数字 3 桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx9.897$\n(2) $\\approx4.90$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "「コール買い $+$ 行使価格の現在価値の預金」と「プット買い $+$ 株式」は満期にどちらも $\\max(S_T,K)$ になるので，無裁定なら\n\\[\nC+Ke^{-rT}=P+S\n\\]\nが成り立つ（プット・コール・パリティ）．\n\n(1) $P=8+105e^{-0.03}-100\\approx8+101.897-100=\\boldsymbol{9.897}$ である．\n\n(2) 本質的価値は $\\max(105-100,0)=5$ なので，時間価値は $9.897-5\\approx\\boldsymbol{4.90}$ である．"
+   }
+  ],
+  "idea": {
+   "tex": "$C+Ke^{-rT}=P+S$．満期の損益が同じ 2 つのポートフォリオは今日の価格も同じ．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈9.897\n(2) ≈4.90"
+  },
+  "techniques": [
+   "no-arbitrage-pricing"
+  ],
+  "methods": [],
+  "tags": [
+   "オプション",
+   "プット・コール・パリティ",
+   "無裁定",
+   "本質的価値",
+   "時間価値"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "KK-03-006",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "KK-61",
+  "level": 2,
+  "minutes": 12,
+  "theme": "債券／デュレーションとコンベクシティ",
+  "unit": "債券",
+  "topic": "デュレーションとコンベクシティ",
+  "statement": {
+   "tex": "額面 $100$，クーポン年 $4$\\%（年 1 回後払い），残存期間 $5$ 年の債券があり，最終利回り（年複利）は $4$\\% である（価格は $100$）．この債券のコンベクシティ $\\dfrac{1}{P}\\dfrac{d^2P}{dy^2}$ は $25.01$ である．\n\n\\begin{enumerate}\n\\item マコーレー・デュレーション（年）を有効数字 4 桁で求めよ．\n\\item 修正デュレーションを有効数字 4 桁で求めよ．\n\\item 利回りが $0.5$\\% 上昇したときの価格変化率（\\%）を，修正デュレーションとコンベクシティを用いた 2 次の近似で有効数字 3 桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx4.630$\n(2) $\\approx4.452$\n(3) $\\approx-2.19$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "マコーレー・デュレーションはキャッシュ・フローの現在価値で重み付けした平均の受取時期，修正デュレーションは利回りに対する価格の感応度 $-\\frac1P\\frac{dP}{dy}=D/(1+y)$ である．\n\n(1) 価格 $100$ のもとで\n\\[\nD=\\frac{1}{100}\\left(\\sum_{t=1}^{4}\\frac{4t}{1.04^t}+\\frac{104\\times5}{1.04^5}\\right)\n\\]\nを計算する．各項は $3.846,\\ 7.396,\\ 10.668,\\ 13.677,\\ 427.402$ で，合計 $462.99$，$D\\approx\\boldsymbol{4.630}$ 年である．\n\n(2) $4.630/1.04\\approx\\boldsymbol{4.452}$ である．\n\n(3) $\\dfrac{\\Delta P}{P}\\approx-D_{\\mathrm{mod}}\\Delta y+\\frac12C(\\Delta y)^2=-4.452\\times0.005+\\frac12\\times25.01\\times0.005^2\\approx-0.02226+0.00031=-0.02195$．よって $\\boldsymbol{-2.19}$\\% である（実際の変化率 $-2.195$\\% とよく一致する）．"
+   }
+  ],
+  "idea": {
+   "tex": "$\\Delta P/P\\approx-D_{\\mathrm{mod}}\\Delta y+\\frac12C(\\Delta y)^2$，$D_{\\mathrm{mod}}=D/(1+y)$．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈4.630\n(2) ≈4.452\n(3) ≈-2.19"
+  },
+  "techniques": [
+   "bond-price-duration"
+  ],
+  "methods": [],
+  "tags": [
+   "債券",
+   "デュレーション",
+   "修正デュレーション",
+   "コンベクシティ",
+   "金利感応度"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "KK-03-007",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "KK-61",
+  "level": 2,
+  "minutes": 12,
+  "theme": "ポートフォリオ理論／最小分散ポートフォリオ",
+  "unit": "ポートフォリオ理論",
+  "topic": "最小分散ポートフォリオ",
+  "statement": {
+   "tex": "資産 1 の期待収益率は $6$\\%，標準偏差は $20$\\%，資産 2 の期待収益率は $10$\\%，標準偏差は $30$\\%，相関係数は $-0.2$ である．空売りは自由とする．\n\n\\begin{enumerate}\n\\item 2 資産からなる最小分散ポートフォリオにおける資産 1 の投資比率を求めよ．\n\\item 最小分散ポートフォリオの標準偏差（\\%）を有効数字 4 桁で求めよ．\n\\item 最小分散ポートフォリオの期待収益率（\\%）を有効数字 3 桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{51}{77}$\n(2) $\\approx14.98$\n(3) $\\approx7.35$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "資産 1 の比率を $w$ とすると，分散 $\\sigma_p^2=w^2\\sigma_1^2+(1-w)^2\\sigma_2^2+2w(1-w)\\rho\\sigma_1\\sigma_2$ は $w$ の 2 次式なので，微分して $0$ とおけば\n\\[\nw^*=\\frac{\\sigma_2^2-\\rho\\sigma_1\\sigma_2}{\\sigma_1^2+\\sigma_2^2-2\\rho\\sigma_1\\sigma_2}.\n\\]\n\n(1) $\\rho\\sigma_1\\sigma_2=-0.012$ より $w^*=\\dfrac{0.09+0.012}{0.04+0.09+0.024}=\\dfrac{0.102}{0.154}=\\boldsymbol{\\dfrac{51}{77}}\\approx0.662$ である．\n\n(2) $\\sigma_p^2=w^{*2}(0.04)+(1-w^*)^2(0.09)+2w^*(1-w^*)(-0.012)\\approx0.022442$，$\\sigma_p\\approx\\boldsymbol{14.98}$\\% である．どちらの資産単独よりも小さい．\n\n(3) $0.662\\times6+0.338\\times10\\approx\\boldsymbol{7.35}$\\% である．"
+   }
+  ],
+  "idea": {
+   "tex": "分散を投資比率の 2 次関数として最小化する．負の相関は分散効果を強める．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 51/77\n(2) ≈14.98\n(3) ≈7.35"
+  },
+  "techniques": [
+   "mean-variance-capm"
+  ],
+  "methods": [],
+  "tags": [
+   "ポートフォリオ理論",
+   "最小分散ポートフォリオ",
+   "分散効果",
+   "効率的フロンティア"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "KK-03-008",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "KK-61",
+  "level": 2,
+  "minutes": 10,
+  "theme": "オプション／1 期間二項モデル",
+  "unit": "オプション",
+  "topic": "1 期間二項モデル",
+  "statement": {
+   "tex": "現在の株価は $100$ で，1 期間後に $120$（上昇）か $90$（下降）になる．1 期間の無リスク利子率は $5$\\%（単利）である．行使価格 $100$，満期 1 期間後のヨーロピアン・コールを考える．\n\n\\begin{enumerate}\n\\item リスク中立確率（上昇の確率）$q$ を求めよ．\n\\item コールの価格を求めよ．\n\\item コールを複製するポートフォリオの株式の保有数（デルタ）を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{1}{2}$\n(2) $\\frac{200}{21}$\n(3) $\\frac{2}{3}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "株式と無リスク資産でオプションの満期の価値を複製できれば，無裁定のもとでオプション価格は複製の費用に等しい．これはリスク中立確率による期待値の割引と同じ結果になる．\n\n(1) $100(1.05)=120q+90(1-q)$ より $q=\\dfrac{1.05-0.9}{1.2-0.9}=\\boldsymbol{1/2}$ である．\n\n(2) 満期のペイオフは上昇で $20$，下降で $0$．$C=\\dfrac{0.5\\times20}{1.05}=\\boldsymbol{\\dfrac{200}{21}}\\approx9.52$ である．\n\n(3) $\\Delta=\\dfrac{20-0}{120-90}=\\boldsymbol{2/3}$ である．株式 $2/3$ 株を買い，$\\frac{2}{3}\\cdot\\frac{90}{1.05}=57.14$ を借り入れると，費用 $66.67-57.14=9.52$ でコールが複製でき，(2) と一致する．"
+   }
+  ],
+  "idea": {
+   "tex": "$q=(1+r-d)/(u-d)$，価格＝リスク中立期待値の割引．デルタ＝ペイオフの差／株価の差．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 1/2\n(2) 200/21\n(3) 2/3"
+  },
+  "techniques": [
+   "no-arbitrage-pricing"
+  ],
+  "methods": [],
+  "tags": [
+   "オプション",
+   "二項モデル",
+   "リスク中立確率",
+   "複製ポートフォリオ",
+   "デルタ"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "KK-03-009",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "KK-61",
+  "level": 2,
+  "minutes": 10,
+  "theme": "オプション／ブラック＝ショールズ式",
+  "unit": "オプション",
+  "topic": "ブラック＝ショールズ式",
+  "statement": {
+   "tex": "配当のない株式について，株価 $S=100$，行使価格 $K=100$，満期 $T=1$ 年，無リスク利子率 $r=2$\\%（連続複利），ボラティリティ $\\sigma=20$\\% とする．ヨーロピアン・コールの価格は\n\\[\nC=SN(d_1)-Ke^{-rT}N(d_2),\\quad d_1=\\frac{\\log(S/K)+(r+\\sigma^2/2)T}{\\sigma\\sqrt T},\\quad d_2=d_1-\\sigma\\sqrt T\n\\]\nである（$N$ は標準正規分布の分布関数）．$N(0.2)=0.5793$，$N(0)=0.5$，$e^{-0.02}=0.98020$ を用いてよい．\n\n\\begin{enumerate}\n\\item $d_1$ を求めよ．\n\\item コールの価格を有効数字 3 桁で求めよ．\n\\item 同じ条件のヨーロピアン・プットの価格を有効数字 3 桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{1}{5}$\n(2) $\\approx8.92$\n(3) $\\approx6.94$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "(1) $\\log(S/K)=0$ なので $d_1=\\dfrac{(0.02+0.02)\\times1}{0.2}=\\boldsymbol{0.2}$，$d_2=0$ である．\n\n(2) $C=100\\times0.5793-100\\times0.98020\\times0.5=57.93-49.01=\\boldsymbol{8.92}$ である．\n\n(3) プット・コール・パリティ $P=C-S+Ke^{-rT}$ より $P=8.92-100+98.02=\\boldsymbol{6.94}$ である（$P=Ke^{-rT}N(-d_2)-SN(-d_1)=49.01-42.07$ でも同じ）．$N(d_1)=0.5793$ はコールのデルタである．"
+   }
+  ],
+  "idea": {
+   "tex": "$d_1,d_2$ を計算して公式に代入．プットはパリティから．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 1/5\n(2) ≈8.92\n(3) ≈6.94"
+  },
+  "techniques": [
+   "no-arbitrage-pricing",
+   "normal-standardize"
+  ],
+  "methods": [],
+  "tags": [
+   "オプション",
+   "ブラック＝ショールズ式",
+   "プット・コール・パリティ",
+   "ボラティリティ",
+   "デルタ"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "KK-03-010",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "KK-61",
+  "level": 2,
+  "minutes": 10,
+  "theme": "リスク尺度／正規分布のもとでの VaR と期待ショートフォール",
+  "unit": "リスク尺度",
+  "topic": "正規分布のもとでの VaR と期待ショートフォール",
+  "statement": {
+   "tex": "時価 $10$ 億円のポートフォリオの 1 日の収益率が，平均 $0$，標準偏差 $1.5$\\% の正規分布に従うとする．標準正規分布について，上側 $1$\\% 点 $z_{0.01}=2.326$，その点での密度 $\\varphi(2.326)=0.02667$ を用いてよい．\n\n\\begin{enumerate}\n\\item 保有期間 1 日，信頼水準 $99$\\% の VaR（億円）を有効数字 3 桁で求めよ．\n\\item 日次の収益率が独立同分布であるとして，保有期間 $10$ 日，信頼水準 $99$\\% の VaR（億円）を有効数字 3 桁で求めよ．\n\\item 保有期間 1 日，信頼水準 $99$\\% の期待ショートフォール（損失が VaR を超えるときの損失の条件付き期待値，億円）を有効数字 3 桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx0.349$\n(2) $\\approx1.10$\n(3) $\\approx0.400$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "損失 $L$ が $N(0,\\sigma^2)$ に従うとき，$\\mathrm{VaR}_\\alpha=z_{1-\\alpha}\\sigma$，期待ショートフォールは $\\mathrm{ES}_\\alpha=\\sigma\\varphi(z_{1-\\alpha})/(1-\\alpha)$ である．後者は $E[Z\\mid Z>z]=\\varphi(z)/P(Z>z)$ から出る．\n\n(1) $\\sigma=10\\times0.015=0.15$ 億円．$\\mathrm{VaR}=2.326\\times0.15\\approx\\boldsymbol{0.349}$ 億円である．\n\n(2) 独立同分布なら 10 日間の標準偏差は $\\sqrt{10}$ 倍なので，$0.3489\\times\\sqrt{10}\\approx\\boldsymbol{1.10}$ 億円である．\n\n(3) $\\mathrm{ES}=0.15\\times0.02667/0.01\\approx\\boldsymbol{0.400}$ 億円である．ES は VaR を超える裾の損失の大きさまで見るので VaR より大きく，劣加法性をもつ（コヒーレントなリスク尺度）．"
+   }
+  ],
+  "idea": {
+   "tex": "正規分布では $\\mathrm{VaR}=z\\sigma$，$\\mathrm{ES}=\\sigma\\varphi(z)/(1-\\alpha)$．期間は $\\sqrt{T}$ 倍．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈0.349\n(2) ≈1.10\n(3) ≈0.400"
+  },
+  "techniques": [
+   "normal-standardize",
+   "mean-variance-capm"
+  ],
+  "methods": [],
+  "tags": [
+   "リスク尺度",
+   "VaR",
+   "期待ショートフォール",
+   "正規分布",
+   "ルートT倍法"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "KK-03-011",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "KK-61",
+  "level": 2,
+  "minutes": 12,
+  "theme": "APT／ファクター・リスクプレミアムと裁定",
+  "unit": "APT",
+  "topic": "ファクター・リスクプレミアムと裁定",
+  "statement": {
+   "tex": "2 ファクターの裁定価格理論（APT）が成り立つ市場を考える．無リスク利子率は $2$\\% である．十分に分散されたポートフォリオ A はファクター感応度 $(b_1,b_2)=(1,0)$ で期待収益率 $6$\\%，ポートフォリオ B は $(0,1)$ で期待収益率 $4$\\% である．\n\n\\begin{enumerate}\n\\item 感応度 $(1.2,\\,-0.5)$ の十分に分散されたポートフォリオ C の，APT による期待収益率（\\%）を求めよ．\n\\item C の期待収益率が実際には $7$\\% であるとき，APT による期待収益率との差（\\%）を求めよ．\n\\item C と同じファクター感応度をもつポートフォリオを A，B と無リスク資産で作る．無リスク資産への投資比率を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $5.8$\n(2) $1.2$\n(3) $\\frac{3}{10}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "APT では $E(R)=r_f+b_1\\lambda_1+b_2\\lambda_2$ で，$\\lambda_k$ はファクター $k$ のリスクプレミアムである．\n\nA，B から $\\lambda_1=6-2=4$\\%，$\\lambda_2=4-2=2$\\% である．\n\n(1) $2+1.2\\times4-0.5\\times2=\\boldsymbol{5.8}$\\% である．\n\n(2) $7-5.8=\\boldsymbol{1.2}$\\% である．\n\n(3) A に $1.2$，B に $-0.5$ 投資すれば感応度 $(1.2,-0.5)$ になり，残りの $1-1.2+0.5=\\boldsymbol{0.3}$ を無リスク資産に投資する．この複製の期待収益率は $1.2\\times6-0.5\\times4+0.3\\times2=5.8$\\% である．C を買い複製を売れば，ファクター・リスクなしで $1.2$\\% を得る裁定になるので，(2) の差は均衡では解消される．"
+   }
+  ],
+  "idea": {
+   "tex": "純粋ファクター・ポートフォリオから $\\lambda_k$ を読み，感応度の線形結合で期待収益率を決める．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 5.8\n(2) 1.2\n(3) 3/10"
+  },
+  "techniques": [
+   "mean-variance-capm",
+   "no-arbitrage-pricing"
+  ],
+  "methods": [],
+  "tags": [
+   "APT",
+   "裁定価格理論",
+   "ファクター・モデル",
+   "リスクプレミアム",
+   "裁定取引"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "KK-03-012",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "KK-61",
+  "level": 2,
+  "minutes": 10,
+  "theme": "パフォーマンス評価／シャープ・レシオと効率的市場仮説",
+  "unit": "パフォーマンス評価",
+  "topic": "シャープ・レシオと効率的市場仮説",
+  "statement": {
+   "tex": "ある投資信託の年間収益率は $9$\\%，標準偏差は $18$\\%，ベータは $1.1$ である．同期間の市場ポートフォリオの収益率は $7$\\%，無リスク利子率は $1$\\% である．\n\n\\begin{enumerate}\n\\item この投資信託のシャープ・レシオを求めよ．\n\\item この投資信託のジェンセンのアルファ（\\%）を求めよ．\n\\item 効率的市場仮説に関する次の記述のうち，\\textbf{正しいもの}を ①〜⑤ から 1 つ選び，番号で答えよ． \\\\ ① セミストロング型の効率性が成り立てば，インサイダー情報を用いても超過収益は得られない． \\\\ ② ストロング型の効率性が成り立つ市場でも，ウィーク型の効率性は成り立つとは限らない． \\\\ ③ 効率的な市場では，すべての株式の期待収益率は等しい． \\\\ ④ ウィーク型の効率性が成り立つ市場では，過去の株価の情報だけを用いたテクニカル分析で継続的に超過収益を得ることはできない． \\\\ ⑤ 効率的な市場では，株価は新しい情報が出ても変動しない．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{4}{9}$\n(2) $1.4$\n(3) ④（番号 4）"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "(1) シャープ・レシオ $=(R_p-r_f)/\\sigma_p=(9-1)/18=\\boldsymbol{4/9}\\approx0.444$ である．総リスク 1 単位あたりの超過収益を表す．\n\n(2) CAPM による要求収益率は $1+1.1\\times(7-1)=7.6$\\% なので，ジェンセンのアルファは $9-7.6=\\boldsymbol{1.4}$\\% である．\n\n(3) ウィーク型は過去の価格情報，セミストロング型は公開情報すべて，ストロング型は非公開情報まで含めて価格に織り込まれているという仮説で，強い型は弱い型を含む（②誤）．インサイダー情報を扱うのはストロング型である（①誤）．期待収益率はリスクに応じて異なり（③誤），株価は新しい情報に即座に反応して変動する（⑤誤）．答えは $\\boldsymbol{4}$ である．"
+   }
+  ],
+  "idea": {
+   "tex": "シャープ・レシオは総リスク，ジェンセンのアルファは CAPM からの乖離で評価する．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 4/9\n(2) 1.4\n(3) 4"
+  },
+  "techniques": [
+   "mean-variance-capm"
+  ],
+  "methods": [],
+  "tags": [
+   "パフォーマンス評価",
+   "シャープ・レシオ",
+   "ジェンセンのアルファ",
+   "効率的市場仮説",
+   "CAPM"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "KK-03-013",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "KK-61",
+  "level": 3,
+  "minutes": 18,
+  "theme": "オプション／2 期間二項モデルとアメリカン・プット",
+  "unit": "オプション",
+  "topic": "2 期間二項モデルとアメリカン・プット",
+  "statement": {
+   "tex": "現在の株価は $100$ で，各期に $1.1$ 倍（上昇）か $0.9$ 倍（下降）になる．1 期間の無リスク利子率は $2$\\%（単利）である．行使価格 $105$，満期 2 期間後のプットを考える．\n\n\\begin{enumerate}\n\\item リスク中立確率（上昇の確率）$q$ を求めよ．\n\\item ヨーロピアン・プットの価格を有効数字 4 桁で求めよ．\n\\item アメリカン・プット（各時点で行使可能）の価格を有効数字 4 桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{3}{5}$\n(2) $\\approx6.459$\n(3) $\\approx7.266$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "二項木を満期から逆向きにたどる．アメリカン型では各節点で「継続価値」と「即時行使の価値」の大きいほうをとる．\n\n(1) $q=\\dfrac{1.02-0.9}{1.1-0.9}=\\boldsymbol{0.6}$ である．\n\n(2) 満期の株価は $121,\\ 99,\\ 81$，プットのペイオフは $0,\\ 6,\\ 24$ である．1 期後の価値は\n上昇節点（株価 $110$）：$(0.6\\times0+0.4\\times6)/1.02\\approx2.353$，\n下降節点（株価 $90$）：$(0.6\\times6+0.4\\times24)/1.02\\approx12.941$．\n現在の価値は $(0.6\\times2.353+0.4\\times12.941)/1.02\\approx\\boldsymbol{6.459}$ である．\n\n(3) 下降節点では即時行使の価値 $105-90=15$ が継続価値 $12.941$ を上回るので早期行使する．上昇節点は $\\max(2.353,0)=2.353$．現在の継続価値 $(0.6\\times2.353+0.4\\times15)/1.02\\approx7.266$ は即時行使 $5$ を上回るので，価格は $\\boldsymbol{7.266}$ である．差 $0.807$ が早期行使権の価値である．"
+   }
+  ],
+  "idea": {
+   "tex": "逆向き帰納法．アメリカン型は各節点で max（継続価値，行使価値）．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 3/5\n(2) ≈6.459\n(3) ≈7.266"
+  },
+  "techniques": [
+   "no-arbitrage-pricing"
+  ],
+  "methods": [],
+  "tags": [
+   "オプション",
+   "二項モデル",
+   "アメリカン・オプション",
+   "早期行使",
+   "逆向き帰納法",
+   "リスク中立確率"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "KK-03-014",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "KK-61",
+  "level": 3,
+  "minutes": 18,
+  "theme": "債券／デュレーション・マッチングによる免疫化",
+  "unit": "債券",
+  "topic": "デュレーション・マッチングによる免疫化",
+  "statement": {
+   "tex": "4 年後に $1{,}000$ を支払う負債がある．利回り曲線は年 $3$\\%（年複利）で平坦である．2 年満期と 6 年満期の割引債を組み合わせ，資産の現在価値とマコーレー・デュレーションを負債に一致させる．\n\n\\begin{enumerate}\n\\item 負債の現在価値を有効数字 5 桁で求めよ．\n\\item 2 年満期の割引債への投資額（現在価値）を有効数字 5 桁で求めよ．\n\\item 構築直後に利回り曲線が年 $4$\\% に平行移動した．資産の現在価値から負債の現在価値を引いた額を有効数字 2 桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx888.49$\n(2) $\\approx444.24$\n(3) $\\approx0.16$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "現在価値とデュレーションを一致させると，利回りの小さな平行移動に対して資産と負債の価値が同じように動く（免疫化）．割引債のデュレーションは満期に等しい．\n\n(1) $1000/1.03^4\\approx\\boldsymbol{888.49}$ である．\n\n(2) 2 年債の比率を $w$ とすると $2w+6(1-w)=4$ より $w=1/2$．投資額は $888.49/2\\approx\\boldsymbol{444.24}$ である．6 年債にも $444.24$ を投資する．\n\n(3) 額面は 2 年債 $444.24\\times1.03^2\\approx471.30$，6 年債 $444.24\\times1.03^6\\approx530.45$．利回り $4$\\% での価値は\n\\[\n\\frac{471.30}{1.04^2}+\\frac{530.45}{1.04^6}\\approx435.74+419.23=854.97,\n\\]\n負債は $1000/1.04^4\\approx854.80$．差は $\\approx\\boldsymbol{0.16}$ である．資産のキャッシュ・フローが負債より分散している（コンベクシティが大きい）ので，利回りが上下どちらに動いても資産が負債を上回る（$2$\\% に下がった場合も約 $0.18$）．"
+   }
+  ],
+  "idea": {
+   "tex": "PV とデュレーションを一致させ，資産のコンベクシティを負債より大きくすると平行移動に対して免疫化される．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈888.49\n(2) ≈444.24\n(3) ≈0.16"
+  },
+  "techniques": [
+   "bond-price-duration"
+  ],
+  "methods": [],
+  "tags": [
+   "債券",
+   "免疫化",
+   "デュレーション",
+   "コンベクシティ",
+   "ALM",
+   "割引債"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "KK-03-015",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "KK-61",
+  "level": 3,
+  "minutes": 20,
+  "theme": "ポートフォリオ理論／接点ポートフォリオと資本市場線",
+  "unit": "ポートフォリオ理論",
+  "topic": "接点ポートフォリオと資本市場線",
+  "statement": {
+   "tex": "2 つの危険資産があり，資産 1 の期待収益率は $8$\\%，標準偏差は $15$\\%，資産 2 の期待収益率は $12$\\%，標準偏差は $25$\\%，相関係数は $0.2$ である．無リスク利子率は $2$\\% で，無制限に貸し借りできる．\n\n\\begin{enumerate}\n\\item シャープ・レシオを最大にする危険資産のポートフォリオ（接点ポートフォリオ）における資産 1 の比率を求めよ．\n\\item 接点ポートフォリオのシャープ・レシオを有効数字 3 桁で求めよ．\n\\item 資本市場線上で標準偏差が $10$\\% となるポートフォリオの期待収益率（\\%）を有効数字 3 桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{5}{8}$\n(2) $\\approx0.516$\n(3) $\\approx7.16$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "無リスク資産があるとき，効率的なポートフォリオは無リスク資産と接点ポートフォリオの組合せ（資本市場線）になる．接点ポートフォリオの比率は $\\mathbf{w}\\propto\\Sigma^{-1}(\\mathbf{\\mu}-r_f\\mathbf{1})$ で求まる．\n\n(1) $\\Sigma=\\begin{pmatrix}0.0225&0.0075\\\\0.0075&0.0625\\end{pmatrix}$，$\\mathbf{\\mu}-r_f\\mathbf{1}=(0.06,\\,0.10)^{\\top}$．$\\Sigma\\mathbf{x}=\\mathbf{\\mu}-r_f\\mathbf{1}$ を解くと $\\mathbf{x}\\propto(5,\\,3)$ なので，資産 1 の比率は $\\boldsymbol{5/8}$ である（実際 $0.0225\\cdot5+0.0075\\cdot3=0.135$，$0.0075\\cdot5+0.0625\\cdot3=0.225$ で比 $0.06:0.10$ に一致）．\n\n(2) 期待収益率 $\\frac58\\times8+\\frac38\\times12=9.5$\\%．分散 $\\frac{1}{64}(25\\times0.0225+9\\times0.0625+2\\times15\\times0.0075)=\\frac{1.35}{64}\\approx0.021094$，標準偏差 $\\approx14.52$\\%．シャープ・レシオは $7.5/14.52\\approx\\boldsymbol{0.516}$ である．\n\n(3) 資本市場線 $E(R)=r_f+0.5164\\,\\sigma$ より $2+0.5164\\times10\\approx\\boldsymbol{7.16}$\\% である（接点ポートフォリオに $10/14.52\\approx69$\\%，残りを無リスク資産に投資）．"
+   }
+  ],
+  "idea": {
+   "tex": "接点ポートフォリオは $\\Sigma^{-1}(\\mu-r_f)$ に比例．資本市場線の傾きはそのシャープ・レシオ．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 5/8\n(2) ≈0.516\n(3) ≈7.16"
+  },
+  "techniques": [
+   "mean-variance-capm"
+  ],
+  "methods": [],
+  "tags": [
+   "ポートフォリオ理論",
+   "接点ポートフォリオ",
+   "資本市場線",
+   "シャープ・レシオ",
+   "分離定理",
+   "効率的フロンティア"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ }
+]

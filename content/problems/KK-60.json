@@ -1,0 +1,815 @@
+[
+ {
+  "id": "KK-02-001",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "KK-60",
+  "level": 1,
+  "minutes": 6,
+  "theme": "消費者理論／コブ＝ダグラス型効用の需要",
+  "unit": "消費者理論",
+  "topic": "コブ＝ダグラス型効用の需要",
+  "statement": {
+   "tex": "ある消費者の効用関数を $u(x,y)=x^{0.4}y^{0.6}$，所得を $M=120$，財の価格を $p_x=2$，$p_y=3$ とする．\n\n\\begin{enumerate}\n\\item 効用を最大にする $x$ の需要量を求めよ．\n\\item 効用を最大にする $y$ の需要量を求めよ．\n\\item $p_x$ だけが $3$ に上がったときの $x$ の需要量を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $24$\n(2) $24$\n(3) $16$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "最適点では限界代替率が価格比に等しい：$\\dfrac{0.4\\,y}{0.6\\,x}=\\dfrac{p_x}{p_y}$．これと予算制約 $p_xx+p_yy=M$ から，コブ＝ダグラス型 $x^ay^{1-a}$ では支出シェアが一定になり，$p_xx=aM$，$p_yy=(1-a)M$ を得る．\n\n(1) $x=0.4\\times120/2=\\boldsymbol{24}$ である．\n\n(2) $y=0.6\\times120/3=\\boldsymbol{24}$ である．\n\n(3) $x=0.4\\times120/3=\\boldsymbol{16}$ である．$x$ の需要の価格弾力性は常に $1$ で，$x$ への支出額 $48$ は価格によらない．"
+   }
+  ],
+  "idea": {
+   "tex": "MRS＝価格比と予算制約．コブ＝ダグラス型では各財への支出シェアが指数に等しい．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 24\n(2) 24\n(3) 16"
+  },
+  "techniques": [
+   "utility-max-demand"
+  ],
+  "methods": [],
+  "tags": [
+   "消費者理論",
+   "効用最大化",
+   "コブ＝ダグラス型",
+   "限界代替率",
+   "需要関数"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "KK-02-002",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "KK-60",
+  "level": 1,
+  "minutes": 8,
+  "theme": "市場均衡／余剰と課税の死荷重",
+  "unit": "市場均衡",
+  "topic": "余剰と課税の死荷重",
+  "statement": {
+   "tex": "ある財の市場の需要関数を $Q=100-2P$，供給関数を $Q=3P-50$ とする．\n\n\\begin{enumerate}\n\\item 均衡価格 $P$ を求めよ．\n\\item 均衡における消費者余剰を求めよ．\n\\item 生産者に財 1 単位あたり $5$ の従量税を課したときの死荷重（厚生損失）を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $30$\n(2) $400$\n(3) $15$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "(1) $100-2P=3P-50$ より $P=\\boldsymbol{30}$，$Q=40$ である．\n\n(2) 需要曲線の縦軸切片（$Q=0$ のときの価格）は $50$ なので，消費者余剰 $=\\frac12\\times40\\times(50-30)=\\boldsymbol{400}$ である．\n\n(3) 課税後の供給関数は $Q=3(P-5)-50$ である．$100-2P=3P-65$ より消費者価格 $P=33$，取引量 $Q=34$．取引量の減少分 $6$ と税額 $5$ でできる三角形が死荷重で，$\\frac12\\times5\\times6=\\boldsymbol{15}$ である．税収は $5\\times34=170$ で，余剰の減少 $185$ との差が死荷重になる．"
+   }
+  ],
+  "idea": {
+   "tex": "余剰は需要・供給曲線と価格の間の面積．課税の死荷重は「税額×取引量の減少÷2」．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 30\n(2) 400\n(3) 15"
+  },
+  "techniques": [
+   "surplus-welfare-analysis"
+  ],
+  "methods": [],
+  "tags": [
+   "市場均衡",
+   "消費者余剰",
+   "生産者余剰",
+   "従量税",
+   "死荷重"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "KK-02-003",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "KK-60",
+  "level": 1,
+  "minutes": 6,
+  "theme": "マクロ／45 度線分析と乗数",
+  "unit": "マクロ",
+  "topic": "45 度線分析と乗数",
+  "statement": {
+   "tex": "閉鎖経済で，消費関数を $C=20+0.8(Y-T)$，投資を $I=40$，政府支出を $G=30$，租税（定額税）を $T=25$ とする．\n\n\\begin{enumerate}\n\\item 均衡国民所得 $Y$ を求めよ．\n\\item 政府支出を $10$ 増やしたときの $Y$ の増加分を求めよ．\n\\item （$G=30$ のまま）定額税を $10$ 減らしたときの $Y$ の増加分を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $350$\n(2) $50$\n(3) $40$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "均衡条件 $Y=C+I+G$ を $Y$ について解く．\n\n(1) $Y=20+0.8(Y-25)+40+30$ より $0.2Y=70$，$Y=\\boldsymbol{350}$ である．\n\n(2) 政府支出乗数は $1/(1-c)=1/0.2=5$ なので，$\\Delta Y=5\\times10=\\boldsymbol{50}$ である．\n\n(3) 租税乗数は $-c/(1-c)=-4$ なので，減税 $10$ で $\\Delta Y=4\\times10=\\boldsymbol{40}$ である．減税の一部は貯蓄に回るので，同額の政府支出より効果が小さい（均衡予算乗数は $1$）．"
+   }
+  ],
+  "idea": {
+   "tex": "政府支出乗数 $1/(1-c)$，租税乗数 $-c/(1-c)$．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 350\n(2) 50\n(3) 40"
+  },
+  "techniques": [
+   "macro-equilibrium-model"
+  ],
+  "methods": [],
+  "tags": [
+   "マクロ経済",
+   "45度線分析",
+   "乗数",
+   "政府支出乗数",
+   "租税乗数"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "KK-02-004",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "KK-60",
+  "level": 1,
+  "minutes": 4,
+  "theme": "IS-LM／財政・金融政策の効果",
+  "unit": "IS-LM",
+  "topic": "財政・金融政策の効果",
+  "statement": {
+   "tex": "IS-LM モデルに関する次の記述のうち，\\textbf{正しいもの}を ①〜⑤ から 1 つ選び，番号で答えよ．\n\n① 投資が利子率にまったく反応しない（IS 曲線が垂直な）とき，財政政策は国民所得を変化させない． \\\\ ② LM 曲線が垂直のとき，財政拡大はクラウディング・アウトを起こさない． \\\\ ③ 貨幣供給の増加は LM 曲線を左上に移動させる． \\\\ ④ 政府支出の増加は IS 曲線を左に移動させる． \\\\ ⑤ 流動性の罠では LM 曲線が水平になり，金融緩和は国民所得を増やす効果をもたない．"
+  },
+  "answer": {
+   "tex": "⑤（番号 5）"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "IS 曲線は財市場，LM 曲線は貨幣市場の均衡を表す．\n\n① IS が垂直なら，財政政策は IS を水平に動かし，所得をそのまま変える（金融政策が無効）．誤り．\n② LM が垂直なら，財政拡大は利子率を上げるだけで所得は増えない（完全なクラウディング・アウト）．誤り．\n③ 貨幣供給の増加は LM を右下に移動させる．誤り．\n④ 政府支出の増加は IS を右に移動させる．誤り．\n⑤ 貨幣需要の利子弾力性が無限大の流動性の罠では，貨幣を増やしても利子率が下がらず，所得も増えない．正しい．\n\n答えは $\\boldsymbol{5}$ である．"
+   }
+  ],
+  "idea": {
+   "tex": "どちらの曲線が垂直・水平かで，財政政策と金融政策の有効性が決まる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "5"
+  },
+  "techniques": [
+   "macro-equilibrium-model"
+  ],
+  "methods": [],
+  "tags": [
+   "IS-LM",
+   "財政政策",
+   "金融政策",
+   "流動性の罠",
+   "クラウディング・アウト"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "KK-02-005",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "KK-60",
+  "level": 1,
+  "minutes": 6,
+  "theme": "需要／価格弾力性と売上収入",
+  "unit": "需要",
+  "topic": "価格弾力性と売上収入",
+  "statement": {
+   "tex": "ある財の需要関数を $Q=120-4P$ とする．需要の価格弾力性は $\\varepsilon=-\\dfrac{dQ}{dP}\\cdot\\dfrac{P}{Q}$ で定める．\n\n\\begin{enumerate}\n\\item $P=10$ における $\\varepsilon$ を求めよ．\n\\item 売上収入 $PQ$ を最大にする価格 $P$ を求めよ．\n\\item $P=20$ における $\\varepsilon$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{1}{2}$\n(2) $15$\n(3) $2$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "直線の需要曲線では傾きは一定だが，弾力性は位置によって変わる．\n\n(1) $P=10$ で $Q=80$，$\\varepsilon=4\\times10/80=\\boldsymbol{1/2}$ である（非弾力的）．\n\n(2) $PQ=120P-4P^2$ を微分して $120-8P=0$，$P=\\boldsymbol{15}$ である．このとき $Q=60$，$\\varepsilon=4\\times15/60=1$ となり，売上収入が最大になるのは弾力性がちょうど $1$ の点である．\n\n(3) $P=20$ で $Q=40$，$\\varepsilon=4\\times20/40=\\boldsymbol{2}$ である（弾力的．値下げで売上収入が増える）．"
+   }
+  ],
+  "idea": {
+   "tex": "$\\varepsilon>1$ なら値下げで収入増，$\\varepsilon<1$ なら値上げで収入増．収入最大は $\\varepsilon=1$．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 1/2\n(2) 15\n(3) 2"
+  },
+  "techniques": [
+   "surplus-welfare-analysis"
+  ],
+  "methods": [],
+  "tags": [
+   "需要の価格弾力性",
+   "売上収入",
+   "限界収入",
+   "需要関数"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "KK-02-006",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "KK-60",
+  "level": 2,
+  "minutes": 12,
+  "theme": "生産者理論／損益分岐点と操業停止点",
+  "unit": "生産者理論",
+  "topic": "損益分岐点と操業停止点",
+  "statement": {
+   "tex": "完全競争市場の企業の総費用関数を $C(q)=q^3-6q^2+15q+32$ とする（$32$ は固定費用）．\n\n\\begin{enumerate}\n\\item 操業停止点の価格（平均可変費用の最小値）を求めよ．\n\\item 損益分岐点の価格（平均費用の最小値）を求めよ．\n\\item 市場価格が $51$ のとき，利潤を最大にする生産量での利潤を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $6$\n(2) $15$\n(3) $184$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "価格受容者の企業は $P=MC$ で生産量を決める．価格が平均費用の最小値を下回ると赤字，平均可変費用の最小値を下回ると生産しないほうがよい．\n\n(1) $AVC=q^2-6q+15=(q-3)^2+6$ の最小値は $\\boldsymbol{6}$（$q=3$）である．\n\n(2) $AC=q^2-6q+15+32/q$．$AC'=2q-6-32/q^2=0$ より $q^3-3q^2-16=0$，$q=4$（$(q-4)(q^2+q+4)=0$）．$AC(4)=16-24+15+8=\\boldsymbol{15}$ である．$MC(4)=48-48+15=15$ で，$MC$ が $AC$ の最小点を通ることも確かめられる．\n\n(3) $MC=3q^2-12q+15=51$ より $q^2-4q-12=0$，$q=6$．利潤 $=51\\times6-C(6)=306-(216-216+90+32)=\\boldsymbol{184}$ である．"
+   }
+  ],
+  "idea": {
+   "tex": "$P=MC$ が供給曲線．操業停止点は $\\min AVC$，損益分岐点は $\\min AC$．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 6\n(2) 15\n(3) 184"
+  },
+  "techniques": [
+   "profit-max-strategic"
+  ],
+  "methods": [],
+  "tags": [
+   "生産者理論",
+   "完全競争",
+   "限界費用",
+   "平均費用",
+   "操業停止点",
+   "損益分岐点"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "KK-02-007",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "KK-60",
+  "level": 2,
+  "minutes": 10,
+  "theme": "独占／独占価格と死荷重",
+  "unit": "独占",
+  "topic": "独占価格と死荷重",
+  "statement": {
+   "tex": "独占企業が直面する逆需要関数を $P=100-Q$，総費用関数を $C(Q)=20Q$ とする．\n\n\\begin{enumerate}\n\\item 利潤を最大にする価格 $P$ を求めよ．\n\\item 完全競争（$P=MC$）と比べた死荷重を求めよ．\n\\item 独占均衡でのラーナーの独占度 $(P-MC)/P$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $60$\n(2) $800$\n(3) $\\frac{2}{3}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "独占企業は限界収入 $MR$ と限界費用 $MC$ が等しくなる量を選び，需要曲線上の価格をつける．\n\n(1) $MR=100-2Q=20$ より $Q=40$，$P=100-40=\\boldsymbol{60}$ である．\n\n(2) 完全競争なら $P=20$，$Q=80$．取引量の減少 $40$ と価格差 $60-20=40$ でできる三角形が死荷重で，$\\frac12\\times40\\times40=\\boldsymbol{800}$ である．\n\n(3) $(60-20)/60=\\boldsymbol{2/3}$ である．これは均衡点での需要の価格弾力性 $\\varepsilon=60/40=3/2$ の逆数に等しい．"
+   }
+  ],
+  "idea": {
+   "tex": "$MR=MC$ で量，需要曲線で価格．ラーナー指数＝$1/\\varepsilon$．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 60\n(2) 800\n(3) 2/3"
+  },
+  "techniques": [
+   "profit-max-strategic",
+   "surplus-welfare-analysis"
+  ],
+  "methods": [],
+  "tags": [
+   "独占",
+   "限界収入",
+   "死荷重",
+   "ラーナーの独占度",
+   "価格弾力性"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "KK-02-008",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "KK-60",
+  "level": 2,
+  "minutes": 12,
+  "theme": "寡占／クールノー均衡とシュタッケルベルク均衡",
+  "unit": "寡占",
+  "topic": "クールノー均衡とシュタッケルベルク均衡",
+  "statement": {
+   "tex": "同質財を生産する企業 1，2 があり，逆需要関数は $P=120-(q_1+q_2)$，両企業の限界費用は一定で $30$（固定費用なし）である．\n\n\\begin{enumerate}\n\\item クールノー均衡における企業 1 の生産量 $q_1$ を求めよ．\n\\item クールノー均衡における市場価格 $P$ を求めよ．\n\\item 企業 1 が先導者，企業 2 が追随者となるシュタッケルベルク均衡における企業 1 の生産量 $q_1$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $30$\n(2) $60$\n(3) $45$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "各企業の最適反応関数を求めて連立する．企業 1 の利潤 $(120-q_1-q_2-30)q_1$ を $q_1$ で微分して $0$ とおくと，$q_1=(90-q_2)/2$．企業 2 も対称である．\n\n(1) $q_1=(90-q_2)/2$，$q_2=(90-q_1)/2$ を解いて $q_1=q_2=\\boldsymbol{30}$ である．\n\n(2) $P=120-60=\\boldsymbol{60}$ である．\n\n(3) 先導者は追随者の反応 $q_2=(90-q_1)/2$ を織り込む．利潤 $\\bigl(90-q_1-\\frac{90-q_1}{2}\\bigr)q_1=\\frac{(90-q_1)q_1}{2}$ を最大にして $q_1=\\boldsymbol{45}$，このとき $q_2=22.5$，$P=52.5$ である．先に動けることで先導者はクールノーより多く生産し，利潤も増える．"
+   }
+  ],
+  "idea": {
+   "tex": "最適反応関数を連立（クールノー），先導者は追随者の反応関数を代入して最適化（シュタッケルベルク）．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 30\n(2) 60\n(3) 45"
+  },
+  "techniques": [
+   "profit-max-strategic"
+  ],
+  "methods": [],
+  "tags": [
+   "寡占",
+   "クールノー均衡",
+   "シュタッケルベルク均衡",
+   "最適反応",
+   "ナッシュ均衡"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "KK-02-009",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "KK-60",
+  "level": 2,
+  "minutes": 12,
+  "theme": "ゲーム理論／混合戦略ナッシュ均衡",
+  "unit": "ゲーム理論",
+  "topic": "混合戦略ナッシュ均衡",
+  "statement": {
+   "tex": "プレイヤー 1 は戦略 U，D を，プレイヤー 2 は戦略 L，R をもつ．利得（プレイヤー 1，プレイヤー 2）は次のとおりである．\n\n\\begin{tabular}{c|cc}\n & L & R \\\\\n\\hline\nU & $(4,\\,1)$ & $(0,\\,3)$ \\\\\nD & $(1,\\,2)$ & $(2,\\,0)$ \\\\\n\\end{tabular}\n\nプレイヤー 1 が U を選ぶ確率を $p$，プレイヤー 2 が L を選ぶ確率を $q$ とする．\n\n\\begin{enumerate}\n\\item 純粋戦略のナッシュ均衡の個数を求めよ．\n\\item 混合戦略ナッシュ均衡における $p$ を求めよ．\n\\item 混合戦略ナッシュ均衡における $q$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $0$\n(2) $\\frac{1}{2}$\n(3) $\\frac{2}{5}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "(1) 各セルで最適反応を調べる．(U,L) ではプレイヤー 2 が R に移り，(U,R) ではプレイヤー 1 が D に，(D,R) ではプレイヤー 2 が L に，(D,L) ではプレイヤー 1 が U に移る．最適反応が循環するので純粋戦略の均衡は $\\boldsymbol{0}$ 個である．\n\n(2) 混合戦略均衡では，\\emph{相手を}無差別にするように自分の確率を決める．プレイヤー 2 の L の期待利得 $p+2(1-p)=2-p$ と R の期待利得 $3p$ が等しいので $p=\\boldsymbol{1/2}$ である．\n\n(3) プレイヤー 1 の U の期待利得 $4q$ と D の期待利得 $q+2(1-q)=2-q$ が等しいので $q=\\boldsymbol{2/5}$ である．このときプレイヤー 1 の期待利得は $8/5$ である．"
+   }
+  ],
+  "idea": {
+   "tex": "混合戦略均衡では，各プレイヤーの確率は「相手の」純粋戦略を無差別にするように決まる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 0\n(2) 1/2\n(3) 2/5"
+  },
+  "techniques": [
+   "profit-max-strategic"
+  ],
+  "methods": [],
+  "tags": [
+   "ゲーム理論",
+   "ナッシュ均衡",
+   "混合戦略",
+   "最適反応"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "KK-02-010",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "KK-60",
+  "level": 2,
+  "minutes": 12,
+  "theme": "IS-LM／均衡とクラウディング・アウト",
+  "unit": "IS-LM",
+  "topic": "均衡とクラウディング・アウト",
+  "statement": {
+   "tex": "閉鎖経済で，消費 $C=40+0.75(Y-T)$，投資 $I=140-10r$，政府支出 $G=100$，租税 $T=80$，実質貨幣需要 $L=0.5Y-20r$，実質貨幣供給 $M/P=360$ とする（$r$ は \\% 表示の利子率）．\n\n\\begin{enumerate}\n\\item 均衡利子率 $r$ を求めよ．\n\\item 均衡国民所得 $Y$ を求めよ．\n\\item 政府支出を $20$ 増やしたときの $Y$ の増加分を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $2$\n(2) $800$\n(3) $40$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "IS 曲線と LM 曲線を求めて連立する．\n\nIS：$Y=40+0.75(Y-80)+140-10r+100$ より $0.25Y=220-10r$，$Y=880-40r$．\nLM：$360=0.5Y-20r$ より $Y=720+40r$．\n\n(1) $880-40r=720+40r$ より $r=\\boldsymbol{2}$ である．\n\n(2) $Y=720+80=\\boldsymbol{800}$ である．\n\n(3) IS は $Y=960-40r$ に移る．$960-40r=720+40r$ より $r=3$，$Y=840$ で，増加分は $\\boldsymbol{40}$ である．利子率が一定なら乗数 $4$ で $80$ 増えるはずだが，利子率の上昇が投資を $10$ 減らし，増加分の半分がクラウディング・アウトされる．"
+   }
+  ],
+  "idea": {
+   "tex": "IS と LM を連立．財政拡大は利子率を上げて投資を押し出す．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 2\n(2) 800\n(3) 40"
+  },
+  "techniques": [
+   "macro-equilibrium-model"
+  ],
+  "methods": [],
+  "tags": [
+   "IS-LM",
+   "財政政策",
+   "クラウディング・アウト",
+   "乗数"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "KK-02-011",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "KK-60",
+  "level": 3,
+  "minutes": 15,
+  "theme": "成長理論／成長会計とソロー・モデル",
+  "unit": "成長理論",
+  "topic": "成長会計とソロー・モデル",
+  "statement": {
+   "tex": "生産関数を $Y=AK^{0.3}L^{0.7}$ とする．\n\n\\begin{enumerate}\n\\item ある期間の $Y$ の成長率が年 $2.5$\\%，$K$ の成長率が年 $4$\\%，$L$ の成長率が年 $0.5$\\% であった．全要素生産性 $A$ の成長率（\\%）を求めよ．\n\\item $A=1$ として，1 人あたりの生産関数 $y=k^{0.3}$（$k=K/L$）のソロー・モデルを考える．貯蓄率 $s=0.2$，人口成長率 $n=0.02$，資本減耗率 $\\delta=0.06$ のとき，定常状態の $k$ を有効数字 3 桁で求めよ．\n\\item (2) のモデルで，定常状態の 1 人あたり消費 $c=(1-s)y$ を最大にする貯蓄率（黄金律）のもとでの定常状態の $c$ を有効数字 3 桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $0.95$\n(2) $\\approx3.70$\n(3) $\\approx1.23$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "(1) 対数をとって時間微分すると $\\dfrac{\\dot Y}{Y}=\\dfrac{\\dot A}{A}+0.3\\dfrac{\\dot K}{K}+0.7\\dfrac{\\dot L}{L}$（成長会計）．よって $\\dfrac{\\dot A}{A}=2.5-1.2-0.35=\\boldsymbol{0.95}$\\% である．\n\n(2) 資本蓄積の式 $\\dot k=sk^{0.3}-(n+\\delta)k$ で $\\dot k=0$ とおくと $k^{0.7}=s/(n+\\delta)=2.5$．$k=2.5^{1/0.7}\\approx\\boldsymbol{3.70}$ である．\n\n(3) 定常状態の消費 $c=k^{0.3}-(n+\\delta)k$ を $k$ で最大化すると $0.3k^{-0.7}=n+\\delta$（黄金律：資本の限界生産物 $=n+\\delta$）．$k^{0.7}=0.3/0.08=3.75$，$k_G=3.75^{1/0.7}\\approx6.608$．このとき必要な貯蓄率は $s=(n+\\delta)k_G/k_G^{0.3}=0.08\\times3.75=0.3$（資本分配率に等しい）で，$c=k_G^{0.3}-0.08k_G\\approx1.7620-0.5286\\approx\\boldsymbol{1.23}$ である．$s=0.2$ のときの $c=0.8\\times3.70^{0.3}\\approx1.18$ より大きい．"
+   }
+  ],
+  "idea": {
+   "tex": "成長会計は対数微分．定常状態は $sf(k)=(n+\\delta)k$，黄金律は $f'(k)=n+\\delta$．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 0.95\n(2) ≈3.70\n(3) ≈1.23"
+  },
+  "techniques": [
+   "macro-equilibrium-model"
+  ],
+  "methods": [],
+  "tags": [
+   "成長理論",
+   "ソロー・モデル",
+   "成長会計",
+   "全要素生産性",
+   "定常状態",
+   "黄金律"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "KK-02-012",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "KK-60",
+  "level": 2,
+  "minutes": 10,
+  "theme": "厚生経済／外部不経済とピグー税",
+  "unit": "厚生経済",
+  "topic": "外部不経済とピグー税",
+  "statement": {
+   "tex": "ある財の逆需要関数を $P=100-Q$，生産者の私的限界費用を $PMC=20+Q$ とする．生産 1 単位あたり $10$ の外部費用（公害）が発生する．\n\n\\begin{enumerate}\n\\item 規制のない競争市場での取引量 $Q$ を求めよ．\n\\item 社会的に最適な取引量 $Q$ を求めよ．\n\\item 規制のない競争市場で生じる死荷重を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $40$\n(2) $35$\n(3) $25$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "外部費用を含めた社会的限界費用は $SMC=PMC+10=30+Q$ である．市場は $PMC$ だけを見て生産するので過大生産になる．\n\n(1) $100-Q=20+Q$ より $Q=\\boldsymbol{40}$ である．\n\n(2) $100-Q=30+Q$ より $Q=\\boldsymbol{35}$ である．\n\n(3) $Q=35$ から $40$ までの各単位で，社会的限界費用が需要（限界便益）を上回る．$Q=40$ でその差は $70-60=10$ なので，死荷重は $\\frac12\\times5\\times10=\\boldsymbol{25}$ である．1 単位あたり $10$ のピグー税を課すと私的限界費用が社会的限界費用に一致し，最適な $Q=35$ が実現する．"
+   }
+  ],
+  "idea": {
+   "tex": "社会的限界費用＝私的限界費用＋外部限界費用．外部費用と同額のピグー税で内部化する．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 40\n(2) 35\n(3) 25"
+  },
+  "techniques": [
+   "surplus-welfare-analysis"
+  ],
+  "methods": [],
+  "tags": [
+   "厚生経済学",
+   "外部性",
+   "外部不経済",
+   "ピグー税",
+   "死荷重",
+   "社会的限界費用"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "KK-02-013",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "KK-60",
+  "level": 2,
+  "minutes": 8,
+  "theme": "金融政策／信用創造と貨幣乗数",
+  "unit": "金融政策",
+  "topic": "信用創造と貨幣乗数",
+  "statement": {
+   "tex": "民間の現金預金比率を $c=0.2$，銀行の預金準備率を $r=0.05$ とし，ハイパワード・マネー（マネタリーベース）を $H=100$ とする．\n\n\\begin{enumerate}\n\\item 貨幣乗数を求めよ．\n\\item マネーストック $M$（現金＋預金）を求めよ．\n\\item 預金準備率を $0.1$ に引き上げたときの $M$ の変化分を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{24}{5}$\n(2) $480$\n(3) $-80$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "現金を $C$，預金を $D$，準備を $R$ とすると $M=C+D$，$H=C+R$，$C=cD$，$R=rD$ である．よって\n\\[\n\\frac{M}{H}=\\frac{(c+1)D}{(c+r)D}=\\frac{1+c}{c+r}.\n\\]\n\n(1) $1.2/0.25=\\boldsymbol{4.8}$ である．\n\n(2) $M=4.8\\times100=\\boldsymbol{480}$ である．\n\n(3) 乗数は $1.2/0.3=4$ に下がり，$M=400$．変化分は $\\boldsymbol{-80}$ である．準備率の引上げは金融引締めとして働く．"
+   }
+  ],
+  "idea": {
+   "tex": "貨幣乗数 $(1+c)/(c+r)$．準備率・現金比率が上がると乗数は下がる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 24/5\n(2) 480\n(3) -80"
+  },
+  "techniques": [
+   "macro-equilibrium-model"
+  ],
+  "methods": [],
+  "tags": [
+   "金融政策",
+   "貨幣乗数",
+   "信用創造",
+   "ハイパワード・マネー",
+   "マネーストック"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "KK-02-014",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "KK-60",
+  "level": 3,
+  "minutes": 18,
+  "theme": "AD-AS／総需要曲線と物価の調整",
+  "unit": "AD-AS",
+  "topic": "総需要曲線と物価の調整",
+  "statement": {
+   "tex": "IS 曲線が $Y=880-40r$，貨幣市場の均衡が $\\dfrac{M}{P}=0.5Y-20r$ で与えられる経済を考える（$P$ は物価水準）．名目貨幣供給は当初 $M=720$ である．短期の総供給曲線を $Y=800+200(P-P^e)$，予想物価を $P^e=2$，完全雇用国民所得を $800$ とする．\n\n\\begin{enumerate}\n\\item $r$ を消去して，総需要曲線を $Y$ を $P$ の式で表せ（$M=720$）．\n\\item $M$ を $900$ に増やした．$P^e=2$ のままの短期均衡の物価 $P$ を有効数字 4 桁で求めよ．\n\\item $M=900$ のもとで，予想が調整されて $Y=800$ に戻った長期均衡の物価 $P$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $440+\\frac{720}{P}$\n(2) $\\approx2.224$\n(3) $\\frac{5}{2}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "総需要曲線は，物価 $P$ ごとに IS と LM を連立したときの $Y$ である．\n\n(1) LM から $20r=0.5Y-720/P$．IS に代入して $Y=880-2(0.5Y-720/P)=880-Y+1440/P$．よって $Y=\\boldsymbol{440+720/P}$ である．当初は $P=2$ で $Y=800$（完全雇用）となる．\n\n(2) 総需要は $Y=440+900/P$ になる．短期総供給と連立して $440+900/P=400+200P$，すなわち $200P^2-40P-900=0$．正の解は $P=\\dfrac{2+\\sqrt{1804}}{20}\\approx\\boldsymbol{2.224}$，$Y\\approx844.7$ である．\n\n(3) 長期には $Y=800$ なので $440+900/P=800$，$P=\\boldsymbol{5/2}$ である．物価は貨幣供給と同じ $25$\\% 上昇し，実質貨幣量と利子率・所得は元に戻る（長期の貨幣の中立性）．"
+   }
+  ],
+  "idea": {
+   "tex": "AD は IS-LM の連立を $P$ の関数として表したもの．短期は AS との交点，長期は完全雇用所得で物価が決まる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 440+720/P\n(2) ≈2.224\n(3) 5/2"
+  },
+  "techniques": [
+   "macro-equilibrium-model"
+  ],
+  "methods": [],
+  "tags": [
+   "AD-AS",
+   "総需要曲線",
+   "総供給曲線",
+   "貨幣の中立性",
+   "IS-LM"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "KK-02-015",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "KK-60",
+  "level": 3,
+  "minutes": 18,
+  "theme": "消費者理論／代替効果・所得効果と補償変分",
+  "unit": "消費者理論",
+  "topic": "代替効果・所得効果と補償変分",
+  "statement": {
+   "tex": "効用関数 $u(x,y)=xy$，所得 $M=120$，$p_y=1$ の消費者について，$x$ の価格 $p_x$ が $2$ から $1$ に下がった．代替効果はヒックスの意味（元の効用水準を保つ補償）で考える．\n\n\\begin{enumerate}\n\\item $x$ の需要量の変化のうち代替効果を有効数字 4 桁で求めよ．\n\\item 所得効果を有効数字 4 桁で求めよ．\n\\item 価格低下の補償変分（新しい価格のもとで元の効用を保ったまま取り去ることのできる所得）を有効数字 4 桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx12.43$\n(2) $\\approx17.57$\n(3) $\\approx35.15$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "需要は $x=M/(2p_x)$，$y=M/(2p_y)$ である．価格低下前は $x=30$，$y=60$，効用 $u_0=1800$．価格低下後は $x=60$ で，全部効果は $+30$ である．\n\n(1) 新しい価格 $p_x=p_y=1$ のもとで効用 $1800$ を最小費用で達成する点は $x=y=\\sqrt{1800}\\approx42.43$（補償需要）．代替効果は $42.43-30\\approx\\boldsymbol{12.43}$ である．\n\n(2) 所得効果 $=$ 全部効果 $-$ 代替効果 $=60-42.43\\approx\\boldsymbol{17.57}$ である．\n\n(3) 新しい価格で効用 $1800$ を達成する最小支出は $e=2\\sqrt{p_xp_y\\cdot1800}=2\\sqrt{1800}\\approx84.85$．補償変分は $120-84.85\\approx\\boldsymbol{35.15}$ である．"
+   }
+  ],
+  "idea": {
+   "tex": "全部効果＝代替効果（補償需要の変化）＋所得効果．補償変分は支出関数の差．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈12.43\n(2) ≈17.57\n(3) ≈35.15"
+  },
+  "techniques": [
+   "utility-max-demand",
+   "surplus-welfare-analysis"
+  ],
+  "methods": [],
+  "tags": [
+   "消費者理論",
+   "スルツキー分解",
+   "代替効果",
+   "所得効果",
+   "補償変分",
+   "支出関数"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ }
+]

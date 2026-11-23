@@ -1,0 +1,812 @@
+[
+ {
+  "id": "PE-01-001",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "PE-56",
+  "level": 1,
+  "minutes": 6,
+  "theme": "予定利率／割引率と確定年金の現価・終価",
+  "unit": "予定利率",
+  "topic": "割引率と確定年金の現価・終価",
+  "statement": {
+   "tex": "予定利率を $i=0.02$ とし，$v=1/(1+i)$，$d=i/(1+i)$ とする．$(1.02)^{10}=1.21899$，$v^{10}=0.82035$ を用いてよい．\n\\begin{enumerate}\n\\item 割引率 $d$ を既約分数で求めよ．\n\\item 毎年始に 1 ずつ 10 回支払う確定年金の現価 $\\ddot a_{\\overline{10}|}$ を有効数字 4 桁で求めよ．\n\\item 毎年始に 1 ずつ 10 年間積み立てたときの 10 年後の元利合計 $\\ddot s_{\\overline{10}|}$ を有効数字 4 桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{1}{51}$\n(2) $\\approx 9.162$\n(3) $\\approx 11.17$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "割引率 $d$ は「年始に払う利息」であり，$d=iv$ である．確定年金は $v$ の等比数列の和で表す．\n\n(1) $d=\\dfrac{0.02}{1.02}=\\dfrac{2}{102}=\\boldsymbol{\\frac{1}{51}}\\approx0.01961$ である．\n\n(2) $\\ddot a_{\\overline{10}|}=1+v+\\dots+v^{9}=\\dfrac{1-v^{10}}{1-v}=\\dfrac{1-v^{10}}{d}=51\\times(1-0.82035)\\approx\\boldsymbol{9.162}$ である．\n\n(3) 終価は現価を 10 年分利殖したものなので，$\\ddot s_{\\overline{10}|}=(1+i)^{10}\\ddot a_{\\overline{10}|}=1.21899\\times9.162\\approx\\boldsymbol{11.17}$ である．$\\ddot s_{\\overline{10}|}=\\{(1+i)^{10}-1\\}/d=51\\times0.21899$ としても同じ値になる．"
+   }
+  ],
+  "idea": {
+   "tex": "確定年金の現価は等比数列の和 $\\ddot a_{\\overline{n}|}=(1-v^n)/d$，終価はそれに $(1+i)^n$ を掛けたもの．期始払では分母が $i$ でなく $d$ になる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 1/51\n(2) ≈9.162\n(3) ≈11.17"
+  },
+  "techniques": [
+   "pension-discount-annuity-certain"
+  ],
+  "methods": [],
+  "tags": [
+   "予定利率",
+   "割引率",
+   "確定年金",
+   "期始払",
+   "終価"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "PE-01-002",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "PE-56",
+  "level": 1,
+  "minutes": 6,
+  "theme": "脱退残存表／脱退率・生存率の読み取り",
+  "unit": "脱退残存表",
+  "topic": "脱退率・生存率の読み取り",
+  "statement": {
+   "tex": "ある年金制度の加入者について，次の脱退残存表が与えられている．\n\\[\\begin{array}{c|ccccc} x & 60 & 61 & 62 & 63 & 64 \\\\ \\hline l_x & 1000 & 960 & 924 & 885 & 850 \\end{array}\\]\n\\begin{enumerate}\n\\item 61 歳の脱退率 $q_{61}$ を求めよ．\n\\item 60 歳の加入者が，62 歳から 63 歳までの 1 年間に脱退する確率 ${}_{2|}q_{60}$ を求めよ．\n\\item 60 歳の加入者 500 人のうち，64 歳に達するまでに脱退すると見込まれる人数を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{3}{80}$\n(2) $\\frac{39}{1000}$\n(3) $75$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "脱退残存表では，$x$ 歳の残存者 $l_x$ のうち 1 年間の脱退者が $d_x=l_x-l_{x+1}$，脱退率が $q_x=d_x/l_x$ である．$t$ 年後に残存する確率は ${}_tp_x=l_{x+t}/l_x$ となる．\n\n(1) $d_{61}=960-924=36$ より $q_{61}=\\dfrac{36}{960}=\\boldsymbol{\\frac{3}{80}}=0.0375$ である．\n\n(2) 62 歳まで残存し，その 1 年で脱退する確率なので ${}_{2|}q_{60}=\\dfrac{d_{62}}{l_{60}}=\\dfrac{924-885}{1000}=\\boldsymbol{\\frac{39}{1000}}$ である．\n\n(3) 64 歳までの残存率は ${}_4p_{60}=850/1000=0.85$ なので，脱退見込みは $500\\times(1-0.85)=\\boldsymbol{75}$ 人である．"
+   }
+  ],
+  "idea": {
+   "tex": "脱退残存表から $d_x=l_x-l_{x+1}$，$q_x=d_x/l_x$，${}_tp_x=l_{x+t}/l_x$，${}_{t|}q_x=d_{x+t}/l_x$ を読む．分母は常に「出発時点の残存者数」．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 3/80\n(2) 39/1000\n(3) 75"
+  },
+  "techniques": [
+   "pension-present-value-members"
+  ],
+  "methods": [],
+  "tags": [
+   "脱退残存表",
+   "脱退率",
+   "残存率",
+   "据置脱退確率"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "PE-01-003",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "PE-56",
+  "level": 1,
+  "minutes": 6,
+  "theme": "昇給率／給与指数と退職時給与",
+  "unit": "昇給率",
+  "topic": "給与指数と退職時給与",
+  "statement": {
+   "tex": "ある制度の給与指数 $b_x$ が次のとおりである（$x$ 歳での給与は $b_x$ に比例するとする）．\n\\[\\begin{array}{c|ccccc} x & 55 & 56 & 57 & 58 & 59 \\\\ \\hline b_x & 250 & 260 & 270 & 279 & 288 \\end{array}\\]\n定年は 60 歳であり，55 歳の加入者 A の月額給与は 40 万円，55 歳時点の勤続年数は 33 年である．\n\\begin{enumerate}\n\\item 55 歳から 56 歳への昇給率 $b_{56}/b_{55}-1$ を求めよ．\n\\item A の 59 歳時の月額給与（万円）を，給与指数に従うとして求めよ．\n\\item A が定年まで在籍したとき，退職一時金を「59 歳時の月額給与 × 支給率」とし，支給率を「定年時の勤続年数 + 7」とする．退職一時金（万円）を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{1}{25}$\n(2) $46.08$\n(3) $2073.6$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "給与指数は「年齢ごとの給与の相対的な大きさ」を表すので，将来の給与は現在の給与に $b_{x+t}/b_x$ を掛けて見込む．\n\n(1) $260/250-1=\\boldsymbol{\\frac{1}{25}}=0.04$，すなわち 4\\% である．\n\n(2) $40\\times\\dfrac{b_{59}}{b_{55}}=40\\times\\dfrac{288}{250}=\\boldsymbol{46.08}$ 万円である．\n\n(3) 定年時（60 歳）の勤続年数は $33+5=38$ 年なので，支給率は 45 である．退職一時金は $46.08\\times45=\\boldsymbol{2073.6}$ 万円である．"
+   }
+  ],
+  "idea": {
+   "tex": "将来給与は給与指数の比 $b_{x+t}/b_x$ で見込む．最終給与比例の給付は，最終給与と勤続年数（支給率）の両方を定年時点の値にする．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 1/25\n(2) 46.08\n(3) 2073.6"
+  },
+  "techniques": [
+   "pension-salary-scale"
+  ],
+  "methods": [],
+  "tags": [
+   "給与指数",
+   "昇給率",
+   "最終給与比例",
+   "退職一時金"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "PE-01-004",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "PE-56",
+  "level": 1,
+  "minutes": 7,
+  "theme": "人数現価／脱退残存表による年始払の現価",
+  "unit": "人数現価",
+  "topic": "脱退残存表による年始払の現価",
+  "statement": {
+   "tex": "予定利率 $i=0.02$ とし，加入者の脱退残存表を次とする．定年は 63 歳で，63 歳に達した残存者は全員定年退職する．\n\\[\\begin{array}{c|cccc} x & 60 & 61 & 62 & 63 \\\\ \\hline l_x & 1000 & 980 & 955 & 925 \\end{array}\\]\n$v=1/1.02$，$v^2=0.96117$，$v^3=0.94232$ を用いてよい．\n\\begin{enumerate}\n\\item 60 歳の加入者 1 人について，在籍する各年度の年始に 1 を払い込むときの払込みの現価（人数現価）を有効数字 4 桁で求めよ．\n\\item 60 歳の加入者 1 人について，63 歳の定年退職時に支払う一時金 100 の給付現価を有効数字 4 桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx 2.879$\n(2) $\\approx 87.16$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "現価は「支払額 × 支払時点まで残存する確率 × 割引」の和である．年始払なので，60，61，62 歳の年始に払い込む．\n\n(1) $\\dfrac{l_{60}+v\\,l_{61}+v^2l_{62}}{l_{60}}=1+0.98\\times0.98039+0.955\\times0.96117\\approx\\boldsymbol{2.879}$ である．\n\n(2) 63 歳まで残存する確率は $925/1000$，3 年分割り引くので $100\\times0.925\\times v^3=100\\times0.925\\times0.94232\\approx\\boldsymbol{87.16}$ である．"
+   }
+  ],
+  "idea": {
+   "tex": "人数現価は $\\sum_t v^t\\,l_{x+t}/l_x$，給付現価は $\\sum(\\text{給付})\\times v^t\\times(\\text{その時点の残存・脱退確率})$．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈2.879\n(2) ≈87.16"
+  },
+  "techniques": [
+   "pension-present-value-members",
+   "pension-discount-annuity-certain"
+  ],
+  "methods": [],
+  "tags": [
+   "人数現価",
+   "給付現価",
+   "脱退残存表",
+   "年始払"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "PE-01-005",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "PE-56",
+  "level": 1,
+  "minutes": 6,
+  "theme": "利息の基本関係／期始払と期末払の確定年金",
+  "unit": "利息の基本関係",
+  "topic": "期始払と期末払の確定年金",
+  "statement": {
+   "tex": "予定利率を $i$，$v=1/(1+i)$，$d=i/(1+i)$ とし，$a_{\\overline{n}|}$ を期末払，$\\ddot a_{\\overline{n}|}$ を期始払の $n$ 年確定年金現価，$\\ddot s_{\\overline{n}|}$ を期始払の終価とする．\n\\begin{enumerate}\n\\item 次のうち正しいものを 1 つ選び，番号で答えよ． \\\\ ① $d=i(1+i)$ \\\\ ② $\\ddot a_{\\overline{n}|}=a_{\\overline{n}|}+1-v^n$ \\\\ ③ $\\ddot a_{\\overline{n}|}=(1-v^n)/i$ \\\\ ④ $\\ddot s_{\\overline{n}|}=v^n\\ddot a_{\\overline{n}|}$ \\\\ ⑤ $1/\\ddot a_{\\overline{n}|}=1/\\ddot s_{\\overline{n}|}+i$\n\\item $i=0.03$，$v^5=0.86261$ のとき，$\\ddot a_{\\overline{5}|}$ を有効数字 4 桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) ②（番号 2）\n(2) $\\approx 4.717$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "期始払と期末払は支払時点が 1 年ずれるだけなので，$\\ddot a_{\\overline{n}|}=(1+i)a_{\\overline{n}|}$，$\\ddot a_{\\overline{n}|}=1+a_{\\overline{n-1}|}$ などの関係がある．\n\n(1) ①：$d=i/(1+i)=iv$ なので誤り．②：$\\ddot a_{\\overline{n}|}=1+v+\\dots+v^{n-1}$，$a_{\\overline{n}|}=v+\\dots+v^n$ なので $\\ddot a_{\\overline{n}|}-a_{\\overline{n}|}=1-v^n$ であり正しい．③：$(1-v^n)/i$ は $a_{\\overline{n}|}$ で，$\\ddot a_{\\overline{n}|}=(1-v^n)/d$ なので誤り．④：終価は $\\ddot s_{\\overline{n}|}=(1+i)^n\\ddot a_{\\overline{n}|}$ なので誤り．⑤：$\\dfrac{1}{\\ddot a_{\\overline{n}|}}=\\dfrac{d}{1-v^n}=\\dfrac{d\\,(1+i)^n}{(1+i)^n-1}=\\dfrac{d}{(1+i)^n-1}+d=\\dfrac{1}{\\ddot s_{\\overline{n}|}}+d$ で，$+i$ ではなく $+d$ なので誤り．よって $\\boldsymbol{②}$ である．\n\n(2) $d=0.03/1.03$ より $\\ddot a_{\\overline{5}|}=\\dfrac{1-0.86261}{0.03/1.03}=\\dfrac{0.13739\\times1.03}{0.03}\\approx\\boldsymbol{4.717}$ である．"
+   }
+  ],
+  "idea": {
+   "tex": "期始払は期末払より 1 年早く払うので，$\\ddot a_{\\overline{n}|}=(1+i)a_{\\overline{n}|}=1+a_{\\overline{n-1}|}$．公式の分母は期始払なら $d$，期末払なら $i$．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 2\n(2) ≈4.717"
+  },
+  "techniques": [
+   "pension-discount-annuity-certain"
+  ],
+  "methods": [],
+  "tags": [
+   "期始払",
+   "期末払",
+   "確定年金",
+   "割引率",
+   "選択式"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "PE-01-006",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "PE-56",
+  "level": 2,
+  "minutes": 10,
+  "theme": "給与現価／給与指数と脱退を織り込んだ現価",
+  "unit": "給与現価",
+  "topic": "給与指数と脱退を織り込んだ現価",
+  "statement": {
+   "tex": "予定利率 $i=0.025$（$v=0.97561$，$v^2=0.95181$）とする．定年は 65 歳であり，62 歳の加入者の残存率と給与指数は次のとおりである．\n\\[\\begin{array}{c|ccc} x & 62 & 63 & 64 \\\\ \\hline l_x/l_{62} & 1 & 0.970 & 0.945 \\\\ b_x/b_{62} & 1 & 1.02 & 1.04 \\end{array}\\]\n62 歳の加入者の年間給与は 500 万円で，給与・保険料は年始に支払うとする．\n\\begin{enumerate}\n\\item この加入者の 62 歳時点の給与現価（万円）を有効数字 4 桁で求めよ．\n\\item この加入者の給付現価が 120 万円のとき，給付現価を給与現価で割った保険料率を有効数字 3 桁で求めよ．\n\\item 同じ給付を給与によらない定額の保険料（年額・万円）でまかなうとき，その額を有効数字 3 桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx 1450$\n(2) $\\approx 0.0827$\n(3) $\\approx 42.2$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "給与現価は，将来の各年の給与見込額に残存率と割引を掛けて合計したものである．給与見込額は給与指数の比で伸ばす．\n\n(1) \\[G=500\\left(1+1.02\\times0.970\\,v+1.04\\times0.945\\,v^2\\right)=500\\,(1+0.96527+0.93542)\\approx\\boldsymbol{1450}\\] 万円である．\n\n(2) 保険料率 $P$ は $P\\times G=S$ を満たすので $P=120/1450\\approx\\boldsymbol{0.0827}$ である．\n\n(3) 定額保険料は人数現価 $1+0.970v+0.945v^2\\approx2.846$ で割って $120/2.846\\approx\\boldsymbol{42.2}$ 万円である．給与比例の (2) では，初年度は $500\\times0.0827\\approx41.4$ 万円で，給与の伸びに合わせて増える．"
+   }
+  ],
+  "idea": {
+   "tex": "給与現価 $=\\sum_t (\\text{給与見込額})\\,v^t\\,l_{x+t}/l_x$．給付現価をこれで割れば給与に対する保険料率，人数現価で割れば定額保険料になる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈1450\n(2) ≈0.0827\n(3) ≈42.2"
+  },
+  "techniques": [
+   "pension-salary-scale",
+   "pension-present-value-members"
+  ],
+  "methods": [],
+  "tags": [
+   "給与現価",
+   "人数現価",
+   "給与指数",
+   "保険料率"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "PE-01-007",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "PE-56",
+  "level": 2,
+  "minutes": 12,
+  "theme": "給付現価／中途脱退給付を含む退職一時金",
+  "unit": "給付現価",
+  "topic": "中途脱退給付を含む退職一時金",
+  "statement": {
+   "tex": "予定利率 $i=0.02$（$v=0.98039$，$v^2=0.96117$，$v^3=0.94232$）とする．62 歳・勤続 30 年の加入者について，脱退残存表は次のとおりである．\n\\[\\begin{array}{c|cccc} x & 62 & 63 & 64 & 65 \\\\ \\hline l_x & 1000 & 980 & 955 & 935 \\end{array}\\]\n定年は 65 歳である．退職一時金は「脱退時の勤続年数 × 10 万円」で，年度中の脱退者には年度末に，定年到達者には 65 歳到達時に支払う（年度中の脱退者の勤続年数はその年度を満了したものとして数える）．\n\\begin{enumerate}\n\\item 定年退職による給付の現価（万円）を有効数字 4 桁で求めよ．\n\\item 中途脱退による給付の現価（万円）を有効数字 3 桁で求めよ．\n\\item 給付現価のうち，すでに勤めた 30 年分に対応する部分（脱退時に $30\\times10$ 万円を支払うとしたときの現価）を有効数字 4 桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx 290.8$\n(2) $\\approx 20.0$\n(3) $\\approx 283.1$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "脱退の時期ごとに「脱退確率 × その時の給付額 × 割引」を足す．年度中の脱退者は年度末払いなので，62 歳の年度の脱退は $v^1$，63 歳は $v^2$，64 歳は $v^3$ で割り引く．\n\n(1) 65 歳到達確率は $935/1000$，給付は $33\\times10=330$ 万円なので $330\\times0.935\\times v^3\\approx\\boldsymbol{290.8}$ 万円である．\n\n(2) 各年度の脱退確率は $d_{62}/l_{62}=0.020$，$d_{63}/l_{62}=0.025$，$d_{64}/l_{62}=0.020$ である．\n\\[10\\,(31\\times0.020\\,v+32\\times0.025\\,v^2+33\\times0.020\\,v^3)\\approx\\boldsymbol{20.0}\\]\n万円である．全体の給付現価は $290.8+20.0\\approx310.7$ 万円になる．\n\n(3) 給付額をどの脱退時期でも 300 万円とするので \\[300\\,(0.020\\,v+0.025\\,v^2+0.020\\,v^3+0.935\\,v^3)\\approx\\boldsymbol{283.1}\\] 万円である．これが単位積立方式での過去勤務期間分の数理債務にあたる．"
+   }
+  ],
+  "idea": {
+   "tex": "給付現価は脱退の時期ごとに分けて「確率 × 給付額 × 割引」を足す．給付額を過去の勤続年数で止めれば，過去勤務期間分の給付現価になる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈290.8\n(2) ≈20.0\n(3) ≈283.1"
+  },
+  "techniques": [
+   "pension-present-value-members"
+  ],
+  "methods": [],
+  "tags": [
+   "給付現価",
+   "退職一時金",
+   "中途脱退",
+   "過去勤務期間"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "PE-01-008",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "PE-56",
+  "level": 2,
+  "minutes": 10,
+  "theme": "年金現価／計算基数による終身年金・保証期間付年金",
+  "unit": "年金現価",
+  "topic": "計算基数による終身年金・保証期間付年金",
+  "statement": {
+   "tex": "予定利率 $i=0.02$ の生命表にもとづく計算基数 $D_x=v^xl_x$，$N_x=\\sum_{y\\ge x}D_y$ の値の一部が次のとおりである．\n\\[\\begin{array}{c|ccc} x & 60 & 65 & 75 \\\\ \\hline D_x & 4520 & 3860 & 2450 \\\\ N_x & 79300 & 58400 & 26400 \\end{array}\\]\nまた $\\ddot a_{\\overline{10}|}=9.1622$ とする．年金はすべて年始払である．\n\\begin{enumerate}\n\\item 65 歳の終身年金現価 $\\ddot a_{65}$ を有効数字 4 桁で求めよ．\n\\item 60 歳の者が 65 歳から受け取る年額 1 の終身年金の現価 ${}_{5|}\\ddot a_{60}$ を有効数字 4 桁で求めよ．\n\\item 65 歳の者が受け取る，保証期間 10 年付きの年額 1 の終身年金（10 年間は生死にかかわらず支払い，その後は生存している限り支払う）の現価を有効数字 4 桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx 15.13$\n(2) $\\approx 12.92$\n(3) $\\approx 16.00$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "計算基数を使うと $\\ddot a_x=N_x/D_x$，${}_{n|}\\ddot a_x=N_{x+n}/D_x$ と，表の値の比で現価が出る．\n\n(1) $\\ddot a_{65}=N_{65}/D_{65}=58400/3860\\approx\\boldsymbol{15.13}$ である．\n\n(2) ${}_{5|}\\ddot a_{60}=N_{65}/D_{60}=58400/4520\\approx\\boldsymbol{12.92}$ である．\n\n(3) 最初の 10 年は確定年金，75 歳以降は 10 年据置の終身年金なので\n\\[\\ddot a_{\\overline{10}|}+{}_{10|}\\ddot a_{65}=9.1622+\\frac{N_{75}}{D_{65}}=9.1622+\\frac{26400}{3860}\\approx\\boldsymbol{16.00}\\]\nである．保証期間がない場合の (1) より大きいのは，10 年以内に死亡しても支払いが続くためである．"
+   }
+  ],
+  "idea": {
+   "tex": "計算基数 $D_x,N_x$ を使えば終身年金・据置年金は比で求まる．保証期間付き年金は「確定年金 + 据置終身年金」に分ける．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈15.13\n(2) ≈12.92\n(3) ≈16.00"
+  },
+  "techniques": [
+   "pension-present-value-members",
+   "pension-discount-annuity-certain"
+  ],
+  "methods": [],
+  "tags": [
+   "計算基数",
+   "終身年金",
+   "据置年金",
+   "保証期間付年金"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "PE-01-009",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "PE-56",
+  "level": 2,
+  "minutes": 10,
+  "theme": "定常人口／加入者数・受給者数・成熟度",
+  "unit": "定常人口",
+  "topic": "加入者数・受給者数・成熟度",
+  "statement": {
+   "tex": "毎年 22 歳で 100 人ずつ加入し，脱退残存表が年によらず一定である定常人口の年金制度を考える．脱退残存表（$l_{22}=1000$）について\n\\[\\sum_{x=22}^{59}l_x=30000,\\quad l_{60}=600,\\quad \\sum_{x\\ge60}l_x=12000,\\quad \\sum_{x=22}^{59}l_x\\,s_x=1.2\\times10^{7}\\]\nであるとする．ここで 60 歳以降の $l_x$ は定年退職者（年金受給者）の生存数，$s_x$ は $x$ 歳の加入者の年間給与（万円）である．\n\\begin{enumerate}\n\\item 加入者数（22〜59 歳の在籍者の総数）を求めよ．\n\\item 成熟度（年金受給者数 ÷ 加入者数）を求めよ．\n\\item 加入者の年間給与の総額 $L$（万円）を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $3000$\n(2) $\\frac{2}{5}$\n(3) $1200000$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "定常人口では，ある時点の $x$ 歳の人数は「毎年の加入者数 × $l_x/l_{22}$」である．各年齢の人数を足せば，年齢別の合計が脱退残存表の和に比例する．\n\n(1) 加入者数は $100\\times\\dfrac{1}{1000}\\sum_{x=22}^{59}l_x=100\\times30=\\boldsymbol{3000}$ 人である．\n\n(2) 受給者数は $100\\times12000/1000=1200$ 人なので，成熟度は $1200/3000=\\boldsymbol{\\frac{2}{5}}$ である．なお毎年の新規受給者は $100\\times l_{60}/l_{22}=60$ 人である．\n\n(3) $L=100\\times\\dfrac{1}{1000}\\sum l_xs_x=\\boldsymbol{1200000}$ 万円である．加入者 1 人あたりの平均給与は 400 万円になる．"
+   }
+  ],
+  "idea": {
+   "tex": "定常人口では各年齢の人数が $(\\text{毎年の加入者数})\\times l_x/l_{x_e}$ で時間によらず一定．総数・総給与・給付総額は脱退残存表の和で表せる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 3000\n(2) 2/5\n(3) 1200000"
+  },
+  "techniques": [
+   "pension-stationary-limit-equation",
+   "pension-present-value-members"
+  ],
+  "methods": [],
+  "tags": [
+   "定常人口",
+   "成熟度",
+   "総給与",
+   "受給者数"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "PE-01-010",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "PE-56",
+  "level": 2,
+  "minutes": 12,
+  "theme": "給付現価／過去勤務期間分と将来勤務期間分",
+  "unit": "給付現価",
+  "topic": "過去勤務期間分と将来勤務期間分",
+  "statement": {
+   "tex": "予定利率 $i=0.02$（$v^{10}=0.82035$）とする．50 歳・勤続 20 年の加入者 A がいる．定年は 60 歳で，定年到達者にだけ 60 歳から終身年金を年始払で支給する．\n・年金年額 ＝ 最終給与（59 歳時の年間給与）× 定年時の勤続年数 × 0.01\\\\ ・A の 50 歳時の年間給与は 600 万円，給与指数は $b_{59}/b_{50}=1.30$\\\\ ・50 歳から 60 歳まで在籍する確率は 0.85，60 歳の終身年金現価は $\\ddot a_{60}=18.50$ \\\\\n\\begin{enumerate}\n\\item A の見込み年金年額（万円）を求めよ．\n\\item A の 50 歳時点の給付現価（万円）を有効数字 4 桁で求めよ．\n\\item 給付現価を勤続年数で按分したとき，過去勤務期間（20 年）に対応する部分（万円）を有効数字 4 桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $234$\n(2) $\\approx 3019$\n(3) $\\approx 2012$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "定年時の年金額を給与指数で見込み，そこから「在籍確率 × 割引 × 年金現価」で 50 歳時点の現価にする．過去分・将来分は勤続年数の比で分ける．\n\n(1) 最終給与は $600\\times1.30=780$ 万円，定年時の勤続年数は 30 年なので，年金年額は $780\\times30\\times0.01=\\boldsymbol{234}$ 万円である．\n\n(2) \\[S=234\\times0.85\\times v^{10}\\times\\ddot a_{60}=234\\times0.85\\times0.82035\\times18.50\\approx\\boldsymbol{3019}\\] 万円である．\n\n(3) 30 年のうち 20 年分なので $S\\times\\dfrac{20}{30}\\approx\\boldsymbol{2012}$ 万円である．残りの $1006$ 万円が将来勤務期間分であり，到達年齢方式ではこれを将来の給与現価・人数現価で割って標準保険料を決める．"
+   }
+  ],
+  "idea": {
+   "tex": "見込み給付を定年時点で確定させてから在籍確率と割引で現在に引き戻す．勤続年数で按分すると過去勤務期間分と将来勤務期間分に分かれる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 234\n(2) ≈3019\n(3) ≈2012"
+  },
+  "techniques": [
+   "pension-unit-credit-attained-age",
+   "pension-present-value-members",
+   "pension-salary-scale"
+  ],
+  "methods": [],
+  "tags": [
+   "給付現価",
+   "過去勤務期間",
+   "将来勤務期間",
+   "最終給与比例",
+   "終身年金"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "PE-01-011",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "PE-56",
+  "level": 2,
+  "minutes": 10,
+  "theme": "予定利率／予定利率の引下げと給付現価の増加",
+  "unit": "予定利率",
+  "topic": "予定利率の引下げと給付現価の増加",
+  "statement": {
+   "tex": "45 歳の加入者が，65 歳から年額 100 の 10 年確定年金（年始払）を受け取る．在籍中の脱退は考えない．次の値を用いてよい．\n\\[\\begin{array}{c|cc} & i=0.02 & i=0.015 \\\\ \\hline v^{20} & 0.67297 & 0.74247 \\\\ \\ddot a_{\\overline{10}|} & 9.1622 & 9.3605 \\end{array}\\]\n\\begin{enumerate}\n\\item 予定利率 $i=0.02$ のときの 45 歳時点の給付現価を有効数字 4 桁で求めよ．\n\\item 予定利率を $i=0.015$ に引き下げたときの給付現価を有効数字 4 桁で求めよ．\n\\item 引下げによって給付現価は何 \\% 増加するか．有効数字 3 桁で答えよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx 616.6$\n(2) $\\approx 695.0$\n(3) $\\approx 12.7$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "据置期間 20 年の確定年金なので，給付現価は ${}_{20|}\\ddot a_{\\overline{10}|}=v^{20}\\ddot a_{\\overline{10}|}$ に年額を掛けたものである．\n\n(1) $100\\times0.67297\\times9.1622\\approx\\boldsymbol{616.6}$ である．\n\n(2) $100\\times0.74247\\times9.3605\\approx\\boldsymbol{695.0}$ である．\n\n(3) $695.0/616.6-1\\approx\\boldsymbol{12.7}\\,\\%$ 増加する．支払いまでの期間が長い（据置が長い）給付ほど割引の効きが大きいので，予定利率の変更の影響を強く受ける．"
+   }
+  ],
+  "idea": {
+   "tex": "予定利率を下げると割引が弱まり給付現価が増える．支払いまでの期間が長い給付ほど影響が大きい．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈616.6\n(2) ≈695.0\n(3) ≈12.7"
+  },
+  "techniques": [
+   "pension-discount-annuity-certain",
+   "pension-present-value-members"
+  ],
+  "methods": [],
+  "tags": [
+   "予定利率",
+   "据置年金",
+   "確定年金",
+   "給付現価",
+   "感応度"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "PE-01-012",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "PE-56",
+  "level": 2,
+  "minutes": 12,
+  "theme": "多重脱退／死亡と退職の 2 つの脱退率から残存表を作る",
+  "unit": "多重脱退",
+  "topic": "死亡と退職の 2 つの脱退率から残存表を作る",
+  "statement": {
+   "tex": "加入者の脱退を死亡と退職の 2 種類とし，それぞれの脱退率（多重脱退の下での率）$q^{(d)}_x$，$q^{(w)}_x$ が次のとおりである．\n\\[\\begin{array}{c|ccc} x & 55 & 56 & 57 \\\\ \\hline q^{(d)}_x & 0.004 & 0.005 & 0.006 \\\\ q^{(w)}_x & 0.05 & 0.04 & 0.03 \\end{array}\\]\n$l_{55}=10000$ とする．\n\\begin{enumerate}\n\\item $l_{57}$ を求めよ．\n\\item 56 歳の 1 年間の退職による脱退者数 $d^{(w)}_{56}$ を求めよ．\n\\item 退職による脱退者に年度末に一時金 100 を支払う（死亡には支払わない）．55 歳の加入者 1 人について，57 歳の年度までの 3 年間の退職給付の現価を，予定利率 $i=0.02$ として有効数字 4 桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $9034.3$\n(2) $378.4$\n(3) $\\approx 11.09$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "多重脱退では全体の脱退率は $q_x=q^{(d)}_x+q^{(w)}_x$ であり，$l_{x+1}=l_x(1-q_x)$，原因別の脱退者数は $d^{(w)}_x=l_xq^{(w)}_x$ である．\n\n(1) $l_{56}=10000\\times(1-0.054)=9460$，$l_{57}=9460\\times(1-0.045)=\\boldsymbol{9034.3}$ である．\n\n(2) $d^{(w)}_{56}=9460\\times0.04=\\boldsymbol{378.4}$ である．\n\n(3) $d^{(w)}_{55}=500$，$d^{(w)}_{57}=9034.3\\times0.03=271.029$ である．\n\\[100\\times\\frac{500\\,v+378.4\\,v^2+271.029\\,v^3}{10000}\\approx\\boldsymbol{11.09}\\]\nとなる．"
+   }
+  ],
+  "idea": {
+   "tex": "全体の脱退率は原因別の和，残存数はそれで減らし，原因別の脱退者数は「その年度の残存者 × 原因別の脱退率」で数える．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 9034.3\n(2) 378.4\n(3) ≈11.09"
+  },
+  "techniques": [
+   "pension-present-value-members"
+  ],
+  "methods": [],
+  "tags": [
+   "多重脱退",
+   "脱退残存表",
+   "退職率",
+   "死亡率",
+   "給付現価"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "PE-01-013",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "PE-56",
+  "level": 3,
+  "minutes": 15,
+  "theme": "給与現価／昇給率・残存率が一定のときの等比級数",
+  "unit": "給与現価",
+  "topic": "昇給率・残存率が一定のときの等比級数",
+  "statement": {
+   "tex": "30 歳の加入者の現在の年間給与を 1 とする．給与は毎年 $g=0.03$ で上がり，在籍者が 1 年間残存する確率は年齢によらず $p=0.97$，予定利率は $i=0.02$ とする．定年は 60 歳で，給与・保険料は年始払である．$(1.03)^{29}=2.35657$，$(0.97/1.02)^{30}=0.22138$，$r^{30}=0.53736$（$r$ は (1) の値）を用いてよい．\n\\begin{enumerate}\n\\item 給与現価を等比級数 $\\sum_{t=0}^{29}r^t$ と表すときの公比 $r$ を有効数字 4 桁で求めよ．\n\\item 30 歳時点の給与現価を有効数字 4 桁で求めよ．\n\\item 定年到達者に「最終給与（59 歳時の給与）× 30」の一時金を支払う（中途脱退者には支払わない）．30 歳時点の給付現価を給与現価で割った保険料率を有効数字 3 桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx 0.9795$\n(2) $\\approx 22.58$\n(3) $\\approx 0.693$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "$t$ 年後の給与 $(1+g)^t$，残存率 $p^t$，割引 $v^t$ がすべて $t$ 乗なので，給与現価は公比 $r=(1+g)p/(1+i)$ の等比級数になる．\n\n(1) $r=\\dfrac{1.03\\times0.97}{1.02}\\approx\\boldsymbol{0.9795}$ である．\n\n(2) \\[\\sum_{t=0}^{29}r^t=\\frac{1-r^{30}}{1-r}=\\frac{1-0.53736}{1-0.9795}\\approx\\boldsymbol{22.58}\\] である．昇給による増加より残存率と割引による減少が大きいので，期間の年数 30 より小さい値になる．\n\n(3) 最終給与は $(1.03)^{29}=2.35657$，定年到達確率と割引をまとめて $(0.97/1.02)^{30}=0.22138$ なので，給付現価は $30\\times2.35657\\times0.22138\\approx15.65$ である．保険料率は $15.65/22.58\\approx\\boldsymbol{0.693}$ である．"
+   }
+  ],
+  "idea": {
+   "tex": "昇給率・残存率・予定利率が一定なら，給与現価は公比 $(1+g)p/(1+i)$ の等比級数．給付現価との比が平準的な保険料率になる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈0.9795\n(2) ≈22.58\n(3) ≈0.693"
+  },
+  "techniques": [
+   "pension-salary-scale",
+   "pension-present-value-members"
+  ],
+  "methods": [],
+  "tags": [
+   "給与現価",
+   "昇給率",
+   "等比級数",
+   "最終給与比例",
+   "保険料率"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "PE-01-014",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "PE-56",
+  "level": 3,
+  "minutes": 15,
+  "theme": "定常人口／開放型総給付現価と給付総額の関係",
+  "unit": "定常人口",
+  "topic": "開放型総給付現価と給付総額の関係",
+  "statement": {
+   "tex": "予定利率 $i=0.05$ とする．毎年始に 1 人が加入し，在籍中の脱退はなく，加入から 3 年後に退職して，その時から年額 1 の 2 年確定年金（年始払）を受け取る定常人口を考える．評価時点は年始で，その年の加入・給付支払いの直前とする．このとき加入者（あと $k$ 年で退職する者，$k=1,2,3$）が 3 人，受給者（残りの支払回数が 2 回・1 回の者）が 2 人いる．将来加入者は翌年始以降に加入する者とする．\n\\begin{enumerate}\n\\item 現在の受給者と加入者の給付現価の和 $S^p+S^a$ を有効数字 4 桁で求めよ．\n\\item 将来加入者の給付現価 $S^f$ を有効数字 4 桁で求めよ．\n\\item $S^p+S^a+S^f$ の値を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx 8.269$\n(2) $\\approx 33.73$\n(3) $42$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "$v=1/1.05$，$\\ddot a_{\\overline{2}|}=1+v=1.952$ とする．\n\n(1) 受給者は残り 2 回・1 回なので $S^p=\\ddot a_{\\overline{2}|}+\\ddot a_{\\overline{1}|}=2.952$．あと $k$ 年で退職する加入者の給付現価は $v^k\\ddot a_{\\overline{2}|}$ なので $S^a=(v+v^2+v^3)\\ddot a_{\\overline{2}|}\\approx5.317$．よって $S^p+S^a\\approx\\boldsymbol{8.269}$ である．\n\n(2) $t$ 年後に加入する者の，加入時点での給付現価は $v^3\\ddot a_{\\overline{2}|}$ である．これを $t=1,2,\\dots$ について割り引いて足すと\n\\[S^f=v^3\\ddot a_{\\overline{2}|}\\sum_{t=1}^{\\infty}v^t=\\frac{v^3\\ddot a_{\\overline{2}|}}{i}\\approx\\boldsymbol{33.73}\\]\nである．\n\n(3) 定常人口では毎年始に受給者 2 人へ合計 $B=2$ を支払い続けるので，開放型の総給付現価は永久年金の現価 $B\\ddot a_{\\overline{\\infty}|}=B/d=2\\times\\dfrac{1.05}{0.05}=\\boldsymbol{42}$ に等しい．(1)(2) の和 $8.269+33.73=42$ と一致する．"
+   }
+  ],
+  "idea": {
+   "tex": "定常人口では給付総額 $B$ が永久に続くので $S^p+S^a+S^f=B/d$（年始払）．同様に給与現価の総和は $L/d$ になる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈8.269\n(2) ≈33.73\n(3) 42"
+  },
+  "techniques": [
+   "pension-stationary-limit-equation",
+   "pension-trowbridge-model"
+  ],
+  "methods": [],
+  "tags": [
+   "定常人口",
+   "開放型総給付現価",
+   "将来加入者",
+   "永久年金"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "PE-01-015",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "PE-56",
+  "level": 3,
+  "minutes": 12,
+  "theme": "予定利率／スライド年金と実質利率",
+  "unit": "予定利率",
+  "topic": "スライド年金と実質利率",
+  "statement": {
+   "tex": "予定利率 $i=0.03$ とし，年金額が毎年 $r=0.01$ の率で増える（スライドする）15 年確定年金（年始払，初年度の年額 100）を考える．$(1.01/1.03)^{15}=0.74518$，$(1.03)^{-15}=0.64186$ を用いてよい．\n\\begin{enumerate}\n\\item この年金の現価を，スライドのない確定年金の現価として計算するときの利率 $j$（$1+j=(1+i)/(1+r)$）を既約分数で求めよ．\n\\item この年金の現価を有効数字 4 桁で求めよ．\n\\item 同じ現価をもつ，スライドのない 15 年確定年金（年始払，$i=0.03$）の年額を有効数字 4 桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{2}{101}$\n(2) $\\approx 1312$\n(3) $\\approx 106.7$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "$t$ 年目の支払額 $100(1+r)^t$ を $v^t$ で割り引くと $100\\left(\\dfrac{1+r}{1+i}\\right)^t$ となり，利率 $j$ の通常の確定年金と同じ形になる．\n\n(1) $1+j=\\dfrac{1.03}{1.01}$ より $j=\\dfrac{0.02}{1.01}=\\boldsymbol{\\frac{2}{101}}\\approx0.0198$ である．$i-r=0.02$ よりわずかに小さい．\n\n(2) 公比 $x=1.01/1.03$ の等比級数なので\n\\[100\\sum_{t=0}^{14}x^t=100\\times\\frac{1-0.74518}{1-1.01/1.03}=100\\times\\frac{0.25482\\times1.03}{0.02}\\approx\\boldsymbol{1312}\\]\nである．\n\n(3) $\\ddot a_{\\overline{15}|}=\\dfrac{1-0.64186}{0.03/1.03}\\approx12.30$ なので，年額は $1312/12.30\\approx\\boldsymbol{106.7}$ である．スライドの分だけ，同じ現価なら定額年金の年額は初年度額 100 より大きくなる．"
+   }
+  ],
+  "idea": {
+   "tex": "スライド率 $r$ の年金は，利率 $j=(1+i)/(1+r)-1$ の定額年金に置き換えられる．$j$ は $i-r$ に近いがそれより少し小さい．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 2/101\n(2) ≈1312\n(3) ≈106.7"
+  },
+  "techniques": [
+   "pension-discount-annuity-certain"
+  ],
+  "methods": [],
+  "tags": [
+   "スライド年金",
+   "実質利率",
+   "確定年金",
+   "等比級数"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ }
+]

@@ -1,0 +1,817 @@
+[
+ {
+  "id": "PE-03-001",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "PE-58",
+  "level": 1,
+  "minutes": 6,
+  "theme": "責任準備金／将来法による責任準備金と未積立債務",
+  "unit": "責任準備金",
+  "topic": "将来法による責任準備金と未積立債務",
+  "statement": {
+   "tex": "加入年齢方式の年金制度で，受給者の給付現価 $S^p=4000$，加入者の給付現価 $S^a=6000$，加入者の給与現価 $G^a=50000$，標準保険料率 $P=0.05$，積立金 $F=6500$ である．\n\\begin{enumerate}\n\\item 責任準備金 $V$ を求めよ．\n\\item 未積立債務 $U$ を求めよ．\n\\item 積立比率 $F/V$ を既約分数で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $7500$\n(2) $1000$\n(3) $\\frac{13}{15}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "責任準備金は将来法で「給付現価 − 将来の標準保険料収入の現価」と定義する．積立金がこれに足りない分が未積立債務である．\n\n(1) 将来の標準保険料収入の現価は $PG^a=0.05\\times50000=2500$ なので $V=4000+6000-2500=\\boldsymbol{7500}$ である．\n\n(2) $U=V-F=7500-6500=\\boldsymbol{1000}$ である．これは標準保険料ではまかなえないので，特別保険料で償却する．\n\n(3) $F/V=6500/7500=\\boldsymbol{\\frac{13}{15}}\\approx0.867$ である．"
+   }
+  ],
+  "idea": {
+   "tex": "責任準備金 $V=S^p+S^a-PG^a$（将来法），未積立債務 $U=V-F$．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 7500\n(2) 1000\n(3) 13/15"
+  },
+  "techniques": [
+   "pension-reserve-unfunded"
+  ],
+  "methods": [],
+  "tags": [
+   "責任準備金",
+   "未積立債務",
+   "将来法",
+   "積立比率"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "PE-03-002",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "PE-58",
+  "level": 1,
+  "minutes": 6,
+  "theme": "過去勤務債務の償却／元利均等償却の特別保険料",
+  "unit": "過去勤務債務の償却",
+  "topic": "元利均等償却の特別保険料",
+  "statement": {
+   "tex": "過去勤務債務 1200 を，予定利率 $i=0.02$ のもとで元利均等（年始払）で償却する．$\\ddot a_{\\overline{10}|}=9.1622$，$\\ddot a_{\\overline{15}|}=13.1062$ とする．\n\\begin{enumerate}\n\\item 償却期間 10 年のときの毎年の特別保険料を有効数字 4 桁で求めよ．\n\\item 償却期間 15 年のときの毎年の特別保険料を有効数字 4 桁で求めよ．\n\\item (1) の場合，1 年後（2 回目の払込み前）の未償却残高を有効数字 4 桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx 131.0$\n(2) $\\approx 91.56$\n(3) $\\approx 1090$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "元利均等償却では，特別保険料 $K$ の現価の合計が過去勤務債務に等しくなるように定める：$K\\ddot a_{\\overline{n}|}=U$．\n\n(1) $K=1200/9.1622\\approx\\boldsymbol{131.0}$ である．\n\n(2) $K=1200/13.1062\\approx\\boldsymbol{91.56}$ である．期間を延ばすと毎年の負担は減るが，払う総額は $10\\times131.0\\approx1310$ から $15\\times91.56\\approx1373$ に増える．\n\n(3) $(1200-131.0)\\times1.02\\approx\\boldsymbol{1090}$ である．これは残り 9 回分の現価 $K\\ddot a_{\\overline{9}|}$ に等しい．"
+   }
+  ],
+  "idea": {
+   "tex": "元利均等償却は $K=U/\\ddot a_{\\overline{n}|}$．残高は $(U-K)(1+i)$ で更新され，常に残りの払込みの現価に等しい．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈131.0\n(2) ≈91.56\n(3) ≈1090"
+  },
+  "techniques": [
+   "pension-psl-amortization",
+   "pension-discount-annuity-certain"
+  ],
+  "methods": [],
+  "tags": [
+   "過去勤務債務",
+   "元利均等償却",
+   "特別保険料",
+   "未償却残高"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "PE-03-003",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "PE-58",
+  "level": 1,
+  "minutes": 6,
+  "theme": "過去勤務債務の償却／定率償却と未償却残高の推移",
+  "unit": "過去勤務債務の償却",
+  "topic": "定率償却と未償却残高の推移",
+  "statement": {
+   "tex": "未積立債務 $U_0=1000$ を，毎年始にその時点の未償却残高の 20\\% を特別保険料として払い込む方法（定率償却）で償却する．予定利率は $i=0.02$ で，差損益は生じないものとする．\n\\begin{enumerate}\n\\item 1 年後の未償却残高 $U_1$ を求めよ．\n\\item 3 年後の未償却残高 $U_3$ を有効数字 4 桁で求めよ．\n\\item 3 回目の払込み（2 年後の年始）の特別保険料を有効数字 4 桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $816$\n(2) $\\approx 543.3$\n(3) $\\approx 133.2$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "定率償却では $U_{t+1}=(U_t-0.2U_t)(1+i)=0.816\\,U_t$ となり，残高は等比数列で減る．\n\n(1) $U_1=1000\\times0.8\\times1.02=\\boldsymbol{816}$ である．\n\n(2) $U_3=1000\\times0.816^3\\approx\\boldsymbol{543.3}$ である．\n\n(3) $U_2=1000\\times0.816^2=665.856$ なので，特別保険料は $0.2\\times665.856\\approx\\boldsymbol{133.2}$ である．定率償却は残高が 0 にならず，特別保険料も年々小さくなる．"
+   }
+  ],
+  "idea": {
+   "tex": "定率償却は $U_{t+1}=(1-\\alpha)(1+i)U_t$ の等比数列．特別保険料 $\\alpha U_t$ も同じ比で減る．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 816\n(2) ≈543.3\n(3) ≈133.2"
+  },
+  "techniques": [
+   "pension-psl-amortization"
+  ],
+  "methods": [],
+  "tags": [
+   "定率償却",
+   "未積立債務",
+   "特別保険料",
+   "等比数列"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "PE-03-004",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "PE-58",
+  "level": 1,
+  "minutes": 5,
+  "theme": "利差損益／運用利回りと予定利率の差",
+  "unit": "利差損益",
+  "topic": "運用利回りと予定利率の差",
+  "statement": {
+   "tex": "年度始めの積立金が $F=10000$，年度始めに保険料 $C=500$ を受け取り給付 $B=800$ を支払った．予定利率は $i=0.02$，この年度の実際の運用利回りは $3.5\\%$ であった．\n\\begin{enumerate}\n\\item この年度の利差益を求めよ．\n\\item 年度末の積立金を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{291}{2}$\n(2) $\\frac{20079}{2}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "利差損益は「運用している資産 ×（実際の利回り − 予定利率）」である．年始払なので運用資産は $F+C-B$ である．\n\n(1) 運用資産は $10000+500-800=9700$ なので，利差益は $9700\\times(0.035-0.02)=\\boldsymbol{\\frac{291}{2}}=145.5$ である．\n\n(2) $9700\\times1.035=\\boldsymbol{\\frac{20079}{2}}=10039.5$ である．予定どおりなら $9700\\times1.02=9894$ であり，差 145.5 が (1) の利差益に等しい．"
+   }
+  ],
+  "idea": {
+   "tex": "利差損益 $=(F+C-B)(i'-i)$（年始払）．実際の積立金と予定の積立金の差として確かめる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 291/2\n(2) 20079/2"
+  },
+  "techniques": [
+   "pension-gain-loss"
+  ],
+  "methods": [],
+  "tags": [
+   "利差損益",
+   "運用利回り",
+   "予定利率",
+   "積立金"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "PE-03-005",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "PE-58",
+  "level": 1,
+  "minutes": 6,
+  "theme": "財政検証／継続基準と非継続基準",
+  "unit": "財政検証",
+  "topic": "継続基準と非継続基準",
+  "statement": {
+   "tex": "ある確定給付型の年金制度の決算で，純資産額 $F=9000$，責任準備金 $V=10000$，最低積立基準額 $M=9500$ であった．本問では，継続基準は「$F\\ge V$」，非継続基準は「$F\\ge M$」を満たすかどうかで判定するものとする．\n\\begin{enumerate}\n\\item 継続基準における積立不足額 $V-F$ を求めよ．\n\\item 非継続基準の積立比率 $F/M$ を既約分数で求めよ．\n\\item 判定結果として正しいものを選び，番号で答えよ． \\\\ ① 両方の基準を満たす \\quad ② 継続基準だけを満たす \\quad ③ 非継続基準だけを満たす \\quad ④ どちらも満たさない\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $1000$\n(2) $\\frac{18}{19}$\n(3) ④（番号 4）"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "財政検証は 2 つの観点で行う．継続基準は制度が続くことを前提に，将来の保険料も見込んだ責任準備金と比べる．非継続基準は制度をいま終了したとして，それまでの加入期間に対応する給付（最低積立基準額）を確保できているかを見る．\n\n(1) $10000-9000=\\boldsymbol{1000}$ である．\n\n(2) $9000/9500=\\boldsymbol{\\frac{18}{19}}\\approx0.947$ である．\n\n(3) $F<V$，$F<M$ なので $\\boldsymbol{④}$ である．継続基準の不足は掛金の再計算（特別掛金の見直し）で，非継続基準の不足は一定期間内に解消するための掛金の積み増しで対応する．"
+   }
+  ],
+  "idea": {
+   "tex": "継続基準は責任準備金（将来の保険料を見込む），非継続基準は最低積立基準額（いま終了した場合の給付）と純資産を比べる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 1000\n(2) 18/19\n(3) 4"
+  },
+  "techniques": [
+   "pension-reserve-unfunded"
+  ],
+  "methods": [],
+  "tags": [
+   "財政検証",
+   "継続基準",
+   "非継続基準",
+   "最低積立基準額",
+   "責任準備金"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "PE-03-006",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "PE-58",
+  "level": 2,
+  "minutes": 10,
+  "theme": "未積立債務の推移／特別保険料と差損益による変化",
+  "unit": "未積立債務の推移",
+  "topic": "特別保険料と差損益による変化",
+  "statement": {
+   "tex": "年度始めの未積立債務が $U_0=2000$ で，毎年始に特別保険料 250 を払い込む．予定利率は $i=0.02$ とし，$\\ddot a_{\\overline{8}|}=7.4720$，$\\ddot a_{\\overline{9}|}=8.3255$ とする．\n\\begin{enumerate}\n\\item この年度に差損益が生じないときの年度末の未積立債務 $U_1$ を求めよ．\n\\item この年度に利差益 100 と脱退差損 30 が生じたときの $U_1$ を求めよ．\n\\item 差損益が生じないとき，特別保険料 250 を毎年払い続けると，何回目の払込みで未積立債務がなくなるか．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $1785$\n(2) $1715$\n(3) $9$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "未積立債務は $U_{t+1}=(U_t-K)(1+i)-(\\text{差益})+(\\text{差損})$ で推移する．特別保険料は元本を減らし，残りに予定利率の利息がつく．\n\n(1) $(2000-250)\\times1.02=\\boldsymbol{1785}$ である．\n\n(2) 差益は未積立債務を減らし差損は増やすので $1785-100+30=\\boldsymbol{1715}$ である．\n\n(3) $n$ 回の払込みの現価 $250\\ddot a_{\\overline{n}|}$ が 2000 以上になる最小の $n$ を求める．$250\\times7.4720=1868<2000$，$250\\times8.3255=2081.4\\ge2000$ なので，$\\boldsymbol{9}$ 回目の払込みで償却が終わる（最後の回は不足分だけ払えばよい）．"
+   }
+  ],
+  "idea": {
+   "tex": "未積立債務は $U_{t+1}=(U_t-K)(1+i)\\mp(\\text{差損益})$．残りの払込みで償却できるかは $K\\ddot a_{\\overline{n}|}\\ge U$ で判定する．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 1785\n(2) 1715\n(3) 9"
+  },
+  "techniques": [
+   "pension-psl-amortization",
+   "pension-gain-loss"
+  ],
+  "methods": [],
+  "tags": [
+   "未積立債務",
+   "特別保険料",
+   "差損益",
+   "償却期間"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "PE-03-007",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "PE-58",
+  "level": 2,
+  "minutes": 12,
+  "theme": "責任準備金／過去法と将来法の一致",
+  "unit": "責任準備金",
+  "topic": "過去法と将来法の一致",
+  "statement": {
+   "tex": "62 歳で加入し 65 歳で定年となる加入者に，定年到達時に一時金 500 を支払う（中途脱退者には支払わない）．予定利率は $i=0.02$（$v=0.98039$，$v^2=0.96117$，$v^3=0.94232$）で，脱退残存表は次のとおりである．保険料は在籍者が年始に定額で払い込む．\n\\[\\begin{array}{c|cccc} x & 62 & 63 & 64 & 65 \\\\ \\hline l_x & 1000 & 980 & 960 & 950 \\end{array}\\]\n\\begin{enumerate}\n\\item 加入時から平準に払い込む保険料 $P$ を有効数字 4 桁で求めよ．\n\\item 63 歳の年度始め（払込み前）の在籍者 1 人あたりの責任準備金を，将来法で有効数字 4 桁で求めよ．\n\\item 64 歳の年度始め（払込み前）の在籍者 1 人あたりの責任準備金を，過去法で有効数字 4 桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx 155.2$\n(2) $\\approx 161.6$\n(3) $\\approx 329.9$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "収支相等で $P$ を決めておけば，責任準備金は将来法（今後の給付現価 − 今後の保険料の現価）でも過去法（払い込んだ保険料の元利合計を残存者で分ける）でも同じ値になる．\n\n(1) $P(1+0.98v+0.96v^2)=500\\times0.95\\,v^3$ より $P=\\dfrac{447.6}{2.884}\\approx\\boldsymbol{155.2}$ である．\n\n(2) 将来法：\\[V_{63}=500\\times\\frac{950}{980}v^2-P\\left(1+\\frac{960}{980}v\\right)\\approx\\boldsymbol{161.6}\\] である．過去法 $P\\times1000\\times1.02/980$ でも同じ値になる．\n\n(3) 過去法：62 歳・63 歳の払込みを元利合計し 64 歳の在籍者 960 人で分けて \\[V_{64}=\\frac{P\\,(1000\\times1.02^2+980\\times1.02)}{960}\\approx\\boldsymbol{329.9}\\] である．将来法 $500\\times\\dfrac{950}{960}v-P$ と一致する．"
+   }
+  ],
+  "idea": {
+   "tex": "収支相等で決めた保険料のもとでは，責任準備金の過去法と将来法は一致する．脱退者に給付がなければ，過去法は払込みの元利合計を残存者で割るだけ．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈155.2\n(2) ≈161.6\n(3) ≈329.9"
+  },
+  "techniques": [
+   "pension-reserve-unfunded",
+   "pension-entry-age-normal"
+  ],
+  "methods": [],
+  "tags": [
+   "責任準備金",
+   "過去法",
+   "将来法",
+   "平準保険料",
+   "脱退残存表"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "PE-03-008",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "PE-58",
+  "level": 2,
+  "minutes": 15,
+  "theme": "トローブリッジモデル／制度発足時の過去勤務債務とその償却",
+  "unit": "トローブリッジモデル",
+  "topic": "制度発足時の過去勤務債務とその償却",
+  "statement": {
+   "tex": "トローブリッジモデル（毎年始に 20 歳で 1 人加入，在職中の脱退なし，60 歳で退職し年額 1 の 20 年確定年金を年始払で受給）で，すでに定常人口に達している集団に対して年金制度を新設する．発足時の積立金は 0 で，加入者・受給者の過去の勤務期間もすべて給付の対象とする．財政方式は加入年齢方式（保険料は 1 人定額，年始払）である．予定利率は $i=0.025$ で，次の値を用いよ．\n\\[v^{40}=0.37243,\\quad \\ddot a_{\\overline{40}|}=25.7303,\\quad \\ddot a_{\\overline{20}|}=15.9789,\\quad \\ddot a_{\\overline{15}|}=12.6909\\]\n\\begin{enumerate}\n\\item 標準保険料の総額 $C$ を有効数字 4 桁で求めよ．\n\\item 発足時の過去勤務債務を有効数字 3 桁で求めよ．\n\\item 過去勤務債務を 15 年の元利均等（年始払）で償却するときの毎年の特別保険料を有効数字 3 桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx 9.251$\n(2) $\\approx 441$\n(3) $\\approx 34.7$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "定常人口では，加入年齢方式の責任準備金は定常状態の積立金と同じく極限方程式 $C+dV=B$ を満たす．発足時は積立金が 0 なので，責任準備金全体が過去勤務債務になる．\n\n(1) 標準保険料は $P=\\dfrac{v^{40}\\ddot a_{\\overline{20}|}}{\\ddot a_{\\overline{40}|}}\\approx0.2313$ で，加入者 40 人分で $C=40P\\approx\\boldsymbol{9.251}$ である．\n\n(2) $B=20$，$d=0.025/1.025=1/41$ より $V=(B-C)/d=(20-9.251)\\times41\\approx\\boldsymbol{441}$ である．\n\n(3) $K=V/\\ddot a_{\\overline{15}|}\\approx441/12.6909\\approx\\boldsymbol{34.7}$ である．発足当初の拠出は $C+K\\approx44.0$ で，賦課方式の $B=20$ を上回る．"
+   }
+  ],
+  "idea": {
+   "tex": "定常人口に新設した制度の過去勤務債務は，その方式の定常状態の責任準備金 $(B-C)/d$ に等しい．これを $\\ddot a_{\\overline{n}|}$ で割れば元利均等の特別保険料．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈9.251\n(2) ≈441\n(3) ≈34.7"
+  },
+  "techniques": [
+   "pension-trowbridge-model",
+   "pension-psl-amortization",
+   "pension-entry-age-normal"
+  ],
+  "methods": [],
+  "tags": [
+   "トローブリッジモデル",
+   "過去勤務債務",
+   "加入年齢方式",
+   "元利均等償却",
+   "極限方程式"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "PE-03-009",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "PE-58",
+  "level": 2,
+  "minutes": 12,
+  "theme": "予定利率の変更／受給者の給付現価の増加と過去勤務債務",
+  "unit": "予定利率の変更",
+  "topic": "受給者の給付現価の増加と過去勤務債務",
+  "statement": {
+   "tex": "受給者だけからなる閉鎖型の年金制度で，残りの支払回数が 5 回の受給者が 100 人，10 回の受給者が 100 人おり，年金年額はいずれも 60 万円（年始払の確定年金）である．次の値を用いよ．\n\\[\\begin{array}{c|cc} & i=0.025 & i=0.02 \\\\ \\hline \\ddot a_{\\overline{5}|} & 4.7620 & 4.8077 \\\\ \\ddot a_{\\overline{10}|} & 8.9709 & 9.1622 \\end{array}\\]\n\\begin{enumerate}\n\\item 予定利率 $i=0.025$ のときの給付現価（万円）を有効数字 4 桁で求めよ．\n\\item 予定利率を $i=0.02$ に引き下げたことによる給付現価の増加額（万円）を有効数字 3 桁で求めよ．\n\\item (2) の増加額を新たな過去勤務債務とし，$i=0.02$ のもとで 5 年の元利均等（年始払）で償却するときの毎年の特別保険料（万円）を有効数字 3 桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx 82400$\n(2) $\\approx 1420$\n(3) $\\approx 296$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "予定利率を引き下げると給付現価（責任準備金）が増え，積立金は変わらないので，その増加分がそのまま未積立債務（過去勤務債務）になる．\n\n(1) $100\\times60\\times(4.7620+8.9709)\\approx\\boldsymbol{82400}$ 万円である．\n\n(2) $i=0.02$ では $6000\\times(4.8077+9.1622)\\approx83820$ なので，増加額は $83820-82400\\approx\\boldsymbol{1420}$ 万円である．残りの期間が長い 10 回の受給者の方が増加への寄与が大きい．\n\n(3) $1420/4.8077\\approx\\boldsymbol{296}$ 万円である．"
+   }
+  ],
+  "idea": {
+   "tex": "計算基礎の変更による給付現価の増減は，積立金が変わらないので，そのまま未積立債務の増減になる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈82400\n(2) ≈1420\n(3) ≈296"
+  },
+  "techniques": [
+   "pension-reserve-unfunded",
+   "pension-discount-annuity-certain",
+   "pension-psl-amortization"
+  ],
+  "methods": [],
+  "tags": [
+   "予定利率",
+   "計算基礎の変更",
+   "過去勤務債務",
+   "給付現価",
+   "元利均等償却"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "PE-03-010",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "PE-58",
+  "level": 2,
+  "minutes": 8,
+  "theme": "脱退差損益／予定より多い脱退の損益",
+  "unit": "脱退差損益",
+  "topic": "予定より多い脱退の損益",
+  "statement": {
+   "tex": "ある年齢の加入者 1000 人について，予定脱退率は 0.05 であったが，実際には年度中に 70 人が脱退した．脱退者には年度末に脱退一時金 $W$ を支払う．年度末の在籍者 1 人あたりの責任準備金は 300 である．\n\\begin{enumerate}\n\\item $W=200$ のとき，年度末時点の脱退差益を求めよ（差損なら負の数で答えよ）．\n\\item $W=350$ のとき，年度末時点の脱退差益を求めよ（差損なら負の数で答えよ）．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $2000$\n(2) $-1000$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "脱退者が 1 人増えるごとに，その人のための責任準備金 300 が不要になる一方で，脱退一時金 $W$ を払う．したがって脱退差益は\n\\[(\\text{実際の脱退者数}-\\text{予定脱退者数})\\times(V-W)\\]\nである．予定脱退者数は $1000\\times0.05=50$ 人で，実際との差は 20 人である．\n\n(1) $20\\times(300-200)=\\boldsymbol{2000}$ の差益である．\n\n(2) $20\\times(300-350)=\\boldsymbol{-1000}$，すなわち 1000 の差損である．脱退一時金が責任準備金より大きい年齢では，脱退が予定より多いと損失になる．"
+   }
+  ],
+  "idea": {
+   "tex": "脱退差益 $=(\\text{実際}-\\text{予定の脱退者数})\\times(V-W)$．脱退で解放される責任準備金と支払う給付の差で符号が決まる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 2000\n(2) -1000"
+  },
+  "techniques": [
+   "pension-gain-loss"
+  ],
+  "methods": [],
+  "tags": [
+   "脱退差損益",
+   "責任準備金",
+   "脱退一時金",
+   "利源分析"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "PE-03-011",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "PE-58",
+  "level": 2,
+  "minutes": 10,
+  "theme": "責任準備金の推移／定常状態の標準保険料と利息分の特別保険料",
+  "unit": "責任準備金の推移",
+  "topic": "定常状態の標準保険料と利息分の特別保険料",
+  "statement": {
+   "tex": "定常人口の年金制度を加入年齢方式で運営している．定常状態の責任準備金は $V=50000$，給付総額は $B=3000$（年始払）で，予定利率は $i=0.02$ である．\n\\begin{enumerate}\n\\item 標準保険料の総額 $C$ を既約分数で求めよ．\n\\item 積立金が $F=45000$ のとき，未積立債務を増やしも減らしもしない特別保険料（年始払）の額を既約分数で求めよ．\n\\item (2) の特別保険料を払い込み，予定どおりに推移したとき，1 年後の積立金を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{103000}{51}$\n(2) $\\frac{5000}{51}$\n(3) $45000$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "定常状態では責任準備金は一定で，$(V+C-B)(1+i)=V$，すなわち $C+dV=B$ が成り立つ．$d=1/51$ である．\n\n(1) $C=B-dV=3000-\\dfrac{50000}{51}=\\boldsymbol{\\frac{103000}{51}}\\approx2019.6$ である．\n\n(2) 未積立債務 $U=V-F=5000$ は $U_1=(U-K)(1+i)$ で推移するので，$U_1=U$ となるのは $K=dU=\\boldsymbol{\\frac{5000}{51}}\\approx98.04$ のときである（利息分だけの償却）．\n\n(3) $F_1=(F+C+K-B)(1+i)$ である．$C-B=-dV$，$K=dU$ より $F+C+K-B=F-dF=vF$ なので $F_1=F=\\boldsymbol{45000}$ となる．積立金も責任準備金も一定のまま推移する．"
+   }
+  ],
+  "idea": {
+   "tex": "定常状態の加入年齢方式では $C=B-dV$．特別保険料を $dU$ にすると未積立債務は利息だけ払われて一定のまま残る．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 103000/51\n(2) 5000/51\n(3) 45000"
+  },
+  "techniques": [
+   "pension-stationary-limit-equation",
+   "pension-reserve-unfunded",
+   "pension-psl-amortization"
+  ],
+  "methods": [],
+  "tags": [
+   "責任準備金",
+   "極限方程式",
+   "未積立債務",
+   "特別保険料",
+   "定常状態"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "PE-03-012",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "PE-58",
+  "level": 2,
+  "minutes": 8,
+  "theme": "昇給差損益／最終給与比例給付の過去分債務",
+  "unit": "昇給差損益",
+  "topic": "最終給与比例給付の過去分債務",
+  "statement": {
+   "tex": "最終給与比例の給付を行う制度で，年度末の過去勤務期間分の給付現価は，この年度の昇給率が予定どおり 3\\% であれば 10000 になる見込みであった．将来の昇給の見込みは変えず，給付現価はこの年度の昇給の実績に比例して変わるものとする．\n\\begin{enumerate}\n\\item この年度の実際の昇給率が 1\\% であったときの昇給差益を有効数字 4 桁で求めよ．\n\\item 実際の昇給率が 5\\% であったときの昇給差益を有効数字 4 桁で求めよ（差損なら負の数で答えよ）．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx 194.2$\n(2) $\\approx -194.2$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "最終給与比例の給付では，すでに勤めた期間分の給付額も将来の最終給与で決まる．この年度の昇給が予定より低ければ見込みの最終給与が下がり，過去分の給付現価が減るので差益になる．\n\n(1) 給付現価は $10000\\times\\dfrac{1.01}{1.03}\\approx9805.8$ になるので，差益は $10000-9805.8\\approx\\boldsymbol{194.2}$ である．\n\n(2) $10000\\times\\dfrac{1.05}{1.03}\\approx10194.2$ になるので，差益は $\\boldsymbol{-194.2}$（すなわち差損 $194.2$）である．昇給差損益は「予定 − 実際」の給与の比で給付現価を変える．"
+   }
+  ],
+  "idea": {
+   "tex": "最終給与比例の過去分債務は見込み最終給与に比例する．昇給実績が予定を下回れば差益，上回れば差損．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈194.2\n(2) ≈-194.2"
+  },
+  "techniques": [
+   "pension-gain-loss",
+   "pension-salary-scale"
+  ],
+  "methods": [],
+  "tags": [
+   "昇給差損益",
+   "最終給与比例",
+   "過去勤務期間",
+   "利源分析"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "PE-03-013",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "PE-58",
+  "level": 3,
+  "minutes": 15,
+  "theme": "利源分析／利差・脱退差・昇給差と未積立債務の変化",
+  "unit": "利源分析",
+  "topic": "利差・脱退差・昇給差と未積立債務の変化",
+  "statement": {
+   "tex": "加入年齢方式の年金制度で，年度始めに責任準備金 $V_0=10000$，積立金 $F_0=8000$ である．年度始めに標準保険料 $C=600$ と特別保険料 $K=300$ を受け取り，給付 $B=900$ を支払う．予定利率は $i=0.02$ で，予定どおりなら年度末の責任準備金は $(V_0+C-B)(1+i)$ になるものとする．\n\\begin{enumerate}\n\\item この年度の運用利回りが 4\\% であったときの利差益を求めよ．\n\\item 予定どおりに推移した場合の年度末の未積立債務を求めよ．\n\\item (1) の運用実績に加えて，脱退差損 50 と昇給差益 30 が生じた．年度末の未積立債務を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $160$\n(2) $1734$\n(3) $1594$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "未積立債務 $U=V-F$ の変化を，予定どおりの推移と各差損益に分解する（利源分析）．\n\n(1) 運用資産は $8000+600+300-900=8000$ なので，利差益は $8000\\times(0.04-0.02)=\\boldsymbol{160}$ である．\n\n(2) 予定どおりなら $V_1=(10000+600-900)\\times1.02=9894$，$F_1=8000\\times1.02=8160$ で，$U_1=9894-8160=\\boldsymbol{1734}$ である．これは $(U_0-K)(1+i)=(2000-300)\\times1.02$ に等しい．\n\n(3) 実際の積立金は $8000\\times1.04=8320$，実際の責任準備金は脱退差損で増え昇給差益で減って $9894+50-30=9914$ である．よって $U_1=9914-8320=\\boldsymbol{1594}$ である．分解すると $1734-160+50-30=1594$ となる．"
+   }
+  ],
+  "idea": {
+   "tex": "年度末の未積立債務 ＝ $(U_0-K)(1+i)$ − 差益 ＋ 差損．利差は積立金側，脱退差・昇給差は責任準備金側に現れる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 160\n(2) 1734\n(3) 1594"
+  },
+  "techniques": [
+   "pension-gain-loss",
+   "pension-reserve-unfunded"
+  ],
+  "methods": [],
+  "tags": [
+   "利源分析",
+   "利差損益",
+   "脱退差損益",
+   "昇給差損益",
+   "未積立債務"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "PE-03-014",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "PE-58",
+  "level": 3,
+  "minutes": 12,
+  "theme": "過去勤務債務の償却／元利均等償却と定率償却の比較",
+  "unit": "過去勤務債務の償却",
+  "topic": "元利均等償却と定率償却の比較",
+  "statement": {
+   "tex": "未積立債務 $U_0=1000$ を，予定利率 $i=0.02$ のもとで償却する．特別保険料は年始払で，差損益は生じないとする．$\\ddot a_{\\overline{10}|}=9.1622$，$\\ddot a_{\\overline{5}|}=4.8077$ を用いよ．\n\\begin{enumerate}\n\\item 10 年の元利均等償却の 1 回目の特別保険料と，定率償却（毎年始に残高の $\\alpha$ を払い込む）の 1 回目の特別保険料が等しくなる償却率 $\\alpha$ を有効数字 4 桁で求めよ．\n\\item 元利均等償却で，5 回払い込んだ後の未償却残高 $U_5$ を有効数字 4 桁で求めよ．\n\\item (1) の $\\alpha$ の定率償却で，5 回払い込んだ後の未償却残高 $U_5$ を有効数字 3 桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx 0.1091$\n(2) $\\approx 524.7$\n(3) $\\approx 619$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "元利均等償却は毎年同額で $n$ 年後に残高 0 になる．定率償却は残高に比例して払うので，最初の払込みが同じでも後になるほど払込みが小さくなり，償却が遅れる．\n\n(1) 元利均等の特別保険料は $1000/9.1622\\approx109.1$ なので，$\\alpha=109.1/1000\\approx\\boldsymbol{0.1091}$ である．\n\n(2) 残り 5 回の払込みの現価なので $U_5=109.1\\times\\ddot a_{\\overline{5}|}=109.1\\times4.8077\\approx\\boldsymbol{524.7}$ である．\n\n(3) $U_{t+1}=(1-\\alpha)(1.02)U_t$ より $U_5=1000\\times(0.90867)^5\\approx\\boldsymbol{619}$ である．同じ初回の負担でも，定率償却は 5 年後の残高が約 $95$ 多く残る．"
+   }
+  ],
+  "idea": {
+   "tex": "元利均等の残高は残りの払込みの現価 $K\\ddot a_{\\overline{n-t}|}$，定率償却の残高は $\\{(1-\\alpha)(1+i)\\}^tU_0$．両者を比べて償却の速さを見る．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈0.1091\n(2) ≈524.7\n(3) ≈619"
+  },
+  "techniques": [
+   "pension-psl-amortization"
+  ],
+  "methods": [],
+  "tags": [
+   "元利均等償却",
+   "定率償却",
+   "未償却残高",
+   "過去勤務債務"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "PE-03-015",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "PE-58",
+  "level": 3,
+  "minutes": 15,
+  "theme": "開放基金方式／トローブリッジモデルで未積立債務が減らない理由",
+  "unit": "開放基金方式",
+  "topic": "トローブリッジモデルで未積立債務が減らない理由",
+  "statement": {
+   "tex": "トローブリッジモデル（毎年始に 1 人加入，在職中の脱退なし，4 年在職して退職し，年額 1 の 3 年確定年金を年始払で受給）が定常人口に達したところで年金制度を新設した．発足時の積立金は 0，加入者は 1 人あたり年額 1 の給与を受け取り，予定利率は $i=0.04$ である．将来加入者は翌年始以降に加入する者とし，保険料・給付は年始払とする．\n\\begin{enumerate}\n\\item 開放基金方式の発足時の保険料率（給与に対する率）を求めよ．\n\\item 加入年齢方式の標準保険料率 $P^{EAN}=v^4\\ddot a_{\\overline{3}|}/\\ddot a_{\\overline{4}|}$ を有効数字 4 桁で求めよ．\n\\item 開放基金方式で 1 年間予定どおりに推移したとき，1 年後の積立金を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{3}{4}$\n(2) $\\approx 0.6535$\n(3) $0$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "定常人口では，開放型の総給付現価は $S^p+S^a+S^f=B/d$，総給与現価は $G^a+G^f=L/d$ になる（給付総額 $B=3$，総給与 $L=4$，$d=0.04/1.04=1/26$）．\n\n(1) $P^{OAN}=\\dfrac{S^p+S^a+S^f-F}{G^a+G^f}=\\dfrac{B/d-0}{L/d}=\\dfrac{B}{L}=\\boldsymbol{\\frac{3}{4}}$ である．積立金が 0 のとき，開放基金方式の保険料率は賦課方式の保険料率と同じになる．\n\n(2) $v^4=0.85480$，$\\ddot a_{\\overline{3}|}=2.886$，$\\ddot a_{\\overline{4}|}=3.775$ より $P^{EAN}\\approx\\boldsymbol{0.6535}$ である．加入年齢方式の責任準備金は $V=(B-LP^{EAN})/d\\approx10.04$ で，発足時はこれがすべて未積立債務である．\n\n(3) 保険料総額は $0.75\\times4=3=B$ なので $F_1=(0+3-3)(1+i)=\\boldsymbol{0}$ である．開放基金方式の保険料率は $P^{EAN}+\\dfrac{U}{G^a+G^f}=P^{EAN}+\\dfrac{dU}{L}$ と分解でき，未積立債務については利息分 $dU$ しか払い込まない．そのため予定どおりに推移しても未積立債務は減らず，積立金は 0 のままとなる．"
+   }
+  ],
+  "idea": {
+   "tex": "定常人口の開放基金方式は $P=P^{EAN}+dU/L$ で，未積立債務の利息分だけを払う．積立金 0 から始めると賦課方式と同じ保険料になり，積立が進まない．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 3/4\n(2) ≈0.6535\n(3) 0"
+  },
+  "techniques": [
+   "pension-open-aggregate",
+   "pension-trowbridge-model",
+   "pension-stationary-limit-equation"
+  ],
+  "methods": [],
+  "tags": [
+   "開放基金方式",
+   "トローブリッジモデル",
+   "加入年齢方式",
+   "未積立債務",
+   "賦課方式"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ }
+]

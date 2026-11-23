@@ -1,0 +1,815 @@
+[
+ {
+  "id": "LI-02-001",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "LI-51",
+  "level": 1,
+  "minutes": 6,
+  "theme": "利息計算の基礎／割引率・利力・期始払確定年金",
+  "unit": "利息計算の基礎",
+  "topic": "割引率・利力・期始払確定年金",
+  "statement": {
+   "tex": "年利率を $i=0.03$ とする．\n\\begin{enumerate}\n\\item 割引率 $d$ を有効数字4桁で求めよ．\n\\item 利力 $\\delta$ を有効数字4桁で求めよ．\n\\item 期始払確定年金の現価 $\\ddot a_{\\overline{10}|}$ を有効数字4桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx 0.02913$\n(2) $\\approx 0.02956$\n(3) $\\approx 8.786$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　$v=\\frac{1}{1+i}$，$d=iv=1-v$，$\\delta=\\log(1+i)$，$\\ddot a_{\\overline{n}|}=1+v+\\dots+v^{n-1}=\\frac{1-v^n}{d}$．\n\n(1) $d=\\frac{0.03}{1.03}\\approx\\boldsymbol{0.02913}$．\n\n(2) $\\delta=\\log1.03\\approx\\boldsymbol{0.02956}$．$d<\\delta<i$ の順になる．\n\n(3) $v^{10}=1.03^{-10}\\approx0.7441$ より $\\ddot a_{\\overline{10}|}=\\frac{1-v^{10}}{d}\\approx\\boldsymbol{8.786}$．"
+   }
+  ],
+  "idea": {
+   "tex": "$d=iv$，$\\delta=\\log(1+i)$，$\\ddot a_{\\overline{n}|}=(1-v^n)/d$ の3つで利息計算の基本がそろう．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈0.02913\n(2) ≈0.02956\n(3) ≈8.786"
+  },
+  "techniques": [
+   "present-value-basics"
+  ],
+  "methods": [],
+  "tags": [
+   "利息計算",
+   "割引率",
+   "利力",
+   "確定年金"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "LI-02-002",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "LI-51",
+  "level": 1,
+  "minutes": 8,
+  "theme": "生命保険の現価／生存保険・定期保険・養老保険の一時払純保険料",
+  "unit": "生命保険の現価",
+  "topic": "生存保険・定期保険・養老保険の一時払純保険料",
+  "statement": {
+   "tex": "$i=0.02$ とし，次の生命表を用いる．保険金はすべて1で，死亡保険金は死亡した年度の末に支払う．\n\\begin{tabular}{c|ccc} $x$ & 60 & 61 & 62 \\\\ \\hline $l_x$ & 10000 & 9900 & 9780 \\end{tabular}\n\\begin{enumerate}\n\\item 60歳加入・保険期間2年の生存保険の一時払純保険料 ${}_2E_{60}$ を有効数字4桁で求めよ．\n\\item 60歳加入・保険期間2年の定期保険の一時払純保険料 $A^{1}_{60:\\overline{2}|}$ を有効数字4桁で求めよ．\n\\item 60歳加入・保険期間2年の養老保険の一時払純保険料 $A_{60:\\overline{2}|}$ を有効数字4桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx 0.9400$\n(2) $\\approx 0.02134$\n(3) $\\approx 0.9614$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　一時払純保険料は給付の期待現価である．支払時点ごとに「支払う確率×割引」を足す．\n\n(1) ${}_2E_{60}=v^2\\frac{l_{62}}{l_{60}}=\\frac{0.978}{1.02^2}\\approx\\boldsymbol{0.9400}$．\n\n(2) $d_{60}=100$，$d_{61}=120$ より $A^{1}_{60:\\overline{2}|}=v\\frac{100}{10000}+v^2\\frac{120}{10000}\\approx\\boldsymbol{0.02134}$．\n\n(3) 養老保険は定期保険と生存保険の和なので $A_{60:\\overline{2}|}\\approx\\boldsymbol{0.9614}$．"
+   }
+  ],
+  "idea": {
+   "tex": "一時払純保険料＝給付の期待現価．養老保険＝定期保険＋生存保険．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈0.9400\n(2) ≈0.02134\n(3) ≈0.9614"
+  },
+  "techniques": [
+   "present-value-basics",
+   "life-table-functions"
+  ],
+  "methods": [],
+  "tags": [
+   "一時払純保険料",
+   "生存保険",
+   "定期保険",
+   "養老保険",
+   "現価"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "LI-02-003",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "LI-51",
+  "level": 1,
+  "minutes": 8,
+  "theme": "計算基数／$D_x,\\ N_x,\\ M_x$ で養老保険の保険料を出す",
+  "unit": "計算基数",
+  "topic": "$D_x,\\ N_x,\\ M_x$ で養老保険の保険料を出す",
+  "statement": {
+   "tex": "ある生命表と予定利率に基づく計算基数の値が次のように与えられている．\n\\begin{tabular}{c|ccc} $x$ & $D_x$ & $N_x$ & $M_x$ \\\\ \\hline 40 & 43028 & 1048802 & 22463 \\\\ 60 & 24923 & 363229 & 17801 \\\\ 65 & 20405 & 247592 & 15550 \\end{tabular}\n\\begin{enumerate}\n\\item $\\ddot a_{40:\\overline{20}|}$ を有効数字4桁で求めよ．\n\\item 保険金1の養老保険（40歳加入，20年満期，死亡保険金は年度末払）の一時払純保険料 $A_{40:\\overline{20}|}$ を有効数字4桁で求めよ．\n\\item (2) の保険の年払純保険料 $P_{40:\\overline{20}|}$（全期払込）を有効数字4桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx 15.93$\n(2) $\\approx 0.6876$\n(3) $\\approx 0.04315$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　$D_x=v^xl_x$，$N_x=\\sum_{k\\ge0}D_{x+k}$，$C_x=v^{x+1}d_x$，$M_x=\\sum_{k\\ge0}C_{x+k}$ とおくと，現価は計算基数の差と比で書ける．\n\n(1) $\\ddot a_{40:\\overline{20}|}=\\frac{N_{40}-N_{60}}{D_{40}}=\\frac{685573}{43028}\\approx\\boldsymbol{15.93}$．\n\n(2) $A_{40:\\overline{20}|}=\\frac{M_{40}-M_{60}+D_{60}}{D_{40}}=\\frac{4662+24923}{43028}\\approx\\boldsymbol{0.6876}$．\n\n(3) $P_{40:\\overline{20}|}=\\frac{M_{40}-M_{60}+D_{60}}{N_{40}-N_{60}}=\\frac{29585}{685573}\\approx\\boldsymbol{0.04315}$．"
+   }
+  ],
+  "idea": {
+   "tex": "計算基数では，期間 $[x,x+n)$ の年金は $N_x-N_{x+n}$，死亡給付は $M_x-M_{x+n}$，満期給付は $D_{x+n}$ を $D_x$ で割る．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈15.93\n(2) ≈0.6876\n(3) ≈0.04315"
+  },
+  "techniques": [
+   "commutation-functions",
+   "equivalence-principle"
+  ],
+  "methods": [],
+  "tags": [
+   "計算基数",
+   "養老保険",
+   "年払純保険料",
+   "生命年金"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "LI-02-004",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "LI-51",
+  "level": 1,
+  "minutes": 6,
+  "theme": "純保険料／$A_x=1-d\\ddot a_x$ と終身保険の責任準備金",
+  "unit": "純保険料",
+  "topic": "$A_x=1-d\\ddot a_x$ と終身保険の責任準備金",
+  "statement": {
+   "tex": "$i=0.03$，$\\ddot a_x=20$，$\\ddot a_{x+10}=16$ とする．保険金1の終身保険（死亡保険金は年度末払，保険料は終身払）について答えよ．\n\\begin{enumerate}\n\\item $A_x$ を有効数字4桁で求めよ．\n\\item 年払純保険料 $P_x$ を有効数字4桁で求めよ．\n\\item 第10年度末の純保険料式責任準備金 ${}_{10}V_x$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx 0.4175$\n(2) $\\approx 0.02087$\n(3) $0.2$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　$1=d\\ddot a_x+A_x$（死亡年度末までの期始払年金の利息と元本の返却）を使う．終身保険の責任準備金は $\\ddot a$ の比で書ける．\n\n(1) $d=\\frac{0.03}{1.03}$ より $A_x=1-d\\ddot a_x=1-\\frac{0.6}{1.03}\\approx\\boldsymbol{0.4175}$．\n\n(2) $P_x=\\frac{A_x}{\\ddot a_x}\\approx\\boldsymbol{0.02087}$．$P_x=\\frac{1}{\\ddot a_x}-d$ と計算しても同じ．\n\n(3) ${}_{10}V_x=A_{x+10}-P_x\\ddot a_{x+10}=1-d\\ddot a_{x+10}-\\left(\\frac{1}{\\ddot a_x}-d\\right)\\ddot a_{x+10}=1-\\frac{\\ddot a_{x+10}}{\\ddot a_x}=1-\\frac{16}{20}=\\boldsymbol{0.2}$．"
+   }
+  ],
+  "idea": {
+   "tex": "$A_x=1-d\\ddot a_x$ から $P_x=1/\\ddot a_x-d$，${}_tV_x=1-\\ddot a_{x+t}/\\ddot a_x$．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈0.4175\n(2) ≈0.02087\n(3) 0.2"
+  },
+  "techniques": [
+   "reserve-prospective-retrospective",
+   "present-value-basics"
+  ],
+  "methods": [],
+  "tags": [
+   "年払純保険料",
+   "終身保険",
+   "責任準備金",
+   "将来法"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "LI-02-005",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "LI-51",
+  "level": 1,
+  "minutes": 7,
+  "theme": "純保険料／収支相等の原則で年払純保険料を決める",
+  "unit": "純保険料",
+  "topic": "収支相等の原則で年払純保険料を決める",
+  "statement": {
+   "tex": "$x$ 歳加入，保険期間2年，保険金1の養老保険（死亡保険金は年度末払）を考える．$q_x=0.01$，$q_{x+1}=0.02$，$i=0.02$ とし，保険料は年1回期始払で2年間払い込む．\n\\begin{enumerate}\n\\item $\\ddot a_{x:\\overline{2}|}$ を有効数字4桁で求めよ．\n\\item $A_{x:\\overline{2}|}$ を有効数字4桁で求めよ．\n\\item 年払純保険料 $P_{x:\\overline{2}|}$ を有効数字4桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx 1.971$\n(2) $\\approx 0.9614$\n(3) $\\approx 0.4879$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　収支相等の原則：保険料の期待現価＝給付の期待現価．\n\n(1) $\\ddot a_{x:\\overline{2}|}=1+vp_x=1+\\frac{0.99}{1.02}\\approx\\boldsymbol{1.971}$．\n\n(2) 1年目の死亡で $v$，それ以外（2年目の死亡または満期）は第2年度末に1を払うので $A_{x:\\overline{2}|}=vq_x+v^2p_x=\\frac{0.01}{1.02}+\\frac{0.99}{1.02^2}\\approx\\boldsymbol{0.9614}$．$q_{x+1}$ は結果に影響しない．\n\n(3) $P_{x:\\overline{2}|}=\\frac{A_{x:\\overline{2}|}}{\\ddot a_{x:\\overline{2}|}}\\approx\\boldsymbol{0.4879}$．"
+   }
+  ],
+  "idea": {
+   "tex": "収支相等の原則：$P\\ddot a=A$．2年養老では第2年度は死亡でも生存でも1を払う．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈1.971\n(2) ≈0.9614\n(3) ≈0.4879"
+  },
+  "techniques": [
+   "equivalence-principle",
+   "present-value-basics"
+  ],
+  "methods": [],
+  "tags": [
+   "収支相等の原則",
+   "年払純保険料",
+   "養老保険"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "LI-02-006",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "LI-51",
+  "level": 2,
+  "minutes": 15,
+  "theme": "責任準備金／将来法と過去法の一致",
+  "unit": "責任準備金",
+  "topic": "将来法と過去法の一致",
+  "statement": {
+   "tex": "$x$ 歳加入，保険期間3年，保険金1の養老保険（死亡保険金は年度末払，保険料は年払全期払込）を考える．$q_x=0.01$，$q_{x+1}=0.015$，$q_{x+2}=0.02$，$i=0.03$ とする．\n\\begin{enumerate}\n\\item 年払純保険料 $P$ を有効数字4桁で求めよ．\n\\item 第1年度末の純保険料式責任準備金 ${}_1V$ を有効数字4桁で求めよ．\n\\item 第2年度末の純保険料式責任準備金 ${}_2V$ を有効数字4桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx 0.3181$\n(2) $\\approx 0.3208$\n(3) $\\approx 0.6528$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　将来法：${}_tV=$（将来の給付の現価）$-$（将来の保険料の現価）．過去法：（過去の保険料の終価）$-$（過去の給付の終価）を生存者1人あたりにしたもの．収支相等で $P$ を決めていれば両者は一致する．\n\n(1) $A_{x:\\overline{3}|}=vq_x+v^2p_xq_{x+1}+v^3p_xp_{x+1}\\approx0.9161$，$\\ddot a_{x:\\overline{3}|}=1+vp_x+v^2p_xp_{x+1}\\approx2.880$ より $P\\approx\\boldsymbol{0.3181}$．\n\n(2) 将来法：$A_{x+1:\\overline{2}|}=vq_{x+1}+v^2p_{x+1}\\approx0.9430$，$\\ddot a_{x+1:\\overline{2}|}=1+vp_{x+1}\\approx1.956$ より\n\\[{}_1V=A_{x+1:\\overline{2}|}-P\\ddot a_{x+1:\\overline{2}|}\\approx\\boldsymbol{0.3208}.\\]\n過去法 ${}_1V=\\frac{P(1+i)-q_x}{p_x}$ でも同じ値になる．\n\n(3) 残り1年は死亡でも満期でも年度末に1を払うので ${}_2V=v-P\\approx\\boldsymbol{0.6528}$．"
+   }
+  ],
+  "idea": {
+   "tex": "将来法と過去法は収支相等の原則のもとで一致する．満期直前の養老保険の準備金は $v-P$．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈0.3181\n(2) ≈0.3208\n(3) ≈0.6528"
+  },
+  "techniques": [
+   "reserve-prospective-retrospective",
+   "equivalence-principle"
+  ],
+  "methods": [],
+  "tags": [
+   "責任準備金",
+   "将来法",
+   "過去法",
+   "養老保険",
+   "年払純保険料"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "LI-02-007",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "LI-51",
+  "level": 2,
+  "minutes": 12,
+  "theme": "責任準備金／再帰式と危険保険料・貯蓄保険料",
+  "unit": "責任準備金",
+  "topic": "再帰式と危険保険料・貯蓄保険料",
+  "statement": {
+   "tex": "保険金1の終身保険（死亡保険金は年度末払）について，年払純保険料 $P=0.025$，第10年度末の責任準備金 ${}_{10}V=0.12$，$q_{x+10}=0.008$，$i=0.025$ とする．\n\\begin{enumerate}\n\\item ${}_{11}V$ を有効数字4桁で求めよ．\n\\item 第11年度の保険料のうち危険保険料 $P^r$ を有効数字4桁で求めよ．\n\\item 第11年度の保険料のうち貯蓄保険料 $P^s$ を有効数字4桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx 0.1418$\n(2) $\\approx 0.006698$\n(3) $\\approx 0.01830$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　再帰式 $({}_tV+P)(1+i)=q_{x+t}\\cdot1+p_{x+t}\\,{}_{t+1}V$ を使う．これを $({}_tV+P)(1+i)={}_{t+1}V+q_{x+t}(1-{}_{t+1}V)$ と書き直すと，保険料は貯蓄部分と危険部分に分かれる．\n\n(1) ${}_{11}V=\\frac{(0.12+0.025)\\times1.025-0.008}{0.992}\\approx\\boldsymbol{0.1418}$．\n\n(2) 危険保険料は危険保険金（保険金と準備金の差）$1-{}_{11}V$ を1年定期保険で買う保険料で，$P^r=vq_{x+10}(1-{}_{11}V)\\approx\\boldsymbol{0.006698}$．\n\n(3) 貯蓄保険料は準備金を ${}_{10}V$ から ${}_{11}V$ に積み増す分で，$P^s=v\\,{}_{11}V-{}_{10}V\\approx\\boldsymbol{0.01830}$．$P^r+P^s=0.025=P$ となることで検算できる．"
+   }
+  ],
+  "idea": {
+   "tex": "再帰式を ${}_{t+1}V+q(1-{}_{t+1}V)$ の形にすると，保険料＝貯蓄保険料＋危険保険料に分解できる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈0.1418\n(2) ≈0.006698\n(3) ≈0.01830"
+  },
+  "techniques": [
+   "reserve-recursion"
+  ],
+  "methods": [],
+  "tags": [
+   "責任準備金",
+   "再帰式",
+   "危険保険料",
+   "貯蓄保険料",
+   "終身保険"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "LI-02-008",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "LI-51",
+  "level": 2,
+  "minutes": 10,
+  "theme": "営業保険料／予定事業費（$\\alpha,\\beta,\\gamma$）と収支相等",
+  "unit": "営業保険料",
+  "topic": "予定事業費（$\\alpha,\\beta,\\gamma$）と収支相等",
+  "statement": {
+   "tex": "保険金1，保険期間20年の養老保険（年払全期払込）について，$\\ddot a_{x:\\overline{20}|}=15.0$，$A_{x:\\overline{20}|}=0.55$ とする．予定事業費は次のとおりとする．\n\\\\ 新契約費：契約時に保険金1あたり $\\alpha=0.025$ \\\\ 集金費：毎年の営業保険料の $\\beta=3\\%$（払込のつど） \\\\ 維持費：保険料払込期間中の毎年始に保険金1あたり $\\gamma=0.002$\n\\begin{enumerate}\n\\item 年払純保険料 $P$ を求めよ．\n\\item 年払営業保険料 $G$ を有効数字4桁で求めよ．\n\\item 付加保険料 $G-P$ を有効数字4桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{11}{300}$\n(2) $\\approx 0.04158$\n(3) $\\approx 0.004914$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　営業保険料は「収入（営業保険料）の現価＝給付の現価＋事業費の現価」で決める．\n\n(1) $P=\\frac{0.55}{15}=\\boldsymbol{\\frac{11}{300}}\\approx0.03667$．\n\n(2) $G\\ddot a=A+\\alpha+\\beta G\\ddot a+\\gamma\\ddot a$ より\n\\[G=\\frac{A+\\alpha+\\gamma\\ddot a}{(1-\\beta)\\ddot a}=\\frac{0.55+0.025+0.03}{0.97\\times15}=\\frac{0.605}{14.55}\\approx\\boldsymbol{0.04158}.\\]\n\n(3) $G-P\\approx\\boldsymbol{0.004914}$．このうち新契約費 $\\alpha$ を年払にならした分は $\\alpha/\\ddot a\\approx0.00167$ である．"
+   }
+  ],
+  "idea": {
+   "tex": "営業保険料は事業費を含めた収支相等で決める：$G\\ddot a=A+\\alpha+\\beta G\\ddot a+\\gamma\\ddot a$．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 11/300\n(2) ≈0.04158\n(3) ≈0.004914"
+  },
+  "techniques": [
+   "equivalence-principle"
+  ],
+  "methods": [],
+  "tags": [
+   "営業保険料",
+   "予定事業費",
+   "収支相等の原則",
+   "付加保険料"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "LI-02-009",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "LI-51",
+  "level": 2,
+  "minutes": 12,
+  "theme": "責任準備金／チルメル式責任準備金",
+  "unit": "責任準備金",
+  "topic": "チルメル式責任準備金",
+  "statement": {
+   "tex": "保険金1，保険期間20年の養老保険（年払全期払込）について，$\\ddot a_{x:\\overline{20}|}=15$，$\\ddot a_{x+5:\\overline{15}|}=12$，割引率 $d=0.03$ とする．チルメル割合を $\\alpha=0.02$（全期チルメル式）とする．\n\\begin{enumerate}\n\\item チルメル式の純保険料 $P'=P+\\frac{\\alpha}{\\ddot a_{x:\\overline{20}|}}$ を求めよ．ただし $P$ は年払純保険料である．\n\\item 第5年度末の純保険料式責任準備金 ${}_5V$ を求めよ．\n\\item 第5年度末の全期チルメル式責任準備金 ${}_5V^{[z]}$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $0.038$\n(2) $0.2$\n(3) $0.184$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　養老保険では $A=1-d\\ddot a$ なので $P=\\frac{1}{\\ddot a}-d$．チルメル式は初年度の新契約費 $\\alpha$ を全期間の保険料で回収する形で，準備金はその未回収分だけ小さくなる．\n\n(1) $P=\\frac{1}{15}-0.03=\\frac{11}{300}$，$P'=\\frac{11}{300}+\\frac{0.02}{15}=\\boldsymbol{0.038}$．\n\n(2) ${}_5V=1-\\frac{\\ddot a_{x+5:\\overline{15}|}}{\\ddot a_{x:\\overline{20}|}}=1-\\frac{12}{15}=\\boldsymbol{0.2}$．\n\n(3) 将来法で ${}_5V^{[z]}=A_{x+5:\\overline{15}|}-P'\\ddot a_{x+5:\\overline{15}|}={}_5V-\\frac{\\alpha}{\\ddot a_{x:\\overline{20}|}}\\ddot a_{x+5:\\overline{15}|}=0.2-0.02\\times\\frac{12}{15}=\\boldsymbol{0.184}$．未回収のチルメル額 $0.016$ だけ純保険料式より小さい．"
+   }
+  ],
+  "idea": {
+   "tex": "チルメル式では純保険料を $\\alpha/\\ddot a$ だけ高く見るので，準備金は未回収の新契約費 $\\frac{\\alpha}{\\ddot a_{x:n}}\\ddot a_{x+t:n-t}$ だけ小さくなる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 0.038\n(2) 0.2\n(3) 0.184"
+  },
+  "techniques": [
+   "reserve-prospective-retrospective",
+   "equivalence-principle"
+  ],
+  "methods": [],
+  "tags": [
+   "チルメル式責任準備金",
+   "責任準備金",
+   "将来法",
+   "養老保険"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "LI-02-010",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "LI-51",
+  "level": 2,
+  "minutes": 10,
+  "theme": "責任準備金／終身保険の責任準備金の諸公式",
+  "unit": "責任準備金",
+  "topic": "終身保険の責任準備金の諸公式",
+  "statement": {
+   "tex": "保険金1の終身保険（死亡保険金は年度末払，保険料は終身年払）について，$\\ddot a_x=18$，$\\ddot a_{x+10}=15$，$\\ddot a_{x+20}=12$，$d=0.025$ とする．\n\\begin{enumerate}\n\\item ${}_{10}V_x$ を求めよ．\n\\item ${}_{20}V_x$ を求めよ．\n\\item ${}_tV_x$ を表す式として\\textbf{誤っているもの}を，次の ①〜⑤ から選び，番号で答えよ．\\\\ ① $1-\\frac{\\ddot a_{x+t}}{\\ddot a_x}$ \\quad ② $\\frac{A_{x+t}-A_x}{1-A_x}$ \\quad ③ $(P_{x+t}-P_x)\\ddot a_x$ \\quad ④ $A_{x+t}-P_x\\ddot a_{x+t}$ \\quad ⑤ $\\frac{P_{x+t}-P_x}{P_{x+t}+d}$\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{1}{6}$\n(2) $\\frac{1}{3}$\n(3) ③（番号 3）"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　将来法 ${}_tV_x=A_{x+t}-P_x\\ddot a_{x+t}$ に $A=1-d\\ddot a$，$P=\\frac1{\\ddot a}-d$ を入れると，すべて $\\ddot a$ の比で書ける．\n\n(1) ${}_{10}V_x=1-\\frac{15}{18}=\\boldsymbol{\\frac16}$．検算：$A_x=1-0.025\\times18=0.55$，$A_{x+10}=0.625$ で $\\frac{0.625-0.55}{0.45}=\\frac16$．\n\n(2) ${}_{20}V_x=1-\\frac{12}{18}=\\boldsymbol{\\frac13}$．\n\n(3) $1-\\frac{\\ddot a_{x+t}}{\\ddot a_x}=\\ddot a_{x+t}\\left(\\frac{1}{\\ddot a_{x+t}}-\\frac{1}{\\ddot a_x}\\right)=(P_{x+t}-P_x)\\ddot a_{x+t}$ であり，掛けるのは $\\ddot a_{x+t}$ であって $\\ddot a_x$ ではない．①②④⑤はすべて正しい（⑤は $\\ddot a_{x+t}=\\frac{1}{P_{x+t}+d}$ を使う）．誤りは $\\boldsymbol{③}$．"
+   }
+  ],
+  "idea": {
+   "tex": "終身保険の準備金は $1-\\ddot a_{x+t}/\\ddot a_x$ を出発点に，$A=1-d\\ddot a$ と $P=1/\\ddot a-d$ で書き換えられる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 1/6\n(2) 1/3\n(3) 3"
+  },
+  "techniques": [
+   "reserve-prospective-retrospective",
+   "present-value-basics"
+  ],
+  "methods": [],
+  "tags": [
+   "責任準備金",
+   "終身保険",
+   "将来法",
+   "年払純保険料"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "LI-02-011",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "LI-51",
+  "level": 2,
+  "minutes": 12,
+  "theme": "連続型の保険／一定死力での保険料と損失の分散",
+  "unit": "連続型の保険",
+  "topic": "一定死力での保険料と損失の分散",
+  "statement": {
+   "tex": "死力 $\\mu=0.02$（一定），利力 $\\delta=0.04$ とする．保険金1を死亡時に支払う終身保険を，保険料を連続払で払い込む契約で考える．\n\\begin{enumerate}\n\\item 一時払純保険料 $\\bar A_x$ を求めよ．\n\\item 連続払の年払純保険料 $\\bar P(\\bar A_x)$ を求めよ．\n\\item 契約時の損失 $L=v^{T}-\\bar P\\,\\bar a_{\\overline{T}|}$（$T$ は余命）の分散を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{1}{3}$\n(2) $0.02$\n(3) $0.2$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　余命が指数分布なので $\\bar A_x=\\int_0^\\infty e^{-\\delta t}\\mu e^{-\\mu t}dt=\\frac{\\mu}{\\mu+\\delta}$，$\\bar a_x=\\frac{1}{\\mu+\\delta}$．損失は $L=v^T\\left(1+\\frac{\\bar P}{\\delta}\\right)-\\frac{\\bar P}{\\delta}$ と $v^T$ の1次式に直す．\n\n(1) $\\bar A_x=\\frac{0.02}{0.06}=\\boldsymbol{\\frac13}$．\n\n(2) $\\bar a_x=\\frac{1}{0.06}$ より $\\bar P=\\frac{\\bar A_x}{\\bar a_x}=\\boldsymbol{0.02}$．一定死力では保険料はちょうど死力に等しく，責任準備金は常に0である．\n\n(3) ${}^2\\bar A_x=\\frac{\\mu}{\\mu+2\\delta}=0.2$（利力 $2\\delta$ で計算した値）より\n\\[V[L]=\\left(1+\\frac{\\bar P}{\\delta}\\right)^2\\left({}^2\\bar A_x-\\bar A_x^2\\right)=1.5^2\\left(0.2-\\frac19\\right)=\\boldsymbol{0.2}.\\]"
+   }
+  ],
+  "idea": {
+   "tex": "一定死力では $\\bar A=\\mu/(\\mu+\\delta)$．損失を $v^T$ の1次式に直せば分散は $(1+\\bar P/\\delta)^2({}^2\\bar A-\\bar A^2)$．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 1/3\n(2) 0.02\n(3) 0.2"
+  },
+  "techniques": [
+   "present-value-basics",
+   "equivalence-principle",
+   "survival-force-integral"
+  ],
+  "methods": [],
+  "tags": [
+   "連続型",
+   "一定死力",
+   "年払純保険料",
+   "損失の分散",
+   "終身保険"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "LI-02-012",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "LI-51",
+  "level": 2,
+  "minutes": 12,
+  "theme": "計算基数／有限払込終身保険と据置年金の保険料",
+  "unit": "計算基数",
+  "topic": "有限払込終身保険と据置年金の保険料",
+  "statement": {
+   "tex": "ある生命表と予定利率に基づく計算基数の値が次のように与えられている．\n\\begin{tabular}{c|ccc} $x$ & $D_x$ & $N_x$ & $M_x$ \\\\ \\hline 40 & 43028 & 1048802 & 22463 \\\\ 60 & 24923 & 363229 & 17801 \\\\ 65 & 20405 & 247592 & 15550 \\end{tabular}\n\\begin{enumerate}\n\\item 40歳加入，保険金1の終身保険（死亡保険金は年度末払）で，保険料を20年間払い込む場合の年払純保険料 ${}_{20}P_{40}$ を有効数字4桁で求めよ．\n\\item (1) の契約の第20年度末の純保険料式責任準備金 ${}_{20}V$ を有効数字4桁で求めよ．\n\\item 40歳加入で，65歳から毎年始に1を終身支払う年金について，保険料を40歳から64歳まで毎年始に払い込む場合の年払純保険料を有効数字4桁で求めよ（死亡時の給付はない）．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx 0.03277$\n(2) $\\approx 0.7142$\n(3) $\\approx 0.3090$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　計算基数で給付と保険料の期待現価を書き，収支相等をとる．$D_x$ は共通に約分される．\n\n(1) ${}_{20}P_{40}=\\frac{M_{40}}{N_{40}-N_{60}}=\\frac{22463}{685573}\\approx\\boldsymbol{0.03277}$．\n\n(2) 払込が終わった後は将来の保険料がないので ${}_{20}V=A_{60}=\\frac{M_{60}}{D_{60}}=\\frac{17801}{24923}\\approx\\boldsymbol{0.7142}$．\n\n(3) 年金の現価は ${}_{25|}\\ddot a_{40}=\\frac{N_{65}}{D_{40}}$，保険料の現価は $P\\frac{N_{40}-N_{65}}{D_{40}}$ なので $P=\\frac{N_{65}}{N_{40}-N_{65}}=\\frac{247592}{801210}\\approx\\boldsymbol{0.3090}$．"
+   }
+  ],
+  "idea": {
+   "tex": "据置・有限払込も計算基数の差で書ける：払込期間 $[x,x+m)$ は $N_x-N_{x+m}$，$x+m$ からの年金は $N_{x+m}$．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈0.03277\n(2) ≈0.7142\n(3) ≈0.3090"
+  },
+  "techniques": [
+   "commutation-functions",
+   "equivalence-principle",
+   "reserve-prospective-retrospective"
+  ],
+  "methods": [],
+  "tags": [
+   "計算基数",
+   "有限払込",
+   "据置年金",
+   "責任準備金",
+   "年払純保険料"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "LI-02-013",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "LI-51",
+  "level": 3,
+  "minutes": 15,
+  "theme": "分数年齢の仮定／即時払保険金と月払保険料",
+  "unit": "分数年齢の仮定",
+  "topic": "即時払保険金と月払保険料",
+  "statement": {
+   "tex": "$i=0.04$，$A_x=0.3$（保険金1，年度末払の終身保険の一時払純保険料）とする．各年齢で死亡が一様に分布する（UDD）と仮定する．\n\\begin{enumerate}\n\\item 死亡時に即時に保険金1を支払う終身保険の一時払純保険料 $\\bar A_x$ を有効数字4桁で求めよ．\n\\item 近似式 $\\ddot a^{(12)}_x\\approx\\ddot a_x-\\frac{11}{24}$ を用いて $\\ddot a^{(12)}_x$ を有効数字4桁で求めよ．\n\\item (1) の保険（保険金100万円）の保険料を，毎月始に終身払い込む．(2) の値を用いて1回あたりの月払純保険料（円）を有効数字4桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx 0.3060$\n(2) $\\approx 17.74$\n(3) $\\approx 1437$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　UDD のもとでは死亡年度内の死亡時点が一様なので，年度末払を即時払に直す係数は $\\frac{i}{\\delta}$ である（$\\int_0^1(1+i)^{1-s}ds=\\frac{i}{\\delta}$）．月払年金は年払から近似式で直す．\n\n(1) $\\bar A_x=\\frac{i}{\\delta}A_x=\\frac{0.04}{\\log1.04}\\times0.3\\approx\\boldsymbol{0.3060}$．\n\n(2) $\\ddot a_x=\\frac{1-A_x}{d}=\\frac{0.7\\times1.04}{0.04}=18.2$ より $\\ddot a^{(12)}_x\\approx18.2-0.4583\\approx\\boldsymbol{17.74}$．\n\n(3) 年額の保険料を $P^{(12)}$ とすると，毎月 $P^{(12)}/12$ を払う年金の現価は $P^{(12)}\\ddot a^{(12)}_x$ である．収支相等より $P^{(12)}=\\frac{\\bar A_x}{\\ddot a^{(12)}_x}\\approx0.01725$．1回あたりは $\\frac{10^6\\,P^{(12)}}{12}\\approx\\boldsymbol{1437}$ 円．"
+   }
+  ],
+  "idea": {
+   "tex": "UDD では $\\bar A_x=\\frac{i}{\\delta}A_x$．月払は年額 $P^{(12)}$ を $\\ddot a^{(12)}$ で決めてから12で割る．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈0.3060\n(2) ≈17.74\n(3) ≈1437"
+  },
+  "techniques": [
+   "fractional-age-assumptions",
+   "equivalence-principle"
+  ],
+  "methods": [],
+  "tags": [
+   "分数年齢の仮定",
+   "UDD",
+   "即時払",
+   "月払",
+   "年払純保険料"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "LI-02-014",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "LI-51",
+  "level": 3,
+  "minutes": 18,
+  "theme": "責任準備金／死亡保険金が「1＋準備金」の保険と再帰式",
+  "unit": "責任準備金",
+  "topic": "死亡保険金が「1＋準備金」の保険と再帰式",
+  "statement": {
+   "tex": "$x$ 歳加入，保険期間3年の保険で，満期まで生存すれば1を支払い，第 $t$ 年度中に死亡すれば年度末に $1+{}_tV$ を支払う（${}_tV$ はその年度末の純保険料式責任準備金）．保険料は年払で3年間払い込む．$q_x=0.01$，$q_{x+1}=0.02$，$q_{x+2}=0.03$，$i=0.02$ とする．\n\\begin{enumerate}\n\\item 年払純保険料 $P$ を有効数字4桁で求めよ．\n\\item ${}_1V$ を有効数字4桁で求めよ．\n\\item ${}_2V$ を有効数字4桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx 0.3398$\n(2) $\\approx 0.3366$\n(3) $\\approx 0.6700$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　この保険では生存表の期待現価で直接書くと給付が未知の準備金を含んでしまう．再帰式を使う：\n\\[({}_tV+P)(1+i)=q_{x+t}(1+{}_{t+1}V)+p_{x+t}\\,{}_{t+1}V=q_{x+t}+{}_{t+1}V.\\]\n生存確率が消え，確定的な積立の式になる．\n\n(1) 両辺に $v^{t+1}$ をかけて $t=0,1,2$ で足すと（${}_0V=0$，${}_3V=1$）\n\\[P(1+v+v^2)=vq_x+v^2q_{x+1}+v^3q_{x+2}+v^3\\]\nとなり $P=\\frac{0.9996}{2.942}\\approx\\boldsymbol{0.3398}$．\n\n(2) ${}_1V=P(1+i)-q_x\\approx\\boldsymbol{0.3366}$．\n\n(3) ${}_2V=({}_1V+P)(1+i)-q_{x+1}\\approx\\boldsymbol{0.6700}$．さらに $({}_2V+P)(1+i)-q_{x+2}=1$ となり検算できる．"
+   }
+  ],
+  "idea": {
+   "tex": "死亡給付が「保険金＋準備金」なら再帰式から $p_{x+t}$ が消え，危険保険料は $vq$ になって確定的な積立計算に帰着する．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈0.3398\n(2) ≈0.3366\n(3) ≈0.6700"
+  },
+  "techniques": [
+   "reserve-recursion",
+   "equivalence-principle"
+  ],
+  "methods": [],
+  "tags": [
+   "責任準備金",
+   "再帰式",
+   "年払純保険料"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "LI-02-015",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "LI-51",
+  "level": 3,
+  "minutes": 18,
+  "theme": "純保険料／契約時の損失の分散",
+  "unit": "純保険料",
+  "topic": "契約時の損失の分散",
+  "statement": {
+   "tex": "$x$ 歳加入，保険期間2年，保険金1の養老保険（死亡保険金は年度末払，保険料は年払2年間）を考える．$q_x=0.02$，$q_{x+1}=0.04$，$i=0.05$ とし，年払純保険料を $P$，契約時の損失（給付の現価－保険料の現価）を $L$ とする．\n\\begin{enumerate}\n\\item $P$ を有効数字4桁で求めよ．\n\\item $V[L]$ を有効数字4桁で求めよ．\n\\item 保険金100のこの契約を1000件（互いに独立）引き受けたとき，損失の合計の標準偏差を有効数字3桁で求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx 0.4696$\n(2) $\\approx 0.004756$\n(3) $\\approx 218$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　$L$ がとる値を死亡年度ごとに書き出す．第2年度の死亡と満期はどちらも第2年度末に1を払い，保険料も2回払っているので同じ値になる．\n\n(1) $A=vq_x+v^2p_x\\approx0.9079$，$\\ddot a=1+vp_x\\approx1.933$，$P=A/\\ddot a\\approx\\boldsymbol{0.4696}$．\n\n(2) 1年目に死亡（確率 $q_x$）：$L_1=v-P$．それ以外：$L_2=v^2-P(1+v)$．2点分布なので\n\\[V[L]=(L_1-L_2)^2q_xp_x=(v-v^2+Pv)^2\\times0.02\\times0.98\\approx\\boldsymbol{0.004756}.\\]\n$q_{x+1}$ は分散に影響しない．\n\n(3) 保険金100なら損失は100倍で分散は $10^4$ 倍，独立な1000件の和の分散は1000倍．標準偏差は $100\\sqrt{1000V[L]}\\approx\\boldsymbol{218}$．"
+   }
+  ],
+  "idea": {
+   "tex": "損失 $L$ を死亡年度ごとの値に書き出すと，分散は離散分布の分散として直接計算できる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈0.4696\n(2) ≈0.004756\n(3) ≈218"
+  },
+  "techniques": [
+   "equivalence-principle",
+   "expect-var-linearity"
+  ],
+  "methods": [],
+  "tags": [
+   "損失の分散",
+   "年払純保険料",
+   "養老保険",
+   "分散"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ }
+]

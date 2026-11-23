@@ -1,0 +1,819 @@
+[
+ {
+  "id": "AM-02-001",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-48",
+  "level": 1,
+  "minutes": 8,
+  "theme": "区間推定／小標本の母平均の信頼区間（t 分布）",
+  "unit": "区間推定",
+  "topic": "小標本の母平均の信頼区間（t 分布）",
+  "statement": {
+   "tex": "ある種類の事故 $10$ 件の損害額（万円）は次のとおりであった．\n\\[12,\\ 15,\\ 9,\\ 20,\\ 14,\\ 11,\\ 17,\\ 13,\\ 16,\\ 13\\]\n損害額は正規分布に従うとし，$t_{0.025}(9)=2.262$ を用いよ．\n\\begin{enumerate}\n\\item 標本平均と不偏分散を求めよ．\n\\item 母平均の $95\\%$ 信頼区間を小数第2位まで求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) 標本平均 $14$，不偏分散 $10$ \\quad (2) 下限 $11.74$，上限 $16.26$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　母分散が未知なので $T=\\dfrac{\\bar X-\\mu}{s/\\sqrt n}\\sim t(n-1)$ をピボットにする．\n\n(1) 和は $140$ で $\\bar x=\\boldsymbol{14}$．偏差は $-2,1,-5,6,0,-3,3,-1,2,-1$，平方和 $90$．不偏分散 $s^2=90/9=\\boldsymbol{10}$．\n\n(2) $s/\\sqrt n=\\sqrt{10/10}=1$．$14\\pm2.262\\times1$ より $\\boldsymbol{[11.74,\\ 16.26]}$．"
+   }
+  ],
+  "idea": {
+   "tex": "母分散未知の正規母集団では，不偏分散で標準化した t 統計量から信頼区間を作る．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 標本平均：14 ; 不偏分散：10\n(2) 下限：≈11.74 ; 上限：≈16.26"
+  },
+  "techniques": [
+   "ci-mean",
+   "sampling-dist"
+  ],
+  "methods": [],
+  "tags": [
+   "区間推定",
+   "t分布",
+   "不偏分散",
+   "母平均"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-02-002",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-48",
+  "level": 1,
+  "minutes": 8,
+  "theme": "点推定／ポアソン分布の最尤推定と不変性",
+  "unit": "点推定",
+  "topic": "ポアソン分布の最尤推定と不変性",
+  "statement": {
+   "tex": "$50$ 件の契約について1年間の事故件数を調べ，次の結果を得た．\n\\[\\begin{array}{c|cccc} \\text{件数} & 0 & 1 & 2 & 3 \\\\ \\hline \\text{契約数} & 20 & 18 & 8 & 4 \\end{array}\\]\n件数は独立に平均 $\\lambda$ のポアソン分布に従うとする．\n\\begin{enumerate}\n\\item $\\lambda$ の最尤推定値を求めよ．\n\\item 事故が起きない確率 $e^{-\\lambda}$ の最尤推定値を小数第4位まで求めよ．\n\\item 最尤推定量 $\\hat\\lambda$ の分散 $\\lambda/50$ を，$\\lambda$ に推定値を代入して推定せよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{23}{25}$ \\quad (2) $e^{-23/25}$ \\quad (3) $\\frac{23}{1250}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　ポアソン分布の対数尤度 $\\ell(\\lambda)=\\sum x_i\\log\\lambda-n\\lambda+\\text{const}$ を最大化する．母数の関数の最尤推定値は代入で得られる（不変性）．\n\n(1) $\\ell'(\\lambda)=\\frac{\\sum x_i}{\\lambda}-n=0$ より $\\hat\\lambda=\\bar x=\\frac{18+16+12}{50}=\\boldsymbol{\\frac{23}{25}}=0.92$．\n\n(2) 不変性より $e^{-\\hat\\lambda}=\\boldsymbol{e^{-0.92}}\\approx0.3985$．（観測された割合 $20/50=0.4$ に近い．）\n\n(3) $\\hat\\lambda/50=0.92/50=\\boldsymbol{\\frac{23}{1250}}=0.0184$．"
+   }
+  ],
+  "idea": {
+   "tex": "ポアソン分布の最尤推定量は標本平均．関数の推定は推定値の代入でよい．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 23/25\n(2) exp(-23/25)\n(3) 23/1250"
+  },
+  "techniques": [
+   "mle",
+   "discrete-distributions"
+  ],
+  "methods": [],
+  "tags": [
+   "最尤推定",
+   "ポアソン分布",
+   "不変性",
+   "度数分布表"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-02-003",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-48",
+  "level": 1,
+  "minutes": 8,
+  "theme": "仮説検定／母比率の検定（連続修正つき正規近似）",
+  "unit": "仮説検定",
+  "topic": "母比率の検定（連続修正つき正規近似）",
+  "statement": {
+   "tex": "ある保険の請求率は従来 $10\\%$ であった．新しい販売経路の $100$ 件を調べたところ $16$ 件の請求があった．請求率が上がったかを，帰無仮説 $p=0.1$，対立仮説 $p>0.1$ で検定する．$\\Phi(1.83)=0.9664$，$z_{0.05}=1.645$ を用いよ．\n\\begin{enumerate}\n\\item 帰無仮説のもとで請求件数の期待値と標準偏差を求めよ．\n\\item 連続修正をした正規近似で $p$ 値を小数第4位まで求めよ．\n\\item 有意水準 $5\\%$ で帰無仮説を棄却するなら $1$，棄却しないなら $0$ と答えよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) 期待値 $10$，標準偏差 $3$ \\quad (2) $\\approx0.0336$ \\quad (3) $1$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　帰無仮説のもとで件数 $X\\sim\\mathrm{Bin}(100,0.1)$．上側の確率 $P(X\\ge16)$ を，境界を $15.5$ にずらして正規近似する．\n\n(1) 期待値 $100\\times0.1=\\boldsymbol{10}$，標準偏差 $\\sqrt{100\\times0.1\\times0.9}=\\boldsymbol{3}$．\n\n(2) $P(X\\ge16)\\approx P\\left(Z>\\frac{15.5-10}{3}\\right)=1-\\Phi(1.83)=\\boldsymbol{0.0336}$．（二項分布の正確な値は約 $0.0399$．）\n\n(3) $p$ 値 $<0.05$ なので棄却する：$\\boldsymbol{1}$．"
+   }
+  ],
+  "idea": {
+   "tex": "離散の検定統計量の $p$ 値は，観測値を含む側へ $0.5$ ずらして正規近似する．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 期待値：10 ; 標準偏差：3\n(2) ≈0.0336\n(3) 1"
+  },
+  "techniques": [
+   "continuity-correction",
+   "test-mean",
+   "test-logic-pvalue"
+  ],
+  "methods": [],
+  "tags": [
+   "仮説検定",
+   "母比率",
+   "連続修正",
+   "正規近似",
+   "p値"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-02-004",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-48",
+  "level": 1,
+  "minutes": 8,
+  "theme": "回帰／要約統計量からの単回帰と決定係数",
+  "unit": "回帰",
+  "topic": "要約統計量からの単回帰と決定係数",
+  "statement": {
+   "tex": "$8$ 組のデータ $(x_i,y_i)$ について $\\sum x_i=40$，$\\sum y_i=96$，$\\sum x_i^2=240$，$\\sum x_iy_i=540$，$\\sum y_i^2=1252$ である．\n\\begin{enumerate}\n\\item 最小二乗法による回帰直線 $y=a+bx$ の傾き $b$ と切片 $a$ を求めよ．\n\\item $x=10$ のときの予測値を求めよ．\n\\item 決定係数 $R^2$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $b=\\frac{3}{2}$，$a=\\frac{9}{2}$ \\quad (2) $\\frac{39}{2}$ \\quad (3) $\\frac{9}{10}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　偏差平方和 $S_{xx}=\\sum x^2-n\\bar x^2$，$S_{xy}$，$S_{yy}$ を作り，$b=S_{xy}/S_{xx}$，$a=\\bar y-b\\bar x$，$R^2=S_{xy}^2/(S_{xx}S_{yy})$．\n\n$\\bar x=5$，$\\bar y=12$．$S_{xx}=240-200=40$，$S_{xy}=540-480=60$，$S_{yy}=1252-1152=100$．\n\n(1) $b=60/40=\\boldsymbol{\\frac32}$，$a=12-1.5\\times5=\\boldsymbol{\\frac92}$．\n\n(2) $4.5+1.5\\times10=\\boldsymbol{\\frac{39}2}$．\n\n(3) $R^2=\\dfrac{3600}{40\\times100}=\\boldsymbol{\\frac9{10}}$．"
+   }
+  ],
+  "idea": {
+   "tex": "和と平方和から偏差平方和を作れば，回帰係数も決定係数もすぐ出る．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) b：3/2 ; a：9/2\n(2) 39/2\n(3) 9/10"
+  },
+  "techniques": [
+   "least-squares",
+   "r2-ss-decomp"
+  ],
+  "methods": [],
+  "tags": [
+   "単回帰",
+   "最小二乗法",
+   "決定係数",
+   "偏差平方和"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-02-005",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-48",
+  "level": 1,
+  "minutes": 8,
+  "theme": "ベイズ推定／ベータ事前分布と二項データ",
+  "unit": "ベイズ推定",
+  "topic": "ベータ事前分布と二項データ",
+  "statement": {
+   "tex": "請求率 $p$ の事前分布をベータ分布 $\\mathrm{Be}(2,8)$（密度 $\\propto p(1-p)^7$）とする．$20$ 件の契約のうち $5$ 件で請求があった（各契約は $p$ のもとで独立）．\n\\begin{enumerate}\n\\item $p$ の事後平均を求めよ．\n\\item $p$ の事後分散を求めよ．\n\\item 事後平均は，標本比率 $5/20$ と事前平均 $2/10$ の重み付き平均 $Z\\cdot\\frac{5}{20}+(1-Z)\\cdot\\frac{2}{10}$ と書ける．重み $Z$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{7}{30}$ \\quad (2) $\\frac{161}{27900}$ \\quad (3) $\\frac{2}{3}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　尤度 $p^5(1-p)^{15}$ と事前密度を掛けると，事後分布もベータ分布になる（共役事前分布）．\n\n事後密度 $\\propto p^{6}(1-p)^{22}$，すなわち事後分布は $\\mathrm{Be}(7,23)$．\n\n(1) 事後平均 $\\frac{7}{30}=\\boldsymbol{\\frac7{30}}$．\n\n(2) $\\mathrm{Be}(a,b)$ の分散 $\\frac{ab}{(a+b)^2(a+b+1)}$ より $\\frac{7\\cdot23}{30^2\\cdot31}=\\boldsymbol{\\frac{161}{27900}}$．\n\n(3) $\\frac{2+5}{10+20}=\\frac{20}{30}\\cdot\\frac5{20}+\\frac{10}{30}\\cdot\\frac2{10}$ より $Z=\\frac{n}{n+a+b}=\\boldsymbol{\\frac23}$．データが増えるほど標本比率の重みが大きくなる．"
+   }
+  ],
+  "idea": {
+   "tex": "共役事前分布では事後分布の母数が足し算で更新され，事後平均は事前平均と標本比率の重み付き平均になる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 7/30\n(2) 161/27900\n(3) 2/3"
+  },
+  "techniques": [
+   "conjugate-prior",
+   "credibility-posterior-mean"
+  ],
+  "methods": [],
+  "tags": [
+   "ベイズ推定",
+   "共役事前分布",
+   "ベータ分布",
+   "信頼度"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-02-006",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-48",
+  "level": 2,
+  "minutes": 10,
+  "theme": "点推定／モーメント法によるガンマ分布・対数正規分布の当てはめ",
+  "unit": "点推定",
+  "topic": "モーメント法によるガンマ分布・対数正規分布の当てはめ",
+  "statement": {
+   "tex": "損害額の標本から，標本平均 $4$，標本分散（$n$ で割ったもの）$8$ を得た．\n\\begin{enumerate}\n\\item 密度 $f(x)=\\dfrac{x^{\\alpha-1}e^{-x/\\theta}}{\\Gamma(\\alpha)\\theta^\\alpha}$ のガンマ分布をモーメント法で当てはめたとき，$\\alpha$ と $\\theta$ の推定値を求めよ．\n\\item (1) で当てはめた分布で $P(X>4)$ を求めよ．\n\\item 対数正規分布 $\\log X\\sim\\mathcal N(\\mu,\\sigma^2)$ をモーメント法で当てはめたとき，$\\mu$ の推定値を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\alpha=2$，$\\theta=2$ \\quad (2) $3e^{-2}$ \\quad (3) $\\log4-\\frac{1}{2}\\log\\frac{3}{2}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　母平均・母分散を母数で表し，標本の値と等置して解く．\n\n(1) $\\alpha\\theta=4$，$\\alpha\\theta^2=8$ より $\\theta=\\boldsymbol{2}$，$\\alpha=\\boldsymbol{2}$．\n\n(2) 形状 $2$ のガンマ分布は指数分布2個の和（アーラン分布）で，$P(X>x)=e^{-x/2}(1+x/2)$．$x=4$ で $\\boldsymbol{3e^{-2}}\\approx0.406$．\n\n(3) $E[X]=e^{\\mu+\\sigma^2/2}$，$V[X]=E[X]^2(e^{\\sigma^2}-1)$．$e^{\\sigma^2}-1=8/16$ より $\\sigma^2=\\log\\frac32$．$\\mu=\\log4-\\frac{\\sigma^2}2=\\boldsymbol{\\log4-\\frac12\\log\\frac32}\\approx1.184$．"
+   }
+  ],
+  "idea": {
+   "tex": "モーメント法は「母集団の積率＝標本の積率」を母数について解く．分布ごとに平均・分散の式を覚えておく．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) α：2 ; θ：2\n(2) 3exp(-2)\n(3) log(4)-log(3/2)/2"
+  },
+  "techniques": [
+   "moment-method",
+   "lognormal-moments"
+  ],
+  "methods": [],
+  "tags": [
+   "モーメント法",
+   "ガンマ分布",
+   "対数正規分布",
+   "点推定"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-02-007",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-48",
+  "level": 2,
+  "minutes": 12,
+  "theme": "点推定／単一母数パレート分布の最尤推定",
+  "unit": "点推定",
+  "topic": "単一母数パレート分布の最尤推定",
+  "statement": {
+   "tex": "損害額 $X$ は密度 $f(x)=\\dfrac{\\alpha\\cdot100^\\alpha}{x^{\\alpha+1}}$（$x>100$）のパレート分布に従う．$5$ 件の観測値は $120,\\ 150,\\ 200,\\ 110,\\ 300$ であった．$\\log11.88=2.4749$，$\\log4=1.3863$，$e^{-2.8007}=0.0608$ を用いてよい．\n\\begin{enumerate}\n\\item $\\alpha$ の最尤推定値 $\\hat\\alpha$ を求めよ（対数を含む式でよい）．\n\\item $P(X>400)$ の最尤推定値を小数第3位まで求めよ．\n\\item フィッシャー情報量から得られる $\\hat\\alpha$ の漸近標準誤差 $\\hat\\alpha/\\sqrt5$ を小数第2位まで求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{5}{\\log\\frac{297}{25}}$ \\quad (2) $\\approx0.0608$ \\quad (3) $\\approx0.90$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　対数尤度 $\\ell(\\alpha)=n\\log\\alpha+n\\alpha\\log100-(\\alpha+1)\\sum\\log x_i$ を微分する．\n\n(1) $\\ell'(\\alpha)=\\frac n\\alpha-\\sum\\log\\frac{x_i}{100}=0$ より $\\hat\\alpha=\\dfrac{n}{\\sum\\log(x_i/100)}$．$\\prod\\frac{x_i}{100}=1.2\\cdot1.5\\cdot2\\cdot1.1\\cdot3=11.88=\\frac{297}{25}$ だから $\\hat\\alpha=\\boldsymbol{\\dfrac{5}{\\log(297/25)}}\\approx2.020$．\n\n(2) 不変性より $\\left(\\frac{100}{400}\\right)^{\\hat\\alpha}=4^{-2.020}=\\boldsymbol{0.0608}$．\n\n(3) $\\ell''(\\alpha)=-n/\\alpha^2$ より $I_n(\\alpha)=n/\\alpha^2$，漸近分散 $\\alpha^2/n$．標準誤差 $2.020/\\sqrt5=\\boldsymbol{0.90}$．標本が少ないので推定の精度は低い．"
+   }
+  ],
+  "idea": {
+   "tex": "パレート分布の最尤推定量は対数の和で表せる．精度はフィッシャー情報量の逆数で測る．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 5/log(297/25)\n(2) ≈0.0608\n(3) ≈0.90"
+  },
+  "techniques": [
+   "mle",
+   "fisher-info-cr"
+  ],
+  "methods": [],
+  "tags": [
+   "最尤推定",
+   "パレート分布",
+   "フィッシャー情報量",
+   "不変性"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-02-008",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-48",
+  "level": 2,
+  "minutes": 10,
+  "theme": "区間推定と検定／母分散（カイ二乗分布）",
+  "unit": "区間推定と検定",
+  "topic": "母分散（カイ二乗分布）",
+  "statement": {
+   "tex": "正規母集団から大きさ $16$ の標本をとり，不偏分散 $s^2=25$ を得た．$\\chi^2_{0.975}(15)=6.262$，$\\chi^2_{0.025}(15)=27.488$，$\\chi^2_{0.05}(15)=24.996$（$\\chi^2_\\alpha$ は上側 $\\alpha$ 点）を用いよ．\n\\begin{enumerate}\n\\item 母分散 $\\sigma^2$ の $95\\%$ 信頼区間を小数第2位まで求めよ．\n\\item 帰無仮説 $\\sigma^2=16$，対立仮説 $\\sigma^2>16$ の検定統計量 $\\chi^2=(n-1)s^2/16$ の値を求めよ．\n\\item 有意水準 $5\\%$ で帰無仮説を棄却するなら $1$，棄却しないなら $0$ と答えよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) 下限 $13.64$，上限 $59.88$ \\quad (2) $\\frac{375}{16}$ \\quad (3) $0$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　$(n-1)s^2/\\sigma^2\\sim\\chi^2(n-1)$ をピボットにする．\n\n(1) $6.262<375/\\sigma^2<27.488$ を $\\sigma^2$ について解き，$\\boldsymbol{[13.64,\\ 59.88]}$．左右非対称な区間になる．\n\n(2) $\\chi^2=15\\times25/16=\\boldsymbol{\\frac{375}{16}}=23.44$．\n\n(3) $23.44<24.996$ なので棄却しない：$\\boldsymbol{0}$．"
+   }
+  ],
+  "idea": {
+   "tex": "分散の推測は $\\chi^2$ 分布のピボットで行い，上側点と下側点を取り違えない．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 下限：≈13.64 ; 上限：≈59.88\n(2) 375/16\n(3) 0"
+  },
+  "techniques": [
+   "variance-chi2-f"
+  ],
+  "methods": [],
+  "tags": [
+   "母分散",
+   "カイ二乗分布",
+   "区間推定",
+   "仮説検定"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-02-009",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-48",
+  "level": 2,
+  "minutes": 12,
+  "theme": "仮説検定／2標本の平均の差（プールした分散）",
+  "unit": "仮説検定",
+  "topic": "2標本の平均の差（プールした分散）",
+  "statement": {
+   "tex": "2つの地域の損害額（正規分布で等分散を仮定）について，地域 A は $n_A=10$，$\\bar x_A=52$，不偏分散 $36$，地域 B は $n_B=12$，$\\bar x_B=46$，不偏分散 $30$ であった．$t_{0.025}(20)=2.086$ を用いよ．\n\\begin{enumerate}\n\\item プールした分散 $s_p^2$ を求めよ．\n\\item 平均が等しいという帰無仮説の検定統計量 $t$ を小数第2位まで求めよ．\n\\item 両側有意水準 $5\\%$ で帰無仮説を棄却するなら $1$，棄却しないなら $0$ と答えよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{327}{10}$ \\quad (2) $\\approx2.45$ \\quad (3) $1$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　等分散なら $s_p^2=\\frac{(n_A-1)s_A^2+(n_B-1)s_B^2}{n_A+n_B-2}$ で共通の分散を推定し，$t=\\frac{\\bar x_A-\\bar x_B}{s_p\\sqrt{1/n_A+1/n_B}}\\sim t(n_A+n_B-2)$．\n\n(1) $s_p^2=\\frac{9\\cdot36+11\\cdot30}{20}=\\frac{654}{20}=\\boldsymbol{\\frac{327}{10}}$．\n\n(2) $t=\\dfrac{6}{\\sqrt{32.7\\times(1/10+1/12)}}=\\dfrac6{2.448}=\\boldsymbol{2.45}$．\n\n(3) $2.45>2.086$ なので棄却する：$\\boldsymbol{1}$．"
+   }
+  ],
+  "idea": {
+   "tex": "等分散の2標本は自由度で重みを付けて分散をまとめ，t 分布で差を判定する．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 327/10\n(2) ≈2.45\n(3) 1"
+  },
+  "techniques": [
+   "two-sample-mean-diff"
+  ],
+  "methods": [],
+  "tags": [
+   "2標本t検定",
+   "プールした分散",
+   "仮説検定",
+   "平均の差"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-02-010",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-48",
+  "level": 2,
+  "minutes": 14,
+  "theme": "適合度検定／事故件数へのポアソン分布の当てはめ",
+  "unit": "適合度検定",
+  "topic": "事故件数へのポアソン分布の当てはめ",
+  "statement": {
+   "tex": "$200$ 件の契約の年間事故件数は次のとおりであった（$3$ 件以上の契約はすべてちょうど $3$ 件）．\n\\[\\begin{array}{c|cccc} \\text{件数} & 0 & 1 & 2 & 3\\text{以上} \\\\ \\hline \\text{契約数} & 112 & 52 & 24 & 12 \\end{array}\\]\nポアソン分布への適合を，$\\lambda$ を最尤推定して $4$ 区分の $\\chi^2$ 適合度検定で調べる．$e^{-0.68}=0.5066$，$\\chi^2_{0.05}(2)=5.991$，$\\chi^2_{0.05}(3)=7.815$ を用いよ．\n\\begin{enumerate}\n\\item $\\lambda$ の推定値を求めよ．\n\\item 検定統計量 $\\chi^2=\\sum(\\text{観測度数}-\\text{期待度数})^2/\\text{期待度数}$ の値を小数第1位まで求めよ．\n\\item 自由度を答えよ．また，有意水準 $5\\%$ で棄却するなら $1$，棄却しないなら $0$ と答えよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{17}{25}$ \\quad (2) $\\approx10.3$ \\quad (3) 自由度 $2$，判定 $1$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　推定した母数で期待度数を出し，自由度は「区分の数 $-1-$ 推定した母数の数」．\n\n(1) $\\hat\\lambda=\\frac{52+48+36}{200}=\\boldsymbol{\\frac{17}{25}}=0.68$．\n\n(2) 期待度数は $200e^{-0.68}=101.3$，$200\\times0.68e^{-0.68}=68.9$，$200\\times\\frac{0.68^2}2e^{-0.68}=23.4$，$3$ 以上は残りで $6.35$．\n\\[\\chi^2=\\frac{10.7^2}{101.3}+\\frac{16.9^2}{68.9}+\\frac{0.6^2}{23.4}+\\frac{5.65^2}{6.35}\\approx1.13+4.14+0.01+5.03=\\boldsymbol{10.3}．\\]\n\n(3) 自由度 $4-1-1=\\boldsymbol{2}$．$10.3>5.991$ なので棄却する：$\\boldsymbol{1}$．$0$ 件と $3$ 件以上が多く $1$ 件が少ない，ポアソン分布より散らばりの大きいデータで，負の二項分布などが候補になる．"
+   }
+  ],
+  "idea": {
+   "tex": "母数を推定したら自由度を1つ減らす．残差の符号の並びから分布の当てはまらない向きを読む．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 17/25\n(2) ≈10.3\n(3) 自由度：2 ; 判定：1"
+  },
+  "techniques": [
+   "chi2-test",
+   "mle"
+  ],
+  "methods": [],
+  "tags": [
+   "カイ二乗検定",
+   "適合度検定",
+   "ポアソン分布",
+   "自由度"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-02-011",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-48",
+  "level": 2,
+  "minutes": 12,
+  "theme": "ベイズ推定／ポアソン＝ガンマモデルと信頼度",
+  "unit": "ベイズ推定",
+  "topic": "ポアソン＝ガンマモデルと信頼度",
+  "statement": {
+   "tex": "ある契約の年間事故件数は，リスク母数 $\\Lambda=\\lambda$ のもとで独立に平均 $\\lambda$ のポアソン分布に従う．$\\Lambda$ の事前分布はガンマ分布（密度 $\\propto\\lambda^{2}e^{-6\\lambda}$）である．この契約で $5$ 年間に合計 $4$ 件の事故があった．\n\\begin{enumerate}\n\\item $\\Lambda$ の事後平均を求めよ．\n\\item 事後平均を $Z\\bar x+(1-Z)\\mu$（$\\bar x$ は年平均件数，$\\mu$ は事前平均）と書いたときの信頼度 $Z$ を求めよ．\n\\item 翌年の事故件数が $0$ である予測確率を小数第3位まで求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{7}{11}$ \\quad (2) $\\frac{5}{11}$ \\quad (3) $\\left(\\frac{11}{12}\\right)^7$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　事前分布は $\\mathrm{Ga}(3,6)$（形状 $3$，率 $6$）．尤度 $\\lambda^4e^{-5\\lambda}$ を掛けると $\\mathrm{Ga}(3+4,\\,6+5)$．\n\n(1) 事後平均 $\\boldsymbol{\\frac7{11}}$．\n\n(2) $\\mu=\\frac36=\\frac12$，$\\bar x=\\frac45$．$\\frac{7}{11}=\\frac{5}{11}\\cdot\\frac45+\\frac6{11}\\cdot\\frac12$ より $Z=\\frac{n}{n+\\beta}=\\boldsymbol{\\frac5{11}}$．これはビュールマン・モデルの信頼度 $n/(n+k)$ と一致する．\n\n(3) $E[e^{-\\Lambda}\\mid\\text{データ}]=\\left(\\frac{11}{11+1}\\right)^7=\\boldsymbol{\\left(\\frac{11}{12}\\right)^7}\\approx0.544$（事後分布の積率母関数の値）．"
+   }
+  ],
+  "idea": {
+   "tex": "ポアソン＝ガンマでは事後平均が信頼度 $Z=n/(n+\\beta)$ の重み付き平均になり，予測確率はガンマ分布の積率母関数で出る．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 7/11\n(2) 5/11\n(3) (11/12)^7"
+  },
+  "techniques": [
+   "credibility-posterior-mean",
+   "conjugate-prior",
+   "mgf"
+  ],
+  "methods": [],
+  "tags": [
+   "ベイズ推定",
+   "信頼度",
+   "ポアソン分布",
+   "ガンマ分布",
+   "予測分布"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-02-012",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-48",
+  "level": 2,
+  "minutes": 12,
+  "theme": "回帰／回帰係数の t 検定と信頼区間",
+  "unit": "回帰",
+  "topic": "回帰係数の t 検定と信頼区間",
+  "statement": {
+   "tex": "$n=12$ 組のデータで単回帰 $y=a+bx+\\varepsilon$（誤差は独立に $\\mathcal N(0,\\sigma^2)$）を当てはめ，$\\hat b=1.5$，$S_{xx}=40$，残差平方和 $20$，$S_{yy}=110$ を得た．$t_{0.025}(10)=2.228$ を用いよ．\n\\begin{enumerate}\n\\item $\\hat b$ の標準誤差を小数第4位まで求めよ．\n\\item $b$ の $95\\%$ 信頼区間を小数第2位まで求めよ．\n\\item 決定係数 $R^2$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{\\sqrt5}{10}$ \\quad (2) 下限 $1.00$，上限 $2.00$ \\quad (3) $\\frac{9}{11}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　$\\hat\\sigma^2=\\text{残差平方和}/(n-2)$，$\\mathrm{SE}(\\hat b)=\\hat\\sigma/\\sqrt{S_{xx}}$，$(\\hat b-b)/\\mathrm{SE}\\sim t(n-2)$．\n\n(1) $\\hat\\sigma^2=20/10=2$，$\\mathrm{SE}=\\sqrt{2/40}=\\boldsymbol{\\frac{\\sqrt5}{10}}\\approx0.2236$．\n\n(2) $1.5\\pm2.228\\times0.2236=1.5\\pm0.498$ より $\\boldsymbol{[1.00,\\ 2.00]}$．$0$ を含まないので $b=0$ は有意水準 $5\\%$ で棄却される（$t=6.71$）．\n\n(3) 回帰平方和 $\\hat b^2S_{xx}=90$，$R^2=90/110=\\boldsymbol{\\frac9{11}}$（$=1-20/110$ と一致）．"
+   }
+  ],
+  "idea": {
+   "tex": "残差平方和を自由度 $n-2$ で割って誤差分散を推定し，係数を t 分布で推測する．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) sqrt(5)/10\n(2) 下限：≈1.00 ; 上限：≈2.00\n(3) 9/11"
+  },
+  "techniques": [
+   "reg-inference",
+   "r2-ss-decomp"
+  ],
+  "methods": [],
+  "tags": [
+   "回帰係数",
+   "t検定",
+   "信頼区間",
+   "決定係数",
+   "標準誤差"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-02-013",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-48",
+  "level": 3,
+  "minutes": 18,
+  "theme": "仮説検定／指数分布の最強力検定と検出力",
+  "unit": "仮説検定",
+  "topic": "指数分布の最強力検定と検出力",
+  "statement": {
+   "tex": "$X_1,\\dots,X_{10}$ は独立に平均 $\\theta$ の指数分布に従う．帰無仮説 $\\theta=1$，対立仮説 $\\theta=2$ を有意水準 $5\\%$ で検定する．自由度 $20$ の $\\chi^2$ 分布について，$\\chi^2_{0.05}(20)=31.41$ と，$P(\\chi^2(20)>15.71)=0.734$ を用いよ．\n\\begin{enumerate}\n\\item ネイマン＝ピアソンの補題による最強力検定は，$T=\\sum X_i$ が $c$ を超えたとき棄却する形になる．$c$ の値を小数第2位まで求めよ．\n\\item この検定の検出力を求めよ．\n\\item 標本の大きさ $n$ が大きいとき，正規近似を用いて検出力 $0.95$ 以上を達成する最小の $n$ を求めよ．ただし $z_{0.05}=1.645$ とし，$T$ を平均 $n\\theta$・分散 $n\\theta^2$ の正規分布で近似せよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx15.71$ \\quad (2) $\\approx0.734$ \\quad (3) $25$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　尤度比 $\\frac{L(2)}{L(1)}=2^{-n}e^{T/2}$ は $T$ の増加関数だから，最強力検定は $T>c$ で棄却する．$2T/\\theta\\sim\\chi^2(2n)$ を使う．\n\n(1) $\\theta=1$ のとき $2T\\sim\\chi^2(20)$．$P(2T>31.41)=0.05$ より $c=\\boldsymbol{15.71}$．\n\n(2) $\\theta=2$ のとき $T=2T/\\theta\\sim\\chi^2(20)$．検出力 $P(T>15.71)=\\boldsymbol{0.734}$．\n\n(3) 帰無仮説のもとで $T\\approx\\mathcal N(n,n)$ だから棄却点は $c=n+1.645\\sqrt n$．対立仮説のもとで $T\\approx\\mathcal N(2n,4n)$ だから，検出力 $\\ge0.95$ の条件は $\\dfrac{c-2n}{2\\sqrt n}\\le-1.645$，すなわち\n\\[n+1.645\\sqrt n-2n\\le-3.29\\sqrt n\\iff\\sqrt n\\ge4.935\\iff n\\ge24.35．\\]\nよって最小の $n$ は $\\boldsymbol{25}$．"
+   }
+  ],
+  "idea": {
+   "tex": "単純仮説どうしは尤度比の単調性から棄却域の形が決まる．指数分布の和は $\\chi^2$ 分布に直す．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈15.71\n(2) ≈0.734\n(3) 25"
+  },
+  "techniques": [
+   "neyman-pearson",
+   "power-sample-size"
+  ],
+  "methods": [],
+  "tags": [
+   "ネイマン＝ピアソンの補題",
+   "最強力検定",
+   "検出力",
+   "指数分布",
+   "カイ二乗分布"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-02-014",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-48",
+  "level": 3,
+  "minutes": 18,
+  "theme": "ベイズ推定／正規＝正規モデルの信頼度と予測",
+  "unit": "ベイズ推定",
+  "topic": "正規＝正規モデルの信頼度と予測",
+  "statement": {
+   "tex": "ある契約の年間損害額 $X_1,X_2,\\dots$ は，リスク母数 $\\Theta=\\vartheta$ のもとで独立に $\\mathcal N(\\vartheta,\\,400)$ に従い，$\\Theta$ の事前分布は $\\mathcal N(100,\\,25)$ である．$4$ 年間の平均は $\\bar x=120$ であった．$\\Phi(1.27)=0.8980$ を用いよ．\n\\begin{enumerate}\n\\item 事後平均を $Z\\bar x+(1-Z)\\cdot100$ と書いたときの信頼度 $Z$ と，事後平均を求めよ．\n\\item 事後分散を求めよ．\n\\item 5年目の損害額 $X_5$ が $130$ を超える予測確率を小数第3位まで求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $Z=\\frac{1}{5}$，事後平均 $104$ \\quad (2) $20$ \\quad (3) $\\approx0.102$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　正規＝正規モデルでは事後分布も正規で，精度（分散の逆数）が足し算になる．$\\bar X\\mid\\vartheta\\sim\\mathcal N(\\vartheta,400/4)$．\n\n(1) 精度は事前 $1/25$，データ $4/400=1/100$．$Z=\\dfrac{1/100}{1/25+1/100}=\\boldsymbol{\\frac15}$．これは $n/(n+\\sigma^2/\\tau^2)=4/(4+16)$ と同じ．事後平均 $0.2\\times120+0.8\\times100=\\boldsymbol{104}$．\n\n(2) 事後分散 $=1/(1/25+1/100)=\\boldsymbol{20}$．\n\n(3) 予測分布は $\\mathcal N(104,\\,400+20)$．$P(X_5>130)=1-\\Phi\\left(\\frac{26}{\\sqrt{420}}\\right)=1-\\Phi(1.27)=\\boldsymbol{0.102}$．予測分散には個体内のばらつき $400$ と母数の不確かさ $20$ の両方が入る．"
+   }
+  ],
+  "idea": {
+   "tex": "正規モデルでは精度の比が信頼度になり，予測分散は「観測のばらつき＋事後分散」になる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) Z：1/5 ; 事後平均：104\n(2) 20\n(3) ≈0.102"
+  },
+  "techniques": [
+   "credibility-posterior-mean",
+   "conjugate-prior"
+  ],
+  "methods": [],
+  "tags": [
+   "ベイズ推定",
+   "信頼度",
+   "正規分布",
+   "予測分布",
+   "ビュールマン"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "AM-02-015",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "AM-48",
+  "level": 3,
+  "minutes": 18,
+  "theme": "点推定／最尤推定量の漸近正規性とデルタ法",
+  "unit": "点推定",
+  "topic": "最尤推定量の漸近正規性とデルタ法",
+  "statement": {
+   "tex": "損害が生じるまでの時間は密度 $\\lambda e^{-\\lambda x}$（$x>0$）の指数分布に従う．大きさ $50$ の標本で標本平均 $\\bar x=2.5$ を得た．$z_{0.025}=1.96$ を用いよ．\n\\begin{enumerate}\n\\item $\\lambda$ の最尤推定値と，1観測あたりのフィッシャー情報量 $I(\\lambda)$（$\\lambda$ の式）を求めよ．\n\\item 最尤推定量の漸近正規性を用いて，$\\lambda$ の $95\\%$ 信頼区間を小数第3位まで求めよ．\n\\item $S(1)=e^{-\\lambda}$ の最尤推定値と，デルタ法による標準誤差を小数第3位まで求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\hat\\lambda=\\frac{2}{5}$，$I(\\lambda)=\\frac{1}{\\lambda^2}$ \\quad (2) 下限 $0.289$，上限 $0.511$ \\quad (3) $e^{-2/5}$，標準誤差 $\\approx0.038$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　$\\hat\\lambda\\approx\\mathcal N(\\lambda,\\,1/(nI(\\lambda)))$．関数 $g(\\hat\\lambda)$ の分散は $g'(\\lambda)^2$ 倍（デルタ法）．\n\n(1) $\\ell(\\lambda)=n\\log\\lambda-\\lambda\\sum x_i$ より $\\hat\\lambda=1/\\bar x=\\boldsymbol{\\frac25}$．$-\\frac{d^2}{d\\lambda^2}\\log f=\\frac1{\\lambda^2}$ より $I(\\lambda)=\\boldsymbol{\\frac1{\\lambda^2}}$．\n\n(2) 標準誤差 $\\hat\\lambda/\\sqrt{50}=0.0566$．$0.4\\pm1.96\\times0.0566$ より $\\boldsymbol{[0.289,\\ 0.511]}$．\n\n(3) 不変性より $e^{-0.4}=\\boldsymbol{0.670}$．$g'(\\lambda)=-e^{-\\lambda}$ より標準誤差 $e^{-0.4}\\times0.0566=\\boldsymbol{0.038}$．"
+   }
+  ],
+  "idea": {
+   "tex": "最尤推定量の分散はフィッシャー情報量の逆数で近似し，関数の推定値にはデルタ法で伝える．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) λ：2/5 ; I：1/λ^2\n(2) 下限：≈0.289 ; 上限：≈0.511\n(3) exp(-2/5) ; 標準誤差：≈0.038"
+  },
+  "techniques": [
+   "fisher-info-cr",
+   "delta-method",
+   "wald-score-lr"
+  ],
+  "methods": [],
+  "tags": [
+   "最尤推定",
+   "フィッシャー情報量",
+   "デルタ法",
+   "漸近正規性",
+   "指数分布"
+  ],
+  "provenance": {
+   "created": "2026-11-23"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ }
+]
