@@ -71,7 +71,7 @@ try {
     ok((await page.locator('#lv').innerText()).includes('院試難関') && (await page.locator('#lv').innerText()).includes('演習'), 'EUCLEA の難易度名');
     ok(await page.locator('.banner').count() === 0, '起動時に警告が出ない');
     // コースの切り替え：検定コースでは難易度が 易・標準・難 の3つになり、その級の問題だけになる
-    ok(await page.locator('.course-tabs button').count() === 5, 'コースのタブが5つ');
+    ok(await page.locator('.course-tabs button').count() === 6, 'コースのタブが6つ（アクチュアリーを含む）');
     await page.click('.course-tabs button[data-c="stat2"]'); await page.waitForTimeout(600);
     ok(await page.locator('#lv button').count() === 3 && (await page.locator('#lv').innerText()).includes('易'), '検定コース：難易度が 易・標準・難 の3つ');
     ok((await page.locator('.subj-row').allInnerTexts()).every(t => t.includes('統計検定2級')) && await page.locator('.subj-row').count() === 1, '検定コース：その級の分野だけが並ぶ');

@@ -33,6 +33,26 @@
   {
    "id": "T1",
    "name": "統計検定1級"
+  },
+  {
+   "id": "AM",
+   "name": "アクチュアリー数学"
+  },
+  {
+   "id": "LI",
+   "name": "生保数理"
+  },
+  {
+   "id": "NL",
+   "name": "損保数理"
+  },
+  {
+   "id": "PE",
+   "name": "年金数理"
+  },
+  {
+   "id": "KK",
+   "name": "会計・経済・投資理論"
   }
  ],
  "fields": [
@@ -357,6 +377,111 @@
    "name": "統計応用",
    "idPrefix": "T1-46",
    "order": 46
+  },
+  {
+   "key": "AM-47",
+   "subject": "アクチュアリー数学",
+   "name": "確率",
+   "idPrefix": "AM-47",
+   "order": 47
+  },
+  {
+   "key": "AM-48",
+   "subject": "アクチュアリー数学",
+   "name": "統計",
+   "idPrefix": "AM-48",
+   "order": 48
+  },
+  {
+   "key": "AM-49",
+   "subject": "アクチュアリー数学",
+   "name": "モデリング",
+   "idPrefix": "AM-49",
+   "order": 49
+  },
+  {
+   "key": "LI-50",
+   "subject": "生保数理",
+   "name": "生命表と生存モデル",
+   "idPrefix": "LI-50",
+   "order": 50
+  },
+  {
+   "key": "LI-51",
+   "subject": "生保数理",
+   "name": "保険料と責任準備金",
+   "idPrefix": "LI-51",
+   "order": 51
+  },
+  {
+   "key": "LI-52",
+   "subject": "生保数理",
+   "name": "多重脱退・連生・就業不能",
+   "idPrefix": "LI-52",
+   "order": 52
+  },
+  {
+   "key": "NL-53",
+   "subject": "損保数理",
+   "name": "クレーム件数・損害額とリスク理論",
+   "idPrefix": "NL-53",
+   "order": 53
+  },
+  {
+   "key": "NL-54",
+   "subject": "損保数理",
+   "name": "料率算定と信頼性理論",
+   "idPrefix": "NL-54",
+   "order": 54
+  },
+  {
+   "key": "NL-55",
+   "subject": "損保数理",
+   "name": "支払備金・再保険・破産理論",
+   "idPrefix": "NL-55",
+   "order": 55
+  },
+  {
+   "key": "PE-56",
+   "subject": "年金数理",
+   "name": "計算基礎と給付現価",
+   "idPrefix": "PE-56",
+   "order": 56
+  },
+  {
+   "key": "PE-57",
+   "subject": "年金数理",
+   "name": "財政方式",
+   "idPrefix": "PE-57",
+   "order": 57
+  },
+  {
+   "key": "PE-58",
+   "subject": "年金数理",
+   "name": "財政運営と数理債務",
+   "idPrefix": "PE-58",
+   "order": 58
+  },
+  {
+   "key": "KK-59",
+   "subject": "会計・経済・投資理論",
+   "name": "会計",
+   "idPrefix": "KK-59",
+   "order": 59
+  },
+  {
+   "key": "KK-60",
+   "subject": "会計・経済・投資理論",
+   "name": "経済",
+   "idPrefix": "KK-60",
+   "order": 60
+  },
+  {
+   "key": "KK-61",
+   "subject": "会計・経済・投資理論",
+   "name": "投資理論",
+   "idPrefix": "KK-61",
+   "order": 61
   }
  ],
  "retiredNumbers": [],

@@ -10,7 +10,7 @@ export const EXAM_LEVELS = { 1: '易', 2: '標準', 3: '難' };
 // 頻出度（難易度とは別。1=低 2=中 3=高。付いていない問題は 2）
 export const VALUES = { 1: '低', 2: '中', 3: '高' };
 export const valueOf = (e) => (e && e.v) || 2;
-export const SUBJECT_ORDER = ['解析', '代数', '幾何', 'その他', '数学検定1級', '統計検定2級', '統計検定準1級', '統計検定1級'];
+export const SUBJECT_ORDER = ['解析', '代数', '幾何', 'その他', '数学検定1級', '統計検定2級', '統計検定準1級', '統計検定1級', 'アクチュアリー数学', '生保数理', '損保数理', '年金数理', '会計・経済・投資理論'];
 // コース（ホームのタブ）→ 科目。演習・今日の学習・復習・定着度は選んだコースの中で行う。記録はコースをまたいで共通
 export const COURSES = [
   { id: 'univ', name: '大学数学', short: '大学数学', subjects: ['解析', '代数', '幾何', 'その他'] },
@@ -18,6 +18,7 @@ export const COURSES = [
   { id: 'stat2', name: '統計検定2級', short: '統計2級', subjects: ['統計検定2級'], exam: true },
   { id: 'statp1', name: '統計検定準1級', short: '統計準1級', subjects: ['統計検定準1級'], exam: true },
   { id: 'stat1', name: '統計検定1級', short: '統計1級', subjects: ['統計検定1級'], exam: true },
+  { id: 'actuary', name: 'アクチュアリー（1次）', short: 'アクチュアリー', subjects: ['アクチュアリー数学', '生保数理', '損保数理', '年金数理', '会計・経済・投資理論'], exam: true },
 ];
 export const courseById = (id) => COURSES.find(c => c.id === id) || COURSES[0];
 export const isExamSubject = (subject) => COURSES.some(c => c.exam && c.subjects.includes(subject));

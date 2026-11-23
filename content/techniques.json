@@ -61,6 +61,22 @@
   {
    "id": "logic",
    "name": "数理論理・論証"
+  },
+  {
+   "id": "life",
+   "name": "生保数理"
+  },
+  {
+   "id": "nonlife",
+   "name": "損保数理"
+  },
+  {
+   "id": "pension",
+   "name": "年金数理"
+  },
+  {
+   "id": "finance",
+   "name": "会計・経済・投資理論"
   }
  ],
  "kinds": [

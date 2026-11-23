@@ -705,6 +705,7 @@ const COURSE_BLURB = {
   stat2: '統計検定2級の範囲（記述統計・確率分布・推定・検定・回帰・標本調査）から、本番に近い形式で出します。',
   statp1: '統計検定準1級の範囲（多変量解析・時系列・ベイズ・線形モデルなど）から、本番に近い形式で出します。',
   stat1: '統計検定1級（統計数理・統計応用）の論述型の問題を、導出の要点まで確かめながら解きます。',
+  actuary: 'アクチュアリー資格試験1次（数学・生保数理・損保数理・年金数理・会計経済投資理論）の範囲から、本番に近い形式で出します。',
 };
 function renderToday() {
   const pr = state.practice;
@@ -731,7 +732,7 @@ function renderToday() {
       <h1>今日の学習</h1>
       ${tabs.html}
       ${firstRun ? `<div class="panel first-run">
-        <p style="margin:0;line-height:1.8"><b>EUCLEA は、大学数学・数学検定1級・統計検定の問題を解きながら「解法」（考え方の型）を身につけるアプリです。</b>解いた結果から、問題ごとに解き直す時期と、解法ごとの身につき具合を記録し、次に解く問題を選びます。上のタブでコースを選べます。</p>
+        <p style="margin:0;line-height:1.8"><b>EUCLEA は、大学数学・数学検定1級・統計検定・アクチュアリー試験の問題を解きながら「解法」（考え方の型）を身につけるアプリです。</b>解いた結果から、問題ごとに解き直す時期と、解法ごとの身につき具合を記録し、次に解く問題を選びます。上のタブでコースを選べます。</p>
         <button class="hero" id="firstgo" style="margin-top:12px"><b>まず8問解いてみる</b><span>${course.exam ? `${esc(course.name)}の易しめ〜標準の問題` : '基礎〜演習の問題'}を、分野を混ぜて出します。紙と鉛筆を用意してください。</span></button>
         <p class="muted small" style="margin:8px 0 0">慣れてきたら、下の難易度ボタンで範囲を変えられます。解法の一覧は「解法から選ぶ」から見られます。</p>
       </div>` : ''}
@@ -2217,7 +2218,7 @@ function weakestField(keys = null) {
   }
   return w;
 }
-const SUBJ_SHORT = { '数学検定1級': '数検1級', '統計検定2級': '統計2級', '統計検定準1級': '統計準1級', '統計検定1級': '統計1級' };
+const SUBJ_SHORT = { '数学検定1級': '数検1級', '統計検定2級': '統計2級', '統計検定準1級': '統計準1級', '統計検定1級': '統計1級', 'アクチュアリー数学': '数学', '会計・経済・投資理論': 'KKT' };
 // 得意度 → タイルの色（苦手＝赤系、得意＝緑系、データ不足＝無地）
 function strengthStyle(sc) {
   if (sc == null) return '';
@@ -2248,7 +2249,7 @@ function strengthHTML() {
   const good = judged.filter(x => x.score >= 0.6).slice(0, 3);
   const weak = judged.filter(x => x.score < 0.5).slice(-3).reverse();
   // 科目が3つ以上（大学数学）なら科目ごと、検定は分野ごとのレーダー図
-  const radar = subs.length >= 3 ? radarSVG(subs.map(s => ({ label: s.name, ...strength(s.fields.map(f => f.key)) })))
+  const radar = subs.length >= 3 ? radarSVG(subs.map(s => ({ label: SUBJ_SHORT[s.name] || s.name, ...strength(s.fields.map(f => f.key)) })))
     : radarSVG(fs.map(x => ({ label: x.f.name.length > 7 ? x.f.name.slice(0, 6) + '…' : x.f.name, score: x.score })));
   const name = (x) => esc(x.f.name);
   return `

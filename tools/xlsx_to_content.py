@@ -22,7 +22,7 @@ except ImportError:
     sys.exit('openpyxl が必要です： pip3 install openpyxl')
 
 ROOT = Path(__file__).resolve().parent.parent
-SUBJECT_KEY = {'解析': 'AN', '代数': 'AL', '幾何': 'GE', 'その他': 'OT', '数学検定1級': 'SK', '統計検定2級': 'T2', '統計検定準1級': 'TP', '統計検定1級': 'T1'}
+SUBJECT_KEY = {'解析': 'AN', '代数': 'AL', '幾何': 'GE', 'その他': 'OT', '数学検定1級': 'SK', '統計検定2級': 'T2', '統計検定準1級': 'TP', '統計検定1級': 'T1', 'アクチュアリー数学': 'AM', '生保数理': 'LI', '損保数理': 'NL', '年金数理': 'PE', '会計・経済・投資理論': 'KK'}
 # 見出しの名前 → 内部の名前（列の順番が変わっても読めるように、見出しで探す）
 HEADERS = {'ID': 'id', '作成日': 'date', '科目': 'subject', '分野': 'field', '単元・テーマ': 'theme', '難易度': 'level',
            '想定時間(分)': 'minutes', '問題文（LaTeX）': 'q', '答え': 'answer', '解答・解説': 'solution',
