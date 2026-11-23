@@ -394,7 +394,7 @@
    {
     "id": "main",
     "kind": "main",
-    "tex": "\\textbf{方針}　$X=e^Y$（$Y\\sim N(\\mu,\\sigma^2)$）について $E[X\\,;\\,X\\le u]=e^{\\mu+\\sigma^2/2}\\Phi\\!\\left(\\frac{\\log u-\\mu-\\sigma^2}{\\sigma}\\right)$ を使う（指数を平方完成すると平均が $\\sigma^2$ だけずれた正規分布の積分になる）．\n\n(1) $E[X]=e^{\\mu+\\sigma^2/2}=e^{6.5}=\\boldsymbol{665.1}$．\n\n(2) $E[X\\wedge u]=E[X\\,;\\,X\\le u]+uP(X>u)$．$\\frac{\\log u-\\mu-\\sigma^2}{\\sigma}=0$，$\\frac{\\log u-\\mu}{\\sigma}=1$ なので\n\\[E[X\\wedge u]=665.14\\cdot\\Phi(0)+1096.63\\,(1-\\Phi(1))=332.57+174.04=\\boldsymbol{506.6}.\\]\n\n(3) $506.61/665.14=\\boldsymbol{0.7617}$．限度額 $e^7$ を超える損害は約 $16\\%$ しかないが，それが損害額の期待値の約 $24\\%$ を占めている．"
+    "tex": "\\textbf{方針}　$X=e^Y$（$Y\\sim N(\\mu,\\sigma^2)$）について $E[X\\,;\\,X\\le u]=e^{\\mu+\\sigma^2/2}\\Phi\\!\\left(\\frac{\\log u-\\mu-\\sigma^2}{\\sigma}\\right)$ を使う（指数を平方完成すると平均が $\\sigma^2$ だけずれた正規分布の積分になる）．\n\n(1) $E[X]=e^{\\mu+\\sigma^2/2}=e^{6.5}=\\boldsymbol{665.1}$．\n\n(2) $E[X\\wedge u]=E[X\\,;\\,X\\le u]+uP(X>u)$．$\\frac{\\log u-\\mu-\\sigma^2}{\\sigma}=0$，$\\frac{\\log u-\\mu}{\\sigma}=1$ なので\n\\[E[X\\wedge u]=665.14\\cdot\\Phi(0)+1096.63\\,(1-\\Phi(1))=332.57+174.04=\\boldsymbol{506.6}.\\]\n\n(3) $506.61/665.14=\\boldsymbol{0.7617}$．限度額 $e^7$ を超える損害は約 $16\\%$ しかないが，そのうち限度額を超える部分 $E[(X-u)_+]$ だけで損害額の期待値の約 $24\\%$ を占めている（超える損害の全額 $E[X;X>u]$ では期待値の $1-\\Phi(0)=50\\%$）．"
    }
   ],
   "idea": {

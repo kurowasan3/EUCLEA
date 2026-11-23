@@ -2448,7 +2448,7 @@ function renderSettings() {
   const newCount = state.log.filter(l => l.t > since).length;
   view.innerHTML = `
     <div class="fade-in">
-      <div class="kicker">EUCLEA v0.3（エンジン v${VERSION}）</div>
+      <div class="kicker">EUCLEA v0.4（エンジン v${VERSION}）</div>
       <h1>設定</h1>
       ${sync ? '<h2>アカウントと同期</h2><div class="panel" id="acct"></div>' : ''}
       <h2>解答の形式</h2>
