@@ -47,7 +47,9 @@ def main():
     existing_q = set()
     data = HERE.parent / 'data'
     for f in data.glob('f-*.json'):
-        for b in json.loads(f.read_text(encoding='utf-8')).values():
+        for k, b in json.loads(f.read_text(encoding='utf-8')).items():
+            if k == '_meta' or not isinstance(b, dict) or 'q' not in b:   # data/f-*.json の版の情報（Lemma v0.8〜）
+                continue
             existing_q.add(re.sub(r'\s+', '', b['q']))
     html, specs, rows, seen_q = {}, {}, [], {}
     for n, it in enumerate(items):

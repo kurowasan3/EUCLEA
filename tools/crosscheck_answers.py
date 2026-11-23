@@ -23,7 +23,8 @@ from make_input_answers import split_answer, split_top  # noqa: E402
 
 GREEK_NAME = {'α': 'alpha', 'β': 'beta', 'γ': 'gamma', 'δ': 'delta', 'θ': 'theta', 'φ': 'phi', 'ω': 'omega',
               'λ': 'lambda_', 'μ': 'mu', 'ρ': 'rho', 'σ': 'sigma', 'τ': 'tau', 'ψ': 'psi', 'ξ': 'xi', 'η': 'eta',
-              'ζ': 'zeta', 'κ': 'kappa', 'ν': 'nu', 'ε': 'epsilon'}
+              'ζ': 'zeta', 'κ': 'kappa', 'ν': 'nu', 'ε': 'epsilon', 'χ': 'chi',
+              'Γ': 'Gamma', 'Δ': 'Delta', 'Θ': 'Theta', 'Λ': 'Lambda', 'Σ': 'Sigma', 'Φ': 'Phi', 'Ψ': 'Psi', 'Ω': 'Omega'}
 TRANS = standard_transformations + (convert_xor, split_symbols, implicit_multiplication_application)
 
 
@@ -77,13 +78,20 @@ def brace_args(t):
 
 
 def clean_tex(t):
+    # 物理用：\hbar、\approx、単位（\,\mathrm{m/s} など）を整理
+    t = t.replace('\\hbar', ' Y_{9} ')
+    t = re.sub(r'\\(approx|simeq|sim|propto)(?![a-zA-Z])', '=', t)
+    t = re.sub(r'\\(,|;|\s)*\\(mathrm|text)\{\s*(?:[a-zA-Zμ°Ω/^\-0-9\s\\\{\}]*?)\}\s*$', '', t)   # 末尾の単位
+    t = re.sub(r'(?:\\,|\\;|\\ |\s)+\\(?:mathrm|text)\{(?:[^{}]|\{[^{}]*\})*\}\s*$', '', t)   # 末尾の単位（括弧・\\, を含んでもよい）
+    t = re.sub(r'\\mathrm\{([A-Za-z0-9]+)\}', r'\1', t)
     t = re.sub(r'\\(left|right|bigl|bigr|Bigl|Bigr|displaystyle|boldsymbol|mathrm|,|;|!|quad|qquad)\b\s*', ' ', t)
     t = re.sub(r'\\text\{[^}]*\}', ',', t)
     t = t.replace('\\ ', ' ').replace('\\dfrac', '\\frac').replace('\\tfrac', '\\frac')
     t = t.replace('\\leqq', '\\le').replace('\\geqq', '\\ge').replace('\\cdot', '\\times')
     t = re.sub(r'\^\s*\{?\\circ\}?', '', t)
     t = t.replace('\\{', '(').replace('\\}', ')')
-    t = re.sub(r'\\(pi|varphi|phi|theta|alpha|beta)\s*\(', r'\\\1 \\times (', t)
+    t = re.sub(r'\\(pi|varphi|phi|theta|vartheta|alpha|beta|gamma|delta|epsilon|varepsilon|zeta|eta|kappa|lambda|mu|nu|xi|rho|sigma|tau|chi|psi|omega|hbar|Gamma|Delta|Theta|Lambda|Sigma|Phi|Psi|Omega)\s*\(', r'\\\1 \\times (', t)
+    t = re.sub(r'(?<![\\a-zA-Z])d(?![a-zA-Z])', r'\\mathit{d}', t)   # 単独の d は微分記号でなく変数
     t = re.sub(r'(?<![\\a-zA-Z])([a-zA-Z0-9}])\s*\(', r'\1 \\times (', t)   # n(n-1) は掛け算
     return brace_args(t).strip()
 
@@ -152,25 +160,60 @@ def tex_values(part_text):
 
 
 # ---------------------------------------------------------------- 入力用の答え → SymPy
+SUB_SYMS = {}
+
+
+def protect_subscripts(s):
+    """m_1・ω_0・k_B・m1・hbar を1つの記号にして、文字の分解から守る"""
+    s = re.sub(r'(?<![A-Za-z])hbar(?![A-Za-z])|ħ', ' Hbarsym ', s)
+    s = re.sub(r'(?<![A-Za-z])lambda(?![A-Za-z_])', ' lambda_ ', s)
+    s = re.sub(r'(\d)[eE]([+-]?\d+)', r'\1*10**(\2)', s)
+    s = re.sub(r'(\d)(?=[A-Za-z])', r'\1 ', s)   # 3J → 3 J（Python の虚数リテラルにしない）
+    greek = '|'.join(sorted(list(GREEK_NAME.values()) + [k for k in GREEK_NAME], key=len, reverse=True)).replace('lambda_', 'lambda')
+
+    def rep(m):
+        base, sub = m.group(1), m.group(2)
+        base = GREEK_NAME.get(base, base).rstrip('_')
+        name = f'{base}_{sub}'
+        key = f'Q{len(SUB_SYMS)}Q'.replace('Q', 'Zz' * 1)
+        tok = 'SUBSYM' + ''.join(chr(ord('a') + int(c)) for c in str(len(SUB_SYMS)))
+        SUB_SYMS[tok] = Symbol(name)
+        return f' {tok} '
+    s = re.sub(r'(' + greek + r'|[A-Za-z])_\{?([A-Za-z0-9]+)\}?', rep, s)
+    s = re.sub(r'(?<![A-Za-z])([A-Za-z])(\d+)(?![\d.])', rep, s)   # m1 → m_1
+    return s
+
+
 def plain_to_sympy(s):
     s = s.strip()
+    s = re.sub(r'^(≈|~|約)\s*', '', s)
+    s = re.sub(r'\s*\(\d+(\.\d+)?%\)$', '', s)
+    s = protect_subscripts(s)
     s = re.sub(r'(個|通り|桁|本|人|回|枚|組|点|色|日|番目|倍|種類|°)$', '', s)
     for g, name in GREEK_NAME.items():
         s = s.replace(g, f' {name} ')
     s = s.replace('π', ' pi ').replace('√', 'sqrt')
     s = re.sub(r'\|([^|]+)\|', r'Abs(\1)', s)
-    funcs = {'sqrt', 'sin', 'cos', 'tan', 'log', 'exp', 'Abs', 'pi', 'E', 'asin', 'acos', 'atan', 'sinh', 'cosh', 'tanh',
+    funcs = {'arctan', 'arcsin', 'arccos', 'abs', 'EulerE', 'ln', 'sqrt', 'sin', 'cos', 'tan', 'log', 'exp', 'Abs', 'pi', 'E', 'asin', 'acos', 'atan', 'sinh', 'cosh', 'tanh',
              'alpha', 'beta', 'gamma', 'delta', 'theta', 'phi', 'omega', 'lambda_', 'mu', 'rho', 'sigma', 'tau', 'psi', 'xi',
-             'eta', 'zeta', 'kappa', 'nu', 'epsilon'}
+             'eta', 'zeta', 'kappa', 'nu', 'epsilon', 'chi', 'Gamma', 'Delta', 'Omega', 'Lambda', 'Phi', 'Psi', 'Sigma', 'Theta',
+             'Hbarsym', *SUB_SYMS.keys()}
     # アプリの書式では e はいつも定数、文字の並びは掛け算
-    s = re.sub(r'[A-Za-z_]+', lambda m: m.group(0) if m.group(0) in funcs else '*'.join('E' if ch == 'e' else ch for ch in m.group(0)), s)
+    s = re.sub(r'[A-Za-z_]+', lambda m: m.group(0) if m.group(0) in funcs else '*'.join('EulerE' if ch == 'e' else ch for ch in m.group(0)), s)
     s = re.sub(r'(\bpi\b|\bE\b|(?<![a-zA-Z])[a-zA-Z](?![a-zA-Z]))\s*\(', r'\1*(', s)   # π(…)、h(…) は掛け算
     s = re.sub(r'(?<![a-zA-Z])([a-zA-Z])\s+(?=sin|cos|tan|log|exp|sqrt)', r'\1*', s)
-    return parse_expr(s, transformations=TRANS, local_dict={'E': E, 'pi': pi, 'sqrt': sqrt, 'lambda_': Symbol('lambda')})
+    from sympy import log as _log
+    import string
+    greek_syms = {n: Symbol(n) for n in ('alpha', 'beta', 'gamma', 'delta', 'epsilon', 'zeta', 'eta', 'theta', 'kappa', 'mu', 'nu', 'xi', 'rho', 'sigma', 'tau', 'phi', 'chi', 'psi', 'omega', 'Gamma', 'Delta', 'Omega', 'Lambda', 'Phi', 'Psi', 'Sigma', 'Theta')}
+    from sympy import Abs as _Abs
+    ld = {**{c: Symbol(c) for c in string.ascii_letters}, **greek_syms, 'abs': _Abs, 'arctan': __import__('sympy').atan, 'arcsin': __import__('sympy').asin, 'arccos': __import__('sympy').acos, 'EulerE': E, 'ln': _log, 'pi': pi, 'sqrt': sqrt, 'lambda_': Symbol('lambda'), 'Hbarsym': Symbol('Y_9'), **SUB_SYMS}
+    return parse_expr(s, transformations=TRANS, local_dict=ld)
 
 
 def atoms_of_field(f):
     """フィールドの書式から、照合する値（文字列）を取り出す"""
+    if re.match(r'^\s*(証明|図示|記述|略|解答参照)', f) or re.search(r'：\s*(証明|図示|記述|略|解答参照)', f):
+        return None
     lab, sep, val = f.rpartition('：') if '：' in f and not f.startswith('場合分け') else ('', '', f)
     val = val.strip()
     if re.match(r'^(証明|図示|記述)', val):
@@ -198,19 +241,28 @@ def atoms_of_field(f):
     return [val]
 
 
+def norm_name(s):
+    n = re.sub(r'[{}\\ ]', '', str(s))
+    n = re.sub(r'^var(epsilon|theta|phi|rho|sigma|pi)', r'\1', n)
+    return n.replace('mathrm', '')
+
+
+TOL = 1e-6
+
+
 def same(a, b):
     syms = sorted(a.free_symbols | b.free_symbols, key=str)
     names = {}
     for s in syms:
-        names.setdefault(str(s), []).append(s)
+        names.setdefault(norm_name(s), []).append(s)
     for _ in range(3):
         vals = {name: random.uniform(0.3, 2.2) for name in names}
-        sub = {s: vals[str(s)] for s in syms}
+        sub = {s: vals[norm_name(s)] for s in syms}
         try:
             x, y = complex(N(a.subs(sub))), complex(N(b.subs(sub)))
         except Exception:
             return False
-        if abs(x - y) > 1e-6 * max(1, abs(x)):
+        if abs(x - y) > (TOL * max(abs(x), abs(y)) if TOL > 1e-6 else 1e-6 * max(1, abs(x))):
             return False
     return True
 
@@ -235,6 +287,8 @@ def main():
                     continue
                 if cands is None:
                     cands = tex_values(ptext)
+                global TOL
+                TOL = 0.03 if re.search(r'：\s*(≈|~|約)|^(≈|~|約)', f.strip()) else 1e-6
                 for a in atoms:
                     checked += 1
                     try:
