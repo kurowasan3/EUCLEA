@@ -1,0 +1,29 @@
+{
+ "id": "col-sylow",
+ "schema": "lemma.collection/1",
+ "title": "シローの定理と有限群",
+ "description": "シローの定理で群の構造を決める問題を、易しい順に。",
+ "order": 5,
+ "items": [
+  {
+   "id": "AL-02-015"
+  },
+  {
+   "id": "AL-02-016"
+  },
+  {
+   "id": "AL-02-007"
+  },
+  {
+   "id": "AL-02-020"
+  },
+  {
+   "id": "AL-06-008"
+  },
+  {
+   "id": "SK-03-014"
+  }
+ ],
+ "visibility": "public",
+ "createdBy": "euclea"
+}

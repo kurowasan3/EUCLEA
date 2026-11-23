@@ -1,0 +1,794 @@
+[
+ {
+  "id": "T1-05-007",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-46",
+  "level": 1,
+  "minutes": 10,
+  "theme": "管理図の管理限界と工程能力指数",
+  "topic": "管理図の管理限界と工程能力指数",
+  "statement": {
+   "tex": "ある部品の寸法について，大きさ $5$ の群を $25$ 群とり $\\bar X$-$R$ 管理図を作成したところ，総平均 $\\bar{\\bar X}=50.0$，範囲の平均 $\\bar R=2.326$ であった．群の大きさ $5$ に対する係数 $A_2=0.577$，$D_4=2.114$，$d_2=2.326$ を用いる．工程は安定しており，寸法は正規分布に従うとする．\n\\begin{enumerate}\n\\item $\\bar X$ 管理図の上方管理限界を求めよ．\n\\item $R$ 管理図の上方管理限界を求めよ．\n\\item 規格が $46\\le X\\le55$ のとき，工程能力指数 $C_p$ と $C_{pk}$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx51.34$ \\quad (2) $\\approx4.92$ \\quad (3) $C_p=\\frac32$，$C_{pk}=\\frac43$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　工程の標準偏差は $\\hat\\sigma=\\bar R/d_2$ で推定する．$\\bar X$ 管理図の限界は $\\bar{\\bar X}\\pm3\\hat\\sigma/\\sqrt n=\\bar{\\bar X}\\pm A_2\\bar R$．\n\n(1) $50.0+0.577\\times2.326\\approx\\boldsymbol{51.34}$．\n\n(2) $D_4\\bar R=2.114\\times2.326\\approx\\boldsymbol{4.92}$．\n\n(3) $\\hat\\sigma=2.326/2.326=1$．\n\\[C_p=\\frac{55-46}{6\\hat\\sigma}=\\boldsymbol{\\frac32},\\quad C_{pk}=\\frac{\\min(55-50,\\ 50-46)}{3\\hat\\sigma}=\\boldsymbol{\\frac43}.\\]\n$C_{pk}<C_p$ は平均が規格の中心 $50.5$ からずれていることを示す．"
+   }
+  ],
+  "idea": {
+   "tex": "管理図も工程能力指数も，群内変動 $\\bar R/d_2$ で工程の標準偏差を推定することが基礎になる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈51.34\n(2) ≈4.92\n(3) C_p：3/2 ; C_pk：4/3"
+  },
+  "techniques": [
+   "sampling-dist"
+  ],
+  "methods": [],
+  "tags": [
+   "管理図",
+   "工程能力指数",
+   "品質管理"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-05-008",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-46",
+  "level": 1,
+  "minutes": 12,
+  "theme": "層化抽出のネイマン配分と比例配分",
+  "topic": "層化抽出のネイマン配分と比例配分",
+  "statement": {
+   "tex": "$N=10000$ の母集団が3つの層に分かれ，層の大きさと層内標準偏差が\n\\begin{tabular}{c|ccc}\n層 & 1 & 2 & 3\\\\ \\hline\n$N_h$ & 2000 & 3000 & 5000\\\\\n$S_h$ & 20 & 10 & 2\n\\end{tabular}\nである．全体で $n=200$ の標本を層化無作為抽出し，母平均を層化推定量 $\\bar y_{st}=\\sum_h W_h\\bar y_h$（$W_h=N_h/N$）で推定する．有限母集団修正は無視する．\n\\begin{enumerate}\n\\item ネイマン配分（最適配分）での層1の標本サイズ $n_1$ を求めよ．\n\\item ネイマン配分での $V[\\bar y_{st}]$ を求めよ．\n\\item 比例配分での $V[\\bar y_{st}]$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $100$ \\quad (2) $\\frac{8}{25}$ \\quad (3) $\\frac{14}{25}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　$V[\\bar y_{st}]=\\sum_hW_h^2S_h^2/n_h$ を $\\sum n_h=n$ のもとで最小化すると（ラグランジュの未定乗数法やシュワルツの不等式），$n_h\\propto N_hS_h$（ネイマン配分）となり最小値は $\\frac{(\\sum W_hS_h)^2}{n}$．\n\n(1) $N_hS_h=40000,\\ 30000,\\ 10000$ より $n_1=200\\times\\frac{4}{8}=\\boldsymbol{100}$（$n_2=75$，$n_3=25$）．\n\n(2) $\\sum W_hS_h=0.2\\times20+0.3\\times10+0.5\\times2=8$．$V=\\frac{64}{200}=\\boldsymbol{\\frac{8}{25}}$．\n\n(3) 比例配分 $n_h=nW_h$ では $V=\\frac{\\sum W_hS_h^2}{n}=\\frac{80+30+2}{200}=\\boldsymbol{\\frac{14}{25}}$．層内のばらつきが大きく異なるとき，ネイマン配分の利得が大きい．"
+   }
+  ],
+  "idea": {
+   "tex": "層化抽出では，層の大きさだけでなく層内のばらつきにも比例させて標本を配ると分散が最小になる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 100\n(2) 8/25\n(3) 14/25"
+  },
+  "techniques": [
+   "sampling-survey"
+  ],
+  "methods": [],
+  "tags": [
+   "標本調査",
+   "層化抽出",
+   "ネイマン配分",
+   "比例配分"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-05-009",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-46",
+  "level": 1,
+  "minutes": 10,
+  "theme": "直列系・並列系の信頼度と平均寿命",
+  "topic": "直列系・並列系の信頼度と平均寿命",
+  "statement": {
+   "tex": "各部品の寿命は互いに独立に指数分布に従うとする．\n\\begin{enumerate}\n\\item 故障率 $0.001,\\ 0.002,\\ 0.002$（単位は1/時間）の3部品からなる直列系の平均寿命（時間）を求めよ．\n\\item 故障率 $\\lambda$ の同じ部品2個からなる並列系の平均寿命を $\\lambda$ で表せ．\n\\item (2) の並列系が時刻 $t=1/\\lambda$ まで動作している確率を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $200$ \\quad (2) $\\frac{3}{2\\lambda}$ \\quad (3) $2e^{-1}-e^{-2}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　直列系は全部品が動作しているときに動作するので信頼度は積，並列系は全部品が故障したときに故障するので不信頼度が積．平均寿命は $\\int_0^\\infty R(t)\\,dt$．\n\n(1) $R(t)=e^{-0.005t}$ なので系も指数分布で故障率 $0.005$，平均寿命 $\\boldsymbol{200}$ 時間．\n\n(2) $R(t)=1-(1-e^{-\\lambda t})^2=2e^{-\\lambda t}-e^{-2\\lambda t}$．\n\\[\\int_0^\\infty R(t)\\,dt=\\frac{2}{\\lambda}-\\frac{1}{2\\lambda}=\\boldsymbol{\\frac{3}{2\\lambda}}.\\]\n\n(3) $R(1/\\lambda)=\\boldsymbol{2e^{-1}-e^{-2}}\\approx0.600$（部品単体なら $e^{-1}\\approx0.368$）．並列系の故障率 $-R'(t)/R(t)$ は時間とともに増加し，もはや一定ではない．"
+   }
+  ],
+  "idea": {
+   "tex": "直列は信頼度の積，並列は不信頼度の積．平均寿命は信頼度関数の積分で求まる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 200\n(2) 3/(2lambda)\n(3) 2e^(-1)-e^(-2)"
+  },
+  "techniques": [
+   "hazard-survival"
+  ],
+  "methods": [],
+  "tags": [
+   "信頼性",
+   "故障率",
+   "平均寿命",
+   "指数分布"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-05-001",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-46",
+  "level": 1,
+  "minutes": 15,
+  "theme": "2×2分割表のオッズ比と独立性検定",
+  "topic": "2×2分割表のオッズ比と独立性検定",
+  "statement": {
+   "tex": "ある疾患の有無と曝露の有無について $100$ 人を調べ，次の分割表を得た．\n\\[\\begin{array}{c|cc} & \\text{疾患あり} & \\text{疾患なし}\\\\\\hline \\text{曝露あり} & 30 & 20\\\\ \\text{曝露なし} & 10 & 40\\end{array}\\]\n$z_{0.025}=1.96$，$\\log 6=1.792$，$\\sqrt{5/24}=0.4564$，$e^{0.897}=2.45$，$e^{2.686}=14.7$ を用いてよい．\n\\begin{enumerate}\n\\item オッズ比の推定値を求めよ．\n\\item 独立性のピアソンのカイ二乗統計量（連続修正なし）の値を求めよ．\n\\item 対数オッズ比の漸近標準誤差 $\\sqrt{1/a+1/b+1/c+1/d}$ を用いて，オッズ比の $95\\%$ 信頼区間の下限と上限を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $6$ \\quad (2) $\\frac{50}{3}$ \\quad (3) 下限 $\\approx2.45$，上限 $\\approx14.7$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　オッズ比は $\\frac{ad}{bc}$．対数オッズ比は漸近正規なので，対数スケールで区間を作り指数変換する．\n\n(1) $\\frac{30\\times40}{20\\times10}=\\boldsymbol{6}$．\n\n(2) $\\chi^2=\\frac{n(ad-bc)^2}{(a+b)(c+d)(a+c)(b+d)}=\\frac{100\\times1000^2}{50\\times50\\times40\\times60}=\\boldsymbol{\\frac{50}{3}}\\approx16.7$．\n\n(3) 標準誤差は $\\sqrt{\\frac1{30}+\\frac1{20}+\\frac1{10}+\\frac1{40}}=\\sqrt{\\frac{5}{24}}=0.4564$．$1.792\\pm1.96\\times0.4564=[0.897,\\ 2.686]$ を指数変換して $\\boldsymbol{[2.45,\\ 14.7]}$．"
+   }
+  ],
+  "idea": {
+   "tex": "オッズ比の推測は対数スケールで正規近似し，最後に指数変換する．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 6\n(2) 50/3\n(3) 下限：≈2.45 ; 上限：≈14.7"
+  },
+  "techniques": [
+   "odds-ratio-log",
+   "chi2-test"
+  ],
+  "methods": [],
+  "tags": [
+   "分割表",
+   "オッズ比",
+   "カイ二乗検定",
+   "信頼区間"
+  ],
+  "provenance": {
+   "created": "2026-10-31"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-05-002",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-46",
+  "level": 1,
+  "minutes": 15,
+  "theme": "カプラン＝マイヤー推定量とグリーンウッドの公式",
+  "topic": "カプラン＝マイヤー推定量とグリーンウッドの公式",
+  "statement": {
+   "tex": "$8$ 人の患者の生存時間（月）が次のように得られた．$+$ は打ち切りを表す．\n\\[2,\\quad 3^{+},\\quad 5,\\quad 6^{+},\\quad 8,\\quad 8,\\quad 9^{+},\\quad 12^{+}\\]\n\\begin{enumerate}\n\\item 時点 $5$ における生存関数のカプラン＝マイヤー推定値 $\\hat S(5)$ を求めよ．\n\\item $\\hat S(8)$ を求めよ．\n\\item グリーンウッドの公式 $\\widehat{V}[\\hat S(t)]=\\hat S(t)^2\\sum_{t_j\\le t}\\frac{d_j}{n_j(n_j-d_j)}$ を用いて $\\hat S(8)$ の標準誤差を求めよ．\n\\item 生存時間の中央値の推定値（$\\hat S(t)\\le0.5$ となる最小の $t$）を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{35}{48}$ \\quad (2) $\\frac{35}{96}$ \\quad (3) $\\approx0.200$ \\quad (4) $8$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　死亡時点ごとにリスク集合の大きさ $n_j$ と死亡数 $d_j$ を数え，$\\hat S(t)=\\prod_{t_j\\le t}\\left(1-\\frac{d_j}{n_j}\\right)$ とする．打ち切りはリスク集合から外れるだけである．\n\n死亡時点は $t=2$（$n=8,d=1$），$t=5$（$n=6,d=1$），$t=8$（$n=4,d=2$）．\n\n(1) $\\hat S(5)=\\frac78\\cdot\\frac56=\\boldsymbol{\\frac{35}{48}}$．\n\n(2) $\\hat S(8)=\\frac{35}{48}\\cdot\\frac24=\\boldsymbol{\\frac{35}{96}}\\approx0.365$．\n\n(3) $\\sum\\frac{d_j}{n_j(n_j-d_j)}=\\frac1{56}+\\frac1{30}+\\frac{2}{8}=\\frac{253}{840}$．分散 $\\left(\\frac{35}{96}\\right)^2\\times\\frac{253}{840}=0.0400$，標準誤差 $\\boldsymbol{0.200}$．\n\n(4) $\\hat S(5)=0.729>0.5$，$\\hat S(8)=0.365\\le0.5$ より $\\boldsymbol{8}$．"
+   }
+  ],
+  "idea": {
+   "tex": "カプラン＝マイヤー推定量は，各死亡時点の条件付き生存率の積である．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 35/48\n(2) 35/96\n(3) ≈0.200\n(4) 8"
+  },
+  "techniques": [
+   "survival-km-logrank"
+  ],
+  "methods": [],
+  "tags": [
+   "生存時間解析",
+   "カプラン＝マイヤー",
+   "グリーンウッドの公式",
+   "打ち切り"
+  ],
+  "provenance": {
+   "created": "2026-10-31"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-05-010",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-46",
+  "level": 2,
+  "minutes": 22,
+  "theme": "ログランク検定",
+  "topic": "ログランク検定",
+  "statement": {
+   "tex": "2群 $A,B$ の生存時間（月）を観測した．$+$ は打ち切りを表す．\n\\[A:\\ 6,\\ 8^+,\\ 10,\\ 12\\qquad B:\\ 3,\\ 5,\\ 7,\\ 9^+\\]\n同順位の死亡はない．群 $A$ の観測死亡数を $O_A$，帰無仮説（2群の生存関数が等しい）のもとでの期待死亡数を $E_A=\\sum_t d_t\\frac{n_{At}}{n_t}$（$n_t$ は時点 $t$ の直前のリスク集合の大きさ，$d_t$ は死亡数）とする．$\\chi^2_{0.05}(1)=3.841$ を用いてよい．\n\\begin{enumerate}\n\\item $E_A$ を求めよ．\n\\item ログランク統計量の分散 $V=\\sum_t\\frac{d_tn_{At}n_{Bt}(n_t-d_t)}{n_t^2(n_t-1)}$ を求めよ．\n\\item ログランク統計量 $(O_A-E_A)^2/V$ の値を求め，有意水準 $5\\%$ で棄却するなら $1$，しないなら $0$ と答えよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{911}{210}$ \\quad (2) $\\frac{42209}{44100}$ \\quad (3) $\\approx1.87$，$0$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　各死亡時点で $2\\times2$ 表（群×死亡/生存）を作り，周辺を固定したときの超幾何分布の期待値と分散を足し合わせる．\n\n死亡時点とリスク集合 $(n_{At},n_{Bt})$，死亡群は次の通り．\n\\begin{tabular}{c|ccc}\n時点 & $n_{At}$ & $n_{Bt}$ & 死亡\\\\ \\hline\n3 & 4 & 4 & $B$\\\\\n5 & 4 & 3 & $B$\\\\\n6 & 4 & 2 & $A$\\\\\n7 & 3 & 2 & $B$\\\\\n10 & 2 & 0 & $A$\\\\\n12 & 1 & 0 & $A$\n\\end{tabular}\n\n(1) $E_A=\\frac48+\\frac47+\\frac46+\\frac35+\\frac22+\\frac11=\\boldsymbol{\\frac{911}{210}}\\approx4.338$．$O_A=3$．\n\n(2) $d_t=1$ なので各項は $\\frac{n_{At}n_{Bt}}{n_t^2}$：$\\frac{16}{64}+\\frac{12}{49}+\\frac{8}{36}+\\frac{6}{25}+0+0=\\boldsymbol{\\frac{42209}{44100}}\\approx0.957$．\n\n(3) $\\frac{(3-4.338)^2}{0.957}\\approx\\boldsymbol{1.87}<3.841$ なので棄却しない：$\\boldsymbol{0}$．群 $B$ の方が早く死亡する傾向はあるが，標本が小さく有意ではない．"
+   }
+  ],
+  "idea": {
+   "tex": "ログランク検定は死亡時点ごとの $2\\times2$ 表の（観測−期待）を合計する，層別のマンテル＝ヘンツェル型検定である．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 911/210\n(2) 42209/44100\n(3) ≈1.87 ; 0"
+  },
+  "techniques": [
+   "survival-km-logrank"
+  ],
+  "methods": [],
+  "tags": [
+   "生存時間解析",
+   "ログランク検定",
+   "打ち切り",
+   "リスク集合"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-05-011",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-46",
+  "level": 2,
+  "minutes": 20,
+  "theme": "マンテル＝ヘンツェル推定量とマクネマー検定",
+  "topic": "マンテル＝ヘンツェル推定量とマクネマー検定",
+  "statement": {
+   "tex": "ある曝露と疾病の関係を，2つの年齢層で調べた症例対照研究の結果である（$a$：曝露あり症例，$b$：曝露あり対照，$c$：曝露なし症例，$d$：曝露なし対照）．\n\\begin{tabular}{c|cccc}\n層 & $a$ & $b$ & $c$ & $d$\\\\ \\hline\n若年 & 10 & 40 & 5 & 45\\\\\n高年 & 36 & 24 & 18 & 22\n\\end{tabular}\n$\\chi^2_{0.05}(1)=3.841$ を用いてよい．\n\\begin{enumerate}\n\\item 2層を併合した表の粗オッズ比を求めよ．\n\\item マンテル＝ヘンツェルの共通オッズ比推定値を求めよ．\n\\item 別の研究では症例1人に対照1人をマッチさせた $100$ 組を調べ，「症例のみ曝露あり」が $25$ 組，「対照のみ曝露あり」が $10$ 組であった．マクネマー検定統計量（連続修正なし）の値を求めよ．\n\\item (3) のデータでの条件付き最尤オッズ比推定値を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{67}{32}$ \\quad (2) $\\frac{621}{316}$ \\quad (3) $\\frac{45}{7}$ \\quad (4) $\\frac52$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　層別解析では層ごとのオッズ比を重み付きで併合する．マンテル＝ヘンツェル推定量は $\\hat\\psi_{MH}=\\frac{\\sum_k a_kd_k/n_k}{\\sum_k b_kc_k/n_k}$．マッチドペアでは一致したペアは情報をもたず，不一致ペアだけを使う．\n\n(1) 併合表は $a=46$，$b=64$，$c=23$，$d=67$．$\\frac{46\\times67}{64\\times23}=\\boldsymbol{\\frac{67}{32}}\\approx2.09$．\n\n(2) 層ごとのオッズ比は $\\frac94$，$\\frac{11}{6}$．\n\\[\\hat\\psi_{MH}=\\frac{450/100+792/100}{200/100+432/100}=\\frac{1242}{632}=\\boldsymbol{\\frac{621}{316}}\\approx1.97.\\]\n年齢が曝露・疾病の両方と関連するため，粗オッズ比はやや過大になっている．\n\n(3) 不一致ペア $n_{10}=25$，$n_{01}=10$ について $\\frac{(25-10)^2}{25+10}=\\boldsymbol{\\frac{45}{7}}\\approx6.43>3.841$ で有意．\n\n(4) $\\frac{n_{10}}{n_{01}}=\\boldsymbol{\\frac52}$．"
+   }
+  ],
+  "idea": {
+   "tex": "交絡因子で層別したらマンテル＝ヘンツェル法で併合し，マッチドペアでは不一致ペアだけが曝露効果の情報をもつ．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 67/32\n(2) 621/316\n(3) 45/7\n(4) 5/2"
+  },
+  "techniques": [
+   "odds-ratio-log"
+  ],
+  "methods": [],
+  "tags": [
+   "分割表",
+   "マンテル＝ヘンツェル",
+   "マクネマー検定",
+   "オッズ比",
+   "交絡"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-05-012",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-46",
+  "level": 2,
+  "minutes": 20,
+  "theme": "2³ 要因計画の効果推定とブロックへの交絡",
+  "topic": "2³ 要因計画の効果推定とブロックへの交絡",
+  "statement": {
+   "tex": "3因子 $A,B,C$（各2水準）の $2^3$ 要因計画で，次の結果を得た（処理組合せは高水準の因子の小文字で表す）．\n\\begin{tabular}{cccccccc}\n$(1)$ & $a$ & $b$ & $ab$ & $c$ & $ac$ & $bc$ & $abc$\\\\ \\hline\n20 & 28 & 22 & 34 & 24 & 30 & 26 & 40\n\\end{tabular}\n\\begin{enumerate}\n\\item 主効果 $A$（高水準の平均と低水準の平均の差）を求めよ．\n\\item 交互作用 $AB$ の効果を求めよ．\n\\item 交互作用 $AB$ の平方和を求めよ．\n\\item この8処理を4処理ずつ2ブロックで実施するとき，交互作用 $ABC$ をブロックと交絡させる分け方を述べ，そのとき主効果 $A$ の推定がブロック効果の影響を受けない理由を説明せよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $10$ \\quad (2) $3$ \\quad (3) $18$ \\quad (4) 解説参照"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　効果 $X$ の対比は，各処理組合せに「$X$ に含まれる各因子が高水準なら $+1$，低水準なら $-1$」の積を符号として付けた和．効果は対比 $/4$，平方和は対比$^2/8$．\n\n(1) $A$ の対比は $-20+28-22+34-24+30-26+40=40$．効果は $\\boldsymbol{10}$．\n\n(2) $AB$ の符号は $(+,-,-,+,+,-,-,+)$：$20-28-22+34+24-30-26+40=12$．効果は $\\boldsymbol{3}$．\n\n(3) $\\frac{12^2}{8}=\\boldsymbol{18}$．\n\n(4) $ABC$ の符号が $-$ の $\\{(1),ab,ac,bc\\}$ と，$+$ の $\\{a,b,c,abc\\}$ に分ける．ブロック効果 $\\delta$ は $ABC$ の対比にだけ $\\pm4\\delta$ として入る．$A$ の対比の符号は各ブロック内で $+$ と $-$ が2つずつなので $\\delta$ が打ち消され，$A$ の推定は影響を受けない（他の主効果・2因子交互作用も同様）．"
+   }
+  ],
+  "idea": {
+   "tex": "$2^k$ 計画の効果は直交する対比で推定する．ブロック効果を高次交互作用の対比と一致させれば，他の効果は守られる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 10\n(2) 3\n(3) 18\n(4) 記述：ABC の符号で {(1),ab,ac,bc} と {a,b,c,abc} に分ける．A の対比は各ブロック内で +,- が2つずつなのでブロック効果が打ち消される．"
+  },
+  "techniques": [
+   "anova-multiway-f"
+  ],
+  "methods": [],
+  "tags": [
+   "実験計画",
+   "要因計画",
+   "交絡",
+   "ブロック",
+   "直交対比"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-05-013",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-46",
+  "level": 2,
+  "minutes": 18,
+  "theme": "比推定と回帰推定",
+  "topic": "比推定と回帰推定",
+  "statement": {
+   "tex": "$N=500$ 戸の農家から $n=20$ 戸を単純無作為抽出し，収穫量 $y$ と耕作面積 $x$ を調べた．母集団の平均耕作面積 $\\bar X=40$ は既知である．標本から\n\\[\\bar x=36,\\quad \\bar y=90,\\quad s_x^2=100,\\quad s_y^2=900,\\quad s_{xy}=270\\]\nを得た．分散の近似式には有限母集団修正 $(1-f)$，$f=n/N$ を含める．\n\\begin{enumerate}\n\\item 母平均 $\\bar Y$ の比推定値 $\\hat{\\bar Y}_R=\\frac{\\bar y}{\\bar x}\\bar X$ を求めよ．\n\\item 比推定量の分散の推定値 $\\frac{1-f}{n}\\left(s_y^2-2\\hat Rs_{xy}+\\hat R^2s_x^2\\right)$（$\\hat R=\\bar y/\\bar x$）を求めよ．\n\\item 回帰推定値 $\\bar y+b(\\bar X-\\bar x)$（$b=s_{xy}/s_x^2$）を求めよ．\n\\item 回帰推定量の分散の近似値 $\\frac{1-f}{n}s_y^2(1-r^2)$（$r$ は標本相関係数）を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $100$ \\quad (2) $\\frac{42}{5}$ \\quad (3) $\\frac{504}{5}$ \\quad (4) $\\frac{1026}{125}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　補助変数 $x$ の母平均が既知なら，$\\bar x$ のずれを利用して $\\bar y$ を補正できる．比推定は回帰直線が原点を通るとき，回帰推定は一般の直線のときに有効である．\n\n(1) $\\hat R=2.5$，$\\hat{\\bar Y}_R=2.5\\times40=\\boldsymbol{100}$．\n\n(2) $\\frac{1-f}{n}=\\frac{0.96}{20}=0.048$．$900-2\\times2.5\\times270+6.25\\times100=175$ より $0.048\\times175=\\boldsymbol{\\frac{42}{5}}=8.4$．\n\n(3) $b=2.7$，$90+2.7\\times4=\\boldsymbol{\\frac{504}{5}}=100.8$．\n\n(4) $r^2=\\frac{270^2}{100\\times900}=0.81$．$0.048\\times900\\times0.19=\\boldsymbol{\\frac{1026}{125}}=8.208$．単純な $\\bar y$ の分散 $0.048\\times900=43.2$ と比べ，どちらも約 $1/5$ に減っている．回帰推定量の近似分散は比推定量のそれ以下である．"
+   }
+  ],
+  "idea": {
+   "tex": "補助情報を使う比推定・回帰推定は，$y$ と $x$ の相関が強いほど分散を大きく減らす．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 100\n(2) 42/5\n(3) 504/5\n(4) 1026/125"
+  },
+  "techniques": [
+   "sampling-survey"
+  ],
+  "methods": [],
+  "tags": [
+   "標本調査",
+   "比推定",
+   "回帰推定",
+   "補助変数"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-05-003",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-46",
+  "level": 2,
+  "minutes": 20,
+  "theme": "繰り返しのない二元配置分散分析",
+  "topic": "繰り返しのない二元配置分散分析",
+  "statement": {
+   "tex": "因子 $A$（3水準）と因子 $B$（4水準）の各組合せで1回ずつ実験し，次の結果を得た．\n\\begin{tabular}{c|cccc}\n & $B_1$ & $B_2$ & $B_3$ & $B_4$\\\\ \\hline\n$A_1$ & 12 & 15 & 11 & 14\\\\\n$A_2$ & 16 & 18 & 14 & 20\\\\\n$A_3$ & 11 & 12 & 8 & 13\n\\end{tabular}\nモデル $y_{ij}=\\mu+\\alpha_i+\\beta_j+\\varepsilon_{ij}$（$\\varepsilon_{ij}$ は独立に $N(0,\\sigma^2)$）を考える．$F_{0.05}(2,6)=5.143$，$F_{0.05}(3,6)=4.757$ を用いてよい．\n\\begin{enumerate}\n\\item 因子 $A$ の平方和 $S_A$ を求めよ．\n\\item 誤差平方和 $S_E$ を求めよ．\n\\item 因子 $A$ の $F$ 統計量を求めよ．\n\\item 因子 $B$ の $F$ 統計量を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $S_A=\\frac{224}{3}$ \\quad (2) $S_E=4$ \\quad (3) $F_A=56$ \\quad (4) $F_B=20$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　総平方和を $S_T=S_A+S_B+S_E$ と分解する．自由度はそれぞれ $11=2+3+6$．\n\n総平均は $\\frac{164}{12}=\\frac{41}{3}$，行平均は $13,17,11$，列平均は $13,15,11,\\frac{47}{3}$．\n\n(1) $S_A=4\\sum(\\bar y_{i\\cdot}-\\bar y)^2=4\\left(\\frac{4}{9}+\\frac{100}{9}+\\frac{64}{9}\\right)=\\boldsymbol{\\frac{224}{3}}$．\n\n(2) $S_B=3\\sum(\\bar y_{\\cdot j}-\\bar y)^2=40$，$S_T=\\sum y_{ij}^2-12\\bar y^2=\\frac{356}{3}$．よって $S_E=\\frac{356}{3}-\\frac{224}{3}-40=\\boldsymbol{4}$．\n\n(3) $F_A=\\frac{S_A/2}{S_E/6}=\\frac{112/3}{2/3}=\\boldsymbol{56}>5.143$ で有意．\n\n(4) $F_B=\\frac{40/3}{2/3}=\\boldsymbol{20}>4.757$ で有意．"
+   }
+  ],
+  "idea": {
+   "tex": "二元配置では総平方和を因子ごとと誤差に分解し，各平均平方を誤差の平均平方で割って検定する．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 224/3\n(2) 4\n(3) 56\n(4) 20"
+  },
+  "techniques": [
+   "anova-multiway-f"
+  ],
+  "methods": [],
+  "tags": [
+   "分散分析",
+   "二元配置",
+   "実験計画",
+   "F検定"
+  ],
+  "provenance": {
+   "created": "2026-10-31"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-05-004",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-46",
+  "level": 2,
+  "minutes": 18,
+  "theme": "ロジスティック回帰の解釈と推測",
+  "topic": "ロジスティック回帰の解釈と推測",
+  "statement": {
+   "tex": "二値応答 $Y$ と説明変数 $x$ について，ロジスティック回帰モデル $\\log\\frac{P(Y=1)}{1-P(Y=1)}=\\beta_0+\\beta_1x$ を最尤法で当てはめたところ，$\\hat\\beta_0=-1$，$\\hat\\beta_1=0.5$，$\\hat\\beta_1$ の標準誤差は $0.15$ であった．$z_{0.025}=1.96$，$e^{0.206}=1.229$，$e^{0.794}=2.212$ を用いてよい．\n\\begin{enumerate}\n\\item $x=0$ における $P(Y=1)$ の推定値を求めよ．\n\\item $x$ が $1$ 増えたときのオッズ比の推定値を求めよ．\n\\item そのオッズ比の $95\\%$ 信頼区間の下限と上限を求めよ．\n\\item $H_0:\\beta_1=0$ に対するワルド統計量 $(\\hat\\beta_1/\\mathrm{SE})^2$ の値を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{1}{1+e}$ \\quad (2) $e^{1/2}$ \\quad (3) 下限 $\\approx1.229$，上限 $\\approx2.212$ \\quad (4) $\\frac{100}{9}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　ロジットの係数は対数オッズ比である．区間推定は係数のスケールで正規近似し，指数変換する．\n\n(1) $P=\\frac{e^{-1}}{1+e^{-1}}=\\boldsymbol{\\frac{1}{1+e}}\\approx0.269$．\n\n(2) オッズは $e^{\\beta_0+\\beta_1x}$ なので比は $e^{\\hat\\beta_1}=\\boldsymbol{e^{1/2}}\\approx1.65$．\n\n(3) $0.5\\pm1.96\\times0.15=[0.206,\\ 0.794]$ を指数変換して $\\boldsymbol{[1.229,\\ 2.212]}$．\n\n(4) $\\left(\\frac{0.5}{0.15}\\right)^2=\\boldsymbol{\\frac{100}{9}}\\approx11.1$．自由度 $1$ のカイ二乗分布の上側 $5\\%$ 点 $3.84$ を超えるので有意．"
+   }
+  ],
+  "idea": {
+   "tex": "ロジスティック回帰の係数の指数はオッズ比であり，推測は対数スケールで行う．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 1/(1+e)\n(2) e^(1/2)\n(3) 下限：≈1.229 ; 上限：≈2.212\n(4) 100/9"
+  },
+  "techniques": [
+   "logistic-glm",
+   "odds-ratio-log"
+  ],
+  "methods": [],
+  "tags": [
+   "ロジスティック回帰",
+   "オッズ比",
+   "ワルド検定",
+   "一般化線形モデル"
+  ],
+  "provenance": {
+   "created": "2026-10-31"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-05-005",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-46",
+  "level": 2,
+  "minutes": 18,
+  "theme": "スクリーニング検査の予測値と直列検査",
+  "topic": "スクリーニング検査の予測値と直列検査",
+  "statement": {
+   "tex": "ある疾患の有病率は $2\\%$ である．検査 $A$ の感度（疾患ありで陽性となる確率）は $0.9$，特異度（疾患なしで陰性となる確率）は $0.95$ である．\n\\begin{enumerate}\n\\item 陽性的中率（陽性のとき疾患ありである確率）を求めよ．\n\\item 陰性的中率（陰性のとき疾患なしである確率）を求めよ．\n\\item 検査 $A$ を独立に2回行い，2回とも陽性のときのみ「陽性」と判定する．疾患の有無を与えたもとで2回の結果が独立であるとき，この判定の陽性的中率を求めよ．\n\\item (3) の「条件付き独立」の仮定が現実には成り立ちにくい理由と，その影響を説明せよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{18}{67}$ \\quad (2) $\\frac{931}{933}$ \\quad (3) $\\frac{162}{407}$ \\quad (4) 解説参照"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　ベイズの定理で事後確率を計算する．有病率が低いと，特異度が高くても偽陽性が真陽性を上回りやすい．\n\n(1) $\\frac{0.02\\times0.9}{0.02\\times0.9+0.98\\times0.05}=\\frac{0.018}{0.067}=\\boldsymbol{\\frac{18}{67}}\\approx0.269$．\n\n(2) $\\frac{0.98\\times0.95}{0.98\\times0.95+0.02\\times0.1}=\\frac{0.931}{0.933}=\\boldsymbol{\\frac{931}{933}}$．\n\n(3) 感度 $0.81$，偽陽性率 $0.0025$ となるので\n\\[\\frac{0.02\\times0.81}{0.02\\times0.81+0.98\\times0.0025}=\\frac{0.0162}{0.01865}=\\boldsymbol{\\frac{162}{407}}\\approx0.398.\\]\n\n(4) 同じ検査を同じ人に繰り返すと，偽陽性を生む個人の特性（交差反応など）が共通するため，疾患なしの人の2回の結果は正に相関しやすい．すると実際の偽陽性率は $0.05^2$ より大きく，(3) の値は陽性的中率を過大評価する．"
+   }
+  ],
+  "idea": {
+   "tex": "低有病率では陽性的中率は低く，検査の組合せは条件付き独立の仮定に強く依存する．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 18/67\n(2) 931/933\n(3) 162/407\n(4) 記述：同一人物への同じ検査は偽陽性の原因を共有し，非疾患者での結果が正の相関をもつので偽陽性率が 0.05^2 より大きくなり，陽性的中率は過大評価される．"
+  },
+  "techniques": [
+   "bayes-theorem",
+   "classifier-eval"
+  ],
+  "methods": [],
+  "tags": [
+   "ベイズの定理",
+   "感度",
+   "特異度",
+   "陽性的中率",
+   "疫学"
+  ],
+  "provenance": {
+   "created": "2026-10-31"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-05-014",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-46",
+  "level": 3,
+  "minutes": 30,
+  "theme": "コックス比例ハザードモデルの部分尤度とスコア検定",
+  "topic": "コックス比例ハザードモデルの部分尤度とスコア検定",
+  "statement": {
+   "tex": "5人の生存時間 $t$ と2値共変量 $z$ が次のように得られた（$+$ は打ち切り，同順位なし）．\n\\begin{tabular}{c|ccccc}\n$t$ & 1 & 2 & 3 & $4^+$ & 5\\\\ \\hline\n$z$ & 1 & 0 & 1 & 0 & 0\n\\end{tabular}\n比例ハザードモデル $h(t\\mid z)=h_0(t)e^{\\beta z}$ を当てはめる．$\\chi^2_{0.05}(1)=3.841$ を用いてよい．\n\\begin{enumerate}\n\\item 対数部分尤度を $\\ell(\\beta)$ とする．スコア $U(0)=\\ell'(0)$ を求めよ．\n\\item 情報量 $I(0)=-\\ell''(0)$ を求めよ．\n\\item スコア検定統計量 $U(0)^2/I(0)$ の値を求め，有意水準 $5\\%$ で $H_0:\\beta=0$ を棄却するなら $1$，しないなら $0$ と答えよ．\n\\item 部分尤度を最大にする $\\hat\\beta$ を数値的に求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{61}{60}$ \\quad (2) $\\frac{2339}{3600}$ \\quad (3) $\\approx1.59$，$0$ \\quad (4) $\\hat\\beta\\approx1.44$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　部分尤度は各死亡時点で「リスク集合の中から実際に死亡した人が選ばれる条件付き確率」の積で，基準ハザード $h_0$ が消える．$z$ が2値なので，$z=1$ の人数を $m_1$，$z=0$ の人数を $m_0$ とすると各時点の因子は $\\frac{e^{\\beta z}}{m_1e^\\beta+m_0}$．\n\n死亡時点ごとのリスク集合：$t=1$：$(m_1,m_0)=(2,3)$，死亡 $z=1$；$t=2$：$(1,3)$，死亡 $z=0$；$t=3$：$(1,2)$，死亡 $z=1$；$t=5$：$(0,1)$，因子は $1$．\n\\[\\ell(\\beta)=2\\beta-\\log(2e^\\beta+3)-\\log(e^\\beta+3)-\\log(e^\\beta+2).\\]\n\n(1) 各時点で $z_{\\text{死亡}}-\\pi_t(\\beta)$，$\\pi_t=\\frac{m_1e^\\beta}{m_1e^\\beta+m_0}$ の和．$\\beta=0$ では $\\left(1-\\frac25\\right)+\\left(0-\\frac14\\right)+\\left(1-\\frac13\\right)=\\boldsymbol{\\frac{61}{60}}$．\n\n(2) $I(0)=\\sum\\pi_t(1-\\pi_t)=\\frac{6}{25}+\\frac{3}{16}+\\frac{2}{9}=\\boldsymbol{\\frac{2339}{3600}}\\approx0.650$．\n\n(3) $\\frac{(61/60)^2}{0.650}\\approx\\boldsymbol{1.59}<3.841$ で棄却しない：$\\boldsymbol{0}$．このスコア検定はログランク検定と一致する．\n\n(4) $U(\\beta)=2-\\frac{2e^\\beta}{2e^\\beta+3}-\\frac{e^\\beta}{e^\\beta+3}-\\frac{e^\\beta}{e^\\beta+2}=0$ をニュートン法で解くと $\\hat\\beta\\approx\\boldsymbol{1.44}$（ハザード比 $e^{\\hat\\beta}\\approx4.2$）．標準誤差は $I(\\hat\\beta)^{-1/2}\\approx1.24$ と大きい．"
+   }
+  ],
+  "idea": {
+   "tex": "コックスの部分尤度は基準ハザードを消去した条件付き尤度で，$\\beta=0$ でのスコア検定はログランク検定に一致する．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 61/60\n(2) 2339/3600\n(3) ≈1.59 ; 0\n(4) ≈1.44"
+  },
+  "techniques": [
+   "survival-km-logrank",
+   "wald-score-lr"
+  ],
+  "methods": [],
+  "tags": [
+   "生存時間解析",
+   "比例ハザードモデル",
+   "部分尤度",
+   "スコア検定"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-05-015",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-46",
+  "level": 3,
+  "minutes": 25,
+  "theme": "内生性と操作変数推定量",
+  "topic": "内生性と操作変数推定量",
+  "statement": {
+   "tex": "平均 $0$ の確率変数について，構造方程式 $y=\\beta x+u$ と $x=\\gamma z+v$（$\\gamma\\neq0$）を考える．$z$ は $(u,v)$ と独立で $V[z]=1$，また $V[u]=V[v]=1$，$\\mathrm{Cov}(u,v)=\\rho$ とする．$(y_i,x_i,z_i)$，$i=1,\\dots,n$ はこの分布からの無作為標本である．\n\\begin{enumerate}\n\\item 最小二乗推定量 $\\hat\\beta_O=\\sum x_iy_i/\\sum x_i^2$ の確率極限を $\\beta,\\gamma,\\rho$ で表せ．\n\\item 操作変数推定量 $\\hat\\beta_{IV}=\\sum z_iy_i/\\sum z_ix_i$ について，$\\sqrt n(\\hat\\beta_{IV}-\\beta)$ の漸近分散を $\\gamma$ で表せ．\n\\item ある標本で $\\sum z_iy_i=120$，$\\sum z_ix_i=80$，$\\sum x_iy_i=300$，$\\sum x_i^2=180$ であった．操作変数推定値を求めよ．\n\\item (3) の標本での最小二乗推定値を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\beta+\\frac{\\rho}{\\gamma^2+1}$ \\quad (2) $\\frac{1}{\\gamma^2}$ \\quad (3) $\\frac32$ \\quad (4) $\\frac53$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　推定量を「真値＋誤差項との標本共分散／分母」と分解し，大数の法則で確率極限を，中心極限定理で漸近分布を求める．\n\n(1) $\\hat\\beta_O=\\beta+\\frac{\\frac1n\\sum x_iu_i}{\\frac1n\\sum x_i^2}$．$\\mathrm{Cov}(x,u)=\\mathrm{Cov}(v,u)=\\rho$，$V[x]=\\gamma^2+1$ より確率極限は $\\boldsymbol{\\beta+\\frac{\\rho}{\\gamma^2+1}}$．$\\rho\\ne0$（内生性）なら一致性をもたない．\n\n(2) $\\sqrt n(\\hat\\beta_{IV}-\\beta)=\\frac{n^{-1/2}\\sum z_iu_i}{n^{-1}\\sum z_ix_i}$．分子は $N(0,V[z]V[u])=N(0,1)$ に分布収束し（$z$ と $u$ は独立），分母は $\\mathrm{Cov}(z,x)=\\gamma$ に確率収束する．スラツキーの定理より漸近分散は $\\boldsymbol{\\frac{1}{\\gamma^2}}$．$\\gamma$ が小さい（弱い操作変数）と分散が非常に大きくなる．\n\n(3) $\\frac{120}{80}=\\boldsymbol{\\frac32}$．\n\n(4) $\\frac{300}{180}=\\boldsymbol{\\frac53}$．両者の差は内生性による偏りを示唆する（ハウスマン検定の考え方）．"
+   }
+  ],
+  "idea": {
+   "tex": "説明変数が誤差と相関すると最小二乗推定量は一致性を失う．誤差と無相関で説明変数と相関する操作変数を使えば一致推定できるが，相関が弱いと効率が落ちる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) beta+rho/(gamma^2+1)\n(2) 1/gamma^2\n(3) 3/2\n(4) 5/3"
+  },
+  "techniques": [
+   "least-squares",
+   "stoch-convergence",
+   "delta-method"
+  ],
+  "methods": [],
+  "tags": [
+   "計量経済",
+   "操作変数法",
+   "内生性",
+   "一致性",
+   "漸近分散"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-05-006",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-46",
+  "level": 3,
+  "minutes": 30,
+  "theme": "打ち切りのある指数モデルと2群の尤度比検定",
+  "topic": "打ち切りのある指数モデルと2群の尤度比検定",
+  "statement": {
+   "tex": "生存時間が指数分布（ハザード $\\lambda$ 一定）に従うとし，各個体 $i$ の観測時間を $t_i$，死亡なら $\\delta_i=1$，打ち切りなら $\\delta_i=0$ とする（打ち切りは無情報とする）．群 $A$ では死亡数 $d_A=8$，総観測時間 $\\sum t_i=400$，群 $B$ では $d_B=15$，総観測時間 $300$ であった．$e^{-0.693}=0.500$，$e^{0.693}=2.00$，$\\log(5/4)=0.2231$，$\\log 2=0.6931$，$\\log(35/46)=-0.2733$，$\\chi^2_{0.05}(1)=3.841$ を用いてよい．\n\\begin{enumerate}\n\\item 尤度 $\\prod_i\\lambda^{\\delta_i}e^{-\\lambda t_i}$ から，群 $A$ のハザード $\\lambda_A$ の最尤推定値を求めよ．\n\\item $\\log\\hat\\lambda_A$ の漸近分散が $1/d_A$ であることを用いて，$\\lambda_A$ の $95\\%$ 信頼区間の下限と上限を求めよ（$z_{0.025}=1.96$）．\n\\item 群 $A$ の生存時間の中央値の最尤推定値を求めよ．\n\\item $H_0:\\lambda_A=\\lambda_B$ の尤度比検定統計量 $-2\\log\\Lambda$ の値を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\hat\\lambda_A=\\frac{1}{50}$ \\quad (2) 下限 $\\approx0.0100$，上限 $\\approx0.0400$ \\quad (3) $50\\log 2$ \\quad (4) $\\approx4.65$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　打ち切りがあっても，死亡は密度 $\\lambda e^{-\\lambda t}$，打ち切りは生存関数 $e^{-\\lambda t}$ で尤度に寄与する．対数尤度は $d\\log\\lambda-\\lambda\\sum t_i$ で，死亡数 $d$ と総観測時間で決まる．\n\n(1) $\\frac{d}{d\\lambda}(d_A\\log\\lambda-400\\lambda)=0$ より $\\hat\\lambda_A=\\frac{8}{400}=\\boldsymbol{\\frac{1}{50}}$．\n\n(2) 観測情報量は $d_A/\\lambda^2$，デルタ法で $V[\\log\\hat\\lambda_A]\\approx1/d_A$．$1.96/\\sqrt8=0.693$ より\n\\[0.02\\times e^{\\pm0.693}=\\boldsymbol{[0.0100,\\ 0.0400]}.\\]\n\n(3) $e^{-\\lambda m}=\\frac12$ より $m=\\frac{\\log2}{\\lambda}$．不変性より $\\boldsymbol{50\\log2}\\approx34.7$．\n\n(4) 対立仮説での最大対数尤度は $\\sum_g d_g(\\log\\hat\\lambda_g-1)$，帰無仮説では $\\hat\\lambda=\\frac{23}{700}$ として $23(\\log\\hat\\lambda-1)$．差をとって\n\\[-2\\log\\Lambda=2\\left[8\\log\\frac{0.02}{23/700}+15\\log\\frac{0.05}{23/700}\\right]=2\\left[8\\log\\frac{14}{23}+15\\log\\frac{35}{23}\\right].\\]\n$\\log\\frac{14}{23}=\\log\\frac{35}{46}-\\log\\frac54=-0.4964$，$\\log\\frac{35}{23}=\\log\\frac{35}{46}+\\log2=0.4198$ より $2(-3.971+6.297)=\\boldsymbol{4.65}>3.841$．よって有意水準 $5\\%$ で2群のハザードは異なる．"
+   }
+  ],
+  "idea": {
+   "tex": "指数モデルでは打ち切りがあっても十分統計量は（死亡数，総観測時間）で，率の推定と比較が簡潔にできる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 1/50\n(2) 下限：≈0.0100 ; 上限：≈0.0400\n(3) 50ln(2)\n(4) ≈4.65"
+  },
+  "techniques": [
+   "hazard-survival",
+   "mle",
+   "lrt-wilks"
+  ],
+  "methods": [],
+  "tags": [
+   "生存時間解析",
+   "指数分布",
+   "打ち切り",
+   "尤度比検定",
+   "ハザード"
+  ],
+  "provenance": {
+   "created": "2026-10-31"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ }
+]

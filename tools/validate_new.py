@@ -4,13 +4,13 @@
     python3 tools/validate_new.py new.json [作業用フォルダ]
 
 new.json は次の形のオブジェクトの配列：
-  {"subject": "力学", "field": "質点の運動", "level": 0, "theme": "…", "minutes": 8,
+  {"subject": "解析", "field": "複素解析", "level": 2, "theme": "…", "minutes": 8,
    "q": "問題文（LaTeX）", "answer": "答え（LaTeX）", "solution": "解答・解説（LaTeX）",
    "idea": "核となるアイデア", "tags": "タグ1,タグ2", "input": "入力用の答え"}
 （"tid" を付けると報告にその名前が使われる。無ければ 通し番号）
 
 検査すること：
-  1. 必須の項目・科目と分野の組・難易度（0〜4）
+  1. 必須の項目・科目と分野の組・難易度（0〜5）
   2. 問題文などがアプリ用 HTML に変換でき、未対応の命令がないこと
   3. すべての数式が KaTeX で描画できること
   4. 入力用の答えがアプリで読め、正解を入れると正解になること
@@ -30,7 +30,11 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import import_xlsx as IX  # noqa: E402
 
-from math_fields import FIELDS  # noqa: E402
+# 科目と分野は content/taxonomy.json から（EUCLEA）
+_TAX = json.loads((HERE.parent / 'content' / 'taxonomy.json').read_text(encoding='utf-8'))
+FIELDS = {}
+for _f in _TAX['fields']:
+    FIELDS.setdefault(_f['subject'], []).append(_f['name'])
 REQ = ['subject', 'field', 'level', 'theme', 'minutes', 'q', 'answer', 'solution', 'idea', 'tags', 'input']
 
 
@@ -54,8 +58,8 @@ def main():
             continue
         if it['field'] not in FIELDS.get(it['subject'], []):
             errs.append(f'{tid}: 科目と分野の組が不明 {it["subject"]} / {it["field"]}')
-        if it['level'] not in (0, 1, 2, 3, 4):
-            errs.append(f'{tid}: 難易度が 0〜4 でない')
+        if it['level'] not in (0, 1, 2, 3, 4, 5):
+            errs.append(f'{tid}: 難易度が 0〜5 でない')
         unknown = set()
         ctx = {'id': tid, 'unknown': unknown}
         try:
@@ -73,9 +77,7 @@ def main():
             errs.append(f'{tid}: {seen_q[key]} と問題文が同じ')
         seen_q[key] = tid
         inp = str(it['input']).strip()
-        # 小問は enumerate の \item だけを数える（itemize の箇条書きは小問ではない）
-        q_no_itemize = re.sub(r'\\begin\{itemize\}.*?\\end\{itemize\}', '', it['q'], flags=re.S)
-        items_q = len(re.findall(r'\\item\b', q_no_itemize))
+        items_q = len(re.findall(r'\\item\b', it['q']))
         lines = inp.split('\n')
         nums = [m.group(1) for l in lines if (m := re.match(r'^\((\d+)\)', l))]
         if items_q:

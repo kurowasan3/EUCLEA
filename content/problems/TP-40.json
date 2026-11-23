@@ -1,0 +1,792 @@
+[
+ {
+  "id": "TP-05-007",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "TP-40",
+  "level": 1,
+  "minutes": 10,
+  "theme": "中心化移動平均による傾向変動と季節成分の推定",
+  "topic": "中心化移動平均による傾向変動と季節成分の推定",
+  "statement": {
+   "tex": "ある四半期データ $x_1,\\dots,x_{10}$（$t=1$ が第1四半期）が\n\\[13,\\ 19,\\ 16,\\ 14,\\ 18,\\ 23,\\ 20,\\ 17,\\ 21,\\ 27\\]\nである．周期 $4$ の季節変動を除くため，中心化移動平均（$2\\times4$ 移動平均）\n\\[T_t=\\frac18\\left(x_{t-2}+2x_{t-1}+2x_t+2x_{t+1}+x_{t+2}\\right)\\]\nで傾向変動を推定する．\n\\begin{enumerate}\n\\item $T_3$ を求めよ．\n\\item $T_4$ を求めよ．\n\\item 加法モデル $x_t=T_t+S_t+I_t$ を仮定し，第4四半期の季節成分を $x_4-T_4$ と $x_8-T_8$ の平均で推定せよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\dfrac{129}{8}$ (2) $\\dfrac{69}{4}$ (3) $-\\dfrac{7}{2}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　周期 $4$ の単純な4項移動平均は時点の「間」に中心がくるので，隣り合う2つの4項移動平均をさらに平均して時点に合わせる．これが係数 $\\frac18(1,2,2,2,1)$ の中心化移動平均である．係数の和は $1$ で，連続する4期には各四半期がちょうど重み $\\frac14$ ずつ入るので，周期4の季節成分（合計 $0$）を打ち消し，1次の傾向はそのまま通す．\n\n(1) $T_3=\\frac18(13+38+32+28+18)=\\frac{129}{8}=\\boldsymbol{16.125}$．\n\n(2) $T_4=\\frac18(19+32+28+36+23)=\\frac{138}{8}=\\boldsymbol{\\frac{69}{4}}$．\n\n(3) $T_8=\\frac18(x_6+2x_7+2x_8+2x_9+x_{10})=\\frac18(23+40+34+42+27)=\\frac{166}{8}=20.75$．よって $x_4-T_4=14-17.25=-3.25$，$x_8-T_8=17-20.75=-3.75$ で，平均は $\\boldsymbol{-3.5}$．\n\n実務では各四半期の推定値の和が $0$ になるよう調整してから，$x_t-\\hat S_t$ を季節調整済み系列とする．"
+   }
+  ],
+  "idea": {
+   "tex": "$2\\times4$ 中心化移動平均は周期4の季節成分を消して傾向を取り出す．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 129/8\n(2) 69/4\n(3) -7/2"
+  },
+  "techniques": [
+   "seasonal-arima"
+  ],
+  "methods": [],
+  "tags": [
+   "季節調整",
+   "移動平均",
+   "傾向変動",
+   "季節成分"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "TP-05-008",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "TP-40",
+  "level": 1,
+  "minutes": 8,
+  "theme": "ランダムウォークの非定常性と階差",
+  "topic": "ランダムウォークの非定常性と階差",
+  "statement": {
+   "tex": "$X_0=0$，$X_t=X_{t-1}+\\varepsilon_t$（$t\\ge1$）とする．ここで $\\varepsilon_t$ は平均 $0$，分散 $4$ のホワイトノイズである．\n\\begin{enumerate}\n\\item $V[X_{10}]$ を求めよ．\n\\item $X_{10}$ と $X_{15}$ の相関係数を求めよ．\n\\item 階差 $\\Delta X_t=X_t-X_{t-1}$ のラグ $1$ の自己相関係数を求めよ．\n\\item ドリフト付き $X_t=0.5+X_{t-1}+\\varepsilon_t$（$X_0=0$）とするとき，$E[X_{10}]$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $40$ (2) $\\dfrac{\\sqrt{6}}{3}$ (3) $0$ (4) $5$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　$X_t=\\sum_{s=1}^t\\varepsilon_s$ と書けるので，分散・共分散は和の性質から直接求まる．\n\n(1) $V[X_{10}]=10\\times4=\\boldsymbol{40}$．分散が $t$ に比例して増えるので定常ではない．\n\n(2) $\\mathrm{Cov}(X_{10},X_{15})=V[X_{10}]=40$，$V[X_{15}]=60$．相関係数は $\\frac{40}{\\sqrt{40\\cdot60}}=\\sqrt{\\frac{2}{3}}=\\boldsymbol{\\frac{\\sqrt6}{3}}$．時点のずれ $5$ が同じでも，相関は $\\sqrt{t/(t+h)}$ で $t$ に依存する．\n\n(3) $\\Delta X_t=\\varepsilon_t$ はホワイトノイズなので $\\boldsymbol0$．ランダムウォークは1回の階差で定常になる（和分次数 $1$，ARIMA$(0,1,0)$）．\n\n(4) $X_{10}=0.5\\times10+\\sum\\varepsilon_s$ より $E[X_{10}]=\\boldsymbol5$．"
+   }
+  ],
+  "idea": {
+   "tex": "ランダムウォークはノイズの累積和で，分散が時間とともに増える．階差をとると定常になる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 40\n(2) sqrt(6)/3\n(3) 0\n(4) 5"
+  },
+  "techniques": [
+   "stationarity-diff"
+  ],
+  "methods": [],
+  "tags": [
+   "ランダムウォーク",
+   "非定常",
+   "階差",
+   "単位根",
+   "ARIMA"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "TP-05-009",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "TP-40",
+  "level": 1,
+  "minutes": 10,
+  "theme": "単純指数平滑法と ARIMA(0,1,1)",
+  "topic": "単純指数平滑法と ARIMA(0,1,1)",
+  "statement": {
+   "tex": "単純指数平滑法 $\\hat y_{t+1}=\\alpha y_t+(1-\\alpha)\\hat y_t$ を $\\alpha=0.3$，初期値 $\\hat y_1=10$ で用いる．観測値は $y_1=12,\\ y_2=9,\\ y_3=14,\\ y_4=13$ である．\n\\begin{enumerate}\n\\item 予測値 $\\hat y_5$ を求めよ．\n\\item $\\hat y_5$ を $y_1,\\dots,y_4$ と $\\hat y_1$ の1次結合で表したとき，$y_1$ の係数を求めよ．\n\\item 単純指数平滑法は，$y_t-y_{t-1}=e_t+\\theta e_{t-1}$（$e_t$ はホワイトノイズ）という ARIMA$(0,1,1)$ モデルの最適予測と一致する．このときの $\\theta$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $11.7988$ (2) $0.1029$ (3) $-0.7$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　更新式は「前回の予測 $+\\alpha\\times$ 予測誤差」と書ける．展開すると過去の観測値に幾何級数的に減衰する重みを付けた加重平均になる．\n\n(1) $\\hat y_2=0.3\\cdot12+0.7\\cdot10=10.6$，$\\hat y_3=2.7+7.42=10.12$，$\\hat y_4=4.2+7.084=11.284$，$\\hat y_5=3.9+7.8988=\\boldsymbol{11.7988}$．\n\n(2) $\\hat y_5=\\alpha y_4+\\alpha(1-\\alpha)y_3+\\alpha(1-\\alpha)^2y_2+\\alpha(1-\\alpha)^3y_1+(1-\\alpha)^4\\hat y_1$．$y_1$ の係数は $0.3\\times0.343=\\boldsymbol{0.1029}$．\n\n(3) ARIMA$(0,1,1)$ の1期先予測は $\\hat y_{t+1}=y_t+\\theta e_t$，$e_t=y_t-\\hat y_t$．よって $\\hat y_{t+1}=(1+\\theta)y_t-\\theta\\hat y_t$ となり，指数平滑と比べて $1+\\theta=\\alpha$，すなわち $\\theta=\\alpha-1=\\boldsymbol{-0.7}$．反転可能条件 $|\\theta|<1$ は $0<\\alpha<2$ に対応する．"
+   }
+  ],
+  "idea": {
+   "tex": "指数平滑は幾何的に減衰する加重平均であり，ARIMA$(0,1,1)$ の予測と同値．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 11.7988\n(2) 0.1029\n(3) -0.7"
+  },
+  "techniques": [
+   "ts-forecast"
+  ],
+  "methods": [],
+  "tags": [
+   "指数平滑法",
+   "ARIMA",
+   "予測",
+   "加重平均"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "TP-05-001",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "TP-40",
+  "level": 1,
+  "minutes": 8,
+  "theme": "AR(1) モデルの分散・自己相関・予測",
+  "topic": "AR(1) モデルの分散・自己相関・予測",
+  "statement": {
+   "tex": "AR(1) モデル $X_t=0.6X_{t-1}+\\varepsilon_t$（$\\varepsilon_t$ は平均 $0$，分散 $1$ のホワイトノイズ）が定常であるとする．\n\\begin{enumerate}\n\\item $V[X_t]$ を求めよ．\n\\item ラグ $2$ の自己相関係数 $\\rho(2)$ を求めよ．\n\\item $X_T=2$ が観測されたとき，2期先予測値 $\\hat X_{T+2}$ とその予測誤差分散をこの順に求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\dfrac{25}{16}$ (2) $\\dfrac{9}{25}$ (3) $\\dfrac{18}{25}$，$\\dfrac{34}{25}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　定常性から $V[X_t]=V[X_{t-1}]$．自己相関は $\\rho(h)=\\phi^h$．予測は将来の $\\varepsilon$ を $0$ で置き換える．\n\n(1) $\\gamma_0=0.36\\gamma_0+1$ より $\\gamma_0=1/0.64=\\boldsymbol{\\frac{25}{16}}$．\n\n(2) $\\rho(2)=0.6^2=\\boldsymbol{\\frac{9}{25}}$．\n\n(3) $X_{T+2}=0.36X_T+0.6\\varepsilon_{T+1}+\\varepsilon_{T+2}$．予測値は $0.36\\times2=\\boldsymbol{0.72}$，予測誤差分散は $0.36+1=\\boldsymbol{1.36}$．予測期間を延ばすと誤差分散は $\\gamma_0=1.5625$ に近づく．"
+   }
+  ],
+  "idea": {
+   "tex": "AR(1) では $\\rho(h)=\\phi^h$，$h$ 期先予測は $\\phi^hX_T$．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 25/16\n(2) 9/25\n(3) 18/25 ; 34/25"
+  },
+  "techniques": [
+   "ar-yule-walker",
+   "ts-forecast"
+  ],
+  "methods": [],
+  "tags": [
+   "AR(1)",
+   "自己相関",
+   "予測",
+   "定常性"
+  ],
+  "provenance": {
+   "created": "2026-10-31"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "TP-05-002",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "TP-40",
+  "level": 1,
+  "minutes": 8,
+  "theme": "MA(1) モデルの自己共分散と反転可能性",
+  "topic": "MA(1) モデルの自己共分散と反転可能性",
+  "statement": {
+   "tex": "MA(1) モデル $X_t=\\varepsilon_t+0.5\\varepsilon_{t-1}$（$\\varepsilon_t$ は平均 $0$，分散 $4$ のホワイトノイズ）を考える．\n\\begin{enumerate}\n\\item $V[X_t]$ を求めよ．\n\\item 自己相関係数 $\\rho(1)$ と $\\rho(2)$ をこの順に求めよ．\n\\item MA(1) モデル $X_t=\\varepsilon_t+\\theta\\varepsilon_{t-1}$ で $\\theta\\ne0.5$ かつ $\\rho(1)$ が (2) と同じ値になる $\\theta$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $5$ (2) $\\rho(1)=\\dfrac{2}{5}$，$\\rho(2)=0$ (3) $\\theta=2$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　$\\varepsilon$ の無相関性から，共通する $\\varepsilon$ の項だけが共分散に寄与する．\n\n(1) $(1+0.25)\\times4=\\boldsymbol{5}$．\n\n(2) $\\gamma(1)=0.5\\times4=2$ より $\\rho(1)=\\boldsymbol{0.4}$．ラグ $2$ 以上では共通項がないので $\\rho(2)=\\boldsymbol{0}$（MA($q$) の自己相関は $q$ 次で切断）．\n\n(3) $\\dfrac{\\theta}{1+\\theta^2}=0.4$ を解くと $2\\theta^2-5\\theta+2=0$，$\\theta=\\frac12,2$．よって $\\boldsymbol{\\theta=2}$．$\\theta$ と $1/\\theta$ は同じ自己相関を与えるが，$|\\theta|<1$ の方だけが AR($\\infty$) に書き直せる（反転可能）ので，通常は $\\theta=0.5$ を採用する．"
+   }
+  ],
+  "idea": {
+   "tex": "MA(1) の $\\rho(1)=\\theta/(1+\\theta^2)$ は $\\theta\\leftrightarrow1/\\theta$ で不変；反転可能性で一意化する．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 5\n(2) 2/5 ; 0\n(3) 2"
+  },
+  "techniques": [
+   "ma-psi-weights"
+  ],
+  "methods": [],
+  "tags": [
+   "MA(1)",
+   "自己共分散",
+   "反転可能性"
+  ],
+  "provenance": {
+   "created": "2026-10-31"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "TP-05-010",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "TP-40",
+  "level": 2,
+  "minutes": 15,
+  "theme": "MA(1) 過程の偏自己相関とモデルの次数同定",
+  "topic": "MA(1) 過程の偏自己相関とモデルの次数同定",
+  "statement": {
+   "tex": "MA(1) 過程 $X_t=\\varepsilon_t+0.5\\varepsilon_{t-1}$（$\\varepsilon_t$ はホワイトノイズ）を考える．ラグ $k$ の偏自己相関 $\\phi_{kk}$ は，ユール＝ウォーカー型の方程式\n\\[\\begin{pmatrix}1&\\rho_1&\\cdots&\\rho_{k-1}\\\\\\rho_1&1&\\cdots&\\rho_{k-2}\\\\\\vdots&&\\ddots&\\vdots\\\\\\rho_{k-1}&\\cdots&\\rho_1&1\\end{pmatrix}\\begin{pmatrix}\\phi_{k1}\\\\\\vdots\\\\\\phi_{kk}\\end{pmatrix}=\\begin{pmatrix}\\rho_1\\\\\\vdots\\\\\\rho_k\\end{pmatrix}\\]\nの解の最後の成分である．\n\\begin{enumerate}\n\\item 自己相関 $\\rho_1$ を求めよ．\n\\item 偏自己相関 $\\phi_{22}$ を求めよ．\n\\item 偏自己相関 $\\phi_{33}$ を求めよ．\n\\item 標本自己相関がラグ $1$ の後で切断し，標本偏自己相関がゆっくり減衰するとき，どのようなモデルを候補とするか．AR($p$) との対比で述べよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\dfrac{2}{5}$ (2) $-\\dfrac{4}{21}$ (3) $\\dfrac{8}{85}$ (4) 記述"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　MA(1) では $\\rho_1=\\theta/(1+\\theta^2)$，$\\rho_k=0\\ (k\\ge2)$．偏自己相関は方程式を $k=2,3$ で解けばよい．\n\n(1) $\\rho_1=\\frac{0.5}{1.25}=\\boldsymbol{\\frac25}$．\n\n(2) $k=2$：$\\phi_{22}=\\frac{\\rho_2-\\rho_1^2}{1-\\rho_1^2}=\\frac{0-0.16}{0.84}=\\boldsymbol{-\\frac{4}{21}}$．\n\n(3) $k=3$ では $\\rho_2=\\rho_3=0$ として，クラメルの公式で\n\\[\\phi_{33}=\\frac{\\begin{vmatrix}1&\\rho_1&\\rho_1\\\\\\rho_1&1&0\\\\0&\\rho_1&0\\end{vmatrix}}{\\begin{vmatrix}1&\\rho_1&0\\\\\\rho_1&1&\\rho_1\\\\0&\\rho_1&1\\end{vmatrix}}=\\frac{\\rho_1^3}{1-2\\rho_1^2}=\\frac{0.064}{0.68}=\\boldsymbol{\\frac{8}{85}}.\\]\n一般に MA(1) の偏自己相関は $\\phi_{kk}=-\\frac{(-\\theta)^k(1-\\theta^2)}{1-\\theta^{2(k+1)}}$ で，符号を交互に変えながら指数的に減衰し，切断しない．\n\n(4) 自己相関がラグ $q$ の後で切断し偏自己相関が減衰するなら MA($q$)，逆に偏自己相関がラグ $p$ の後で切断し自己相関が減衰するなら AR($p$) が候補となる．ここでは MA(1) を候補とする（両方減衰するなら ARMA）．"
+   }
+  ],
+  "idea": {
+   "tex": "偏自己相関は AR($p$) ではラグ $p$ の後で切断し，MA($q$) では減衰する．自己相関とは役割が逆．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 2/5\n(2) -4/21\n(3) 8/85\n(4) 記述：自己相関がラグ1で切断・偏自己相関が減衰するので MA(1)．AR(p) は逆に偏自己相関がラグ p の後で切断する．"
+  },
+  "techniques": [
+   "acf-pacf-ident",
+   "ma-psi-weights"
+  ],
+  "methods": [],
+  "tags": [
+   "偏自己相関",
+   "MA(1)",
+   "自己相関",
+   "次数同定",
+   "ユール・ウォーカー方程式"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "TP-05-011",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "TP-40",
+  "level": 2,
+  "minutes": 15,
+  "theme": "ARIMA(1,1,0) モデルの予測と予測区間",
+  "topic": "ARIMA(1,1,0) モデルの予測と予測区間",
+  "statement": {
+   "tex": "系列 $X_t$ の階差 $Y_t=X_t-X_{t-1}$ が AR(1) モデル $Y_t=0.5Y_{t-1}+\\varepsilon_t$（$\\varepsilon_t$ は平均 $0$，分散 $1$ の正規ホワイトノイズ）に従う．時点 $T$ までに $X_{T-1}=98$，$X_T=100$ が観測された．\n\\begin{enumerate}\n\\item 1期先予測 $\\hat X_{T+1}$ と2期先予測 $\\hat X_{T+2}$ をこの順に求めよ．\n\\item 2期先の予測誤差分散を求めよ．\n\\item $X_{T+2}$ の $95\\%$ 予測区間の上限を求めよ．$z_{0.025}=1.96$ を用いてよい．\n\\item $h\\to\\infty$ のとき $\\hat X_{T+h}$ の極限を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $101$，$\\dfrac{203}{2}$ (2) $\\dfrac{13}{4}$ (3) $\\approx 105.03$ (4) $102$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　まず定常な階差 $Y_t$ を AR(1) で予測し，それを累積して水準 $X_t$ の予測に戻す．誤差も同様に累積する．\n\n(1) $Y_T=2$．$\\hat Y_{T+1}=1$，$\\hat Y_{T+2}=0.5$．$\\hat X_{T+1}=100+1=\\boldsymbol{101}$，$\\hat X_{T+2}=101+0.5=\\boldsymbol{101.5}$．\n\n(2) $Y_{T+1}-\\hat Y_{T+1}=\\varepsilon_{T+1}$，$Y_{T+2}-\\hat Y_{T+2}=0.5\\varepsilon_{T+1}+\\varepsilon_{T+2}$．水準の誤差はその和で $1.5\\varepsilon_{T+1}+\\varepsilon_{T+2}$，分散は $2.25+1=\\boldsymbol{\\frac{13}{4}}$．（階差の2期先誤差分散 $1.25$ とは異なることに注意．）\n\n(3) $101.5+1.96\\sqrt{3.25}=101.5+3.53\\approx\\boldsymbol{105.03}$．\n\n(4) $\\hat X_{T+h}=100+\\sum_{k=1}^h2(0.5)^k\\to100+2=\\boldsymbol{102}$．一方，予測誤差分散は $h$ とともに際限なく増大する．これは和分過程（単位根をもつ過程）の予測の特徴である．"
+   }
+  ],
+  "idea": {
+   "tex": "ARIMA は階差の ARMA 予測を累積して水準に戻す．予測誤差も累積し，分散は発散する．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 101 ; 203/2\n(2) 13/4\n(3) ≈105.03\n(4) 102"
+  },
+  "techniques": [
+   "ts-forecast",
+   "stationarity-diff"
+  ],
+  "methods": [],
+  "tags": [
+   "ARIMA",
+   "階差",
+   "予測",
+   "予測誤差分散",
+   "予測区間"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "TP-05-012",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "TP-40",
+  "level": 2,
+  "minutes": 15,
+  "theme": "弱定常性の判定と無相関だが独立でない過程",
+  "topic": "弱定常性の判定と無相関だが独立でない過程",
+  "statement": {
+   "tex": "$\\varepsilon_t$ を互いに独立な $N(0,1)$ 確率変数の列とし，$A,B$ を $\\{\\varepsilon_t\\}$ と独立で互いに独立な平均 $0$，分散 $2$ の確率変数とする．次の過程を考える．\n\\begin{itemize}\n\\item[①] $X_t=\\varepsilon_t+0.5\\varepsilon_{t-1}$\n\\item[②] $X_t=A\\cos(\\pi t/2)+B\\sin(\\pi t/2)$\n\\item[③] $X_t=t\\,\\varepsilon_t$\n\\item[④] $X_t=\\varepsilon_t\\varepsilon_{t-1}$\n\\item[⑤] $X_t=\\varepsilon_1+\\varepsilon_2+\\cdots+\\varepsilon_t$\n\\end{itemize}\n\\begin{enumerate}\n\\item 弱定常であるものの番号をすべて答えよ．\n\\item ② の自己共分散 $\\gamma(1)$，$\\gamma(2)$ をこの順に求めよ．\n\\item ④ の $\\gamma(1)$ を求めよ．また，$X_t^2$ と $X_{t-1}^2$ の相関係数を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\{1,2,4\\}$ (2) $0$，$-2$ (3) $0$，$\\dfrac{1}{4}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　弱定常とは，平均が一定で，$\\mathrm{Cov}(X_t,X_{t+h})$ が $h$ のみに依存する（分散有限）ことである．\n\n(1) ① は MA(1) で定常．② は $E[X_t]=0$，$\\mathrm{Cov}(X_t,X_{t+h})=2\\left(\\cos\\frac{\\pi t}{2}\\cos\\frac{\\pi(t+h)}{2}+\\sin\\frac{\\pi t}{2}\\sin\\frac{\\pi(t+h)}{2}\\right)=2\\cos\\frac{\\pi h}{2}$ で $t$ によらず定常．③ は $V[X_t]=t^2$ で非定常．④ は $E[X_t]=0$，$V[X_t]=1$，$h\\ge1$ の共分散は $0$ で定常（ホワイトノイズ）．⑤ は $V[X_t]=t$ で非定常．答えは $\\boldsymbol{\\{1,2,4\\}}$．\n\n(2) $\\gamma(h)=2\\cos(\\pi h/2)$ より $\\gamma(1)=\\boldsymbol0$，$\\gamma(2)=\\boldsymbol{-2}$．\n\n(3) $\\gamma(1)=E[\\varepsilon_t\\varepsilon_{t-1}^2\\varepsilon_{t-2}]=0$ で $\\boldsymbol0$．一方，$E[X_t^2]=1$，$E[X_t^4]=E[\\varepsilon^4]^2=9$ より $V[X_t^2]=8$．$E[X_t^2X_{t-1}^2]=E[\\varepsilon_t^2]E[\\varepsilon_{t-1}^4]E[\\varepsilon_{t-2}^2]=3$ より共分散は $3-1=2$．相関係数は $\\frac28=\\boldsymbol{\\frac14}$．\n\n④ は無相関（ホワイトノイズ）だが独立ではない．2乗系列の自己相関を調べることで，こうした非線形の依存（分散の変動など）を検出できる．"
+   }
+  ],
+  "idea": {
+   "tex": "弱定常性は平均一定と自己共分散がラグのみに依存すること．無相関でも独立とは限らない．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) {1, 2, 4}\n(2) 0 ; -2\n(3) 0 ; 1/4"
+  },
+  "techniques": [
+   "stationarity-diff",
+   "ma-psi-weights"
+  ],
+  "methods": [],
+  "tags": [
+   "定常性",
+   "自己共分散",
+   "ホワイトノイズ",
+   "非定常"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "TP-05-013",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "TP-40",
+  "level": 2,
+  "minutes": 15,
+  "theme": "乗法的季節 MA モデルの自己相関",
+  "topic": "乗法的季節 MA モデルの自己相関",
+  "statement": {
+   "tex": "四半期データに対する乗法的季節 MA モデル\n\\[X_t=(1+\\theta L)(1+\\Theta L^4)\\varepsilon_t,\\qquad \\theta=0.5,\\ \\Theta=0.4\\]\nを考える．$L$ はラグ作用素（$L\\varepsilon_t=\\varepsilon_{t-1}$），$\\varepsilon_t$ は平均 $0$，分散 $\\sigma^2$ のホワイトノイズである．\n\\begin{enumerate}\n\\item 自己相関が $0$ でないラグ $h\\ (\\ge1)$ をすべて答えよ．\n\\item $\\rho(1)$ を求めよ．\n\\item $\\rho(4)$ を求めよ．\n\\item $\\rho(3)$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\{1,3,4,5\\}$ (2) $\\dfrac{2}{5}$ (3) $\\dfrac{10}{29}$ (4) $\\dfrac{4}{29}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　展開すると $X_t=\\varepsilon_t+\\theta\\varepsilon_{t-1}+\\Theta\\varepsilon_{t-4}+\\theta\\Theta\\varepsilon_{t-5}$ という MA(5) になる（係数 $\\psi_0=1,\\psi_1=\\theta,\\psi_4=\\Theta,\\psi_5=\\theta\\Theta$，他は $0$）．$\\gamma(h)=\\sigma^2\\sum_j\\psi_j\\psi_{j+h}$ で計算する．\n\n$\\gamma(0)=\\sigma^2(1+\\theta^2+\\Theta^2+\\theta^2\\Theta^2)=\\sigma^2(1+\\theta^2)(1+\\Theta^2)=1.25\\times1.16\\,\\sigma^2=1.45\\sigma^2$．\n\n(1) 係数の添字の差として現れるのは $1$（$0\\!-\\!1$，$4\\!-\\!5$），$3$（$1\\!-\\!4$），$4$（$0\\!-\\!4$，$1\\!-\\!5$），$5$（$0\\!-\\!5$）．よって $\\boldsymbol{\\{1,3,4,5\\}}$．\n\n(2) $\\gamma(1)=\\sigma^2(\\theta+\\Theta\\cdot\\theta\\Theta)=\\sigma^2\\theta(1+\\Theta^2)$．$\\rho(1)=\\frac{\\theta}{1+\\theta^2}=\\boldsymbol{\\frac25}$．\n\n(3) $\\gamma(4)=\\sigma^2(\\Theta+\\theta\\cdot\\theta\\Theta)=\\sigma^2\\Theta(1+\\theta^2)$．$\\rho(4)=\\frac{\\Theta}{1+\\Theta^2}=\\frac{0.4}{1.16}=\\boldsymbol{\\frac{10}{29}}$．\n\n(4) $\\gamma(3)=\\sigma^2\\theta\\cdot\\Theta$．$\\rho(3)=\\frac{\\theta\\Theta}{(1+\\theta^2)(1+\\Theta^2)}=\\frac{0.2}{1.45}=\\boldsymbol{\\frac{4}{29}}$（$\\rho(5)$ も同じ）．\n\n季節ラグ $4$ の周りのラグ $3,5$ に小さな自己相関が現れるのが乗法的季節モデルの特徴である．季節 ARIMA では，季節階差 $(1-L^4)$ をとった系列にこのようなモデルを当てはめる．"
+   }
+  ],
+  "idea": {
+   "tex": "乗法的季節モデルは展開すると高次の MA になり，季節ラグの両隣にも自己相関が現れる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) {1, 3, 4, 5}\n(2) 2/5\n(3) 10/29\n(4) 4/29"
+  },
+  "techniques": [
+   "seasonal-arima",
+   "ma-psi-weights"
+  ],
+  "methods": [],
+  "tags": [
+   "季節ARIMA",
+   "季節調整",
+   "MA過程",
+   "自己相関"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "TP-05-003",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "TP-40",
+  "level": 2,
+  "minutes": 12,
+  "theme": "AR(2) モデルの定常性とユール＝ウォーカー方程式",
+  "topic": "AR(2) モデルの定常性とユール＝ウォーカー方程式",
+  "statement": {
+   "tex": "AR(2) モデル $X_t=0.5X_{t-1}+0.24X_{t-2}+\\varepsilon_t$（$\\varepsilon_t$ はホワイトノイズ）を考える．\n\\begin{enumerate}\n\\item 特性方程式 $\\lambda^2-0.5\\lambda-0.24=0$ の根をすべて求めよ．\n\\item このモデルが定常なら $1$，定常でないなら $0$ と答えよ．\n\\item 自己相関係数 $\\rho(1)$ を求めよ．\n\\item 自己相関係数 $\\rho(2)$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\{0.8,-0.3\\}$ (2) $1$ (3) $\\dfrac{25}{38}$ (4) $\\dfrac{1081}{1900}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　定常性は特性根の絶対値がすべて $1$ 未満であること．自己相関はユール＝ウォーカー方程式 $\\rho(h)=\\phi_1\\rho(h-1)+\\phi_2\\rho(h-2)$ で求める．\n\n(1) $(\\lambda-0.8)(\\lambda+0.3)=0$ より $\\boldsymbol{\\{0.8,-0.3\\}}$．\n\n(2) $|0.8|,|{-0.3}|<1$ なので定常．答えは $\\boldsymbol{1}$．\n\n(3) $h=1$：$\\rho(1)=0.5+0.24\\rho(1)$ より $\\rho(1)=\\dfrac{0.5}{0.76}=\\boldsymbol{\\frac{25}{38}}\\approx0.658$．\n\n(4) $h=2$：$\\rho(2)=0.5\\cdot\\frac{25}{38}+0.24=\\frac{25}{76}+\\frac{6}{25}=\\boldsymbol{\\frac{1081}{1900}}\\approx0.569$．以降も同じ漸化式で，自己相関は $0.8^h$ と $(-0.3)^h$ の1次結合として減衰する．"
+   }
+  ],
+  "idea": {
+   "tex": "AR($p$) の自己相関は特性方程式と同じ漸化式（ユール＝ウォーカー）に従う．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) {0.8, -0.3}\n(2) 1\n(3) 25/38\n(4) 1081/1900"
+  },
+  "techniques": [
+   "ar-yule-walker"
+  ],
+  "methods": [],
+  "tags": [
+   "AR(2)",
+   "定常性",
+   "ユール・ウォーカー方程式",
+   "特性根"
+  ],
+  "provenance": {
+   "created": "2026-10-31"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "TP-05-004",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "TP-40",
+  "level": 2,
+  "minutes": 15,
+  "theme": "ARMA(1,1) モデルのインパルス応答と自己相関",
+  "topic": "ARMA(1,1) モデルのインパルス応答と自己相関",
+  "statement": {
+   "tex": "ARMA(1,1) モデル $X_t=0.5X_{t-1}+\\varepsilon_t+0.4\\varepsilon_{t-1}$（$\\varepsilon_t$ は平均 $0$，分散 $1$ のホワイトノイズ）を考える．\n\\begin{enumerate}\n\\item MA($\\infty$) 表現 $X_t=\\sum_{j\\ge0}\\psi_j\\varepsilon_{t-j}$ の係数 $\\psi_1,\\ \\psi_2$ をこの順に求めよ．\n\\item $V[X_t]$ を求めよ．\n\\item $\\rho(1)$ を求めよ．\n\\item $\\rho(2)$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\psi_1=\\dfrac{9}{10}$，$\\psi_2=\\dfrac{9}{20}$ (2) $\\dfrac{52}{25}$ (3) $\\dfrac{9}{13}$ (4) $\\dfrac{9}{26}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　$\\psi_0=1$，$\\psi_1=\\phi+\\theta$，$\\psi_j=\\phi\\psi_{j-1}\\ (j\\ge2)$．分散は $\\sum\\psi_j^2$．\n\n(1) $\\psi_1=0.9$，$\\psi_2=0.45$，一般に $\\psi_j=0.9\\times0.5^{j-1}$．よって $\\boldsymbol{\\frac{9}{10},\\ \\frac{9}{20}}$．\n\n(2) $\\gamma_0=1+\\sum_{j\\ge1}0.81\\times0.25^{j-1}=1+\\frac{0.81}{0.75}=\\boldsymbol{\\frac{52}{25}}=2.08$．\n（公式 $\\gamma_0=\\frac{1+2\\phi\\theta+\\theta^2}{1-\\phi^2}=\\frac{1.56}{0.75}$ とも一致．）\n\n(3) $\\gamma(1)=\\sum_j\\psi_j\\psi_{j+1}=0.9+\\sum_{j\\ge1}0.81\\times0.5^{2j-1}=0.9+\\frac{0.405}{0.75}=1.44$．$\\rho(1)=1.44/2.08=\\boldsymbol{\\frac{9}{13}}$．\n\n(4) $h\\ge2$ では MA 部分の影響が消え $\\rho(h)=\\phi\\rho(h-1)$．$\\rho(2)=0.5\\times\\frac{9}{13}=\\boldsymbol{\\frac{9}{26}}$．ラグ $1$ だけ AR(1) と異なる形になるのが ARMA(1,1) の特徴である．"
+   }
+  ],
+  "idea": {
+   "tex": "ARMA は MA($\\infty$) に展開すれば分散・自己共分散が $\\psi$ 係数の和で求まる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 9/10 ; 9/20\n(2) 52/25\n(3) 9/13\n(4) 9/26"
+  },
+  "techniques": [
+   "ma-psi-weights"
+  ],
+  "methods": [],
+  "tags": [
+   "ARMA",
+   "インパルス応答",
+   "自己相関"
+  ],
+  "provenance": {
+   "created": "2026-10-31"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "TP-05-005",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "TP-40",
+  "level": 2,
+  "minutes": 12,
+  "theme": "かばん検定と標本自己相関からの AR(2) 推定",
+  "topic": "かばん検定と標本自己相関からの AR(2) 推定",
+  "statement": {
+   "tex": "長さ $n=100$ の時系列の標本自己相関が $r_1=0.2$，$r_2=0.1$，$r_3=0.1$ であった．$\\chi^2_{0.05}(3)=7.81$ を用いてよい．\n\\begin{enumerate}\n\\item リュング＝ボックス統計量 $Q=n(n+2)\\sum_{k=1}^{3}\\dfrac{r_k^2}{n-k}$ の値を求めよ（小数第 $2$ 位まで）．\n\\item 有意水準 $5\\%$ で「ラグ $3$ までの自己相関がすべて $0$」を棄却するなら $1$，しないなら $0$ と答えよ．\n\\item AR(2) モデルを当てはめるとして，ユール＝ウォーカー推定値 $\\hat\\phi_1,\\ \\hat\\phi_2$ をこの順に求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx 6.21$ (2) $0$ (3) $\\hat\\phi_1=\\dfrac{3}{16}$，$\\hat\\phi_2=\\dfrac{1}{16}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　ホワイトノイズの下で $Q$ は近似的に $\\chi^2(3)$ に従う．AR(2) の推定はユール＝ウォーカー方程式に $r_k$ を代入した連立方程式を解く．\n\n(1) \\[Q=100\\cdot102\\left(\\frac{0.04}{99}+\\frac{0.01}{98}+\\frac{0.01}{97}\\right)\\approx10200\\times0.000609\\approx\\boldsymbol{6.21}.\\]\n\n(2) $6.21<7.81$ なので棄却しない．答えは $\\boldsymbol{0}$．\n\n(3) $r_1=\\phi_1+\\phi_2r_1$，$r_2=\\phi_1r_1+\\phi_2$ を解くと\n\\[\\hat\\phi_2=\\frac{r_2-r_1^2}{1-r_1^2}=\\frac{0.06}{0.96}=\\boldsymbol{\\frac{1}{16}},\\qquad\\hat\\phi_1=\\frac{r_1(1-r_2)}{1-r_1^2}=\\frac{0.18}{0.96}=\\boldsymbol{\\frac{3}{16}}.\\]\n$\\hat\\phi_2$ はラグ $2$ の標本偏自己相関でもある．"
+   }
+  ],
+  "idea": {
+   "tex": "かばん検定は自己相関の2乗和で全体の無相関性を検定する．AR 推定はユール＝ウォーカーで標本自己相関から解く．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈6.21\n(2) 0\n(3) 3/16 ; 1/16"
+  },
+  "techniques": [
+   "acf-pacf-ident",
+   "ar-yule-walker"
+  ],
+  "methods": [],
+  "tags": [
+   "リュング・ボックス検定",
+   "ユール・ウォーカー推定",
+   "偏自己相関"
+  ],
+  "provenance": {
+   "created": "2026-10-31"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "TP-05-014",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "TP-40",
+  "level": 3,
+  "minutes": 18,
+  "theme": "ディッキー＝フラー検定と見せかけの回帰",
+  "topic": "ディッキー＝フラー検定と見せかけの回帰",
+  "statement": {
+   "tex": "定数項なしの AR(1) モデル $X_t=\\phi X_{t-1}+\\varepsilon_t$ において単位根の帰無仮説 $H_0:\\phi=1$ を，対立仮説 $H_1:\\phi<1$ に対して検定する．$\\Delta X_t=\\delta X_{t-1}+\\varepsilon_t$（$\\delta=\\phi-1$）と書き直し，$n=100$ 個のデータから次を得た．\n\\[\\sum X_{t-1}^2=900,\\qquad \\sum X_{t-1}\\Delta X_t=-64.8,\\qquad \\text{残差の標準誤差 } s=1.2\\]\n\\begin{enumerate}\n\\item $\\delta$ の最小二乗推定値を用いて $\\hat\\phi$ を求めよ．\n\\item 統計量 $\\tau=\\hat\\delta/\\mathrm{SE}(\\hat\\delta)$ の値を求めよ．ただし $\\mathrm{SE}(\\hat\\delta)=s/\\sqrt{\\sum X_{t-1}^2}$ とする．\n\\item ディッキー＝フラー分布の $5\\%$ 臨界値 $-1.95$ を用いた検定と，誤って標準正規分布の $5\\%$ 臨界値 $-1.645$ を用いた検定のそれぞれで，$H_0$ を棄却するなら $1$，しないなら $0$ として，順序対（DF 検定，正規近似）で答えよ．\n\\item 互いに独立な2つのランダムウォーク $Y_t,Z_t$ について $Y_t$ を $Z_t$ に回帰すると，何が起こりやすいか．その理由と対処法を述べよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $0.928$ (2) $-1.8$ (3) $(0,1)$ (4) 記述"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　単位根の下では $X_t$ は非定常であり，$\\tau$ 統計量は $t$ 分布にも正規分布にも従わず，左に偏ったディッキー＝フラー分布に従う．\n\n(1) $\\hat\\delta=\\frac{\\sum X_{t-1}\\Delta X_t}{\\sum X_{t-1}^2}=\\frac{-64.8}{900}=-0.072$．$\\hat\\phi=1+\\hat\\delta=\\boldsymbol{0.928}$．\n\n(2) $\\mathrm{SE}(\\hat\\delta)=1.2/30=0.04$．$\\tau=-0.072/0.04=\\boldsymbol{-1.8}$．\n\n(3) DF 検定：$-1.8>-1.95$ なので棄却しない（$0$）．正規近似：$-1.8<-1.645$ で棄却してしまう（$1$）．答え $\\boldsymbol{(0,1)}$．通常の臨界値を使うと単位根を誤って棄却しやすい．\n\n(4) 本当は無関係なのに，回帰係数の $t$ 値が大きく有意になり，決定係数も高くなりやすい（見せかけの回帰）．非定常な系列では残差も非定常（ランダムウォーク的）になり，通常の $t$ 検定の前提が崩れるためで，残差の自己相関が強くダービン＝ワトソン比が $0$ に近いのが兆候である．対処としては，単位根検定で和分次数を確かめ，階差をとって定常化してから回帰する，あるいは共和分の有無を検定する．"
+   }
+  ],
+  "idea": {
+   "tex": "単位根の検定は DF 分布の臨界値で行う．非定常系列どうしの回帰は見せかけの相関を生む．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 0.928\n(2) -1.8\n(3) (0, 1)\n(4) 記述：独立でも t 値・決定係数が大きくなる見せかけの回帰が起こる．残差が非定常で t 検定の前提が崩れるため．階差をとる・共和分検定を行う．"
+  },
+  "techniques": [
+   "stationarity-diff"
+  ],
+  "methods": [],
+  "tags": [
+   "単位根",
+   "ディッキー・フラー検定",
+   "見せかけの回帰",
+   "非定常",
+   "共和分"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "TP-05-015",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "TP-40",
+  "level": 3,
+  "minutes": 20,
+  "theme": "ローカルレベルモデルとカルマンフィルタ",
+  "topic": "ローカルレベルモデルとカルマンフィルタ",
+  "statement": {
+   "tex": "状態空間モデル（ローカルレベルモデル）\n\\[y_t=\\mu_t+\\varepsilon_t,\\quad \\varepsilon_t\\sim N(0,1),\\qquad \\mu_{t+1}=\\mu_t+\\eta_t,\\quad \\eta_t\\sim N(0,1/2)\\]\nを考える（すべて独立）．初期分布を $\\mu_1\\sim N(10,3)$ とし，$y_1=14$，$y_2=11$ を観測した．カルマンフィルタでは，予測分布 $N(m_{t|t-1},P_{t|t-1})$ から\n\\[K_t=\\frac{P_{t|t-1}}{P_{t|t-1}+1},\\quad m_{t|t}=m_{t|t-1}+K_t(y_t-m_{t|t-1}),\\quad P_{t|t}=(1-K_t)P_{t|t-1}\\]\nとフィルタ分布を求め，$m_{t+1|t}=m_{t|t}$，$P_{t+1|t}=P_{t|t}+\\frac12$ と1期先を予測する．\n\\begin{enumerate}\n\\item $K_1$ と $m_{1|1}$ をこの順に求めよ．\n\\item $P_{2|1}$ と $m_{2|2}$ をこの順に求めよ．\n\\item $y_3$ の1期先予測分布の平均と分散をこの順に求めよ．\n\\item $P_{t|t-1}$ が定常値 $\\bar P$ に収束するとき，$\\bar P$ と定常カルマンゲイン $\\bar K$ をこの順に求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\dfrac{3}{4}$，$13$ (2) $\\dfrac{5}{4}$，$\\dfrac{107}{9}$ (3) $\\dfrac{107}{9}$，$\\dfrac{37}{18}$ (4) $1$，$\\dfrac{1}{2}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　カルマンフィルタは「予測 → 観測で更新」を繰り返す逐次ベイズ推定であり，各段は正規＝正規モデルの事後分布の計算そのものである．\n\n(1) $K_1=\\frac{3}{3+1}=\\boldsymbol{\\frac34}$．$m_{1|1}=10+\\frac34(14-10)=\\boldsymbol{13}$，$P_{1|1}=\\frac14\\cdot3=\\frac34$．\n\n(2) $P_{2|1}=\\frac34+\\frac12=\\boldsymbol{\\frac54}$，$m_{2|1}=13$．$K_2=\\frac{5/4}{9/4}=\\frac59$，$m_{2|2}=13+\\frac59(11-13)=\\boldsymbol{\\frac{107}{9}}\\approx11.89$，$P_{2|2}=\\frac49\\cdot\\frac54=\\frac59$．\n\n(3) $m_{3|2}=\\frac{107}{9}$，$P_{3|2}=\\frac59+\\frac12=\\frac{19}{18}$．$y_3=\\mu_3+\\varepsilon_3$ なので予測分布は平均 $\\boldsymbol{\\frac{107}{9}}$，分散 $\\frac{19}{18}+1=\\boldsymbol{\\frac{37}{18}}$．\n\n(4) 定常では $\\bar P=\\frac{\\bar P}{\\bar P+1}+\\frac12$，すなわち $2\\bar P^2-\\bar P-1=0$．正の解は $\\bar P=\\boldsymbol1$，$\\bar K=\\boldsymbol{\\frac12}$．\n\n定常状態では $m_{t+1|t}=\\bar Ky_t+(1-\\bar K)m_{t|t-1}$ となり，平滑化定数 $\\alpha=\\bar K=0.5$ の単純指数平滑法と一致する．信号雑音比 $q=\\sigma_\\eta^2/\\sigma_\\varepsilon^2$ が大きいほど $\\bar K$ は $1$ に近づき，最新の観測を重視する．"
+   }
+  ],
+  "idea": {
+   "tex": "カルマンフィルタは予測と更新を交互に行う逐次ベイズ推定で，ローカルレベルモデルの定常解は指数平滑になる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 3/4 ; 13\n(2) 5/4 ; 107/9\n(3) 107/9 ; 37/18\n(4) 1 ; 1/2"
+  },
+  "techniques": [
+   "ts-forecast",
+   "conjugate-prior"
+  ],
+  "methods": [],
+  "tags": [
+   "状態空間モデル",
+   "カルマンフィルタ",
+   "ローカルレベルモデル",
+   "指数平滑法",
+   "予測"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "TP-05-006",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "TP-40",
+  "level": 3,
+  "minutes": 20,
+  "theme": "自己相関のある系列の平均の推定（長期分散）",
+  "topic": "自己相関のある系列の平均の推定（長期分散）",
+  "statement": {
+   "tex": "定常 AR(1) 過程 $X_t-\\mu=0.5(X_{t-1}-\\mu)+\\varepsilon_t$（$\\varepsilon_t$ は平均 $0$，分散 $0.75$ のホワイトノイズ）から $n=300$ 個の観測を得て，標本平均 $\\bar X=2.4$ であった．\n\\begin{enumerate}\n\\item $\\gamma_0=V[X_t]$ を求めよ．\n\\item $\\displaystyle\\lim_{n\\to\\infty}nV[\\bar X]=\\sum_{h=-\\infty}^{\\infty}\\gamma(h)$ の値を求めよ．\n\\item (2) の近似 $V[\\bar X]\\approx\\frac1n\\sum_h\\gamma(h)$ と $z_{0.025}=1.96$ を用いて，$\\mu$ の近似 $95\\%$ 信頼区間を求めよ．\n\\item 系列を独立とみなして $V[\\bar X]=\\gamma_0/n$ として区間を作ると何が問題か説明せよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $1$ (2) $3$ (3) $[\\approx 2.204,\\ \\approx 2.596]$ (4) 記述（解説参照）"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　$V[\\bar X]=\\frac{1}{n^2}\\sum_{s,t}\\gamma(s-t)$ で，$n$ が大きいと $\\frac1n\\sum_h\\gamma(h)$（長期分散$/n$）に近づく．\n\n(1) $\\gamma_0=\\dfrac{0.75}{1-0.25}=\\boldsymbol{1}$．\n\n(2) $\\gamma(h)=0.5^{|h|}$ なので $\\sum_h\\gamma(h)=1+2\\sum_{h\\ge1}0.5^h=1+2=\\boldsymbol{3}$．（$\\sigma^2/(1-\\phi)^2=0.75/0.25=3$ とも一致．）\n\n(3) $V[\\bar X]\\approx3/300=0.01$，標準誤差 $0.1$．$2.4\\pm0.196$ より $\\boldsymbol{[2.204,\\ 2.596]}$．\n\n(4) 独立とみなすと標準誤差は $\\sqrt{1/300}\\approx0.058$ となり，正しい値 $0.1$ の約 $1/\\sqrt3$ 倍に過小評価される．正の自己相関があると観測の「実質的な個数」は $n/3=100$ 個分しかなく，区間は狭すぎて被覆確率が $95\\%$ を大きく下回る．"
+   }
+  ],
+  "idea": {
+   "tex": "自己相関があると標本平均の分散は長期分散 $\\sum_h\\gamma(h)$ で決まる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 1\n(2) 3\n(3) ≈2.204 ; ≈2.596\n(4) 記述：独立とみなすと分散を γ0/n=1/300 と見積もり，正しい 3/300 の 1/3 に過小評価するため区間が狭すぎ被覆確率が下がる．"
+  },
+  "techniques": [
+   "ar-yule-walker",
+   "clt"
+  ],
+  "methods": [],
+  "tags": [
+   "長期分散",
+   "標本平均",
+   "AR(1)",
+   "有効標本サイズ"
+  ],
+  "provenance": {
+   "created": "2026-10-31"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ }
+]

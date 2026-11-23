@@ -1,0 +1,809 @@
+[
+ {
+  "id": "T1-02-007",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-43",
+  "level": 1,
+  "minutes": 12,
+  "theme": "モーメント法と最尤法",
+  "topic": "モーメント法と最尤法",
+  "statement": {
+   "tex": "モーメント法で母数を推定する．ここで標本分散は $\\frac1n\\sum(x_i-\\bar x)^2$（除数 $n$）とする．\n\\begin{enumerate}\n\\item ガンマ分布 $\\mathrm{Ga}(\\alpha,\\lambda)$（平均 $\\alpha/\\lambda$，分散 $\\alpha/\\lambda^2$）からの標本で，標本平均 $6$，標本分散 $12$ を得た．$\\alpha,\\lambda$ のモーメント推定値を求めよ．\n\\item 一様分布 $U(\\theta_1,\\theta_2)$（$\\theta_1<\\theta_2$）からの標本で，標本平均 $5$，標本分散 $3$ を得た．$\\theta_1,\\theta_2$ のモーメント推定値を求めよ．\n\\item 密度 $f(x;\\theta)=\\theta x^{\\theta-1}$（$0<x<1$，$\\theta>0$）からの大きさ $10$ の標本で，$\\bar x=0.6$，$\\sum_{i=1}^{10}\\log x_i=-6.4$ を得た．$\\theta$ のモーメント推定値と最尤推定値を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\hat\\alpha=3$，$\\hat\\lambda=\\frac12$ \\quad (2) $\\hat\\theta_1=2$，$\\hat\\theta_2=8$ \\quad (3) モーメント推定値 $\\frac32$，最尤推定値 $\\frac{25}{16}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　母数の個数だけ母集団の積率を標本の積率に等しいとおき，連立方程式を解く．最尤推定は対数尤度の微分を $0$ とおく．\n\n(1) $\\alpha/\\lambda=6$，$\\alpha/\\lambda^2=12$ より $\\lambda=6/12$，すなわち $\\boldsymbol{\\hat\\lambda=\\frac12}$，$\\boldsymbol{\\hat\\alpha=3}$．\n\n(2) 平均 $\\frac{\\theta_1+\\theta_2}{2}=5$，分散 $\\frac{(\\theta_2-\\theta_1)^2}{12}=3$ より $\\theta_2-\\theta_1=6$．よって $\\boldsymbol{\\hat\\theta_1=2,\\ \\hat\\theta_2=8}$．（最尤推定量は最小値・最大値であり，モーメント推定値とは一般に異なる．）\n\n(3) $E[X]=\\frac{\\theta}{\\theta+1}=\\bar x$ より $\\hat\\theta=\\frac{\\bar x}{1-\\bar x}=\\boldsymbol{\\frac32}$．対数尤度 $n\\log\\theta+(\\theta-1)\\sum\\log x_i$ を微分して $0$ とおくと $\\hat\\theta=-\\frac{n}{\\sum\\log x_i}=\\frac{10}{6.4}=\\boldsymbol{\\frac{25}{16}}$．"
+   }
+  ],
+  "idea": {
+   "tex": "モーメント法は積率の方程式を解くだけで簡単だが，十分統計量の関数になるとは限らず，最尤推定とは一般に一致しない．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) α：3 ; λ：1/2\n(2) θ_1：2 ; θ_2：8\n(3) モーメント：3/2 ; 最尤：25/16"
+  },
+  "techniques": [
+   "moment-method",
+   "mle"
+  ],
+  "methods": [],
+  "tags": [
+   "モーメント法",
+   "最尤推定",
+   "ガンマ分布",
+   "一様分布",
+   "ベータ分布"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-02-008",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-43",
+  "level": 1,
+  "minutes": 15,
+  "theme": "指数型分布族と有効推定量（レイリー分布）",
+  "topic": "指数型分布族と有効推定量（レイリー分布）",
+  "statement": {
+   "tex": "$X_1,\\dots,X_n$ を独立に密度\n\\[f(x;\\theta)=\\frac{x}{\\theta}\\exp\\left(-\\frac{x^2}{2\\theta}\\right)\\quad(x>0,\\ \\theta>0)\\]\nの分布（レイリー分布）に従う確率変数とする．\n\\begin{enumerate}\n\\item この分布族が1母数指数型分布族であることを示し，$\\theta$ の十分統計量を1つ答えよ．\n\\item $\\theta$ の最尤推定量 $\\hat\\theta$ を求め，その分散 $V[\\hat\\theta]$ を答えよ（$X_1^2$ は平均 $2\\theta$ の指数分布に従う）．\n\\item 1観測あたりのフィッシャー情報量 $I(\\theta)$ を求めよ．\n\\item $E[X_1]=\\sqrt{\\pi\\theta/2}$ の不偏推定量の分散に対するクラメール＝ラオの下限を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) 記述 \\quad (2) $\\frac{\\theta^2}{n}$（$\\hat\\theta=\\frac{1}{2n}\\sum X_i^2$） \\quad (3) $\\frac{1}{\\theta^2}$ \\quad (4) $\\frac{\\pi\\theta}{8n}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　密度を $h(x)\\exp(\\eta(\\theta)T(x)-A(\\theta))$ の形に書けば，$\\sum T(X_i)$ が十分統計量になる．その線形関数で不偏ならクラメール＝ラオの下限を達成する．\n\n(1) $f(x;\\theta)=x\\cdot\\exp\\left(-\\frac{1}{2\\theta}x^2-\\log\\theta\\right)$ は $\\eta=-\\frac{1}{2\\theta}$，$T(x)=x^2$ の指数型分布族．分解定理より $\\sum X_i^2$ が十分統計量．\n\n(2) 対数尤度 $-n\\log\\theta-\\frac{1}{2\\theta}\\sum x_i^2+\\text{const}$ を微分して $0$ とおくと $\\boldsymbol{\\hat\\theta=\\frac{1}{2n}\\sum X_i^2}$．$X_i^2$ の平均は $2\\theta$，分散は $4\\theta^2$ なので $\\hat\\theta$ は不偏で $V[\\hat\\theta]=\\frac{n\\cdot4\\theta^2}{4n^2}=\\boldsymbol{\\frac{\\theta^2}{n}}$．\n\n(3) $\\frac{\\partial^2}{\\partial\\theta^2}\\log f=\\frac{1}{\\theta^2}-\\frac{x^2}{\\theta^3}$ の期待値は $\\frac{1}{\\theta^2}-\\frac{2}{\\theta^2}$ なので $I(\\theta)=\\boldsymbol{\\frac{1}{\\theta^2}}$．下限 $\\frac{\\theta^2}{n}$ を $\\hat\\theta$ は達成する（有効推定量）．\n\n(4) $g(\\theta)=\\sqrt{\\pi/2}\\,\\theta^{1/2}$，$g'(\\theta)^2=\\frac{\\pi}{8\\theta}$．下限は $\\frac{g'(\\theta)^2}{nI(\\theta)}=\\boldsymbol{\\frac{\\pi\\theta}{8n}}$．"
+   }
+  ],
+  "idea": {
+   "tex": "指数型分布族では自然な十分統計量 $\\sum T(X_i)$ の線形関数で不偏なものが有効推定量になる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 記述：f=x·exp(-(1/(2θ))x^2-log θ) は T(x)=x^2 の1母数指数型分布族．分解定理より ΣX_i^2 が十分統計量．\n(2) theta^2/n\n(3) 1/theta^2\n(4) pi theta/(8n)"
+  },
+  "techniques": [
+   "sufficient-stat",
+   "fisher-info-cr"
+  ],
+  "methods": [],
+  "tags": [
+   "指数型分布族",
+   "十分統計量",
+   "フィッシャー情報量",
+   "クラメール＝ラオ",
+   "有効推定量"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-02-009",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-43",
+  "level": 1,
+  "minutes": 12,
+  "theme": "ポアソン＝ガンマモデルのベイズ推定",
+  "topic": "ポアソン＝ガンマモデルのベイズ推定",
+  "statement": {
+   "tex": "$X_1,\\dots,X_n$ は $\\lambda$ が与えられたとき独立に $\\mathrm{Po}(\\lambda)$ に従い，$\\lambda$ の事前分布はガンマ分布 $\\mathrm{Ga}(\\alpha,\\beta)$（密度 $\\propto\\lambda^{\\alpha-1}e^{-\\beta\\lambda}$）とする．$T=\\sum_{i=1}^nX_i$ とおく．\n\\begin{enumerate}\n\\item 二乗損失のもとでのベイズ推定量（事後平均）を $\\alpha,\\beta,n,T$ で表せ．\n\\item $\\alpha=2$，$\\beta=1$，$n=10$，$T=25$ のとき，事後平均と事後分散を求めよ．\n\\item (2) の設定で，次の観測 $X_{11}$ が $0$ になる予測確率 $P(X_{11}=0\\mid X_1,\\dots,X_{10})$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{\\alpha+T}{\\beta+n}$ \\quad (2) 事後平均 $\\frac{27}{11}$，事後分散 $\\frac{27}{121}$ \\quad (3) $\\left(\\frac{11}{12}\\right)^{27}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　尤度 $\\propto\\lambda^Te^{-n\\lambda}$ と事前密度を掛けると同じガンマ型になる（共役事前分布）．\n\n(1) 事後密度 $\\propto\\lambda^{\\alpha+T-1}e^{-(\\beta+n)\\lambda}$ より事後分布は $\\mathrm{Ga}(\\alpha+T,\\beta+n)$．事後平均は $\\boldsymbol{\\frac{\\alpha+T}{\\beta+n}}$．これは $\\frac{\\beta}{\\beta+n}\\cdot\\frac\\alpha\\beta+\\frac{n}{\\beta+n}\\bar X$ と，事前平均と標本平均の重み付き平均になる．\n\n(2) 事後分布は $\\mathrm{Ga}(27,11)$．事後平均 $\\boldsymbol{\\frac{27}{11}}$，事後分散 $\\boldsymbol{\\frac{27}{121}}$．\n\n(3) $P(X_{11}=0\\mid\\cdot)=E[e^{-\\lambda}\\mid\\cdot]=\\left(\\frac{11}{11+1}\\right)^{27}=\\boldsymbol{\\left(\\frac{11}{12}\\right)^{27}}\\approx0.0954$．"
+   }
+  ],
+  "idea": {
+   "tex": "共役事前分布では事後分布が同じ族にとどまり，事後平均は事前平均と標本平均の重み付き平均になる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) (alpha+T)/(beta+n)\n(2) 事後平均：27/11 ; 事後分散：27/121\n(3) (11/12)^27"
+  },
+  "techniques": [
+   "conjugate-prior"
+  ],
+  "methods": [],
+  "tags": [
+   "ベイズ推定",
+   "共役事前分布",
+   "事後分布",
+   "予測分布",
+   "ポアソン分布"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-02-001",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-43",
+  "level": 1,
+  "minutes": 12,
+  "theme": "指数分布の最尤推定とクラメール＝ラオの下限",
+  "topic": "指数分布の最尤推定とクラメール＝ラオの下限",
+  "statement": {
+   "tex": "$X_1,\\dots,X_n$ を独立に密度 $f(x;\\theta)=\\frac{1}{\\theta}e^{-x/\\theta}$（$x>0$，$\\theta>0$）の分布に従う確率変数とする．\n\\begin{enumerate}\n\\item $\\theta$ の最尤推定量を求めよ．\n\\item 1観測あたりのフィッシャー情報量 $I(\\theta)$ を求めよ．\n\\item $\\theta$ の不偏推定量の分散に対するクラメール＝ラオの下限を求めよ．\n\\item $P(X_1>1)=e^{-1/\\theta}$ の最尤推定量の漸近分散（$n$ を含めた近似分散）を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\hat\\theta=\\bar X$ \\quad (2) $I(\\theta)=\\frac{1}{\\theta^2}$ \\quad (3) $\\frac{\\theta^2}{n}$ \\quad (4) $\\frac{e^{-2/\\theta}}{n\\theta^2}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　対数尤度を微分して最尤推定量を求め，スコアの分散（または2階微分の期待値の符号反転）で情報量を出す．関数の最尤推定量は不変性とデルタ法で扱う．\n\n(1) $\\ell(\\theta)=-n\\log\\theta-\\frac{1}{\\theta}\\sum x_i$，$\\ell'(\\theta)=-\\frac n\\theta+\\frac{\\sum x_i}{\\theta^2}=0$ より $\\boldsymbol{\\hat\\theta=\\bar X}$．\n\n(2) $\\frac{\\partial^2}{\\partial\\theta^2}\\log f=\\frac{1}{\\theta^2}-\\frac{2x}{\\theta^3}$，期待値をとって符号を変えると $I(\\theta)=-\\frac1{\\theta^2}+\\frac{2}{\\theta^2}=\\boldsymbol{\\frac{1}{\\theta^2}}$．\n\n(3) $\\frac{1}{nI(\\theta)}=\\boldsymbol{\\frac{\\theta^2}{n}}$．$V[\\bar X]=\\theta^2/n$ なので $\\bar X$ は有効推定量である．\n\n(4) 不変性より最尤推定量は $e^{-1/\\bar X}$．$g(\\theta)=e^{-1/\\theta}$，$g'(\\theta)=\\frac{e^{-1/\\theta}}{\\theta^2}$ より漸近分散は $g'(\\theta)^2\\cdot\\frac{\\theta^2}{n}=\\boldsymbol{\\frac{e^{-2/\\theta}}{n\\theta^2}}$．"
+   }
+  ],
+  "idea": {
+   "tex": "最尤推定量の漸近分散は $1/(nI(\\theta))$，関数変換はデルタ法で $g'(\\theta)^2/(nI(\\theta))$．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 記述：対数尤度 -n log θ - Σx_i/θ を微分して 0 とおくと θ̂ = X̄．\n(2) 1/theta^2\n(3) theta^2/n\n(4) e^(-2/theta)/(n theta^2)"
+  },
+  "techniques": [
+   "fisher-info-cr",
+   "mle",
+   "delta-method"
+  ],
+  "methods": [],
+  "tags": [
+   "最尤推定",
+   "フィッシャー情報量",
+   "クラメール＝ラオ",
+   "デルタ法"
+  ],
+  "provenance": {
+   "created": "2026-10-31"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-02-002",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-43",
+  "level": 1,
+  "minutes": 15,
+  "theme": "ベルヌーイ分布の十分統計量と UMVUE",
+  "topic": "ベルヌーイ分布の十分統計量と UMVUE",
+  "statement": {
+   "tex": "$X_1,\\dots,X_n$（$n\\ge2$）を独立にベルヌーイ分布 $\\mathrm{Bin}(1,p)$ に従う確率変数とし，$T=\\sum_{i=1}^n X_i$ とおく．\n\\begin{enumerate}\n\\item 分解定理を用いて $T$ が $p$ の十分統計量であることを示せ．\n\\item $E[X_1(1-X_2)]$ を $p$ で表せ．\n\\item $T=t$ が与えられたときの $E[X_1(1-X_2)\\mid T=t]$ を求め，$p(1-p)$ の一様最小分散不偏推定量（UMVUE）を $T,n$ で表せ．\n\\item $n=10$，$T=4$ のとき，(3) の推定値を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) 解説参照 \\quad (2) $p(1-p)$ \\quad (3) $\\frac{T(n-T)}{n(n-1)}$ \\quad (4) $\\frac{4}{15}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　粗い不偏推定量 $X_1(1-X_2)$ を十分統計量で条件付け（ラオ＝ブラックウェル化），$T$ の完備性からレーマン＝シェフェの定理で UMVUE を得る．\n\n(1) 同時確率は $p^{\\sum x_i}(1-p)^{n-\\sum x_i}=g(t;p)\\cdot h(x)$（$h\\equiv1$）と分解できるので，$T$ は十分統計量である．\n\n(2) 独立性より $E[X_1(1-X_2)]=p\\cdot(1-p)=\\boldsymbol{p(1-p)}$．\n\n(3) $T=t$ のもとで $(X_1,\\dots,X_n)$ は $t$ 個の1の配置が一様に選ばれた分布なので，\n\\[P(X_1=1,X_2=0\\mid T=t)=\\frac{t}{n}\\cdot\\frac{n-t}{n-1}.\\]\n$T\\sim B(n,p)$ は完備十分統計量（指数型分布族）であるから，レーマン＝シェフェの定理により UMVUE は $\\boldsymbol{\\frac{T(n-T)}{n(n-1)}}$．\n\n(4) $\\frac{4\\cdot6}{10\\cdot9}=\\boldsymbol{\\frac{4}{15}}$．"
+   }
+  ],
+  "idea": {
+   "tex": "単純な不偏推定量を完備十分統計量で条件付ければ UMVUE が得られる（ラオ＝ブラックウェル＋レーマン＝シェフェ）．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 記述：同時確率 p^t(1-p)^{n-t} は t=Σx_i と p だけの関数なので，分解定理より T は十分統計量．\n(2) p(1-p)\n(3) T(n-T)/(n(n-1))\n(4) 4/15"
+  },
+  "techniques": [
+   "rao-blackwell",
+   "sufficient-stat"
+  ],
+  "methods": [],
+  "tags": [
+   "十分統計量",
+   "UMVUE",
+   "ラオ＝ブラックウェル",
+   "レーマン＝シェフェ"
+  ],
+  "provenance": {
+   "created": "2026-10-31"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-02-010",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-43",
+  "level": 2,
+  "minutes": 20,
+  "theme": "二項比率のミニマックス推定量",
+  "topic": "二項比率のミニマックス推定量",
+  "statement": {
+   "tex": "$X_1,\\dots,X_n$ を独立に $P(X_i=1)=p$，$P(X_i=0)=1-p$ に従う確率変数とし，$T=\\sum X_i$ とおく．定数 $a>0$ に対して推定量 $\\delta_a=\\dfrac{T+a}{n+2a}$ を考える．\n\\begin{enumerate}\n\\item $\\delta_a$ の平均二乗誤差 $R(p)=E[(\\delta_a-p)^2]$ を $n,a,p$ で表せ．\n\\item $R(p)$ が $p$ によらない定数となる $a$ を求めよ．\n\\item (2) のときのリスクの値を求め，この推定量がミニマックスであることを説明せよ．\n\\item $n=16$ のとき，(3) のリスクと，標本比率 $T/n$ の $p=\\frac12$ における平均二乗誤差をそれぞれ求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{n\\cdot p\\cdot(1-p)+a^2\\cdot(1-2p)^2}{(n+2a)^2}$ \\quad (2) $\\frac{\\sqrt n}{2}$ \\quad (3) $\\frac{1}{4(\\sqrt n+1)^2}$ \\quad (4) $\\frac{1}{100}$，$\\frac{1}{64}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　平均二乗誤差を分散とバイアスの2乗に分ける．「リスク一定のベイズ推定量はミニマックス」という定理を使う．\n\n(1) 分散は $\\frac{np(1-p)}{(n+2a)^2}$，バイアスは $\\frac{np+a}{n+2a}-p=\\frac{a(1-2p)}{n+2a}$．よって\n\\[R(p)=\\boldsymbol{\\frac{np(1-p)+a^2(1-2p)^2}{(n+2a)^2}}.\\]\n\n(2) 分子 $=a^2+(n-4a^2)p-(n-4a^2)p^2$ なので $4a^2=n$，すなわち $\\boldsymbol{a=\\frac{\\sqrt n}{2}}$．\n\n(3) $R=\\frac{a^2}{(n+2a)^2}=\\frac{n/4}{(n+\\sqrt n)^2}=\\boldsymbol{\\frac{1}{4(\\sqrt n+1)^2}}$．$\\delta_a$ は事前分布 $\\mathrm{Be}(a,a)$ に対するベイズ推定量（事後平均）である．他の推定量 $\\delta$ の最大リスクが $R$ より小さいとすると，ベイズリスク（リスクの事前平均）も $R$ より小さくなり，$\\delta_a$ のベイズ性に反する．よってミニマックス．\n\n(4) $n=16$ では $\\frac{1}{4\\cdot25}=\\boldsymbol{\\frac{1}{100}}$．一方 $T/n$ の $p=\\frac12$ でのリスクは $\\frac{1}{4n}=\\boldsymbol{\\frac{1}{64}}$．$p$ が $\\frac12$ に近いと $\\delta_a$ のほうが良いが，$p$ が $0,1$ に近いと $T/n$ のほうが良い．"
+   }
+  ],
+  "idea": {
+   "tex": "平均二乗誤差をバイアスと分散に分け，リスクが一定になるよう縮小量を選んだベイズ推定量はミニマックスになる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) (n p (1-p)+a^2 (1-2p)^2)/(n+2a)^2\n(2) sqrt(n)/2\n(3) 1/(4(sqrt(n)+1)^2)\n(4) 1/100 ; 1/64"
+  },
+  "techniques": [
+   "mse-compare",
+   "conjugate-prior"
+  ],
+  "methods": [],
+  "tags": [
+   "ミニマックス",
+   "ベイズ推定",
+   "平均二乗誤差",
+   "バイアス",
+   "ベータ分布"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-02-011",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-43",
+  "level": 2,
+  "minutes": 20,
+  "theme": "最小十分統計量と完備でない例（一様分布 U(θ,θ+1)）",
+  "topic": "最小十分統計量と完備でない例（一様分布 U(θ,θ+1)）",
+  "statement": {
+   "tex": "$X_1,\\dots,X_n$（$n\\ge2$）を独立に一様分布 $U(\\theta,\\theta+1)$（$\\theta\\in\\mathbb{R}$）に従う確率変数とし，$X_{(1)}=\\min X_i$，$X_{(n)}=\\max X_i$ とする．\n\\begin{enumerate}\n\\item $(X_{(1)},X_{(n)})$ が十分統計量であることを分解定理で示せ．\n\\item $E[X_{(n)}-X_{(1)}]$ を求め，$(X_{(1)},X_{(n)})$ が完備でないことを説明せよ．\n\\item 中点 $M=\\frac{X_{(1)}+X_{(n)}}{2}$ は $\\theta+\\frac12$ の不偏推定量である．$V[M]$ を求めよ．\n\\item 標本平均を用いた不偏推定量 $\\bar X$ との分散比 $V[\\bar X]/V[M]$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) 記述 \\quad (2) $\\frac{n-1}{n+1}$ \\quad (3) $\\frac{1}{2(n+1)(n+2)}$ \\quad (4) $\\frac{(n+1)(n+2)}{6n}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　台が母数に依存する分布では指示関数がそのまま尤度になる．完備性は「母数によらず期待値が $0$ になる非自明な関数」があれば崩れる．分散は $U(0,1)$ の順序統計量の積率を流用する．\n\n(1) 同時密度は $\\prod 1\\{\\theta<x_i<\\theta+1\\}=1\\{\\theta<x_{(1)}\\}\\,1\\{x_{(n)}<\\theta+1\\}$ で，$(x_{(1)},x_{(n)})$ と $\\theta$ だけの関数．分解定理より十分．（実は最小十分統計量でもある．）\n\n(2) $X_i-\\theta\\sim U(0,1)$ なので範囲の分布は $\\theta$ によらず，$E[X_{(n)}-X_{(1)}]=\\frac{n}{n+1}-\\frac{1}{n+1}=\\boldsymbol{\\frac{n-1}{n+1}}$．よって $g=X_{(n)}-X_{(1)}-\\frac{n-1}{n+1}$ はすべての $\\theta$ で $E[g]=0$ だが $g\\ne0$．したがって完備でない（レーマン＝シェフェの定理は使えない）．\n\n(3) $U(0,1)$ の場合 $V[X_{(1)}]=V[X_{(n)}]=\\frac{n}{(n+1)^2(n+2)}$，$\\mathrm{Cov}=\\frac{1}{(n+1)^2(n+2)}$．よって\n\\[V[M]=\\frac14\\cdot\\frac{2n+2}{(n+1)^2(n+2)}=\\boldsymbol{\\frac{1}{2(n+1)(n+2)}}.\\]\n\n(4) $V[\\bar X]=\\frac{1}{12n}$ なので比は $\\boldsymbol{\\frac{(n+1)(n+2)}{6n}}$．$M$ の分散は $O(n^{-2})$ で，$\\bar X$ の $O(n^{-1})$ よりずっと速く小さくなる．"
+   }
+  ],
+  "idea": {
+   "tex": "台が母数に依存する族では十分統計量が順序統計量になり，母数によらない分布をもつ部分（範囲）があると完備性が崩れる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 記述：同時密度 1{θ<x_(1)}1{x_(n)<θ+1} は (x_(1),x_(n)) と θ だけの関数なので，分解定理より十分．\n(2) (n-1)/(n+1)\n(3) 1/(2(n+1)(n+2))\n(4) (n+1)(n+2)/(6n)"
+  },
+  "techniques": [
+   "sufficient-stat",
+   "support-dependent"
+  ],
+  "methods": [],
+  "tags": [
+   "十分統計量",
+   "分解定理",
+   "完備性",
+   "順序統計量",
+   "一様分布"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-02-012",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-43",
+  "level": 2,
+  "minutes": 20,
+  "theme": "ラオ＝ブラックウェル化によるポアソン分布の P(X=0) の推定",
+  "topic": "ラオ＝ブラックウェル化によるポアソン分布の P(X=0) の推定",
+  "statement": {
+   "tex": "$X_1,\\dots,X_n$（$n\\ge2$）を独立に $\\mathrm{Po}(\\lambda)$ に従う確率変数とし，$T=\\sum_{i=1}^nX_i$ とおく．$e^{-\\lambda}=P(X_1=0)$ を推定する．\n\\begin{enumerate}\n\\item 素朴な不偏推定量 $U=1\\{X_1=0\\}$ の分散を求めよ．\n\\item $T=t$ が与えられたとき $X_1$ は二項分布 $B(t,1/n)$ に従う．$E[U\\mid T]$ を $n,T$ で表せ．\n\\item (2) の推定量の分散を求めよ．\n\\item $e^{-\\lambda}$ の不偏推定量の分散に対するクラメール＝ラオの下限を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $e^{-\\lambda}(1-e^{-\\lambda})$ \\quad (2) $\\left(\\frac{n-1}{n}\\right)^T$ \\quad (3) $e^{-2\\lambda}(e^{\\lambda/n}-1)$ \\quad (4) $\\frac{\\lambda e^{-2\\lambda}}{n}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　粗い不偏推定量を十分統計量で条件付けると（ラオ＝ブラックウェル化），不偏性を保ったまま分散が下がる．$T$ は完備十分なので結果は UMVUE である．\n\n(1) $U$ はベルヌーイ確率変数なので $V[U]=\\boldsymbol{e^{-\\lambda}(1-e^{-\\lambda})}$．\n\n(2) $E[U\\mid T=t]=P(X_1=0\\mid T=t)=\\left(1-\\frac1n\\right)^t$．よって $\\boldsymbol{\\left(\\frac{n-1}{n}\\right)^T}$．$T$ はポアソン分布（指数型分布族）の完備十分統計量なので，レーマン＝シェフェの定理よりこれは UMVUE である．\n\n(3) $T\\sim\\mathrm{Po}(n\\lambda)$ の確率母関数 $E[s^T]=e^{n\\lambda(s-1)}$ に $s=\\left(\\frac{n-1}{n}\\right)^2$ を代入すると $E[(\\cdot)^{2}]=e^{-2\\lambda+\\lambda/n}$．よって分散は $\\boldsymbol{e^{-2\\lambda}(e^{\\lambda/n}-1)}$．\n\n(4) $I(\\lambda)=1/\\lambda$，$g(\\lambda)=e^{-\\lambda}$ より下限は $\\frac{g'(\\lambda)^2}{nI(\\lambda)}=\\boldsymbol{\\frac{\\lambda e^{-2\\lambda}}{n}}$．$e^{x}-1>x$ より UMVUE の分散は下限より真に大きく，下限は達成されない．ただし $n\\to\\infty$ で比は $1$ に近づく．"
+   }
+  ],
+  "idea": {
+   "tex": "不偏推定量を完備十分統計量で条件付けると UMVUE が得られる．それでもクラメール＝ラオの下限に届くとは限らない．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) e^(-lambda)(1-e^(-lambda))\n(2) ((n-1)/n)^T\n(3) e^(-2lambda)(e^(lambda/n)-1)\n(4) lambda e^(-2lambda)/n"
+  },
+  "techniques": [
+   "rao-blackwell",
+   "fisher-info-cr"
+  ],
+  "methods": [],
+  "tags": [
+   "ラオ＝ブラックウェル",
+   "レーマン＝シェフェ",
+   "UMVUE",
+   "クラメール＝ラオ",
+   "ポアソン分布"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-02-013",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-43",
+  "level": 2,
+  "minutes": 20,
+  "theme": "フィッシャー情報行列と変動係数の最尤推定量",
+  "topic": "フィッシャー情報行列と変動係数の最尤推定量",
+  "statement": {
+   "tex": "$X_1,\\dots,X_n$ を独立に $N(\\mu,\\sigma^2)$ に従う確率変数とし，母数を $(\\mu,v)$（$v=\\sigma^2$）とする．\n\\begin{enumerate}\n\\item 1観測あたりのフィッシャー情報行列の $(v,v)$ 成分 $I_{vv}$ と，非対角成分 $I_{\\mu v}$ を求めよ．\n\\item 最尤推定量 $\\hat v$ について，$\\sqrt n(\\hat v-\\sigma^2)$ の漸近分散を求めよ．\n\\item 変動係数 $\\gamma=\\sigma/\\mu$（$\\mu\\ne0$）の最尤推定量 $\\hat\\gamma=\\hat\\sigma/\\hat\\mu$ について，$\\sqrt n(\\hat\\gamma-\\gamma)$ の漸近分散を $\\mu,\\sigma$ で表せ．\n\\item $n=50$，$\\bar x=10$，$\\hat\\sigma=2$ のとき，(3) の漸近分散に推定値を代入して $\\hat\\gamma$ の標準誤差を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $I_{vv}=\\frac{1}{2\\sigma^4}$，$I_{\\mu v}=0$ \\quad (2) $2\\sigma^4$ \\quad (3) $\\frac{\\sigma^4}{\\mu^4}+\\frac{\\sigma^2}{2\\mu^2}$ \\quad (4) $\\approx 0.0208$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　最尤推定量の漸近共分散行列は $I(\\theta)^{-1}/n$．関数の漸近分散は勾配で挟む（多変量デルタ法）．\n\n(1) $\\ell=-\\frac12\\log v-\\frac{(x-\\mu)^2}{2v}$．$\\frac{\\partial^2\\ell}{\\partial v^2}=\\frac{1}{2v^2}-\\frac{(x-\\mu)^2}{v^3}$ の期待値は $-\\frac{1}{2v^2}$ なので $I_{vv}=\\boldsymbol{\\frac{1}{2\\sigma^4}}$．$\\frac{\\partial^2\\ell}{\\partial\\mu\\partial v}=-\\frac{x-\\mu}{v^2}$ の期待値は $0$ なので $I_{\\mu v}=\\boldsymbol{0}$．$I_{\\mu\\mu}=1/\\sigma^2$．\n\n(2) $I^{-1}=\\mathrm{diag}(\\sigma^2,2\\sigma^4)$ より $\\boldsymbol{2\\sigma^4}$．\n\n(3) $\\gamma=v^{1/2}/\\mu$ の勾配は $\\left(-\\frac{\\sigma}{\\mu^2},\\ \\frac{1}{2\\sigma\\mu}\\right)$．よって\n\\[\\frac{\\sigma^2}{\\mu^4}\\sigma^2+\\frac{1}{4\\sigma^2\\mu^2}\\cdot2\\sigma^4=\\boldsymbol{\\frac{\\sigma^4}{\\mu^4}+\\frac{\\sigma^2}{2\\mu^2}}.\\]\n\n(4) $\\hat\\gamma=0.2$，漸近分散の推定値は $0.0016+0.02=0.0216$．標準誤差は $\\sqrt{0.0216/50}\\approx\\boldsymbol{0.0208}$．"
+   }
+  ],
+  "idea": {
+   "tex": "最尤推定量は漸近的に $N(\\theta,I(\\theta)^{-1}/n)$ に従い，その関数の標準誤差は多変量デルタ法で得られる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) I_vv：1/(2sigma^4) ; I_μv：0\n(2) 2sigma^4\n(3) sigma^4/mu^4+sigma^2/(2mu^2)\n(4) ≈0.0208"
+  },
+  "techniques": [
+   "fisher-info-cr",
+   "delta-method"
+  ],
+  "methods": [],
+  "tags": [
+   "フィッシャー情報量",
+   "最尤推定",
+   "漸近正規性",
+   "デルタ法",
+   "正規分布"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-02-003",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-43",
+  "level": 2,
+  "minutes": 20,
+  "theme": "一様分布の推定量の比較",
+  "topic": "一様分布の推定量の比較",
+  "statement": {
+   "tex": "$X_1,\\dots,X_n$ を独立に一様分布 $U(0,\\theta)$（$\\theta>0$）に従う確率変数とし，$X_{(n)}=\\max_i X_i$ とする．\n\\begin{enumerate}\n\\item $E[X_{(n)}]$ を求めよ．\n\\item $\\theta$ の不偏推定量 $\\hat\\theta_1=\\frac{n+1}{n}X_{(n)}$ の分散を求めよ．\n\\item モーメント推定量 $\\hat\\theta_2=2\\bar X$ の分散との比 $V[\\hat\\theta_2]/V[\\hat\\theta_1]$ を求めよ．\n\\item $\\hat\\theta_1$ が UMVUE であることを，$X_{(n)}$ の十分性と完備性から説明せよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{n\\theta}{n+1}$ \\quad (2) $\\frac{\\theta^2}{n(n+2)}$ \\quad (3) $\\frac{n+2}{3}$ \\quad (4) 解説参照"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　$X_{(n)}$ の密度 $\\frac{nx^{n-1}}{\\theta^n}$ から積率を計算する．台が $\\theta$ に依存するため正則条件が成り立たず，分散は $1/n^2$ のオーダーで減少する．\n\n(1) $E[X_{(n)}]=\\int_0^\\theta x\\frac{nx^{n-1}}{\\theta^n}dx=\\boldsymbol{\\frac{n\\theta}{n+1}}$．\n\n(2) $E[X_{(n)}^2]=\\frac{n\\theta^2}{n+2}$ より $V[X_{(n)}]=\\frac{n\\theta^2}{(n+1)^2(n+2)}$．したがって\n\\[V[\\hat\\theta_1]=\\frac{(n+1)^2}{n^2}\\cdot\\frac{n\\theta^2}{(n+1)^2(n+2)}=\\boldsymbol{\\frac{\\theta^2}{n(n+2)}}.\\]\n\n(3) $V[2\\bar X]=4\\cdot\\frac{\\theta^2}{12n}=\\frac{\\theta^2}{3n}$．比は $\\boldsymbol{\\frac{n+2}{3}}$ で，$n\\ge2$ なら $\\hat\\theta_1$ の方が良い．\n\n(4) 尤度は $\\theta^{-n}\\boldsymbol{1}\\{x_{(n)}\\le\\theta\\}$ なので分解定理より $X_{(n)}$ は十分．$E_\\theta[g(X_{(n)})]=0$（すべての $\\theta$）とすると $\\int_0^\\theta g(x)x^{n-1}dx=0$ を $\\theta$ で微分して $g(\\theta)\\theta^{n-1}=0$，よって $g=0$（a.e.）で完備．不偏な $\\hat\\theta_1$ は完備十分統計量の関数なので，レーマン＝シェフェの定理により UMVUE である．"
+   }
+  ],
+  "idea": {
+   "tex": "台が母数に依存する分布では最大値が完備十分統計量で，分散は $O(1/n^2)$ となる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) n theta/(n+1)\n(2) theta^2/(n(n+2))\n(3) (n+2)/3\n(4) 記述：尤度 θ^{-n}1{x_(n)≤θ} より X_(n) は十分，E[g(X_(n))]=0 を θ で微分して g=0 なので完備．不偏な関数だからレーマン＝シェフェで UMVUE．"
+  },
+  "techniques": [
+   "support-dependent",
+   "order-stat-dist",
+   "rao-blackwell"
+  ],
+  "methods": [],
+  "tags": [
+   "一様分布",
+   "順序統計量",
+   "UMVUE",
+   "完備性",
+   "相対効率"
+  ],
+  "provenance": {
+   "created": "2026-10-31"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-02-004",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-43",
+  "level": 2,
+  "minutes": 20,
+  "theme": "正規分布の分散の推定と平均二乗誤差",
+  "topic": "正規分布の分散の推定と平均二乗誤差",
+  "statement": {
+   "tex": "$X_1,\\dots,X_n$ を独立に $N(\\mu,\\sigma^2)$ に従う確率変数とし，$Q=\\sum_{i=1}^n(X_i-\\bar X)^2$ とおく．$\\sigma^2$ の推定量 $cQ$（$c>0$ は定数）を考える．\n\\begin{enumerate}\n\\item $V[Q]$ を $n,\\sigma$ で表せ．\n\\item 平均二乗誤差 $E[(cQ-\\sigma^2)^2]$ を最小にする $c$ を求めよ．\n\\item そのときの最小の平均二乗誤差を求めよ．\n\\item $\\mu$ が既知のとき，$\\sigma^2$ の不偏推定量の分散に対するクラメール＝ラオの下限を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $2(n-1)\\sigma^4$ \\quad (2) $c=\\frac{1}{n+1}$ \\quad (3) $\\frac{2\\sigma^4}{n+1}$ \\quad (4) $\\frac{2\\sigma^4}{n}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　$Q/\\sigma^2\\sim\\chi^2(n-1)$ を用いて，平均二乗誤差を「分散＋偏りの2乗」に分けて $c$ の2次式として最小化する．\n\n(1) $\\chi^2(n-1)$ の分散は $2(n-1)$ なので $V[Q]=\\boldsymbol{2(n-1)\\sigma^4}$．\n\n(2) $E[Q]=(n-1)\\sigma^2$ より\n\\[\\mathrm{MSE}(c)=c^2\\cdot2(n-1)\\sigma^4+\\{c(n-1)-1\\}^2\\sigma^4.\\]\n$c$ で微分して $0$ とおくと $2c(n-1)+(n-1)\\{c(n-1)-1\\}=0$，すなわち $c(n+1)=1$，$\\boldsymbol{c=\\frac{1}{n+1}}$．\n\n(3) 代入して $\\mathrm{MSE}=\\boldsymbol{\\frac{2\\sigma^4}{n+1}}$．不偏推定量（$c=\\frac1{n-1}$）の $\\frac{2\\sigma^4}{n-1}$ より小さい．\n\n(4) $\\mu$ 既知のとき，$\\sigma^2$ に関する1観測の情報量は $\\frac{1}{2\\sigma^4}$ なので下限は $\\boldsymbol{\\frac{2\\sigma^4}{n}}$．"
+   }
+  ],
+  "idea": {
+   "tex": "偏りを少し許すと分散が減り，平均二乗誤差は不偏推定量より小さくできる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 2(n-1)sigma^4\n(2) 1/(n+1)\n(3) 2sigma^4/(n+1)\n(4) 2sigma^4/n"
+  },
+  "techniques": [
+   "mse-compare",
+   "sampling-dist"
+  ],
+  "methods": [],
+  "tags": [
+   "平均二乗誤差",
+   "カイ二乗分布",
+   "不偏分散",
+   "クラメール＝ラオ"
+  ],
+  "provenance": {
+   "created": "2026-10-31"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-02-005",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-43",
+  "level": 2,
+  "minutes": 20,
+  "theme": "指数分布の率パラメータの UMVUE",
+  "topic": "指数分布の率パラメータの UMVUE",
+  "statement": {
+   "tex": "$X_1,\\dots,X_n$（$n\\ge3$）を独立に密度 $f(x;\\theta)=\\theta e^{-\\theta x}$（$x>0$，$\\theta>0$）の分布に従う確率変数とし，$T=\\sum_{i=1}^n X_i$ とおく．$T$ はガンマ分布 $\\mathrm{Ga}(n,\\theta)$ に従う．\n\\begin{enumerate}\n\\item 最尤推定量 $n/T$ の期待値を求めよ．\n\\item $\\theta$ の UMVUE を $T,n$ で表せ．\n\\item (2) の UMVUE の分散を求めよ．\n\\item クラメール＝ラオの下限を求め，(3) と比較せよ（下限は達成されるか）．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{n\\theta}{n-1}$ \\quad (2) $\\frac{n-1}{T}$ \\quad (3) $\\frac{\\theta^2}{n-2}$ \\quad (4) $\\frac{\\theta^2}{n}$（達成されない）"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　$E[T^{-k}]$ をガンマ積分で計算する．$T$ は指数型分布族の完備十分統計量なので，$T$ の関数で不偏なものが UMVUE である．\n\n(1) $E[1/T]=\\frac{\\theta}{n-1}$ より $E[n/T]=\\boldsymbol{\\frac{n\\theta}{n-1}}$（上向きの偏り）．\n\n(2) $\\boldsymbol{\\frac{n-1}{T}}$ は不偏で $T$ の関数なので，レーマン＝シェフェの定理より UMVUE．\n\n(3) $E[T^{-2}]=\\frac{\\theta^2}{(n-1)(n-2)}$ より\n\\[V\\left[\\frac{n-1}{T}\\right]=\\frac{(n-1)\\theta^2}{n-2}-\\theta^2=\\boldsymbol{\\frac{\\theta^2}{n-2}}.\\]\n\n(4) $I(\\theta)=\\frac{1}{\\theta^2}$ より下限は $\\boldsymbol{\\frac{\\theta^2}{n}}$．$\\frac{\\theta^2}{n-2}>\\frac{\\theta^2}{n}$ なので UMVUE でも下限は達成されない．下限が達成されるのは推定対象が十分統計量の平均の1次関数（ここでは $1/\\theta$）のときに限る．"
+   }
+  ],
+  "idea": {
+   "tex": "UMVUE は存在しても，クラメール＝ラオの下限を達成するとは限らない．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) n theta/(n-1)\n(2) (n-1)/T\n(3) theta^2/(n-2)\n(4) theta^2/n"
+  },
+  "techniques": [
+   "rao-blackwell",
+   "fisher-info-cr",
+   "gamma-beta-kernel"
+  ],
+  "methods": [],
+  "tags": [
+   "UMVUE",
+   "クラメール＝ラオ",
+   "ガンマ分布",
+   "指数型分布族"
+  ],
+  "provenance": {
+   "created": "2026-10-31"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-02-014",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-43",
+  "level": 3,
+  "minutes": 25,
+  "theme": "台が母数に依存する場合の最尤推定量（位置母数の指数分布）",
+  "topic": "台が母数に依存する場合の最尤推定量（位置母数の指数分布）",
+  "statement": {
+   "tex": "$X_1,\\dots,X_n$ を独立に密度 $f(x;\\theta)=e^{-(x-\\theta)}$（$x>\\theta$，$\\theta\\in\\mathbb{R}$）の分布に従う確率変数とし，$X_{(1)}=\\min_iX_i$ とする．\n\\begin{enumerate}\n\\item $\\theta$ の最尤推定量を求めよ．\n\\item $x>0$ に対して $P\\left(n(X_{(1)}-\\theta)>x\\right)$ を求めよ．\n\\item 最尤推定量の平均二乗誤差と，UMVUE $X_{(1)}-\\frac1n$ の分散をそれぞれ求めよ．\n\\item (3) の分散は $n^{-2}$ のオーダーであり，クラメール＝ラオの下限（$n^{-1}$ のオーダー）を下回る．これが矛盾でない理由を説明せよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $X_{(1)}$ \\quad (2) $e^{-x}$ \\quad (3) 平均二乗誤差 $\\frac{2}{n^2}$，分散 $\\frac{1}{n^2}$ \\quad (4) 記述"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　尤度は $\\theta$ の関数として不連続なので，微分ではなく単調性から最大点を探す．最小値の分布は生存関数から求める．\n\n(1) 尤度 $L(\\theta)=e^{-\\sum x_i+n\\theta}\\,1\\{\\theta<x_{(1)}\\}$ は $\\theta<x_{(1)}$ で増加するので，最尤推定量は $\\boldsymbol{X_{(1)}}$（上限としての最大）．\n\n(2) $P(X_{(1)}-\\theta>y)=e^{-ny}$ より $P(n(X_{(1)}-\\theta)>x)=\\boldsymbol{e^{-x}}$．すなわち $n(X_{(1)}-\\theta)\\sim\\mathrm{Exp}(1)$ で，収束の速さは $\\sqrt n$ ではなく $n$．\n\n(3) $X_{(1)}-\\theta$ は平均 $\\frac1n$，分散 $\\frac{1}{n^2}$．最尤推定量の平均二乗誤差は $\\frac{1}{n^2}+\\frac{1}{n^2}=\\boldsymbol{\\frac{2}{n^2}}$．$X_{(1)}-\\frac1n$ は不偏で分散 $\\boldsymbol{\\frac{1}{n^2}}$．（$X_{(1)}$ は完備十分統計量なのでこれが UMVUE．）\n\n(4) クラメール＝ラオの不等式の導出では，$\\int f(x;\\theta)dx=1$ を $\\theta$ で微分して積分と微分を交換する．ここでは台 $(\\theta,\\infty)$ が $\\theta$ に依存し，この交換（正則条件）が成り立たない．したがって下限は適用されず，$n^{-2}$ の分散も矛盾しない．"
+   }
+  ],
+  "idea": {
+   "tex": "台が母数に依存する非正則な族では，最尤推定量は端点の順序統計量になり，$n$ の速さで収束してクラメール＝ラオの限界を超える．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 記述：尤度 e^{n θ-Σx_i}1{θ<x_(1)} は θ<x_(1) で増加するので最尤推定量は X_(1)．\n(2) e^(-x)\n(3) 平均二乗誤差：2/n^2 ; 分散：1/n^2\n(4) 記述：台が θ に依存するので積分と微分の交換（正則条件）が成り立たず，クラメール＝ラオの不等式が適用できない．"
+  },
+  "techniques": [
+   "support-dependent",
+   "order-stat-dist"
+  ],
+  "methods": [],
+  "tags": [
+   "最尤推定",
+   "一致性",
+   "非正則モデル",
+   "順序統計量",
+   "クラメール＝ラオ"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-02-015",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-43",
+  "level": 3,
+  "minutes": 25,
+  "theme": "正規事前分布による縮小推定量のリスクとベイズリスク",
+  "topic": "正規事前分布による縮小推定量のリスクとベイズリスク",
+  "statement": {
+   "tex": "$\\theta$ が与えられたとき $X_1,\\dots,X_n$ は独立に $N(\\theta,1)$ に従い，$\\theta$ の事前分布を $N(0,\\tau^2)$（$\\tau>0$）とする．\n\\begin{enumerate}\n\\item 事後平均が $c\\bar X$ の形になることを示し，$c$ を $n,\\tau$ で表せ．\n\\item 推定量 $c\\bar X$ の（$\\theta$ を固定したときの）平均二乗誤差を $n,\\tau,\\theta$ で表せ．\n\\item $c\\bar X$ の平均二乗誤差が $\\bar X$ の平均二乗誤差 $\\frac1n$ より小さくなるのは $\\theta^2$ がある値より小さいときである．その値を求めよ．\n\\item ベイズリスク（(2) の $\\theta$ についての事前平均）を求め，$\\tau\\to\\infty$ の極限を用いて $\\bar X$ がミニマックス推定量であることを説明せよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{n\\tau^2}{1+n\\tau^2}$ \\quad (2) $\\frac{n\\tau^4+\\theta^2}{(1+n\\tau^2)^2}$ \\quad (3) $2\\tau^2+\\frac1n$ \\quad (4) $\\frac{\\tau^2}{1+n\\tau^2}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　正規尤度と正規事前分布の積は再び正規分布になる．推定量の平均二乗誤差は分散とバイアスの2乗に分ける．\n\n(1) 事後密度の指数部は $-\\frac n2(\\theta-\\bar x)^2-\\frac{\\theta^2}{2\\tau^2}$．$\\theta$ について平方完成すると事後分布は $N\\left(\\frac{n\\bar x}{n+\\tau^{-2}},\\ \\frac{1}{n+\\tau^{-2}}\\right)$．よって $c=\\boldsymbol{\\frac{n\\tau^2}{1+n\\tau^2}}$．\n\n(2) 分散 $\\frac{c^2}{n}$，バイアス $(c-1)\\theta$ より\n\\[\\frac{c^2}{n}+(1-c)^2\\theta^2=\\boldsymbol{\\frac{n\\tau^4+\\theta^2}{(1+n\\tau^2)^2}}.\\]\n\n(3) $\\frac{c^2}{n}+(1-c)^2\\theta^2<\\frac1n\\iff\\theta^2<\\frac{1-c^2}{n(1-c)^2}=\\frac{(1+c)(1+n\\tau^2)}{n}$．$c$ を代入すると $\\theta^2<\\boldsymbol{2\\tau^2+\\frac1n}$．事前分布が想定する範囲では改善するが，$|\\theta|$ が大きいと悪化する．\n\n(4) $E[\\theta^2]=\\tau^2$ を代入して $\\frac{n\\tau^4+\\tau^2}{(1+n\\tau^2)^2}=\\boldsymbol{\\frac{\\tau^2}{1+n\\tau^2}}$．任意の推定量 $\\delta$ の最大リスクはどのベイズリスクより小さくならないので $\\sup_\\theta R(\\theta,\\delta)\\ge\\frac{\\tau^2}{1+n\\tau^2}$．$\\tau\\to\\infty$ とすると右辺は $\\frac1n$ に収束し，$\\bar X$ のリスクは常に $\\frac1n$ なので $\\bar X$ はミニマックスである．"
+   }
+  ],
+  "idea": {
+   "tex": "縮小推定量は母数が事前の想定範囲にあるとき平均二乗誤差を減らす．ベイズリスクの極限を使うと標本平均のミニマックス性が示せる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) n tau^2/(1+n tau^2)\n(2) (n tau^4+theta^2)/(1+n tau^2)^2\n(3) 2tau^2+1/n\n(4) tau^2/(1+n tau^2)"
+  },
+  "techniques": [
+   "mse-compare",
+   "conjugate-prior"
+  ],
+  "methods": [],
+  "tags": [
+   "ベイズ推定",
+   "ミニマックス",
+   "平均二乗誤差",
+   "縮小推定",
+   "正規分布"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-02-006",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-43",
+  "level": 3,
+  "minutes": 30,
+  "theme": "正規平均の2乗の UMVUE と完備性",
+  "topic": "正規平均の2乗の UMVUE と完備性",
+  "statement": {
+   "tex": "$X_1,\\dots,X_n$ を独立に $N(\\mu,1)$ に従う確率変数とし，$\\bar X$ を標本平均とする．\n\\begin{enumerate}\n\\item $E[\\bar X^2]$ を $\\mu,n$ で表せ．\n\\item $\\bar X$ が $\\mu$ の完備十分統計量であることを用いて，$\\mu^2$ の UMVUE を求めよ．\n\\item (2) の UMVUE の分散を求めよ．\n\\item $\\mu^2$ の不偏推定量に対するクラメール＝ラオの下限を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\mu^2+\\frac{1}{n}$ \\quad (2) $\\bar X^2-\\frac1n$ \\quad (3) $\\frac{4\\mu^2}{n}+\\frac{2}{n^2}$ \\quad (4) $\\frac{4\\mu^2}{n}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　$\\bar X\\sim N(\\mu,1/n)$ の積率で偏りを補正する．完備性は指数型分布族の性質（自然母数空間が開区間を含む）から従う．\n\n(1) $E[\\bar X^2]=V[\\bar X]+\\mu^2=\\boldsymbol{\\mu^2+\\frac1n}$．\n\n(2) $\\bar X^2-\\frac1n$ は不偏で $\\bar X$ の関数．同時密度は $\\exp(n\\mu\\bar x-\\frac{n\\mu^2}{2})h(x)$ の形の1母数指数型分布族で，$\\mu$ は $\\mathbb{R}$ 全体を動くから $\\bar X$ は完備十分．レーマン＝シェフェより $\\boldsymbol{\\bar X^2-\\frac1n}$ が UMVUE．\n\n(3) $\\bar X=\\mu+Z/\\sqrt n$（$Z\\sim N(0,1)$）と書くと $\\bar X^2=\\mu^2+\\frac{2\\mu Z}{\\sqrt n}+\\frac{Z^2}{n}$．$Z$ と $Z^2$ は無相関なので\n\\[V[\\bar X^2]=\\frac{4\\mu^2}{n}+\\frac{V[Z^2]}{n^2}=\\boldsymbol{\\frac{4\\mu^2}{n}+\\frac{2}{n^2}}.\\]\n\n(4) $g(\\mu)=\\mu^2$，$I(\\mu)=1$ より下限は $\\frac{g'(\\mu)^2}{n}=\\boldsymbol{\\frac{4\\mu^2}{n}}$．UMVUE の分散はこれより $\\frac{2}{n^2}$ だけ大きく，下限は達成されない（ただし比は $n\\to\\infty$ で $1$ に近づく）．"
+   }
+  ],
+  "idea": {
+   "tex": "完備十分統計量の関数で偏りを補正すれば UMVUE になるが，非線形な母数ではクラメール＝ラオの下限は達成されない．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) mu^2+1/n\n(2) 記述：E[X̄^2]=μ^2+1/n より X̄^2-1/n は不偏．X̄ は指数型分布族の完備十分統計量なので，レーマン＝シェフェの定理より UMVUE．\n(3) 4mu^2/n+2/n^2\n(4) 4mu^2/n"
+  },
+  "techniques": [
+   "rao-blackwell",
+   "sufficient-stat"
+  ],
+  "methods": [],
+  "tags": [
+   "UMVUE",
+   "完備性",
+   "指数型分布族",
+   "クラメール＝ラオ"
+  ],
+  "provenance": {
+   "created": "2026-10-31"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ }
+]

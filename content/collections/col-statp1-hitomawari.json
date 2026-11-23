@@ -1,0 +1,47 @@
+{
+ "id": "col-statp1-hitomawari",
+ "schema": "lemma.collection/1",
+ "title": "統計検定準1級 ひとまわり",
+ "description": "統計検定準1級の全6分野から2問ずつ。",
+ "order": 9,
+ "items": [
+  {
+   "id": "TP-01-001"
+  },
+  {
+   "id": "TP-01-002"
+  },
+  {
+   "id": "TP-02-001"
+  },
+  {
+   "id": "TP-02-002"
+  },
+  {
+   "id": "TP-03-001"
+  },
+  {
+   "id": "TP-03-002"
+  },
+  {
+   "id": "TP-04-001"
+  },
+  {
+   "id": "TP-04-002"
+  },
+  {
+   "id": "TP-05-001"
+  },
+  {
+   "id": "TP-05-002"
+  },
+  {
+   "id": "TP-06-001"
+  },
+  {
+   "id": "TP-06-002"
+  }
+ ],
+ "visibility": "public",
+ "createdBy": "euclea"
+}

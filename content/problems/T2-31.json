@@ -1,0 +1,788 @@
+[
+ {
+  "id": "T2-03-007",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T2-31",
+  "level": 1,
+  "minutes": 5,
+  "theme": "非正規母集団からの標本平均の期待値と標準誤差",
+  "topic": "非正規母集団からの標本平均の期待値と標準誤差",
+  "statement": {
+   "tex": "公正なさいころの目の母平均は $3.5$，母分散は $35/12$ である．さいころを $n$ 回投げたときの目の平均を $\\bar{X}$ とする．\n\n\\begin{enumerate}\n\\item $n=30$ のとき，$\\bar{X}$ の分散を求めよ．\n\\item $\\bar{X}$ の標準偏差（標準誤差）を $n=30$ のときの半分にするには，$n$ をいくつにすればよいか．\n\\item $\\bar{X}$ について正しい記述を選べ． \\\\ ① さいころの目は一様分布なので，$\\bar{X}$ も $n$ によらず一様分布に従う． \\\\ ② $n$ を大きくすると，$\\bar{X}$ の期待値は 3.5 より大きくなる． \\\\ ③ $n$ を大きくすると，$\\bar{X}$ の分布は正規分布に近づく． \\\\ ④ $\\bar{X}$ の標準偏差は $n$ に反比例する． \\\\ ⑤ $\\bar{X}$ の分散は $n$ によらない． \\\\ 番号で答えよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{7}{72}\\approx0.0972$\n(2) $120$\n(3) ③（番号 3）"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "独立同一分布の標本平均について $E(\\bar{X})=\\mu$，$V(\\bar{X})=\\sigma^2/n$ である．これは母集団分布の形によらない．\n\n(1) $V(\\bar{X})=\\dfrac{35/12}{30}=\\dfrac{35}{360}=\\boldsymbol{\\frac{7}{72}}\\approx0.0972$ である．\n\n(2) 標準誤差は $\\sigma/\\sqrt{n}$ で $\\sqrt{n}$ に反比例するので，半分にするには $n$ を 4 倍の $\\boldsymbol{120}$ にする．\n\n(3) 期待値は常に 3.5（②は誤り），標準偏差は $\\sqrt{n}$ に反比例（④⑤は誤り）．中心極限定理により，母集団が一様分布でも $\\bar{X}$ の分布は $n$ とともに正規分布に近づく（①は誤り）．よって $\\boldsymbol{③}$ である．"
+   }
+  ],
+  "idea": {
+   "tex": "標本平均は母平均を中心に $\\sigma/\\sqrt{n}$ のばらつきをもつ．精度を 2 倍にするには標本を 4 倍にする．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 7/72\n(2) 120\n(3) 3"
+  },
+  "techniques": [
+   "standard-error-mean",
+   "clt"
+  ],
+  "methods": [],
+  "tags": [
+   "標本平均",
+   "標準誤差",
+   "中心極限定理",
+   "期待値",
+   "分散"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T2-03-008",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T2-31",
+  "level": 1,
+  "minutes": 5,
+  "theme": "t 分布の性質と数表の読み方",
+  "topic": "t 分布の性質と数表の読み方",
+  "statement": {
+   "tex": "$T$ を自由度 15 の $t$ 分布に従う確率変数とする．上側確率の点は $t_{0.05}(15)=1.753$，$t_{0.025}(15)=2.131$ である．\n\n\\begin{enumerate}\n\\item $P(1.753<T<2.131)$ を求めよ．\n\\item $P(|T|>2.131)$ を求めよ．\n\\item $t$ 分布について正しくない記述を選べ． \\\\ ① 0 に関して左右対称である． \\\\ ② 標準正規分布より裾が重い． \\\\ ③ 自由度が大きくなると標準正規分布に近づく． \\\\ ④ 上側 2.5\\% 点 $t_{0.025}(n)$ は自由度 $n$ が大きいほど大きい． \\\\ ⑤ 自由度 15 の上側 2.5\\% 点は 1.96 より大きい． \\\\ 番号で答えよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $0.025$\n(2) $0.05$\n(3) ④（番号 4）"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "(1) $P(T>1.753)=0.05$，$P(T>2.131)=0.025$ なので $0.05-0.025=\\boldsymbol{0.025}$ である．\n\n(2) 対称性より $P(|T|>2.131)=2\\times0.025=\\boldsymbol{0.05}$ である．\n\n(3) $t$ 分布は対称で正規分布より裾が重く，自由度が増えると標準正規分布に近づく．そのため上側 2.5\\% 点は自由度が増えるにつれて小さくなり，1.96 に近づく（自由度 5 で 2.571，30 で 2.042）．④が誤りであり，答えは $\\boldsymbol{④}$ である．"
+   }
+  ],
+  "idea": {
+   "tex": "$t$ 分布は対称で裾が重く，自由度 $\\to\\infty$ で標準正規分布になる．数表は上側確率で読む．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 0.025\n(2) 0.05\n(3) 4"
+  },
+  "techniques": [
+   "sampling-dist"
+  ],
+  "methods": [],
+  "tags": [
+   "t分布",
+   "自由度",
+   "上側確率",
+   "数表"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T2-03-009",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T2-31",
+  "level": 1,
+  "minutes": 5,
+  "theme": "カイ二乗分布の定義・期待値・再生性",
+  "topic": "カイ二乗分布の定義・期待値・再生性",
+  "statement": {
+   "tex": "$Z_1,\\dots,Z_4$ を独立に標準正規分布に従う確率変数とし，$W=Z_1^2+Z_2^2+Z_3^2+Z_4^2$ とおく．$\\chi^2_{0.05}(4)=9.488$ である．\n\n\\begin{enumerate}\n\\item $W$ の分散を求めよ．\n\\item $P(W\\le9.488)$ を求めよ．\n\\item $U$ を $W$ と独立で自由度 6 のカイ二乗分布に従う確率変数とする．$W+U$ が従う分布を選べ． \\\\ ① 自由度 6 のカイ二乗分布 \\\\ ② 自由度 10 のカイ二乗分布 \\\\ ③ 自由度 24 のカイ二乗分布 \\\\ ④ 自由度 $(4,6)$ の $F$ 分布 \\\\ ⑤ 自由度 10 の $t$ 分布 \\\\ 番号で答えよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $8$\n(2) $0.95$\n(3) ②（番号 2）"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "独立な標準正規変数 $k$ 個の 2 乗和は自由度 $k$ のカイ二乗分布に従い，期待値 $k$，分散 $2k$ をもつ．\n\n(1) $W$ は自由度 4 なので分散は $\\boldsymbol{8}$ である（期待値は 4）．\n\n(2) 9.488 は上側 5\\% 点なので $P(W\\le9.488)=1-0.05=\\boldsymbol{0.95}$ である．\n\n(3) 独立なカイ二乗分布の和は自由度を足したカイ二乗分布に従う（再生性）ので自由度 10 であり，$\\boldsymbol{②}$ である．"
+   }
+  ],
+  "idea": {
+   "tex": "カイ二乗分布は標準正規の 2 乗和．自由度 $k$ で期待値 $k$，分散 $2k$，独立な和は自由度が加わる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 8\n(2) 0.95\n(3) 2"
+  },
+  "techniques": [
+   "sampling-dist",
+   "mgf"
+  ],
+  "methods": [],
+  "tags": [
+   "カイ二乗分布",
+   "自由度",
+   "再生性",
+   "期待値",
+   "分散"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T2-03-001",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T2-31",
+  "level": 1,
+  "minutes": 5,
+  "theme": "標本平均の分布",
+  "topic": "標本平均の分布",
+  "statement": {
+   "tex": "平均 50，標準偏差 10 の正規母集団から大きさ 25 の無作為標本をとり，標本平均を $\\bar{X}$ とする．$P(Z\\ge1.5)=0.0668$（$Z$ は標準正規分布に従う）を用いてよい．\n\n\\begin{enumerate}\n\\item $\\bar{X}$ の標準偏差を求めよ．\n\\item $P(\\bar{X}\\ge53)$ を求めよ．\n\\item 標本の大きさを 100 にすると，$\\bar{X}$ の標準偏差は大きさ 25 のときの何倍になるか． \\\\ ① $1/4$ 倍 \\\\ ② $1/2$ 倍 \\\\ ③ $1$ 倍（変わらない） \\\\ ④ $2$ 倍 \\\\ ⑤ $4$ 倍 \\\\ 番号で答えよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $2$\n(2) $0.0668$\n(3) ②（番号 2）"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "$\\bar{X}\\sim N(50,10^2/25)$ なので，標準偏差は $10/\\sqrt{25}=\\boldsymbol{2}$ である．\n\n$(53-50)/2=1.5$ より $P(\\bar{X}\\ge53)=P(Z\\ge1.5)=\\boldsymbol{0.0668}$ である．\n\n標準偏差は $\\sigma/\\sqrt{n}$ である．$n$ が 4 倍になると $\\sqrt{n}$ は 2 倍になるので，標準偏差は $1/2$ 倍になる．答えは $\\boldsymbol{②}$ である．"
+   }
+  ],
+  "idea": {
+   "tex": "標本平均の標準偏差（標準誤差）は $\\sigma/\\sqrt{n}$．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 2\n(2) 0.0668\n(3) 2"
+  },
+  "techniques": [
+   "standard-error-mean",
+   "normal-standardize"
+  ],
+  "methods": [],
+  "tags": [
+   "標本平均",
+   "標準誤差",
+   "正規分布"
+  ],
+  "provenance": {
+   "created": "2026-10-31"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T2-03-002",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T2-31",
+  "level": 1,
+  "minutes": 6,
+  "theme": "標本分散とカイ二乗分布",
+  "topic": "標本分散とカイ二乗分布",
+  "statement": {
+   "tex": "分散 $\\sigma^2=4$ の正規母集団から大きさ 10 の無作為標本をとる．不偏分散を $S^2=\\frac{1}{9}\\sum_{i=1}^{10}(X_i-\\bar{X})^2$ とする．カイ二乗分布の上側 5\\% 点 $\\chi^2_{0.05}(9)=16.92$，$\\chi^2_{0.05}(10)=18.31$ を用いてよい．\n\n\\begin{enumerate}\n\\item $\\dfrac{9S^2}{4}$ が従う分布を選べ． \\\\ ① 標準正規分布 \\\\ ② 自由度 9 の $t$ 分布 \\\\ ③ 自由度 9 のカイ二乗分布 \\\\ ④ 自由度 10 のカイ二乗分布 \\\\ ⑤ 自由度 $(9,10)$ の $F$ 分布 \\\\ 番号で答えよ．\n\\item $P(S^2\\ge c)=0.05$ となる $c$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) ③（番号 3）\n(2) $c\\approx7.52$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "正規母集団からの標本では $(n-1)S^2/\\sigma^2\\sim\\chi^2(n-1)$ である．母平均の代わりに $\\bar{X}$ を使うので，自由度が 1 減る．よって $9S^2/4\\sim\\chi^2(9)$ であり，答えは $\\boldsymbol{③}$ である．\n\n$P(S^2\\ge c)=P\\!\\left(\\tfrac{9S^2}{4}\\ge\\tfrac{9c}{4}\\right)=0.05$ となるには $9c/4=16.92$ であればよい．よって $c=4\\times16.92/9=\\boldsymbol{7.52}$ である．"
+   }
+  ],
+  "idea": {
+   "tex": "$(n-1)S^2/\\sigma^2\\sim\\chi^2(n-1)$．自由度は $n$ ではなく $n-1$．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 3\n(2) ≈7.52"
+  },
+  "techniques": [
+   "sampling-dist"
+  ],
+  "methods": [],
+  "tags": [
+   "カイ二乗分布",
+   "不偏分散",
+   "標本分布"
+  ],
+  "provenance": {
+   "created": "2026-10-31"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T2-03-010",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T2-31",
+  "level": 2,
+  "minutes": 8,
+  "theme": "中心極限定理による合計の確率",
+  "topic": "中心極限定理による合計の確率",
+  "statement": {
+   "tex": "ある店の客 1 人あたりの購入金額は平均 2000 円，標準偏差 1500 円で，右に長い裾をもつ分布に従う．無作為に来店した 100 人の購入金額の合計を $S$ とし，各客の金額は独立とする．$P(Z>2)=0.0228$，$z_{0.05}=1.645$ を用いてよい．\n\n\\begin{enumerate}\n\\item $S$ の標準偏差を求めよ．\n\\item 中心極限定理による正規近似で $P(S>230000)$ を求めよ．\n\\item 正規近似で $P(S<c)=0.05$ となる $c$（円）を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $15000$\n(2) $\\approx0.0228$\n(3) $\\approx175300$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "独立な和の期待値と分散は足し合わされるので，$E(S)=100\\times2000=200000$，$V(S)=100\\times1500^2$ である．\n\n(1) $\\sqrt{100}\\times1500=\\boldsymbol{15000}$ 円である．\n\n(2) 個々の分布は歪んでいても，$n=100$ の和は中心極限定理により近似的に正規分布 $N(200000,15000^2)$ に従う．\n\\[P(S>230000)\\approx P\\left(Z>\\frac{30000}{15000}\\right)=P(Z>2)=\\boldsymbol{0.0228}\\]\n\n(3) 下側 5\\% 点なので $c=200000-1.645\\times15000=\\boldsymbol{175325}$ 円（約 175300 円）である．"
+   }
+  ],
+  "idea": {
+   "tex": "和の標準偏差は $\\sqrt{n}\\sigma$．母集団が正規でなくても $n$ が大きければ和や平均は正規近似できる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 15000\n(2) ≈0.0228\n(3) ≈175300"
+  },
+  "techniques": [
+   "clt"
+  ],
+  "methods": [],
+  "tags": [
+   "中心極限定理",
+   "正規近似",
+   "和の分布",
+   "標準偏差"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T2-03-011",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T2-31",
+  "level": 2,
+  "minutes": 9,
+  "theme": "非復元抽出の標本平均の分布と有限母集団修正",
+  "topic": "非復元抽出の標本平均の分布と有限母集団修正",
+  "statement": {
+   "tex": "5 個の値 $2,4,6,8,10$ からなる母集団から，大きさ 2 の標本を非復元で無作為に抽出し，標本平均を $\\bar{X}$ とする．母分散は $N=5$ で割ったものとして $\\sigma^2=8$ である．\n\n\\begin{enumerate}\n\\item $P(\\bar{X}\\ge7)$ を求めよ．\n\\item $\\bar{X}$ の分散を求めよ．\n\\item 同じ母集団から大きさ 2 の標本を復元抽出した場合の $\\bar{X}$ の分散を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $0.4$\n(2) $3$\n(3) $4$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "非復元抽出の組は $\\binom52=10$ 通りで等確率である．標本平均は\n\n\\begin{tabular}{cccccccccc} (2,4) & (2,6) & (2,8) & (2,10) & (4,6) & (4,8) & (4,10) & (6,8) & (6,10) & (8,10) \\\\ \\hline 3 & 4 & 5 & 6 & 5 & 6 & 7 & 7 & 8 & 9 \\end{tabular}\n\nとなる．\n\n(1) 7 以上は 7，7，8，9 の 4 通りなので $\\boldsymbol{0.4}$ である．\n\n(2) 平均は 6 であり，偏差の 2 乗の平均は $(9+4+1+0+1+0+1+1+4+9)/10=\\boldsymbol{3}$ である．公式 $V(\\bar{X})=\\dfrac{\\sigma^2}{n}\\cdot\\dfrac{N-n}{N-1}=\\dfrac82\\cdot\\dfrac34=3$ と一致する．\n\n(3) 復元抽出では 2 回の抽出が独立なので $V(\\bar{X})=\\sigma^2/n=\\boldsymbol{4}$ である．非復元抽出では有限母集団修正 $(N-n)/(N-1)=3/4$ の分だけ分散が小さくなる．"
+   }
+  ],
+  "idea": {
+   "tex": "非復元抽出の標本平均の分散は $\\dfrac{\\sigma^2}{n}\\cdot\\dfrac{N-n}{N-1}$．小さな母集団では全列挙で確かめられる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 0.4\n(2) 3\n(3) 4"
+  },
+  "techniques": [
+   "standard-error-mean"
+  ],
+  "methods": [],
+  "tags": [
+   "有限母集団修正",
+   "非復元抽出",
+   "標本平均",
+   "標本分布"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T2-03-012",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T2-31",
+  "level": 2,
+  "minutes": 9,
+  "theme": "母分散未知のときの標本平均の確率と t 分布",
+  "topic": "母分散未知のときの標本平均の確率と t 分布",
+  "statement": {
+   "tex": "正規母集団 $N(\\mu,\\sigma^2)$ から大きさ 9 の無作為標本をとり，標本平均を $\\bar{X}$，不偏分散の正の平方根を $S$ とする．$t_{0.05}(8)=1.860$，$P(Z>1.86)=0.0314$ を用いてよい．\n\n\\begin{enumerate}\n\\item $\\dfrac{\\bar{X}-\\mu}{S/3}$ が従う分布を選べ． \\\\ ① 標準正規分布 \\\\ ② 自由度 8 の $t$ 分布 \\\\ ③ 自由度 9 の $t$ 分布 \\\\ ④ 自由度 8 のカイ二乗分布 \\\\ ⑤ 自由度 $(1,8)$ の $F$ 分布 \\\\ 番号で答えよ．\n\\item $P(\\bar{X}-\\mu>cS)=0.05$ となる定数 $c$ を求めよ．\n\\item (2) の $c$ を用いて，$S$ の代わりに既知の $\\sigma$ を用いた確率 $P(\\bar{X}-\\mu>c\\sigma)$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) ②（番号 2）\n(2) $\\approx0.620$\n(3) $\\approx0.0314$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "(1) 母分散を不偏分散で置き換えた標準化 $\\dfrac{\\bar{X}-\\mu}{S/\\sqrt{n}}$ は自由度 $n-1=8$ の $t$ 分布に従うので $\\boldsymbol{②}$ である．\n\n(2) $P(\\bar{X}-\\mu>cS)=P\\left(\\dfrac{\\bar{X}-\\mu}{S/3}>3c\\right)=0.05$ なので $3c=1.860$，$c\\approx\\boldsymbol{0.620}$ である．\n\n(3) $\\dfrac{\\bar{X}-\\mu}{\\sigma/3}$ は標準正規分布に従うので $P(\\bar{X}-\\mu>0.62\\sigma)=P(Z>1.86)=\\boldsymbol{0.0314}$ である．\n\n同じ閾値でも，$\\sigma$ を推定値 $S$ で置き換えると $S$ のばらつきの分だけ裾が重くなり，確率が 0.0314 から 0.05 へ大きくなる．"
+   }
+  ],
+  "idea": {
+   "tex": "$\\sigma$ を $S$ で置き換えた標準化は自由度 $n-1$ の $t$ 分布になり，正規分布より裾が重い．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 2\n(2) ≈0.620\n(3) ≈0.0314"
+  },
+  "techniques": [
+   "sampling-dist"
+  ],
+  "methods": [],
+  "tags": [
+   "t分布",
+   "標本平均",
+   "不偏分散",
+   "スチューデント化",
+   "正規分布"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T2-03-013",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T2-31",
+  "level": 2,
+  "minutes": 8,
+  "theme": "2 つの標本比率の差の分布",
+  "topic": "2 つの標本比率の差の分布",
+  "statement": {
+   "tex": "地域 A では支持率が 0.6，地域 B では 0.5 であることがわかっている．A から 200 人，B から 150 人を独立に無作為抽出し，それぞれの標本支持率を $\\hat{p}_A$，$\\hat{p}_B$ とする．$P(Z>1.87)=0.0307$ を用いてよい．\n\n\\begin{enumerate}\n\\item $D=\\hat{p}_A-\\hat{p}_B$ の標準偏差を求めよ．\n\\item 正規近似を用いて，標本で B の支持率が A を上回る確率 $P(D<0)$ を求めよ．\n\\item $D$ の分散を半分程度に減らす方法として最も適切なものを選べ． \\\\ ① A の標本だけを 2 倍にする． \\\\ ② B の標本だけを 2 倍にする． \\\\ ③ A，B の標本をともに 2 倍にする． \\\\ ④ A，B の標本をともに半分にする． \\\\ ⑤ 標本の大きさを変えても分散は変わらない． \\\\ 番号で答えよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx0.0535$\n(2) $\\approx0.031$\n(3) ③（番号 3）"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "独立な 2 標本なので分散は足し合わされる．\n\\[V(D)=\\frac{0.6\\times0.4}{200}+\\frac{0.5\\times0.5}{150}=0.0012+0.001667=0.002867\\]\n\n(1) 標準偏差は $\\sqrt{0.002867}\\approx\\boldsymbol{0.0535}$ である．\n\n(2) $E(D)=0.1$ なので $P(D<0)\\approx P\\left(Z<-\\dfrac{0.1}{0.0535}\\right)=P(Z<-1.87)=\\boldsymbol{0.031}$ である．\n\n(3) 両方の標本を 2 倍にすると各項が半分になり $V(D)$ はちょうど半分になる．片方だけでは一方の項しか減らない．よって $\\boldsymbol{③}$ である．"
+   }
+  ],
+  "idea": {
+   "tex": "独立な標本比率の差の分散は $p_1(1-p_1)/n_1+p_2(1-p_2)/n_2$．大標本では正規近似できる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈0.0535\n(2) ≈0.031\n(3) 3"
+  },
+  "techniques": [
+   "clt",
+   "normal-standardize"
+  ],
+  "methods": [],
+  "tags": [
+   "標本比率",
+   "比率の差",
+   "正規近似",
+   "分散の加法性"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T2-03-003",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T2-31",
+  "level": 2,
+  "minutes": 7,
+  "theme": "標本比率の分布",
+  "topic": "標本比率の分布",
+  "statement": {
+   "tex": "ある市で政策 P の支持率は $p=0.4$ である．無作為に 150 人を選び，支持する人の割合を $\\hat{p}$ とする．標本は十分大きく，$\\hat{p}$ は正規分布で近似できるとする．$P(Z\\ge1.75)=0.0401$ を用いてよい．\n\n\\begin{enumerate}\n\\item $\\hat{p}$ の標準偏差を求めよ．\n\\item $P(\\hat{p}\\ge0.47)$ の近似値を求めよ．\n\\item $\\hat{p}$ の標準偏差を 0.02 にするには，標本の大きさを何人にすればよいか． \\\\ ① 300 人 \\\\ ② 450 人 \\\\ ③ 600 人 \\\\ ④ 900 人 \\\\ ⑤ 1200 人 \\\\ 番号で答えよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $0.04$\n(2) $\\approx0.0401$\n(3) ③（番号 3）"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "$\\hat{p}$ の標準偏差は $\\sqrt{p(1-p)/n}=\\sqrt{0.24/150}=\\sqrt{0.0016}=\\boldsymbol{0.04}$ である．\n\n$(0.47-0.40)/0.04=1.75$ なので $P(\\hat{p}\\ge0.47)\\approx P(Z\\ge1.75)=\\boldsymbol{0.0401}$ である．\n\n$\\sqrt{0.24/n}=0.02$ を解くと $n=0.24/0.0004=600$ である．標準偏差を半分にするには $n$ を 4 倍にすればよい，と考えても同じ結果になる．答えは $\\boldsymbol{③}$ である．"
+   }
+  ],
+  "idea": {
+   "tex": "標本比率は平均 $p$，分散 $p(1-p)/n$ の正規分布で近似できる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈0.04\n(2) ≈0.0401\n(3) 3"
+  },
+  "techniques": [
+   "clt"
+  ],
+  "methods": [],
+  "tags": [
+   "標本比率",
+   "中心極限定理",
+   "正規近似"
+  ],
+  "provenance": {
+   "created": "2026-10-31"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T2-03-004",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T2-31",
+  "level": 2,
+  "minutes": 8,
+  "theme": "2標本の平均の差の分布",
+  "topic": "2標本の平均の差の分布",
+  "statement": {
+   "tex": "母集団 A は $N(60,6^2)$，母集団 B は $N(55,8^2)$ に従う．A から大きさ 9，B から大きさ 16 の無作為標本を互いに独立にとり，標本平均をそれぞれ $\\bar{X}_A$，$\\bar{X}_B$ とする．$D=\\bar{X}_A-\\bar{X}_B$ とおく．$P(Z\\ge1.77)=0.0384$ を用いてよい．\n\n\\begin{enumerate}\n\\item $D$ の期待値と分散を求めよ．\n\\item $P(D<0)$ を求めよ．\n\\item 両方の標本の大きさをそれぞれ 4 倍にすると，$V[D]$ は何倍になるか． \\\\ ① $1/4$ 倍 \\\\ ② $1/2$ 倍 \\\\ ③ $1$ 倍 \\\\ ④ $2$ 倍 \\\\ ⑤ $4$ 倍 \\\\ 番号で答えよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $E[D]=5$，$V[D]=8$\n(2) $\\approx0.0384$\n(3) ①（番号 1）"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "$V[\\bar{X}_A]=36/9=4$，$V[\\bar{X}_B]=64/16=4$ である．2 つの標本は独立なので，分散は足し合わせる．よって $E[D]=\\boldsymbol{5}$，$V[D]=\\boldsymbol{8}$ である．\n\n$D\\sim N(5,8)$ なので\n\\[P(D<0)=P\\!\\left(Z<\\frac{-5}{\\sqrt8}\\right)=P(Z<-1.77)=P(Z\\ge1.77)=\\boldsymbol{0.0384}\\]\nとなる．\n\n各項 $\\sigma^2/n$ が $1/4$ 倍になるので，$V[D]$ も $1/4$ 倍になる．答えは $\\boldsymbol{①}$ である．"
+   }
+  ],
+  "idea": {
+   "tex": "独立な標本平均の差は正規分布に従い，分散は $\\sigma_A^2/n_A+\\sigma_B^2/n_B$．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) E：5 ; V：8\n(2) ≈0.0384\n(3) 1"
+  },
+  "techniques": [
+   "normal-standardize",
+   "standard-error-mean"
+  ],
+  "methods": [],
+  "tags": [
+   "標本平均の差",
+   "正規分布",
+   "分散の加法性"
+  ],
+  "provenance": {
+   "created": "2026-10-31"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T2-03-005",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T2-31",
+  "level": 2,
+  "minutes": 8,
+  "theme": "二項分布の正規近似と連続修正",
+  "topic": "二項分布の正規近似と連続修正",
+  "statement": {
+   "tex": "公正な硬貨を 100 回投げたときの表の回数を $X$ とする．$P(Z\\ge1.9)=0.0287$，$P(Z\\ge2.0)=0.0228$ を用いてよい．\n\n\\begin{enumerate}\n\\item $X$ の期待値と分散を求めよ．\n\\item 連続修正を用いた正規近似で $P(X\\ge60)$ を求めよ．\n\\item 表の割合 $X/100$ の分散を選べ． \\\\ ① $0.25$ \\\\ ② $0.025$ \\\\ ③ $0.0025$ \\\\ ④ $0.05$ \\\\ ⑤ $0.005$ \\\\ 番号で答えよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $E[X]=50$，$V[X]=25$\n(2) $\\approx0.0287$\n(3) ③（番号 3）"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "$X\\sim B(100,1/2)$ である．よって $E[X]=\\boldsymbol{50}$，$V[X]=100\\times\\tfrac12\\times\\tfrac12=\\boldsymbol{25}$ である．\n\n$X$ は整数値をとる．$X\\ge60$ を連続な正規分布で近似するときは，境界を 59.5 にずらす（連続修正）．\n\\[P(X\\ge60)\\approx P\\!\\left(Z\\ge\\frac{59.5-50}{5}\\right)=P(Z\\ge1.9)=\\boldsymbol{0.0287}\\]\n二項分布の正確な値は約 0.0284 であり，よく近似できている．連続修正をしないと 0.0228 となり，近似が悪くなる．\n\n$V[X/100]=25/100^2=\\boldsymbol{0.0025}$ なので，答えは $\\boldsymbol{③}$ である．"
+   }
+  ],
+  "idea": {
+   "tex": "離散分布を正規分布で近似するときは，境界を 0.5 ずらす（連続修正）．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) E：50 ; V：25\n(2) ≈0.0287\n(3) 3"
+  },
+  "techniques": [
+   "clt"
+  ],
+  "methods": [],
+  "tags": [
+   "二項分布",
+   "正規近似",
+   "連続修正"
+  ],
+  "provenance": {
+   "created": "2026-10-31"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T2-03-014",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T2-31",
+  "level": 3,
+  "minutes": 12,
+  "theme": "新しい観測値の予測と t 分布",
+  "topic": "新しい観測値の予測と t 分布",
+  "statement": {
+   "tex": "正規母集団 $N(\\mu,\\sigma^2)$ から大きさ 10 の無作為標本 $X_1,\\dots,X_{10}$ をとり，標本平均 $\\bar{X}$ と不偏分散 $S^2$ を求める．さらに，これらと独立に同じ母集団から新しい観測値 $X_{11}$ を得る．$t_{0.025}(9)=2.262$，$\\sqrt{1.1}=1.0488$ を用いてよい．\n\n\\begin{enumerate}\n\\item $V(X_{11}-\\bar{X})$ は $\\sigma^2$ の何倍か．\n\\item $\\dfrac{X_{11}-\\bar{X}}{S\\sqrt{1.1}}$ が従う分布を選べ． \\\\ ① 標準正規分布 \\\\ ② 自由度 9 の $t$ 分布 \\\\ ③ 自由度 10 の $t$ 分布 \\\\ ④ 自由度 9 のカイ二乗分布 \\\\ ⑤ 自由度 $(1,9)$ の $F$ 分布 \\\\ 番号で答えよ．\n\\item $\\bar{X}=50$，$S=4$ であった．$P(L<X_{11}<U)=0.95$ となる区間（予測区間）の下限 $L$ と上限 $U$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $1.1$ 倍\n(2) ②（番号 2）\n(3) 下限 $\\approx40.5$，上限 $\\approx59.5$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "(1) $X_{11}$ と $\\bar{X}$ は独立なので $V(X_{11}-\\bar{X})=\\sigma^2+\\sigma^2/10=\\boldsymbol{1.1}\\sigma^2$ である．\n\n(2) $X_{11}-\\bar{X}\\sim N(0,1.1\\sigma^2)$ であり，これを標準化した $Z$ と，$9S^2/\\sigma^2\\sim\\chi^2(9)$ は独立である．\n\\[\\frac{X_{11}-\\bar{X}}{S\\sqrt{1.1}}=\\frac{Z}{\\sqrt{(9S^2/\\sigma^2)/9}}\\]\nは $t$ 分布の定義の形であり，自由度 9 の $t$ 分布に従う．答えは $\\boldsymbol{②}$ である．\n\n(3) $50\\pm2.262\\times4\\times1.0488=50\\pm9.49$ より，$\\boldsymbol{L\\approx40.5}$，$\\boldsymbol{U\\approx59.5}$ である．\n\n母平均の 95\\% 信頼区間 $50\\pm2.262\\times4/\\sqrt{10}=50\\pm2.86$ よりずっと広い．新しい 1 個の観測値には，平均の推定誤差に加えて個体のばらつき $\\sigma^2$ が乗るからである．"
+   }
+  ],
+  "idea": {
+   "tex": "新しい観測値と標本平均の差の分散は $\\sigma^2(1+1/n)$．$\\sigma$ を $S$ で置き換えると $t(n-1)$ に従う．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 1.1\n(2) 2\n(3) 下限：≈40.5 ; 上限：≈59.5"
+  },
+  "techniques": [
+   "sampling-dist"
+  ],
+  "methods": [],
+  "tags": [
+   "t分布",
+   "予測区間",
+   "標本平均",
+   "不偏分散",
+   "独立性"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T2-03-015",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T2-31",
+  "level": 3,
+  "minutes": 12,
+  "theme": "ポアソン分布の和の正規近似と連続修正",
+  "topic": "ポアソン分布の和の正規近似と連続修正",
+  "statement": {
+   "tex": "あるコールセンターへの 1 日の問い合わせ件数は平均 4 のポアソン分布に従い，日ごとに独立である．25 日間の合計件数を $S$ とする．$P(Z>1.45)=0.0735$ を用いてよい．\n\n\\begin{enumerate}\n\\item $S$ の分散を求めよ．\n\\item 連続修正を用いた正規近似で $P(S\\ge115)$ を求めよ．\n\\item 25 日間の 1 日あたり平均件数 $\\bar{X}=S/25$ の分布として最も適切なものを選べ． \\\\ ① 正確に平均 4 のポアソン分布 \\\\ ② 近似的に $N(4,\\ 4)$ \\\\ ③ 近似的に $N(4,\\ 0.16)$ \\\\ ④ 近似的に $N(4,\\ 0.4)$ \\\\ ⑤ 近似的に $N(100,\\ 100)$ \\\\ 番号で答えよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $100$\n(2) $\\approx0.0735$\n(3) ③（番号 3）"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "(1) ポアソン分布の再生性により $S$ は平均 $25\\times4=100$ のポアソン分布に従う．分散は平均に等しく $\\boldsymbol{100}$ である．\n\n(2) $S$ は整数値なので $S\\ge115$ を $S>114.5$ と読み替える（連続修正）．$S\\approx N(100,100)$ より\n\\[P(S\\ge115)\\approx P\\left(Z>\\frac{114.5-100}{10}\\right)=P(Z>1.45)=\\boldsymbol{0.0735}\\]\nである（正確な値は約 0.076）．\n\n(3) $E(\\bar{X})=4$，$V(\\bar{X})=100/25^2=0.16$ であり，中心極限定理により近似的に $N(4,0.16)$ に従う．$\\bar{X}$ は整数値をとらないのでポアソン分布ではない．よって $\\boldsymbol{③}$ である．"
+   }
+  ],
+  "idea": {
+   "tex": "ポアソン分布の和は平均を足したポアソン分布になり，平均が大きければ $N(\\lambda,\\lambda)$ で近似できる．離散分布の近似では連続修正を行う．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 100\n(2) ≈0.0735\n(3) 3"
+  },
+  "techniques": [
+   "clt",
+   "discrete-distributions"
+  ],
+  "methods": [],
+  "tags": [
+   "ポアソン分布",
+   "再生性",
+   "正規近似",
+   "連続修正",
+   "中心極限定理"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T2-03-006",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T2-31",
+  "level": 3,
+  "minutes": 12,
+  "theme": "F分布と t 分布の関係",
+  "topic": "F分布と t 分布の関係",
+  "statement": {
+   "tex": "ともに分散 $\\sigma^2$ をもつ 2 つの正規母集団から，大きさ 11 と 16 の独立な無作為標本をとる．それぞれの不偏分散を $S_1^2$，$S_2^2$ とし，$F=S_1^2/S_2^2$ とおく．$F$ 分布の上側 5\\% 点は $F_{0.05}(10,15)=2.54$，$F_{0.05}(15,10)=2.85$ である．\n\n\\begin{enumerate}\n\\item $F$ が従う分布を選べ． \\\\ ① 自由度 $(11,16)$ の $F$ 分布 \\\\ ② 自由度 $(10,15)$ の $F$ 分布 \\\\ ③ 自由度 $(15,10)$ の $F$ 分布 \\\\ ④ 自由度 25 のカイ二乗分布 \\\\ ⑤ 自由度 25 の $t$ 分布 \\\\ 番号で答えよ．\n\\item $P(F\\le c)=0.05$ となる $c$ を求めよ．\n\\item 1 つ目の標本の平均を $\\bar{X}_1$，母平均を $\\mu_1$ とし，$T=\\dfrac{\\bar{X}_1-\\mu_1}{S_1/\\sqrt{11}}$ とおく．$T^2$ が従う分布を選べ． \\\\ ① 自由度 $(1,10)$ の $F$ 分布 \\\\ ② 自由度 $(10,1)$ の $F$ 分布 \\\\ ③ 自由度 10 のカイ二乗分布 \\\\ ④ 自由度 1 のカイ二乗分布 \\\\ ⑤ 自由度 10 の $t$ 分布 \\\\ 番号で答えよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) ②（番号 2）\n(2) $c\\approx0.351$\n(3) ①（番号 1）"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "$10S_1^2/\\sigma^2\\sim\\chi^2(10)$ と $15S_2^2/\\sigma^2\\sim\\chi^2(15)$ は独立である．それぞれを自由度で割って比をとると $\\sigma^2$ が消え，$F=S_1^2/S_2^2\\sim F(10,15)$ となる．答えは $\\boldsymbol{②}$ である．\n\n$1/F\\sim F(15,10)$ であることを使う．\n\\[P(F\\le c)=P(1/F\\ge1/c)=0.05\\]\nより $1/c=F_{0.05}(15,10)=2.85$ である．よって $c=1/2.85=\\boldsymbol{0.351}$ となる．下側の点は，自由度を入れ替えた上側の点の逆数で求められる．\n\n$T\\sim t(10)$ である．$T=Z/\\sqrt{W/10}$（$Z\\sim N(0,1)$，$W\\sim\\chi^2(10)$，独立）と書けるので，$T^2=\\dfrac{Z^2/1}{W/10}$ である．$Z^2\\sim\\chi^2(1)$ なので $T^2\\sim F(1,10)$ となる．答えは $\\boldsymbol{①}$ である．"
+   }
+  ],
+  "idea": {
+   "tex": "$F(m,n)$ の下側 $\\alpha$ 点は $1/F_\\alpha(n,m)$．$t(n)^2=F(1,n)$．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 2\n(2) ≈0.351\n(3) 1"
+  },
+  "techniques": [
+   "sampling-dist"
+  ],
+  "methods": [],
+  "tags": [
+   "F分布",
+   "t分布",
+   "カイ二乗分布",
+   "分散比"
+  ],
+  "provenance": {
+   "created": "2026-10-31"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ }
+]

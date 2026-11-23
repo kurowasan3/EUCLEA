@@ -1,0 +1,804 @@
+[
+ {
+  "id": "T1-01-007",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-42",
+  "level": 1,
+  "minutes": 15,
+  "theme": "特性関数とコーシー分布の標本平均",
+  "topic": "特性関数とコーシー分布の標本平均",
+  "statement": {
+   "tex": "ラプラス分布の密度を $g(x)=\\frac12e^{-|x|}$（$x\\in\\mathbb{R}$），標準コーシー分布の密度を $f(x)=\\frac{1}{\\pi(1+x^2)}$ とする．確率変数 $X$ の特性関数を $\\varphi_X(t)=E[e^{itX}]$ と書く．\n\\begin{enumerate}\n\\item ラプラス分布の特性関数 $\\varphi(t)$ を求めよ．\n\\item (1) と反転公式を用いて，標準コーシー分布の特性関数が $e^{-|t|}$ であることを示せ．\n\\item $X_1,\\dots,X_n$ を独立に標準コーシー分布に従う確率変数とし，$\\bar X_n=\\frac1n\\sum_{i=1}^nX_i$ とおく．$P(|\\bar X_n|>\\sqrt3)$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{1}{1+t^2}$ \\quad (2) 記述 \\quad (3) $\\frac13$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　ラプラス分布の特性関数は直接積分で求まる．それが可積分なので反転公式を使うと，コーシー分布の特性関数が「双対」として得られる．独立和の特性関数は積になる．\n\n(1) 密度が偶関数なので $\\varphi(t)=\\int_0^\\infty e^{-x}\\cos tx\\,dx=\\boldsymbol{\\frac{1}{1+t^2}}$．\n\n(2) $\\varphi$ は可積分なので反転公式より\n\\[\\frac12e^{-|x|}=\\frac{1}{2\\pi}\\int_{-\\infty}^{\\infty}e^{-itx}\\frac{1}{1+t^2}dt.\\]\n両辺に $2$ を掛け，$x$ と $t$ の役割を入れ替える（$x\\to -t$ と読み替える）と\n\\[\\int_{-\\infty}^{\\infty}e^{itx}\\frac{1}{\\pi(1+x^2)}dx=e^{-|t|}\\]\nとなり，左辺はコーシー分布の特性関数である．\n\n(3) 独立性より $\\varphi_{\\bar X_n}(t)=\\left(e^{-|t|/n}\\right)^n=e^{-|t|}$．特性関数の一意性より $\\bar X_n$ は再び標準コーシー分布に従う．よって\n\\[P(|\\bar X_n|>\\sqrt3)=1-\\frac{2}{\\pi}\\arctan\\sqrt3=1-\\frac{2}{\\pi}\\cdot\\frac{\\pi}{3}=\\boldsymbol{\\frac13}.\\]\n$n$ によらないので，$\\bar X_n$ はどこにも確率収束しない．期待値が存在しないため大数の法則が使えない典型例である．"
+   }
+  ],
+  "idea": {
+   "tex": "ラプラス分布とコーシー分布は特性関数について互いに双対であり，コーシー分布の標本平均はもとの分布と同じ分布になる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 1/(1+t^2)\n(2) 記述：φ(t)=1/(1+t^2) は可積分なので反転公式 (1/2)e^{-|x|}=(1/2π)∫e^{-itx}/(1+t^2)dt が成り立ち，x と t を入れ替えるとコーシー密度の特性関数が e^{-|t|} となる．\n(3) 1/3"
+  },
+  "techniques": [
+   "char-function"
+  ],
+  "methods": [],
+  "tags": [
+   "特性関数",
+   "コーシー分布",
+   "反転公式",
+   "大数の法則"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-01-008",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-42",
+  "level": 1,
+  "minutes": 12,
+  "theme": "複合ポアソン分布と全期待値・全分散の公式",
+  "topic": "複合ポアソン分布と全期待値・全分散の公式",
+  "statement": {
+   "tex": "保険会社に1年間に届く請求件数 $N$ がポアソン分布 $\\mathrm{Po}(\\lambda)$ に従い，各請求額 $Y_1,Y_2,\\dots$ は $N$ と独立に，互いに独立に密度 $\\theta e^{-\\theta y}$（$y>0$，$\\theta>0$）の指数分布に従うとする．総請求額を $S=\\sum_{i=1}^{N}Y_i$（$N=0$ なら $S=0$）とおく．\n\\begin{enumerate}\n\\item 全期待値の公式を用いて $E[S]$ を求めよ．\n\\item 全分散の公式 $V[S]=E[V[S\\mid N]]+V[E[S\\mid N]]$ を用いて $V[S]$ を求めよ．\n\\item $S$ の積率母関数 $M_S(t)=E[e^{tS}]$ を $t<\\theta$ の範囲で求めよ．\n\\item $\\mathrm{Cov}(N,S)$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{\\lambda}{\\theta}$ \\quad (2) $\\frac{2\\lambda}{\\theta^2}$ \\quad (3) $\\exp\\left(\\frac{\\lambda t}{\\theta-t}\\right)$ \\quad (4) $\\frac{\\lambda}{\\theta}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　$N$ を条件付けると $S$ は指数分布の $N$ 個の和になる．条件付きの量を計算してから $N$ について平均をとる．\n\n(1) $E[S\\mid N]=N/\\theta$ より $E[S]=E[N]/\\theta=\\boldsymbol{\\frac{\\lambda}{\\theta}}$．\n\n(2) $V[S\\mid N]=N/\\theta^2$，$E[S\\mid N]=N/\\theta$ より\n\\[V[S]=\\frac{E[N]}{\\theta^2}+\\frac{V[N]}{\\theta^2}=\\boldsymbol{\\frac{2\\lambda}{\\theta^2}}.\\]\nこれは $\\lambda E[Y^2]$ に等しい（複合ポアソン分布の一般公式）．\n\n(3) $E[e^{tS}\\mid N]=\\left(\\frac{\\theta}{\\theta-t}\\right)^N$ であり，ポアソン分布の確率母関数 $E[s^N]=e^{\\lambda(s-1)}$ に代入して\n\\[M_S(t)=\\exp\\left(\\lambda\\left(\\frac{\\theta}{\\theta-t}-1\\right)\\right)=\\boldsymbol{\\exp\\left(\\frac{\\lambda t}{\\theta-t}\\right)}.\\]\n\n(4) $E[NS]=E[N\\cdot N/\\theta]=\\frac{\\lambda+\\lambda^2}{\\theta}$ なので $\\mathrm{Cov}(N,S)=\\frac{\\lambda+\\lambda^2}{\\theta}-\\lambda\\cdot\\frac{\\lambda}{\\theta}=\\boldsymbol{\\frac{\\lambda}{\\theta}}$．"
+   }
+  ],
+  "idea": {
+   "tex": "ランダムな個数の和は，個数で条件付けて全期待値・全分散の公式と確率母関数を使う．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) lambda/theta\n(2) 2lambda/theta^2\n(3) exp(lambda t/(theta-t))\n(4) lambda/theta"
+  },
+  "techniques": [
+   "cond-expect",
+   "mgf",
+   "mixture-hierarchical"
+  ],
+  "methods": [],
+  "tags": [
+   "複合分布",
+   "全期待値の公式",
+   "全分散の公式",
+   "積率母関数",
+   "ポアソン分布"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-01-009",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-42",
+  "level": 1,
+  "minutes": 12,
+  "theme": "確率収束・概収束・平均二乗収束の違い",
+  "topic": "確率収束・概収束・平均二乗収束の違い",
+  "statement": {
+   "tex": "$X_1,X_2,\\dots$ は独立で，$P(X_n=n)=\\frac1n$，$P(X_n=0)=1-\\frac1n$ とする．また $Y_1,Y_2,\\dots$ は独立で，$P(Y_n=n)=\\frac{1}{n^2}$，$P(Y_n=0)=1-\\frac{1}{n^2}$ とする．\n\\begin{enumerate}\n\\item $E[X_n]$ と $V[X_n]$ を求めよ．\n\\item $\\lim_{n\\to\\infty}P(|X_n|>\\frac12)$ を求めよ（これより $X_n$ は $0$ に確率収束する）．\n\\item ボレル＝カンテリの補題を用いて，「$X_n=n$ となる $n$ が無限に多くある」確率を求めよ．\n\\item 「$Y_n=n$ となる $n$ が無限に多くある」確率と，$E[Y_n^2]$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $E[X_n]=1$，$V[X_n]=n-1$ \\quad (2) $0$ \\quad (3) $1$ \\quad (4) 確率 $0$，$E[Y_n^2]=1$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　確率収束は各 $n$ ごとの確率だけで決まるが，概収束は「無限回起こるか」という事象の確率で決まる．後者はボレル＝カンテリの補題で判定する．\n\n(1) $E[X_n]=n\\cdot\\frac1n=\\boldsymbol{1}$，$E[X_n^2]=n$ より $V[X_n]=\\boldsymbol{n-1}$．\n\n(2) $P(|X_n|>\\frac12)=\\frac1n\\to\\boldsymbol{0}$．よって $X_n\\to0$（確率収束）．一方 $E[X_n]=1$ は $0$ に収束しない．\n\n(3) 事象 $A_n=\\{X_n=n\\}$ は独立で $\\sum P(A_n)=\\sum\\frac1n=\\infty$．第2ボレル＝カンテリの補題より $P(A_n\\ \\text{i.o.})=\\boldsymbol{1}$．したがって確率1で $X_n$ は $0$ に収束せず，概収束しない．\n\n(4) $\\sum\\frac{1}{n^2}<\\infty$ なので第1補題より $P(Y_n=n\\ \\text{i.o.})=\\boldsymbol{0}$，すなわち $Y_n\\to0$ は概収束する．しかし $E[Y_n^2]=n^2\\cdot\\frac{1}{n^2}=\\boldsymbol{1}$ で，$Y_n$ は $0$ に平均二乗収束しない．\n\nまとめると，確率収束は概収束も平均二乗収束も導かず，概収束も平均二乗収束を導かない．"
+   }
+  ],
+  "idea": {
+   "tex": "確率収束は周辺の確率だけ，概収束は「無限回起こる」事象の確率で決まり，ボレル＝カンテリの補題で区別できる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) E：1 ; V：n-1\n(2) 0\n(3) 1\n(4) 確率：0 ; 二乗平均：1"
+  },
+  "techniques": [
+   "stoch-convergence"
+  ],
+  "methods": [],
+  "tags": [
+   "確率収束",
+   "概収束",
+   "平均二乗収束",
+   "ボレル＝カンテリの補題"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-01-001",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-42",
+  "level": 1,
+  "minutes": 12,
+  "theme": "ガンマ分布の積率母関数と再生性",
+  "topic": "ガンマ分布の積率母関数と再生性",
+  "statement": {
+   "tex": "確率変数 $X$ がガンマ分布 $\\mathrm{Ga}(\\alpha,\\lambda)$ に従うとは，密度関数が\n\\[f(x)=\\frac{\\lambda^{\\alpha}}{\\Gamma(\\alpha)}x^{\\alpha-1}e^{-\\lambda x}\\quad(x>0)\\]\nで与えられることをいう（$\\alpha>0,\\ \\lambda>0$）．\n\\begin{enumerate}\n\\item $X\\sim\\mathrm{Ga}(\\alpha,\\lambda)$ の積率母関数 $M(t)=E[e^{tX}]$ を $t<\\lambda$ の範囲で求めよ．\n\\item $X_1,\\dots,X_n$ を独立に指数分布 $\\mathrm{Ga}(1,\\lambda)$ に従う確率変数とし，$S=X_1+\\cdots+X_n$ とおく．$S$ の分布を積率母関数を用いて導け．\n\\item $n\\ge 2$ のとき $E[1/S]$ を $n,\\lambda$ で表せ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $M(t)=\\left(\\frac{\\lambda}{\\lambda-t}\\right)^{\\alpha}$ \\quad (2) $S\\sim\\mathrm{Ga}(n,\\lambda)$ \\quad (3) $E[1/S]=\\frac{\\lambda}{n-1}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　ガンマ分布の密度の形を利用して積分を正規化定数に帰着させる．和の分布は積率母関数の積で求める．\n\n(1) $t<\\lambda$ のとき\n\\[M(t)=\\int_0^\\infty \\frac{\\lambda^{\\alpha}}{\\Gamma(\\alpha)}x^{\\alpha-1}e^{-(\\lambda-t)x}\\,dx=\\frac{\\lambda^{\\alpha}}{\\Gamma(\\alpha)}\\cdot\\frac{\\Gamma(\\alpha)}{(\\lambda-t)^{\\alpha}}=\\boldsymbol{\\left(\\frac{\\lambda}{\\lambda-t}\\right)^{\\alpha}}.\\]\n\n(2) 独立性より $M_S(t)=\\prod_{i=1}^n M_{X_i}(t)=\\left(\\frac{\\lambda}{\\lambda-t}\\right)^{n}$ である．これは $\\mathrm{Ga}(n,\\lambda)$ の積率母関数であり，積率母関数は（$0$ の近傍で存在すれば）分布を一意に定めるから $\\boldsymbol{S\\sim\\mathrm{Ga}(n,\\lambda)}$ である．\n\n(3)\n\\[E[1/S]=\\int_0^\\infty \\frac{1}{s}\\frac{\\lambda^{n}}{\\Gamma(n)}s^{n-1}e^{-\\lambda s}ds=\\frac{\\lambda^{n}}{\\Gamma(n)}\\cdot\\frac{\\Gamma(n-1)}{\\lambda^{n-1}}=\\boldsymbol{\\frac{\\lambda}{n-1}}.\\]\n$n=1$ では積分が発散することに注意する．"
+   }
+  ],
+  "idea": {
+   "tex": "ガンマ分布の密度の正規化定数 $\\Gamma(\\alpha)/\\lambda^{\\alpha}$ を使えば，積率母関数も負の積率も一行で計算できる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) (lambda/(lambda-t))^alpha\n(2) 記述：M_S(t)=(λ/(λ-t))^n はガンマ分布 Ga(n,λ) の積率母関数であり，積率母関数の一意性から S〜Ga(n,λ)．\n(3) lambda/(n-1)"
+  },
+  "techniques": [
+   "gamma-beta-kernel",
+   "mgf"
+  ],
+  "methods": [],
+  "tags": [
+   "ガンマ分布",
+   "積率母関数",
+   "再生性"
+  ],
+  "provenance": {
+   "created": "2026-10-31"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-01-002",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-42",
+  "level": 1,
+  "minutes": 15,
+  "theme": "変数変換による同時分布（指数分布の和と比）",
+  "topic": "変数変換による同時分布（指数分布の和と比）",
+  "statement": {
+   "tex": "$X,Y$ を独立に指数分布 $\\mathrm{Exp}(1)$（密度 $e^{-x}$，$x>0$）に従う確率変数とする．\n\\begin{enumerate}\n\\item $P(X<2Y)$ を求めよ．\n\\item $U=X+Y,\\ V=\\dfrac{X}{X+Y}$ と変換する．逆変換 $(u,v)\\mapsto(x,y)$ のヤコビアンの絶対値を $u,v$ で表せ．\n\\item $(U,V)$ の同時密度を求め，$U$ と $V$ が独立であることを示せ．\n\\item $V$ の分散を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{2}{3}$ \\quad (2) $u$ \\quad (3) $f(u,v)=ue^{-u}$（$u>0,\\ 0<v<1$），$U\\sim\\mathrm{Ga}(2,1)$，$V\\sim U(0,1)$ で独立 \\quad (4) $\\frac{1}{12}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　(1) は直接積分，(2)(3) は2変数の変数変換公式 $f_{U,V}(u,v)=f_{X,Y}(x(u,v),y(u,v))\\,|J|$ を使う．\n\n(1) $P(X<2Y)=\\int_0^\\infty e^{-y}\\int_0^{2y}e^{-x}dx\\,dy=\\int_0^\\infty e^{-y}(1-e^{-2y})dy=1-\\frac{1}{3}=\\boldsymbol{\\frac{2}{3}}.$\n\n(2) 逆変換は $x=uv,\\ y=u(1-v)$ である．\n\\[J=\\det\\begin{pmatrix} v & u\\\\ 1-v & -u\\end{pmatrix}=-uv-u(1-v)=-u\\]\nより $|J|=\\boldsymbol{u}$．\n\n(3) $f_{U,V}(u,v)=e^{-uv}e^{-u(1-v)}\\cdot u=\\boldsymbol{ue^{-u}}$（$u>0,\\ 0<v<1$）．これは $u$ だけの関数 $ue^{-u}$（$\\mathrm{Ga}(2,1)$ の密度）と $v$ だけの関数 $1$（$U(0,1)$ の密度）の積に分解し，台も直積であるから $U$ と $V$ は独立である．\n\n(4) $V\\sim U(0,1)$ より $V[V]=\\boldsymbol{\\frac{1}{12}}$．"
+   }
+  ],
+  "idea": {
+   "tex": "変数変換で密度が $u$ の関数と $v$ の関数の積に分解すれば独立性がわかる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 2/3\n(2) u\n(3) 記述：x=uv, y=u(1-v) を代入すると同時密度は ue^{-u}・1（u>0, 0<v<1）と積に分解し，台も直積なので独立．\n(4) 1/12"
+  },
+  "techniques": [
+   "var-transform"
+  ],
+  "methods": [],
+  "tags": [
+   "変数変換",
+   "ヤコビアン",
+   "指数分布",
+   "独立性"
+  ],
+  "provenance": {
+   "created": "2026-10-31"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-01-010",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-42",
+  "level": 2,
+  "minutes": 20,
+  "theme": "t 分布の導出とその性質",
+  "topic": "t 分布の導出とその性質",
+  "statement": {
+   "tex": "$Z\\sim N(0,1)$ と $W\\sim\\chi^2(k)$ が独立であるとき，$T=\\dfrac{Z}{\\sqrt{W/k}}$ が従う分布を自由度 $k$ の $t$ 分布という．\n\\begin{enumerate}\n\\item $k\\ge3$ のとき，$E[1/W]$ を求め，$V[T]$ を $k$ で表せ．\n\\item $T^2$ がどの分布に従うかを，自由度を含めて理由とともに答えよ．\n\\item $(Z,W)\\mapsto(T,W)$ と変換して $W$ を積分消去すると，$T$ の密度は $c_k\\left(1+\\frac{t^2}{k}\\right)^{-(k+1)/2}$ の形になる．$k=3$ のときの定数 $c_3$ を求めよ．\n\\item $k=1$ のとき $P(|T|>1)$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $E[1/W]=\\frac{1}{k-2}$，$V[T]=\\frac{k}{k-2}$ \\quad (2) 記述 \\quad (3) $\\frac{2\\sqrt3}{3\\pi}$ \\quad (4) $\\frac12$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　独立性から $E[T^2]=kE[Z^2]E[1/W]$ と分解できる．密度は2変数の変数変換で求める．\n\n(1) $W$ の密度 $\\frac{w^{k/2-1}e^{-w/2}}{2^{k/2}\\Gamma(k/2)}$ より\n\\[E[1/W]=\\frac{2^{k/2-1}\\Gamma(k/2-1)}{2^{k/2}\\Gamma(k/2)}=\\boldsymbol{\\frac{1}{k-2}}.\\]\n対称性から $E[T]=0$ なので $V[T]=kE[Z^2]E[1/W]=\\boldsymbol{\\frac{k}{k-2}}$．\n\n(2) $T^2=\\dfrac{Z^2/1}{W/k}$ で $Z^2\\sim\\chi^2(1)$ は $W$ と独立なので，$T^2$ は自由度 $(1,k)$ の $F$ 分布 $F(1,k)$ に従う．\n\n(3) $z=t\\sqrt{w/k}$，ヤコビアンは $\\sqrt{w/k}$．同時密度を $w$ で積分すると\n\\[f_T(t)=\\frac{1}{\\sqrt{2\\pi k}\\,2^{k/2}\\Gamma(k/2)}\\int_0^\\infty w^{(k-1)/2}e^{-\\frac w2\\left(1+\\frac{t^2}{k}\\right)}dw=\\frac{\\Gamma\\left(\\frac{k+1}{2}\\right)}{\\sqrt{k\\pi}\\,\\Gamma\\left(\\frac k2\\right)}\\left(1+\\frac{t^2}{k}\\right)^{-\\frac{k+1}{2}}.\\]\n$k=3$ では $\\Gamma(2)=1$，$\\Gamma(3/2)=\\sqrt\\pi/2$ より $c_3=\\frac{2}{\\sqrt{3}\\,\\pi}=\\boldsymbol{\\frac{2\\sqrt3}{3\\pi}}$．\n\n(4) $k=1$ では $c_1=\\frac1\\pi$ で $T$ は標準コーシー分布に従う．$P(|T|>1)=1-\\frac2\\pi\\arctan1=\\boldsymbol{\\frac12}$．"
+   }
+  ],
+  "idea": {
+   "tex": "独立な分子と分母に分けて積率を計算し，密度は変数変換して余分な変数をガンマ積分で消去する．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) E[1/W]：1/(k-2) ; V[T]：k/(k-2)\n(2) 記述：T^2=(Z^2/1)/(W/k) で Z^2〜χ^2(1) は W と独立なので F(1,k) に従う．\n(3) 2sqrt(3)/(3pi)\n(4) 1/2"
+  },
+  "techniques": [
+   "sampling-dist",
+   "var-transform",
+   "gamma-beta-kernel"
+  ],
+  "methods": [],
+  "tags": [
+   "t分布",
+   "カイ二乗分布",
+   "F分布",
+   "変数変換",
+   "コーシー分布"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-01-011",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-42",
+  "level": 2,
+  "minutes": 15,
+  "theme": "2次元正規分布の極座標変換",
+  "topic": "2次元正規分布の極座標変換",
+  "statement": {
+   "tex": "$X,Y$ を独立に $N(0,1)$ に従う確率変数とし，$X=R\\cos\\Theta$，$Y=R\\sin\\Theta$（$R>0$，$0\\le\\Theta<2\\pi$）と極座標で表す．\n\\begin{enumerate}\n\\item 変換 $(r,\\theta)\\mapsto(x,y)$ のヤコビアンの絶対値を答えよ．\n\\item $(R,\\Theta)$ の同時密度を求め，$R$ と $\\Theta$ が独立であることを示し，$t>0$ に対して $P(R^2>t)$ を求めよ．\n\\item $P(Y>\\sqrt3\\,|X|)$ を求めよ．\n\\item $E[R]$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $r$ \\quad (2) $e^{-t/2}$ \\quad (3) $\\frac16$ \\quad (4) $\\sqrt{\\frac{\\pi}{2}}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　同時密度 $\\frac{1}{2\\pi}e^{-(x^2+y^2)/2}$ は $x^2+y^2$ だけの関数なので，極座標に移ると角度の依存が消える．\n\n(1) $\\left|\\frac{\\partial(x,y)}{\\partial(r,\\theta)}\\right|=\\boldsymbol{r}$．\n\n(2) $(R,\\Theta)$ の同時密度は\n\\[f(r,\\theta)=\\frac{1}{2\\pi}e^{-r^2/2}\\cdot r=\\left(re^{-r^2/2}\\right)\\cdot\\frac{1}{2\\pi}\\quad(r>0,\\ 0\\le\\theta<2\\pi)\\]\nと積に分解し，台も直積なので独立．$\\Theta\\sim U(0,2\\pi)$，$R$ はレイリー分布．$P(R^2>t)=P(R>\\sqrt t)=\\int_{\\sqrt t}^\\infty re^{-r^2/2}dr=\\boldsymbol{e^{-t/2}}$．すなわち $R^2=X^2+Y^2$ は平均 $2$ の指数分布（$=\\chi^2(2)$）である．\n\n(3) $Y>\\sqrt3|X|$ は $\\frac\\pi3<\\Theta<\\frac{2\\pi}{3}$ と同値．$\\Theta$ は一様なので確率は $\\frac{\\pi/3}{2\\pi}=\\boldsymbol{\\frac16}$．\n\n(4) $E[R]=\\int_0^\\infty r^2e^{-r^2/2}dr=\\frac12\\sqrt{2\\pi}=\\boldsymbol{\\sqrt{\\frac\\pi2}}$．"
+   }
+  ],
+  "idea": {
+   "tex": "回転対称な2変量密度は極座標で動径と角度に分離し，角度は一様分布になる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) r\n(2) e^(-t/2)\n(3) 1/6\n(4) sqrt(pi/2)"
+  },
+  "techniques": [
+   "var-transform"
+  ],
+  "methods": [],
+  "tags": [
+   "多変量変数変換",
+   "ヤコビアン",
+   "正規分布",
+   "カイ二乗分布",
+   "独立性"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-01-012",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-42",
+  "level": 2,
+  "minutes": 20,
+  "theme": "指数分布の順序統計量・範囲とグンベル分布",
+  "topic": "指数分布の順序統計量・範囲とグンベル分布",
+  "statement": {
+   "tex": "$X_1,\\dots,X_n$（$n\\ge2$）を独立に指数分布 $\\mathrm{Exp}(1)$（密度 $e^{-x}$，$x>0$）に従う確率変数とし，順序統計量を $X_{(1)}<\\cdots<X_{(n)}$ とする．\n\\begin{enumerate}\n\\item $X_{(1)}$ の期待値を求めよ．\n\\item 指数分布の無記憶性から，間隔 $D_k=X_{(k)}-X_{(k-1)}$（$X_{(0)}=0$）は独立に平均 $\\frac{1}{n-k+1}$ の指数分布に従う．$n=3$ のとき $E[X_{(3)}]$ と $V[X_{(3)}]$ を求めよ．\n\\item 範囲 $R=X_{(n)}-X_{(1)}$ の分布関数 $P(R\\le r)$（$r>0$）を $n,r$ で表せ．\n\\item $x\\in\\mathbb{R}$ を固定する．$\\lim_{n\\to\\infty}P(X_{(n)}-\\log n\\le x)$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac1n$ \\quad (2) $E[X_{(3)}]=\\frac{11}{6}$，$V[X_{(3)}]=\\frac{49}{36}$ \\quad (3) $(1-e^{-r})^{n-1}$ \\quad (4) $\\exp(-e^{-x})$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　最小値は「全部が $x$ より大きい」確率から求まる．最小値が出たあと，残りの $n-1$ 個は無記憶性により新たに独立な $\\mathrm{Exp}(1)$ から始まると見なせる（レーニィ表現）．\n\n(1) $P(X_{(1)}>x)=e^{-nx}$ なので $X_{(1)}\\sim\\mathrm{Exp}(n)$，$E[X_{(1)}]=\\boldsymbol{\\frac1n}$．\n\n(2) $X_{(3)}=D_1+D_2+D_3$ で $D_k$ の平均は $\\frac13,\\frac12,1$，分散はその2乗．よって\n\\[E[X_{(3)}]=\\frac13+\\frac12+1=\\boldsymbol{\\frac{11}{6}},\\qquad V[X_{(3)}]=\\frac19+\\frac14+1=\\boldsymbol{\\frac{49}{36}}.\\]\n\n(3) $R=D_2+\\cdots+D_n$ は平均 $\\frac{1}{n-1},\\dots,1$ の独立な指数分布の和で，これは $n-1$ 個の独立な $\\mathrm{Exp}(1)$ の最大値の表現と同じである．よって $P(R\\le r)=\\boldsymbol{(1-e^{-r})^{n-1}}$．\n\n(4) $P(X_{(n)}\\le x+\\log n)=\\left(1-\\frac{e^{-x}}{n}\\right)^n\\to\\boldsymbol{\\exp(-e^{-x})}$．これは標準グンベル分布（極値分布の1つ）の分布関数である．"
+   }
+  ],
+  "idea": {
+   "tex": "指数分布の順序統計量は無記憶性で独立な指数分布の和に分解でき，最大値は対数で中心化するとグンベル分布に収束する．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 1/n\n(2) E：11/6 ; V：49/36\n(3) (1-e^(-r))^(n-1)\n(4) exp(-e^(-x))"
+  },
+  "techniques": [
+   "order-stat-dist",
+   "hazard-survival"
+  ],
+  "methods": [],
+  "tags": [
+   "順序統計量",
+   "範囲",
+   "指数分布",
+   "極値分布",
+   "グンベル分布"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-01-013",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-42",
+  "level": 2,
+  "minutes": 20,
+  "theme": "スラツキーの定理と標本分散・変動係数の漸近分布",
+  "topic": "スラツキーの定理と標本分散・変動係数の漸近分布",
+  "statement": {
+   "tex": "$X_1,\\dots,X_n$ を独立に平均 $\\theta$ の指数分布（密度 $\\frac1\\theta e^{-x/\\theta}$，$x>0$）に従う確率変数とし，$\\bar X$ を標本平均，$S^2=\\frac{1}{n-1}\\sum(X_i-\\bar X)^2$ とする．$E[X_1^k]=k!\\,\\theta^k$ を用いてよい．\n\\begin{enumerate}\n\\item $\\sqrt n(\\bar X-\\theta)/S$ が $N(0,1)$ に分布収束することを示せ．\n\\item $\\sqrt n(S^2-\\theta^2)$ の漸近分布 $N(0,\\tau^2)$ の分散 $\\tau^2$ を求めよ．\n\\item 変動係数の推定量 $S/\\bar X$ について，$\\sqrt n(S/\\bar X-1)$ の漸近分散を求めよ．\n\\item 中心極限定理による近似で $P(|\\bar X-\\theta|<0.1\\theta)\\ge0.95$ となる最小の $n$ を求めよ．$z_{0.025}=1.96$ を用いてよい．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) 記述 \\quad (2) $8\\theta^4$ \\quad (3) $1$ \\quad (4) $385$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　中心極限定理で得た分布収束に，確率収束する因子を掛けたり足したりする操作はスラツキーの定理で正当化される．関数の漸近分布は多変量デルタ法で求める．\n\n(1) CLT より $\\sqrt n(\\bar X-\\theta)/\\theta\\to N(0,1)$．大数の法則より $S\\to\\theta$（確率収束）なので $\\theta/S\\to1$．スラツキーの定理により積は $N(0,1)$ に分布収束する．\n\n(2) $S^2$ の漸近分散は $\\mu_4-\\sigma^4$（$\\mu_4$ は4次の中心積率）．$\\theta=1$ で $E[X]=1,E[X^2]=2,E[X^3]=6,E[X^4]=24$ より $\\mu_4=24-4\\cdot6+6\\cdot2-3=9$．よって $\\tau^2=(9-1)\\theta^4=\\boldsymbol{8\\theta^4}$．\n\n(3) $m_1=\\bar X$，$m_2=\\frac1n\\sum X_i^2$ とすると $S/\\bar X\\approx g(m_1,m_2)=\\sqrt{m_2-m_1^2}/m_1$．尺度に依存しないので $\\theta=1$ として計算してよい．$(X,X^2)$ の共分散行列は $V[X]=1$，$\\mathrm{Cov}(X,X^2)=6-2=4$，$V[X^2]=24-4=20$．$(1,2)$ での勾配は $\\left(-2,\\ \\frac12\\right)$．よって漸近分散は\n\\[4\\cdot1+2\\cdot(-2)\\cdot\\frac12\\cdot4+\\frac14\\cdot20=4-8+5=\\boldsymbol{1}.\\]\n\n(4) $P\\left(|Z|<0.1\\sqrt n\\right)\\ge0.95$ より $0.1\\sqrt n\\ge1.96$，$n\\ge384.16$．よって $\\boldsymbol{385}$．"
+   }
+  ],
+  "idea": {
+   "tex": "CLT と大数の法則を，スラツキーの定理と多変量デルタ法でつなぐと，さまざまな統計量の漸近分布が得られる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 記述：CLT で √n(X̄-θ)/θ→N(0,1)，大数の法則で S→θ（確率収束）．スラツキーの定理より θ/S を掛けても N(0,1) に分布収束．\n(2) 8theta^4\n(3) 1\n(4) 385"
+  },
+  "techniques": [
+   "delta-method",
+   "clt"
+  ],
+  "methods": [],
+  "tags": [
+   "スラツキーの定理",
+   "中心極限定理",
+   "デルタ法",
+   "標本分散",
+   "指数分布"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-01-003",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-42",
+  "level": 2,
+  "minutes": 20,
+  "theme": "一様分布の順序統計量",
+  "topic": "一様分布の順序統計量",
+  "statement": {
+   "tex": "$X_1,\\dots,X_n$（$n\\ge2$）を独立に一様分布 $U(0,1)$ に従う確率変数とし，その最小値を $X_{(1)}$，最大値を $X_{(n)}$ とする．\n\\begin{enumerate}\n\\item $E[X_{(1)}]$ を求めよ．\n\\item $V[X_{(n)}]$ を求めよ．\n\\item $(X_{(1)},X_{(n)})$ の同時密度が $f(u,v)=n(n-1)(v-u)^{n-2}$（$0<u<v<1$）となることを用いて，$\\mathrm{Cov}(X_{(1)},X_{(n)})$ を求めよ．\n\\item 範囲 $R=X_{(n)}-X_{(1)}$ の期待値を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{1}{n+1}$ \\quad (2) $\\frac{n}{(n+1)^2(n+2)}$ \\quad (3) $\\frac{1}{(n+1)^2(n+2)}$ \\quad (4) $\\frac{n-1}{n+1}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　最小値・最大値の分布関数は「全部が $x$ 以上」「全部が $x$ 以下」の確率として簡単に求まる．共分散は同時密度から $E[X_{(1)}X_{(n)}]$ を計算する．\n\n(1) $P(X_{(1)}>x)=(1-x)^n$ より $E[X_{(1)}]=\\int_0^1(1-x)^ndx=\\boldsymbol{\\frac{1}{n+1}}$．\n\n(2) $X_{(n)}$ の密度は $nx^{n-1}$ なので $E[X_{(n)}]=\\frac{n}{n+1}$，$E[X_{(n)}^2]=\\frac{n}{n+2}$．よって\n\\[V[X_{(n)}]=\\frac{n}{n+2}-\\frac{n^2}{(n+1)^2}=\\boldsymbol{\\frac{n}{(n+1)^2(n+2)}}.\\]\n\n(3) $E[X_{(1)}X_{(n)}]=\\int_0^1\\int_0^v uv\\,n(n-1)(v-u)^{n-2}du\\,dv$．内側の積分は $\\int_0^v u(v-u)^{n-2}du=\\frac{v^n}{(n-1)n}$ なので，$E[X_{(1)}X_{(n)}]=\\int_0^1 v^{n+1}dv=\\frac{1}{n+2}$．したがって\n\\[\\mathrm{Cov}=\\frac{1}{n+2}-\\frac{1}{n+1}\\cdot\\frac{n}{n+1}=\\boldsymbol{\\frac{1}{(n+1)^2(n+2)}}.\\]\n\n(4) $E[R]=\\frac{n}{n+1}-\\frac{1}{n+1}=\\boldsymbol{\\frac{n-1}{n+1}}$．"
+   }
+  ],
+  "idea": {
+   "tex": "最小値・最大値は分布関数から，共分散は同時密度の二重積分（ベータ積分）から求める．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 1/(n+1)\n(2) n/((n+1)^2(n+2))\n(3) 1/((n+1)^2(n+2))\n(4) (n-1)/(n+1)"
+  },
+  "techniques": [
+   "order-stat-dist",
+   "gamma-beta-kernel"
+  ],
+  "methods": [],
+  "tags": [
+   "順序統計量",
+   "一様分布",
+   "共分散",
+   "ベータ積分"
+  ],
+  "provenance": {
+   "created": "2026-10-31"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-01-004",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-42",
+  "level": 2,
+  "minutes": 20,
+  "theme": "デルタ法と分散安定化変換（ポアソン分布）",
+  "topic": "デルタ法と分散安定化変換（ポアソン分布）",
+  "statement": {
+   "tex": "$X_1,\\dots,X_n$ を独立にポアソン分布 $\\mathrm{Po}(\\lambda)$ に従う確率変数とし，$\\bar X=\\frac{1}{n}\\sum_{i=1}^n X_i$ とおく．\n\\begin{enumerate}\n\\item デルタ法により，$\\sqrt{n}\\,(\\sqrt{\\bar X}-\\sqrt{\\lambda})$ の漸近分布 $N(0,\\tau^2)$ の分散 $\\tau^2$ を求めよ．\n\\item $n=100$ のとき，(1) の正規近似を用いて $P\\left(|\\sqrt{\\bar X}-\\sqrt{\\lambda}|>0.15\\right)$ の近似値を求めよ．ただし $\\Phi(3)=0.99865$（$\\Phi$ は標準正規分布の分布関数）を用いてよい．\n\\item $P(X_1=0)=e^{-\\lambda}$ の推定量 $e^{-\\bar X}$ について，$\\sqrt{n}\\,(e^{-\\bar X}-e^{-\\lambda})$ の漸近分散を求めよ．\n\\item デルタ法の主張を，テイラー展開とスラツキーの定理を用いて説明せよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\tau^2=\\frac{1}{4}$ \\quad (2) $\\approx 0.0027$ \\quad (3) $\\lambda e^{-2\\lambda}$ \\quad (4) 解説参照"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　中心極限定理 $\\sqrt n(\\bar X-\\lambda)\\to N(0,\\lambda)$ に，滑らかな関数 $g$ を施すと $\\sqrt n(g(\\bar X)-g(\\lambda))\\to N(0,g'(\\lambda)^2\\lambda)$ となる（デルタ法）．\n\n(1) $g(x)=\\sqrt x$，$g'(\\lambda)=\\frac{1}{2\\sqrt\\lambda}$ より $\\tau^2=\\frac{1}{4\\lambda}\\cdot\\lambda=\\boldsymbol{\\frac14}$．漸近分散が $\\lambda$ によらないので，平方根変換は分散安定化変換である．\n\n(2) $\\sqrt{\\bar X}-\\sqrt\\lambda\\approx N\\!\\left(0,\\frac{1}{4n}\\right)=N(0,0.05^2)$．$0.15/0.05=3$ より\n\\[P\\approx 2(1-\\Phi(3))=2\\times0.00135=\\boldsymbol{0.0027}.\\]\n\n(3) $g(x)=e^{-x}$，$g'(\\lambda)^2\\lambda=\\boldsymbol{\\lambda e^{-2\\lambda}}$．\n\n(4) $g(\\bar X)=g(\\lambda)+g'(\\lambda^*)(\\bar X-\\lambda)$（$\\lambda^*$ は $\\bar X$ と $\\lambda$ の間）と平均値の定理で書く．大数の法則で $\\bar X\\to\\lambda$（確率収束）なので $\\lambda^*\\to\\lambda$，$g'$ の連続性から $g'(\\lambda^*)\\to g'(\\lambda)$．スラツキーの定理により $\\sqrt n(g(\\bar X)-g(\\lambda))=g'(\\lambda^*)\\sqrt n(\\bar X-\\lambda)\\to g'(\\lambda)N(0,\\lambda)$ となる．"
+   }
+  ],
+  "idea": {
+   "tex": "中心極限定理に1次のテイラー展開を重ねると，変換後の推定量の漸近分散が $g'(\\lambda)^2\\sigma^2$ で得られる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 1/4\n(2) ≈0.0027\n(3) lambda e^(-2lambda)\n(4) 記述：g(X̄)=g(λ)+g'(λ*)(X̄-λ) と展開し，λ*→λ（確率収束）と CLT をスラツキーの定理で組み合わせると √n(g(X̄)-g(λ))→N(0, g'(λ)^2 λ)．"
+  },
+  "techniques": [
+   "delta-method",
+   "clt"
+  ],
+  "methods": [],
+  "tags": [
+   "デルタ法",
+   "分散安定化変換",
+   "中心極限定理",
+   "ポアソン分布"
+  ],
+  "provenance": {
+   "created": "2026-10-31"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-01-005",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-42",
+  "level": 2,
+  "minutes": 20,
+  "theme": "ポアソン分布の二項間引きと条件付き期待値",
+  "topic": "ポアソン分布の二項間引きと条件付き期待値",
+  "statement": {
+   "tex": "$N$ をポアソン分布 $\\mathrm{Po}(\\lambda)$ に従う確率変数とし，$N=m$ が与えられたとき $X$ は二項分布 $B(m,p)$ に従うとする（$0<p<1$）．\n\\begin{enumerate}\n\\item 確率母関数 $E[s^X]$ を $s,\\lambda,p$ で表し，$X$ の分布を答えよ．\n\\item $\\mathrm{Cov}(N,X)$ を求めよ．\n\\item $N$ と $X$ の相関係数を求めよ．\n\\item $X=x$ が与えられたときの $N$ の条件付き期待値 $E[N\\mid X=x]$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $E[s^X]=e^{\\lambda p(s-1)}$，$X\\sim\\mathrm{Po}(\\lambda p)$ \\quad (2) $\\lambda p$ \\quad (3) $\\sqrt{p}$ \\quad (4) $x+\\lambda(1-p)$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　条件付けて計算する（繰り返し期待値の法則）．(4) では $N-X$ と $X$ の独立性を使う．\n\n(1) $E[s^X\\mid N]=(1-p+ps)^N$ なので，$E[s^X]=E[(1-p+ps)^N]=e^{\\lambda(1-p+ps-1)}=\\boldsymbol{e^{\\lambda p(s-1)}}$．これは $\\mathrm{Po}(\\lambda p)$ の確率母関数である．\n\n(2) $E[NX]=E[N\\cdot Np]=p(\\lambda+\\lambda^2)$，$E[N]E[X]=\\lambda\\cdot\\lambda p$．よって $\\mathrm{Cov}(N,X)=\\boldsymbol{\\lambda p}$．\n\n(3) $V[N]=\\lambda,\\ V[X]=\\lambda p$ より $\\rho=\\frac{\\lambda p}{\\sqrt{\\lambda\\cdot\\lambda p}}=\\boldsymbol{\\sqrt p}$．\n\n(4) 同時確率は\n\\[P(X=x,N-X=y)=e^{-\\lambda}\\frac{\\lambda^{x+y}}{(x+y)!}\\binom{x+y}{x}p^x(1-p)^y=e^{-\\lambda p}\\frac{(\\lambda p)^x}{x!}\\cdot e^{-\\lambda(1-p)}\\frac{(\\lambda(1-p))^y}{y!}\\]\nと分解するので $X$ と $N-X\\sim\\mathrm{Po}(\\lambda(1-p))$ は独立．よって $E[N\\mid X=x]=x+E[N-X]=\\boldsymbol{x+\\lambda(1-p)}$．"
+   }
+  ],
+  "idea": {
+   "tex": "ポアソン過程を確率 $p$ で間引くと，残る部分と除かれた部分は独立なポアソン分布になる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 記述：E[s^X]=E[(1-p+ps)^N]=e^{λp(s-1)} より X〜Po(λp)．\n(2) lambda p\n(3) sqrt(p)\n(4) x+lambda(1-p)"
+  },
+  "techniques": [
+   "poisson-conditioning",
+   "mgf"
+  ],
+  "methods": [],
+  "tags": [
+   "確率母関数",
+   "条件付き期待値",
+   "ポアソン分布",
+   "二項分布"
+  ],
+  "provenance": {
+   "created": "2026-10-31"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-01-014",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-42",
+  "level": 3,
+  "minutes": 25,
+  "theme": "ベータ二項分布と条件付き分布",
+  "topic": "ベータ二項分布と条件付き分布",
+  "statement": {
+   "tex": "成功確率 $p$ がベータ分布 $\\mathrm{Be}(a,b)$（密度 $\\propto p^{a-1}(1-p)^{b-1}$，$a,b>0$）に従い，$p$ が与えられたもとで $Z_1,\\dots,Z_n$ は独立に $P(Z_i=1)=p$，$P(Z_i=0)=1-p$ に従うとする．$X=\\sum_{i=1}^nZ_i$ とおく．\n\\begin{enumerate}\n\\item 全分散の公式を用いて $V[X]$ を $a,b,n$ で表せ．\n\\item $a=b=1$ のとき，$k=0,1,\\dots,n$ に対する $P(X=k)$ を求めよ．\n\\item $Z_1$ と $Z_2$ の相関係数を $a,b$ で表せ．\n\\item $a=b=1$ とする．$X=n$（$n$ 回すべて成功）が与えられたとき，次の試行 $Z_{n+1}$ が成功する条件付き確率を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{n\\cdot a\\cdot b\\cdot(a+b+n)}{(a+b)^2(a+b+1)}$ \\quad (2) $\\frac{1}{n+1}$ \\quad (3) $\\frac{1}{a+b+1}$ \\quad (4) $\\frac{n+1}{n+2}$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　$p$ で条件付けると二項分布になる．周辺分布はベータ積分，予測確率は事後分布の平均として求める．$p$ を共有することで試行間に正の相関が生まれる．\n\nベータ分布の積率は $E[p]=\\frac{a}{a+b}$，$V[p]=\\frac{ab}{(a+b)^2(a+b+1)}$，$E[p(1-p)]=\\frac{ab}{(a+b)(a+b+1)}$．\n\n(1) $V[X]=E[np(1-p)]+V[np]=\\frac{nab}{(a+b)(a+b+1)}+\\frac{n^2ab}{(a+b)^2(a+b+1)}=\\boldsymbol{\\frac{nab(a+b+n)}{(a+b)^2(a+b+1)}}$．二項分布の分散 $n\\frac{a}{a+b}\\frac{b}{a+b}$ より $\\frac{a+b+n}{a+b+1}$ 倍大きい（過分散）．\n\n(2) $P(X=k)=\\binom nk\\int_0^1p^k(1-p)^{n-k}dp=\\binom nk B(k+1,n-k+1)=\\binom{n}{k}\\frac{k!(n-k)!}{(n+1)!}=\\boldsymbol{\\frac{1}{n+1}}$．一様になる．\n\n(3) $\\mathrm{Cov}(Z_1,Z_2)=E[p^2]-E[p]^2=V[p]$，$V[Z_1]=E[p](1-E[p])=\\frac{ab}{(a+b)^2}$．よって相関係数は $\\boldsymbol{\\frac{1}{a+b+1}}$．\n\n(4) $X=n$ のもとで $p$ の事後分布は $\\mathrm{Be}(n+1,1)$．$P(Z_{n+1}=1\\mid X=n)=E[p\\mid X=n]=\\boldsymbol{\\frac{n+1}{n+2}}$（ラプラスの継起の法則）．"
+   }
+  ],
+  "idea": {
+   "tex": "母数を確率変数とみる階層モデルでは，条件付けで二項分布に帰着させ，全分散の公式とベータ積分で周辺の性質を求める．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) n a b (a+b+n)/((a+b)^2 (a+b+1))\n(2) 1/(n+1)\n(3) 1/(a+b+1)\n(4) (n+1)/(n+2)"
+  },
+  "techniques": [
+   "mixture-hierarchical",
+   "cond-expect",
+   "gamma-beta-kernel"
+  ],
+  "methods": [],
+  "tags": [
+   "条件付き分布",
+   "全分散の公式",
+   "ベータ分布",
+   "二項分布",
+   "過分散"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-01-015",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-42",
+  "level": 3,
+  "minutes": 25,
+  "theme": "積率母関数の収束によるポアソン分布の正規近似",
+  "topic": "積率母関数の収束によるポアソン分布の正規近似",
+  "statement": {
+   "tex": "$X_\\lambda$ をポアソン分布 $\\mathrm{Po}(\\lambda)$ に従う確率変数とし，$Z_\\lambda=\\dfrac{X_\\lambda-\\lambda}{\\sqrt\\lambda}$ とおく．\n\\begin{enumerate}\n\\item $X_\\lambda$ の積率母関数 $M(t)$ を求めよ．\n\\item $t$ を固定する．$\\lim_{\\lambda\\to\\infty}\\log E[e^{tZ_\\lambda}]$ を求めよ（これと連続性定理から $Z_\\lambda$ は $N(0,1)$ に分布収束する）．\n\\item $\\displaystyle\\lim_{n\\to\\infty}e^{-n}\\sum_{k=0}^{n}\\frac{n^k}{k!}$ を求めよ．\n\\item $\\displaystyle\\lim_{n\\to\\infty}e^{-n}\\sum_{0\\le k\\le n+\\sqrt n}\\frac{n^k}{k!}$ の値を求めよ．$\\Phi(1)=0.8413$（$\\Phi$ は標準正規分布の分布関数）を用いてよい．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\exp\\left(\\lambda(e^t-1)\\right)$ \\quad (2) $\\frac{t^2}{2}$ \\quad (3) $\\frac12$ \\quad (4) $\\approx 0.8413$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　積率母関数の対数をテイラー展開して極限をとる．和の形の極限は「$\\mathrm{Po}(n)$ の分布関数」と読みかえて正規近似を適用する．\n\n(1) $M(t)=\\sum_k e^{tk}e^{-\\lambda}\\frac{\\lambda^k}{k!}=\\boldsymbol{\\exp(\\lambda(e^t-1))}$．\n\n(2) $\\log E[e^{tZ_\\lambda}]=\\lambda\\left(e^{t/\\sqrt\\lambda}-1\\right)-t\\sqrt\\lambda=\\lambda\\left(\\frac{t}{\\sqrt\\lambda}+\\frac{t^2}{2\\lambda}+O(\\lambda^{-3/2})\\right)-t\\sqrt\\lambda=\\frac{t^2}{2}+O(\\lambda^{-1/2})\\to\\boldsymbol{\\frac{t^2}{2}}$．これは $N(0,1)$ の積率母関数の対数なので，連続性定理より $Z_\\lambda\\to N(0,1)$（分布収束）．\n\n(3) 和は $P(X_n\\le n)=P(Z_n\\le0)$ に等しい．(2) より極限は $\\Phi(0)=\\boldsymbol{\\frac12}$．（$X_n$ は独立な $\\mathrm{Po}(1)$ の $n$ 個の和と見れば中心極限定理そのものである．）\n\n(4) 和は $P(X_n\\le n+\\sqrt n)=P(Z_n\\le1)$ なので極限は $\\Phi(1)\\approx\\boldsymbol{0.8413}$．極限分布関数 $\\Phi$ は連続なので，境界の扱いによらず収束する．"
+   }
+  ],
+  "idea": {
+   "tex": "積率母関数（特性関数）の各点収束から分布収束が従う．級数の極限も確率として読み替えれば正規近似で求まる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) exp(lambda(e^t-1))\n(2) t^2/2\n(3) 1/2\n(4) ≈0.8413"
+  },
+  "techniques": [
+   "char-function",
+   "mgf",
+   "clt"
+  ],
+  "methods": [],
+  "tags": [
+   "積率母関数",
+   "連続性定理",
+   "中心極限定理",
+   "ポアソン分布",
+   "分布収束"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T1-01-006",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T1-42",
+  "level": 3,
+  "minutes": 30,
+  "theme": "極値の分布収束と幾何平均の概収束",
+  "topic": "極値の分布収束と幾何平均の概収束",
+  "statement": {
+   "tex": "$X_1,X_2,\\dots$ を独立に一様分布 $U(0,1)$ に従う確率変数とし，$X_{(n)}=\\max(X_1,\\dots,X_n)$，$G_n=(X_1X_2\\cdots X_n)^{1/n}$ とおく．\n\\begin{enumerate}\n\\item $x>0$ を固定する．$\\lim_{n\\to\\infty}P\\left(n(1-X_{(n)})>x\\right)$ を求めよ．\n\\item $G_n$ が概収束する極限の値を求めよ．\n\\item $\\sqrt{n}\\,(G_n-c)$（$c$ は (2) の極限）は正規分布 $N(0,\\tau^2)$ に分布収束する．$\\tau^2$ を求めよ．\n\\item $Y_n=X_{(n)}^{\\,n}$ とおくとき，$Y_n$ の分布を求め，$Y_n$ が分布収束はするが $1$ に確率収束はしないことを示せ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $e^{-x}$ \\quad (2) $e^{-1}$ \\quad (3) $e^{-2}$ \\quad (4) $Y_n\\sim U(0,1)$（すべての $n$ で）"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "\\textbf{方針}　(1) は分布関数を直接計算して極限をとる．(2)(3) は対数をとって和にし，大数の強法則・中心極限定理・デルタ法を使う．\n\n(1) $P(n(1-X_{(n)})>x)=P\\left(X_{(n)}<1-\\frac{x}{n}\\right)=\\left(1-\\frac{x}{n}\\right)^n\\to\\boldsymbol{e^{-x}}$．すなわち $n(1-X_{(n)})$ は指数分布 $\\mathrm{Exp}(1)$ に分布収束する．\n\n(2) $\\log G_n=\\frac1n\\sum\\log X_i$．$-\\log X_i\\sim\\mathrm{Exp}(1)$ なので $E[\\log X_i]=-1$，$V[\\log X_i]=1$．大数の強法則より $\\log G_n\\to-1$ a.s.，指数関数の連続性より $G_n\\to\\boldsymbol{e^{-1}}$ a.s.\n\n(3) 中心極限定理より $\\sqrt n(\\log G_n+1)\\to N(0,1)$．$g(y)=e^y$ にデルタ法を使うと $g'(-1)^2\\cdot1=\\boldsymbol{e^{-2}}$．\n\n(4) $P(Y_n\\le y)=P(X_{(n)}\\le y^{1/n})=(y^{1/n})^n=y$（$0<y<1$）より $Y_n\\sim U(0,1)$．分布は $n$ によらないので $U(0,1)$ に分布収束するが，$P(|Y_n-1|>1/2)=1/2$ が $0$ に近づかないので $1$ には確率収束しない（そもそも定数には収束しない）．"
+   }
+  ],
+  "idea": {
+   "tex": "対数をとれば積は和になり，大数の法則とデルタ法がそのまま使える．極値は分布関数を直接扱う．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) e^(-x)\n(2) e^(-1)\n(3) e^(-2)\n(4) 記述：P(Y_n≤y)=(y^{1/n})^n=y より Y_n〜U(0,1)．分布が n によらず P(|Y_n-1|>1/2)=1/2 なので確率収束しない．"
+  },
+  "techniques": [
+   "stoch-convergence",
+   "order-stat-dist",
+   "delta-method"
+  ],
+  "methods": [],
+  "tags": [
+   "概収束",
+   "分布収束",
+   "極値分布",
+   "デルタ法"
+  ],
+  "provenance": {
+   "created": "2026-10-31"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ }
+]

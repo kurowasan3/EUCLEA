@@ -1,5 +1,5 @@
 // アイコン・効果音・テーマ・アプリの亀「ゼノ」
-export const FILE_VERSION = '0.6.0';
+export const FILE_VERSION = '0.27.1';
 
 // ---------------------------------------------------------------- アイコン（線画、currentColor）
 const S = (body, extra = '') => `<svg class="ico" viewBox="0 0 24 24" aria-hidden="true" ${extra}>${body}</svg>`;
@@ -56,7 +56,7 @@ export function play(name) {
       case 'wrong': tone(233, 0, 0.26, { type: 'triangle', gain: 0.2, glide: 175 }); break;
       case 'tap': tone(1600, 0, 0.04, { gain: 0.05 }); break;
       case 'finish': [523.3, 659.3, 784, 1046.5].forEach((f, i) => tone(f, i * 0.09, 0.4, { gain: 0.12 })); break;
-      case 'bird': tone(660, 0, 0.12, { gain: 0.05, glide: 880 }); tone(880, 0.12, 0.16, { gain: 0.045, glide: 620 }); break;   // ぽこ
+      case 'bird': tone(2637, 0, 0.07, { gain: 0.05, glide: 3136 }); tone(2794, 0.1, 0.09, { gain: 0.05, glide: 3520 }); break;
     }
   } catch { /* 音が出せない環境 */ }
 }

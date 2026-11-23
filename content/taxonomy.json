@@ -1,0 +1,364 @@
+{
+ "schema": "lemma.taxonomy/1",
+ "note": "分野ID（key）は一度決めたら変えない・再利用しない。分野を消すときは retiredNumbers に番号を移す。並びは order。EUCLEA の分野ID は旧 Mathel のものをそのまま使う。",
+ "subjects": [
+  {
+   "id": "AN",
+   "name": "解析"
+  },
+  {
+   "id": "AL",
+   "name": "代数"
+  },
+  {
+   "id": "GE",
+   "name": "幾何"
+  },
+  {
+   "id": "OT",
+   "name": "その他"
+  },
+  {
+   "id": "SK",
+   "name": "数学検定1級"
+  },
+  {
+   "id": "T2",
+   "name": "統計検定2級"
+  },
+  {
+   "id": "TP",
+   "name": "統計検定準1級"
+  },
+  {
+   "id": "T1",
+   "name": "統計検定1級"
+  }
+ ],
+ "fields": [
+  {
+   "key": "AN-01",
+   "subject": "解析",
+   "name": "微分積分学",
+   "idPrefix": "AN-01",
+   "order": 1
+  },
+  {
+   "key": "AN-02",
+   "subject": "解析",
+   "name": "多変数解析",
+   "idPrefix": "AN-02",
+   "order": 2
+  },
+  {
+   "key": "AN-03",
+   "subject": "解析",
+   "name": "実解析",
+   "idPrefix": "AN-03",
+   "order": 3
+  },
+  {
+   "key": "AN-04",
+   "subject": "解析",
+   "name": "複素解析",
+   "idPrefix": "AN-04",
+   "order": 4
+  },
+  {
+   "key": "AN-05",
+   "subject": "解析",
+   "name": "常微分方程式",
+   "idPrefix": "AN-05",
+   "order": 5
+  },
+  {
+   "key": "AN-06",
+   "subject": "解析",
+   "name": "関数解析",
+   "idPrefix": "AN-06",
+   "order": 6
+  },
+  {
+   "key": "AN-07",
+   "subject": "解析",
+   "name": "偏微分方程式",
+   "idPrefix": "AN-07",
+   "order": 7
+  },
+  {
+   "key": "AL-08",
+   "subject": "代数",
+   "name": "線形代数",
+   "idPrefix": "AL-08",
+   "order": 8
+  },
+  {
+   "key": "AL-09",
+   "subject": "代数",
+   "name": "群論",
+   "idPrefix": "AL-09",
+   "order": 9
+  },
+  {
+   "key": "AL-10",
+   "subject": "代数",
+   "name": "環論",
+   "idPrefix": "AL-10",
+   "order": 10
+  },
+  {
+   "key": "AL-11",
+   "subject": "代数",
+   "name": "体論",
+   "idPrefix": "AL-11",
+   "order": 11
+  },
+  {
+   "key": "AL-12",
+   "subject": "代数",
+   "name": "ガロア理論",
+   "idPrefix": "AL-12",
+   "order": 12
+  },
+  {
+   "key": "AL-13",
+   "subject": "代数",
+   "name": "表現論",
+   "idPrefix": "AL-13",
+   "order": 13
+  },
+  {
+   "key": "GE-14",
+   "subject": "幾何",
+   "name": "集合と位相",
+   "idPrefix": "GE-14",
+   "order": 14
+  },
+  {
+   "key": "GE-15",
+   "subject": "幾何",
+   "name": "線形幾何",
+   "idPrefix": "GE-15",
+   "order": 15
+  },
+  {
+   "key": "GE-16",
+   "subject": "幾何",
+   "name": "位相幾何",
+   "idPrefix": "GE-16",
+   "order": 16
+  },
+  {
+   "key": "GE-17",
+   "subject": "幾何",
+   "name": "微分幾何",
+   "idPrefix": "GE-17",
+   "order": 17
+  },
+  {
+   "key": "GE-18",
+   "subject": "幾何",
+   "name": "リーマン幾何",
+   "idPrefix": "GE-18",
+   "order": 18
+  },
+  {
+   "key": "GE-19",
+   "subject": "幾何",
+   "name": "微分トポロジー",
+   "idPrefix": "GE-19",
+   "order": 19
+  },
+  {
+   "key": "OT-20",
+   "subject": "その他",
+   "name": "確率論・統計学",
+   "idPrefix": "OT-20",
+   "order": 20
+  },
+  {
+   "key": "OT-21",
+   "subject": "その他",
+   "name": "離散数学",
+   "idPrefix": "OT-21",
+   "order": 21
+  },
+  {
+   "key": "OT-22",
+   "subject": "その他",
+   "name": "数理論理",
+   "idPrefix": "OT-22",
+   "order": 22
+  },
+  {
+   "key": "OT-23",
+   "subject": "その他",
+   "name": "応用数学",
+   "idPrefix": "OT-23",
+   "order": 23
+  },
+  {
+   "key": "SK-24",
+   "subject": "数学検定1級",
+   "name": "解析",
+   "idPrefix": "SK-24",
+   "order": 24
+  },
+  {
+   "key": "SK-25",
+   "subject": "数学検定1級",
+   "name": "線形代数",
+   "idPrefix": "SK-25",
+   "order": 25
+  },
+  {
+   "key": "SK-26",
+   "subject": "数学検定1級",
+   "name": "代数・整数論",
+   "idPrefix": "SK-26",
+   "order": 26
+  },
+  {
+   "key": "SK-27",
+   "subject": "数学検定1級",
+   "name": "確率・統計",
+   "idPrefix": "SK-27",
+   "order": 27
+  },
+  {
+   "key": "SK-28",
+   "subject": "数学検定1級",
+   "name": "幾何・複素関数",
+   "idPrefix": "SK-28",
+   "order": 28
+  },
+  {
+   "key": "T2-29",
+   "subject": "統計検定2級",
+   "name": "データの記述と要約",
+   "idPrefix": "T2-29",
+   "order": 29
+  },
+  {
+   "key": "T2-30",
+   "subject": "統計検定2級",
+   "name": "確率と確率分布",
+   "idPrefix": "T2-30",
+   "order": 30
+  },
+  {
+   "key": "T2-31",
+   "subject": "統計検定2級",
+   "name": "標本分布",
+   "idPrefix": "T2-31",
+   "order": 31
+  },
+  {
+   "key": "T2-32",
+   "subject": "統計検定2級",
+   "name": "推定",
+   "idPrefix": "T2-32",
+   "order": 32
+  },
+  {
+   "key": "T2-33",
+   "subject": "統計検定2級",
+   "name": "仮説検定",
+   "idPrefix": "T2-33",
+   "order": 33
+  },
+  {
+   "key": "T2-34",
+   "subject": "統計検定2級",
+   "name": "回帰分析と相関",
+   "idPrefix": "T2-34",
+   "order": 34
+  },
+  {
+   "key": "T2-35",
+   "subject": "統計検定2級",
+   "name": "標本調査と実験計画",
+   "idPrefix": "T2-35",
+   "order": 35
+  },
+  {
+   "key": "TP-36",
+   "subject": "統計検定準1級",
+   "name": "確率と確率分布",
+   "idPrefix": "TP-36",
+   "order": 36
+  },
+  {
+   "key": "TP-37",
+   "subject": "統計検定準1級",
+   "name": "推定と検定",
+   "idPrefix": "TP-37",
+   "order": 37
+  },
+  {
+   "key": "TP-38",
+   "subject": "統計検定準1級",
+   "name": "回帰分析と線形モデル",
+   "idPrefix": "TP-38",
+   "order": 38
+  },
+  {
+   "key": "TP-39",
+   "subject": "統計検定準1級",
+   "name": "多変量解析",
+   "idPrefix": "TP-39",
+   "order": 39
+  },
+  {
+   "key": "TP-40",
+   "subject": "統計検定準1級",
+   "name": "時系列解析",
+   "idPrefix": "TP-40",
+   "order": 40
+  },
+  {
+   "key": "TP-41",
+   "subject": "統計検定準1級",
+   "name": "ベイズ統計と計算統計",
+   "idPrefix": "TP-41",
+   "order": 41
+  },
+  {
+   "key": "T1-42",
+   "subject": "統計検定1級",
+   "name": "確率分布と極限定理",
+   "idPrefix": "T1-42",
+   "order": 42
+  },
+  {
+   "key": "T1-43",
+   "subject": "統計検定1級",
+   "name": "点推定と十分統計量",
+   "idPrefix": "T1-43",
+   "order": 43
+  },
+  {
+   "key": "T1-44",
+   "subject": "統計検定1級",
+   "name": "区間推定と仮説検定",
+   "idPrefix": "T1-44",
+   "order": 44
+  },
+  {
+   "key": "T1-45",
+   "subject": "統計検定1級",
+   "name": "線形モデルと多変量解析",
+   "idPrefix": "T1-45",
+   "order": 45
+  },
+  {
+   "key": "T1-46",
+   "subject": "統計検定1級",
+   "name": "統計応用",
+   "idPrefix": "T1-46",
+   "order": 46
+  }
+ ],
+ "retiredNumbers": [],
+ "builtinUnits": {}
+}

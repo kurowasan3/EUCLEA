@@ -1,0 +1,38 @@
+{
+ "id": "col-epsilon-delta",
+ "schema": "lemma.collection/1",
+ "title": "ε-δ と極限の厳密化",
+ "description": "ε-N・ε-δ 論法、一様連続、一様収束、優収束定理。「定義から示す」力を順に。",
+ "order": 3,
+ "items": [
+  {
+   "id": "AN-01-001"
+  },
+  {
+   "id": "AN-01-009"
+  },
+  {
+   "id": "AN-01-014"
+  },
+  {
+   "id": "AN-01-018"
+  },
+  {
+   "id": "AN-01-005"
+  },
+  {
+   "id": "AN-03-004"
+  },
+  {
+   "id": "AN-03-013"
+  },
+  {
+   "id": "AN-03-007"
+  },
+  {
+   "id": "SK-01-004"
+  }
+ ],
+ "visibility": "public",
+ "createdBy": "euclea"
+}

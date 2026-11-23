@@ -1,0 +1,791 @@
+[
+ {
+  "id": "T2-02-007",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T2-30",
+  "level": 1,
+  "minutes": 5,
+  "theme": "期待値と分散の線形性・和の分散",
+  "topic": "期待値と分散の線形性・和の分散",
+  "statement": {
+   "tex": "確率変数 $X_1$，$X_2$ について $E(X_1)=3$，$V(X_1)=4$，$E(X_2)=5$，$V(X_2)=9$ である．$W=2X_1-X_2+1$ とおく．\n\n\\begin{enumerate}\n\\item $E(W)$ を求めよ．\n\\item $X_1$ と $X_2$ が独立のとき，$W$ の標準偏差を求めよ．\n\\item $X_1$ と $X_2$ の共分散が $\\mathrm{Cov}(X_1,X_2)=3$ のとき，$V(W)$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $2$\n(2) $5$\n(3) $13$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "期待値は常に線形である：$E(W)=2\\cdot3-5+1=\\boldsymbol{2}$．\n\n分散では定数項は消え，係数は 2 乗で効く．独立なら共分散は 0 なので $V(W)=2^2\\cdot4+(-1)^2\\cdot9=25$，標準偏差は $\\boldsymbol{5}$ である．\n\n一般には $V(aX_1+bX_2)=a^2V(X_1)+b^2V(X_2)+2ab\\,\\mathrm{Cov}(X_1,X_2)$ である．$a=2,\\ b=-1$ なので $V(W)=16+9+2\\cdot2\\cdot(-1)\\cdot3=\\boldsymbol{13}$ となる．"
+   }
+  ],
+  "idea": {
+   "tex": "$E$ は線形，$V(aX+b)=a^2V(X)$．和の分散には $2ab\\,\\mathrm{Cov}$ の項が加わり，独立なら消える．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 2\n(2) 5\n(3) 13"
+  },
+  "techniques": [
+   "expect-var-linearity"
+  ],
+  "methods": [],
+  "tags": [
+   "期待値",
+   "分散",
+   "線形変換",
+   "共分散",
+   "独立"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T2-02-008",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T2-30",
+  "level": 1,
+  "minutes": 5,
+  "theme": "連続一様分布の確率と期待値・分散",
+  "topic": "連続一様分布の確率と期待値・分散",
+  "statement": {
+   "tex": "バスが 20 分間隔で運行されている停留所に，時刻表を見ずに到着した．待ち時間 $X$（分）は区間 $[0,20]$ 上の一様分布に従うとする．\n\n\\begin{enumerate}\n\\item $P(5<X<12)$ を求めよ．\n\\item $X$ の分散を求めよ．\n\\item 10 分待ってもまだバスが来ないとき，さらに 5 分以上待つ確率 $P(X>15\\mid X>10)$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $0.35$\n(2) $\\frac{100}{3}$\n(3) $0.5$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "$[a,b]$ 上の一様分布の密度は $1/(b-a)$ なので，確率は区間の長さに比例する．\n\n(1) $P(5<X<12)=(12-5)/20=\\boldsymbol{0.35}$ である．\n\n(2) 一様分布の分散は $(b-a)^2/12=400/12=\\boldsymbol{100/3}\\approx33.3$ である（期待値は 10）．\n\n(3) $P(X>15\\mid X>10)=\\dfrac{P(X>15)}{P(X>10)}=\\dfrac{5/20}{10/20}=\\boldsymbol{0.5}$ である．無条件の $P(X>5)=0.75$ とは異なり，一様分布には無記憶性がない．"
+   }
+  ],
+  "idea": {
+   "tex": "一様分布の確率は長さの比，期待値 $(a+b)/2$，分散 $(b-a)^2/12$．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 0.35\n(2) 100/3\n(3) 0.5"
+  },
+  "techniques": [
+   "expect-var-linearity",
+   "prob-cond-independence"
+  ],
+  "methods": [],
+  "tags": [
+   "一様分布",
+   "確率密度関数",
+   "分散",
+   "条件付き確率"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T2-02-009",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T2-30",
+  "level": 1,
+  "minutes": 5,
+  "theme": "加法定理と排反・独立の区別",
+  "topic": "加法定理と排反・独立の区別",
+  "statement": {
+   "tex": "事象 $A$，$B$ について $P(A)=0.4$，$P(B)=0.5$，$P(A\\cup B)=0.7$ である．\n\n\\begin{enumerate}\n\\item $P(A\\cap B)$ を求めよ．\n\\item $P(A\\mid B)$ を求めよ．\n\\item $A$ と $B$ について正しい記述を選べ． \\\\ ① $A$ と $B$ は排反であり，独立でもある． \\\\ ② $A$ と $B$ は排反であるが，独立ではない． \\\\ ③ $A$ と $B$ は独立であるが，排反ではない． \\\\ ④ $A$ と $B$ は排反でも独立でもない． \\\\ ⑤ 与えられた情報だけでは独立かどうか判断できない． \\\\ 番号で答えよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $0.2$\n(2) $0.4$\n(3) ③（番号 3）"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "加法定理 $P(A\\cup B)=P(A)+P(B)-P(A\\cap B)$ より $P(A\\cap B)=0.4+0.5-0.7=\\boldsymbol{0.2}$ である．\n\n$P(A\\mid B)=P(A\\cap B)/P(B)=0.2/0.5=\\boldsymbol{0.4}$ である．\n\n$P(A\\cap B)=0.2=P(A)P(B)$ なので独立である（$P(A\\mid B)=P(A)$ とも言える）．$P(A\\cap B)\\neq0$ なので排反ではない．よって $\\boldsymbol{③}$ である．確率が正の 2 事象は排反なら必ず従属であり，「排反」と「独立」は別の概念である．"
+   }
+  ],
+  "idea": {
+   "tex": "排反は $P(A\\cap B)=0$，独立は $P(A\\cap B)=P(A)P(B)$．確率が正なら両立しない．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 0.2\n(2) 0.4\n(3) 3"
+  },
+  "techniques": [
+   "prob-cond-independence"
+  ],
+  "methods": [],
+  "tags": [
+   "加法定理",
+   "排反",
+   "独立",
+   "条件付き確率"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T2-02-001",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T2-30",
+  "level": 1,
+  "minutes": 6,
+  "theme": "条件付き確率と事象の独立",
+  "topic": "条件付き確率と事象の独立",
+  "statement": {
+   "tex": "2 個の公正なさいころを同時に投げる．\n\n\\begin{enumerate}\n\\item 少なくとも一方の目が 6 である確率を求めよ．\n\\item 少なくとも一方の目が 6 であるとき，目の和が 8 である条件付き確率を求めよ．\n\\item 事象 $A$「1 個目の目が偶数」と事象 $B$「目の和が 7」の関係として正しいものを選べ． \\\\ ① 独立である． \\\\ ② 排反である． \\\\ ③ $A\\subset B$ である． \\\\ ④ $P(A\\cap B)>P(A)P(B)$ である． \\\\ ⑤ $P(A\\cap B)<P(A)P(B)$ である． \\\\ 番号で答えよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\frac{11}{36}$\n(2) $\\frac{2}{11}$\n(3) ①（番号 1）"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "余事象を考える．「どちらも 6 でない」確率は $25/36$ なので，少なくとも一方が 6 である確率は $\\boldsymbol{11/36}$ である．\n\n少なくとも一方が 6 である 11 通りのうち，和が 8 になるのは $(2,6),(6,2)$ の 2 通りである．よって条件付き確率は $\\boldsymbol{2/11}$ である．\n\n$P(A)=1/2$，$P(B)=6/36=1/6$ である．$A\\cap B$ は $(2,5),(4,3),(6,1)$ の 3 通りなので $P(A\\cap B)=3/36=1/12=P(A)P(B)$ となる．したがって $A$ と $B$ は独立であり，答えは $\\boldsymbol{①}$ である．"
+   }
+  ],
+  "idea": {
+   "tex": "条件付き確率は「条件の事象を全体とみなした割合」．独立性は $P(A\\cap B)=P(A)P(B)$ で確かめる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 11/36\n(2) 2/11\n(3) 1"
+  },
+  "techniques": [
+   "prob-cond-independence"
+  ],
+  "methods": [],
+  "tags": [
+   "条件付き確率",
+   "独立",
+   "余事象"
+  ],
+  "provenance": {
+   "created": "2026-10-31"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T2-02-002",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T2-30",
+  "level": 1,
+  "minutes": 6,
+  "theme": "二項分布の確率・期待値・分散",
+  "topic": "二項分布の確率・期待値・分散",
+  "statement": {
+   "tex": "ある製品は確率 $0.3$ で不良品であり，各製品が不良品であるかどうかは互いに独立とする．5 個を検査したときの不良品の個数を $X$ とする．\n\n\\begin{enumerate}\n\\item $P(X=2)$ を求めよ．\n\\item $X$ の期待値と分散を求めよ．\n\\item $P(X\\ge1)$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $P(X=2)\\approx0.309$\n(2) $E[X]=1.5$，$V[X]=1.05$\n(3) $\\approx0.832$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "$X$ は二項分布 $B(5,0.3)$ に従う．\n\n$P(X=2)={}_5\\mathrm{C}_2(0.3)^2(0.7)^3=10\\times0.09\\times0.343=\\boldsymbol{0.3087}$ である．\n\n二項分布 $B(n,p)$ では $E[X]=np=\\boldsymbol{1.5}$，$V[X]=np(1-p)=5\\times0.3\\times0.7=\\boldsymbol{1.05}$ である．\n\n余事象を使うと $P(X\\ge1)=1-(0.7)^5=1-0.16807=\\boldsymbol{0.832}$ となる．"
+   }
+  ],
+  "idea": {
+   "tex": "独立な試行の成功回数は二項分布．「少なくとも1回」は余事象で計算する．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈0.309\n(2) E：3/2 ; V：21/20\n(3) ≈0.832"
+  },
+  "techniques": [
+   "discrete-distributions"
+  ],
+  "methods": [],
+  "tags": [
+   "二項分布",
+   "期待値",
+   "分散",
+   "余事象"
+  ],
+  "provenance": {
+   "created": "2026-10-31"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T2-02-010",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T2-30",
+  "level": 2,
+  "minutes": 7,
+  "theme": "幾何分布と無記憶性",
+  "topic": "幾何分布と無記憶性",
+  "statement": {
+   "tex": "あるゲームで 1 回の挑戦が成功する確率は 0.2 であり，各挑戦は独立である．初めて成功するまでの挑戦回数（成功した回も含む）を $X$ とする．\n\n\\begin{enumerate}\n\\item $P(X=3)$ を求めよ．\n\\item $X$ の期待値を求めよ．\n\\item $P(X>5)$ を求めよ．\n\\item $P(X>8\\mid X>3)$ と等しいものを選べ． \\\\ ① $P(X>3)$ \\\\ ② $P(X>5)$ \\\\ ③ $P(X>8)$ \\\\ ④ $P(X=5)$ \\\\ ⑤ $0.2$ \\\\ 番号で答えよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $0.128$\n(2) $5$\n(3) $\\approx0.328$\n(4) ②（番号 2）"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "$X$ は成功確率 $p=0.2$ の幾何分布に従い，$P(X=k)=(1-p)^{k-1}p$ である．\n\n(1) 2 回失敗してから成功するので $0.8^2\\times0.2=\\boldsymbol{0.128}$ である．\n\n(2) $E(X)=1/p=\\boldsymbol{5}$ である．\n\n(3) $X>5$ は「最初の 5 回がすべて失敗」と同じなので $0.8^5=0.32768\\approx\\boldsymbol{0.328}$ である．\n\n(4) $P(X>8\\mid X>3)=0.8^8/0.8^3=0.8^5=P(X>5)$ である．すでに 3 回失敗したことは今後に影響しない（無記憶性）．よって $\\boldsymbol{②}$ である．"
+   }
+  ],
+  "idea": {
+   "tex": "「初めて成功するまで」は幾何分布．$P(X>k)=(1-p)^k$ から無記憶性 $P(X>s+t\\mid X>s)=P(X>t)$ が出る．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 0.128\n(2) 5\n(3) ≈0.328\n(4) 2"
+  },
+  "techniques": [
+   "memoryless-exp-poisson",
+   "discrete-distributions"
+  ],
+  "methods": [],
+  "tags": [
+   "幾何分布",
+   "期待値",
+   "無記憶性",
+   "独立試行"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T2-02-011",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T2-30",
+  "level": 2,
+  "minutes": 8,
+  "theme": "超幾何分布と非復元抽出",
+  "topic": "超幾何分布と非復元抽出",
+  "statement": {
+   "tex": "20 個の製品の中に不良品が 5 個含まれている．ここから 4 個を非復元で無作為に取り出し，含まれる不良品の個数を $X$ とする．\n\n\\begin{enumerate}\n\\item $P(X=1)$ を求めよ．\n\\item $P(X\\ge1)$ を求めよ．\n\\item $X$ の分散を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx0.470$\n(2) $\\approx0.718$\n(3) $\\frac{12}{19}\\approx0.632$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "非復元抽出なので $X$ は超幾何分布に従い，$P(X=k)=\\dbinom{5}{k}\\dbinom{15}{4-k}\\Big/\\dbinom{20}{4}$ である．$\\binom{20}{4}=4845$ である．\n\n(1) $\\dfrac{5\\times455}{4845}=\\dfrac{2275}{4845}\\approx\\boldsymbol{0.470}$ である．\n\n(2) $P(X=0)=\\binom{15}{4}/4845=1365/4845$ なので $P(X\\ge1)=1-1365/4845\\approx\\boldsymbol{0.718}$ である．\n\n(3) 不良率 $p=5/20=1/4$ とすると，超幾何分布の分散は二項分布の分散に有限母集団修正 $(N-n)/(N-1)$ を掛けたもの\n\\[V(X)=np(1-p)\\frac{N-n}{N-1}=4\\cdot\\frac14\\cdot\\frac34\\cdot\\frac{16}{19}=\\boldsymbol{\\frac{12}{19}}\\approx0.632\\]\nである．復元抽出（二項分布）の 0.75 より小さい．期待値は $np=1$ で二項分布と同じである．"
+   }
+  ],
+  "idea": {
+   "tex": "非復元抽出は超幾何分布．期待値は二項分布と同じ $np$，分散は有限母集団修正 $(N-n)/(N-1)$ 倍に縮む．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈0.470\n(2) ≈0.718\n(3) 12/19"
+  },
+  "techniques": [
+   "discrete-distributions",
+   "standard-error-mean"
+  ],
+  "methods": [],
+  "tags": [
+   "超幾何分布",
+   "非復元抽出",
+   "有限母集団修正",
+   "二項分布"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T2-02-012",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T2-30",
+  "level": 2,
+  "minutes": 8,
+  "theme": "指数分布の中央値と直列系の寿命",
+  "topic": "指数分布の中央値と直列系の寿命",
+  "statement": {
+   "tex": "ある部品の寿命 $T$（時間）は期待値 1000 の指数分布に従う．すなわち $P(T>t)=e^{-t/1000}$ $(t\\ge0)$ である．$e^{-0.5}=0.6065$，$\\log 2=0.6931$ を用いてよい．\n\n\\begin{enumerate}\n\\item $P(T>500)$ を求めよ．\n\\item $T$ の中央値を求めよ．\n\\item 同じ部品 2 個を独立に用い，どちらか一方が故障すると装置全体が停止する（直列系）．装置の寿命の期待値を選べ． \\\\ ① 250 \\\\ ② 500 \\\\ ③ 693 \\\\ ④ 1000 \\\\ ⑤ 2000 \\\\ 番号で答えよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx0.607$\n(2) $\\approx693$\n(3) ②（番号 2）"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "(1) $P(T>500)=e^{-0.5}\\approx\\boldsymbol{0.607}$ である．\n\n(2) 中央値 $m$ は $e^{-m/1000}=1/2$ を満たすので $m=1000\\log2\\approx\\boldsymbol{693}$ である．右に裾を引く分布なので期待値 1000 より小さい．\n\n(3) 装置の寿命は $\\min(T_1,T_2)$ である．\n\\[P(\\min(T_1,T_2)>t)=P(T_1>t)P(T_2>t)=e^{-2t/1000}=e^{-t/500}\\]\nとなり，期待値 500 の指数分布に従う．よって $\\boldsymbol{②}$ である．"
+   }
+  ],
+  "idea": {
+   "tex": "指数分布は生存関数 $e^{-\\lambda t}$ で扱う．独立な指数分布の最小値は故障率が足し合わされた指数分布になる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈0.607\n(2) ≈693\n(3) 2"
+  },
+  "techniques": [
+   "memoryless-exp-poisson",
+   "order-statistics"
+  ],
+  "methods": [],
+  "tags": [
+   "指数分布",
+   "中央値",
+   "生存関数",
+   "最小値",
+   "信頼性"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T2-02-013",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T2-30",
+  "level": 2,
+  "minutes": 8,
+  "theme": "ポアソン近似とポアソン分布の再生性",
+  "topic": "ポアソン近似とポアソン分布の再生性",
+  "statement": {
+   "tex": "ある工程では製品が不良品になる確率が 0.002 であり，各製品は独立である．$e^{-3}=0.0498$，$e^{-5}=0.00674$ を用いてよい．\n\n\\begin{enumerate}\n\\item 1500 個を生産したときの不良品の個数を $X$ とする．ポアソン分布で近似して $P(X\\le2)$ を求めよ．\n\\item 別の工程の不良品の個数 $Y$ は平均 2 のポアソン分布に従い，$X$（平均 3 のポアソン分布とみなす）と独立である．$P(X+Y=5)$ を求めよ．\n\\item ポアソン分布について正しい記述を選べ． \\\\ ① 期待値と分散が等しい． \\\\ ② 期待値が大きくなるほど左に歪んだ分布になる． \\\\ ③ とり得る値は 0 から $n$ までの整数である． \\\\ ④ 独立なポアソン分布の和は二項分布に従う． \\\\ ⑤ 期待値は分散の 2 乗に等しい． \\\\ 番号で答えよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx0.423$\n(2) $\\approx0.175$\n(3) ①（番号 1）"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "(1) $n$ が大きく $p$ が小さい二項分布は，$\\lambda=np=3$ のポアソン分布で近似できる．\n\\[P(X\\le2)=e^{-3}\\left(1+3+\\frac{3^2}{2}\\right)=0.0498\\times8.5\\approx\\boldsymbol{0.423}\\]\n（二項分布での正確な値も 0.423 である．）\n\n(2) 独立なポアソン分布の和は，平均を足したポアソン分布に従う（再生性）．$X+Y$ は平均 5 のポアソン分布に従うので\n\\[P(X+Y=5)=e^{-5}\\frac{5^5}{5\\cdot4\\cdot3\\cdot2\\cdot1}=0.00674\\times26.04\\approx\\boldsymbol{0.175}\\]\nである．\n\n(3) ポアソン分布は期待値も分散も $\\lambda$ である．右に歪み，$\\lambda$ が大きいほど対称に近づく．値は上限のない非負整数をとる．よって $\\boldsymbol{①}$ である．"
+   }
+  ],
+  "idea": {
+   "tex": "まれな事象の回数はポアソン分布（$\\lambda=np$）．期待値＝分散，独立な和は平均を足したポアソン分布になる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈0.423\n(2) ≈0.175\n(3) 1"
+  },
+  "techniques": [
+   "discrete-distributions"
+  ],
+  "methods": [],
+  "tags": [
+   "ポアソン分布",
+   "ポアソン近似",
+   "再生性",
+   "二項分布"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T2-02-003",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T2-30",
+  "level": 2,
+  "minutes": 8,
+  "theme": "ベイズの定理と検査の陽性的中率",
+  "topic": "ベイズの定理と検査の陽性的中率",
+  "statement": {
+   "tex": "ある疾患の有病率は 2\\% である．この疾患の検査は，患者に対して確率 0.95 で陽性となり，患者でない人に対して確率 0.10 で陽性となる．\n\n\\begin{enumerate}\n\\item 無作為に選んだ 1 人が陽性となる確率を求めよ．\n\\item 陽性となった人が実際に患者である確率を求めよ．\n\\item 陽性となった人に同じ検査をもう一度行い，再び陽性となった．2 回の検査結果は，患者かどうかを与えたとき条件付き独立とする．この人が患者である確率はどの範囲にあるか． \\\\ ① 0.16 未満 \\\\ ② 0.16 以上 0.3 未満 \\\\ ③ 0.3 以上 0.5 未満 \\\\ ④ 0.5 以上 0.7 未満 \\\\ ⑤ 0.7 以上 \\\\ 番号で答えよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $0.117$\n(2) $\\approx0.162$\n(3) ④（番号 4）"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "全確率の公式を使う．$P(+)=0.02\\times0.95+0.98\\times0.10=0.019+0.098=\\boldsymbol{0.117}$ である．\n\nベイズの定理により $P(\\text{患者}\\mid +)=0.019/0.117=\\boldsymbol{0.162}$ となる．有病率が低いので，陽性でも患者である確率は小さい．\n\n2 回とも陽性である確率は，患者なら $0.95^2=0.9025$，患者でなければ $0.1^2=0.01$ である．\n\\[P(\\text{患者}\\mid ++)=\\frac{0.02\\times0.9025}{0.02\\times0.9025+0.98\\times0.01}=\\frac{0.01805}{0.02785}\\approx0.648\\]\nこの値は 0.5 以上 0.7 未満なので，答えは $\\boldsymbol{④}$ である．"
+   }
+  ],
+  "idea": {
+   "tex": "事後確率は「事前確率×尤度」を全体で正規化して求める．有病率が低いと陽性的中率は低くなる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 0.117\n(2) ≈0.162\n(3) 4"
+  },
+  "techniques": [
+   "bayes-theorem"
+  ],
+  "methods": [],
+  "tags": [
+   "ベイズの定理",
+   "条件付き確率",
+   "全確率の公式",
+   "陽性的中率"
+  ],
+  "provenance": {
+   "created": "2026-10-31"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T2-02-004",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T2-30",
+  "level": 2,
+  "minutes": 8,
+  "theme": "ポアソン分布と待ち時間",
+  "topic": "ポアソン分布と待ち時間",
+  "statement": {
+   "tex": "ある窓口への客の到着は，1 時間あたり平均 2 人のポアソン過程に従うとする．すなわち，長さ $t$ 時間の間の到着数は平均 $2t$ のポアソン分布に従う．$e^{-1}=0.3679$，$e^{-2}=0.1353$ を用いてよい．\n\n\\begin{enumerate}\n\\item ある 1 時間に客が 1 人も来ない確率を求めよ．\n\\item ある 30 分間に客が 2 人以上来る確率を求めよ．\n\\item ある客が到着してから次の客が到着するまでの時間の分布として正しいものを選べ． \\\\ ① 0 分から 60 分の一様分布 \\\\ ② 平均 30 分の指数分布 \\\\ ③ 平均 60 分の指数分布 \\\\ ④ 平均 30 分の正規分布 \\\\ ⑤ 平均 2 のポアソン分布 \\\\ 番号で答えよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx0.135$\n(2) $\\approx0.264$\n(3) ②（番号 2）"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "1 時間の到着数は $\\mathrm{Po}(2)$ に従う．よって $P(0)=e^{-2}=\\boldsymbol{0.135}$ である．\n\n30 分間の到着数は $\\mathrm{Po}(1)$ に従う．$P(X\\ge2)=1-P(0)-P(1)=1-e^{-1}-e^{-1}=1-2\\times0.3679=\\boldsymbol{0.264}$ である．\n\nポアソン過程の到着間隔は指数分布に従い，その平均は「到着率の逆数」である．到着率が 1 時間に 2 人なので，平均は $1/2$ 時間 $=30$ 分となる．答えは $\\boldsymbol{②}$ である．"
+   }
+  ],
+  "idea": {
+   "tex": "ポアソン分布の平均は時間の長さに比例する．到着間隔は平均 $1/\\lambda$ の指数分布に従う．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈0.135\n(2) ≈0.264\n(3) 2"
+  },
+  "techniques": [
+   "memoryless-exp-poisson",
+   "discrete-distributions"
+  ],
+  "methods": [],
+  "tags": [
+   "ポアソン分布",
+   "指数分布",
+   "ポアソン過程"
+  ],
+  "provenance": {
+   "created": "2026-10-31"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T2-02-005",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T2-30",
+  "level": 2,
+  "minutes": 9,
+  "theme": "正規分布の確率・分位点・差の分布",
+  "topic": "正規分布の確率・分位点・差の分布",
+  "statement": {
+   "tex": "ある試験 1 の得点 $X$ は $N(60,12^2)$ に従い，別の試験 2 の得点 $Y$ は $N(50,9^2)$ に従う．$X$ と $Y$ は独立とする．標準正規分布 $Z$ について $P(Z\\ge1.5)=0.0668$，$P(Z\\ge0.67)=0.2514$，上側 10\\% 点 $z_{0.10}=1.282$ を用いてよい．\n\n\\begin{enumerate}\n\\item $P(X\\ge78)$ を求めよ．\n\\item 試験 1 で上位 10\\% に入るための最低点（$P(X\\ge c)=0.10$ となる $c$）を求めよ．\n\\item $P(X<Y)$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $0.0668$\n(2) $c\\approx75.4$\n(3) $\\approx0.251$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "まず標準化する．$(78-60)/12=1.5$ なので $P(X\\ge78)=P(Z\\ge1.5)=\\boldsymbol{0.0668}$ である．\n\n$c=60+12\\times z_{0.10}=60+12\\times1.282=\\boldsymbol{75.4}$ である．\n\n$X-Y\\sim N(60-50,\\ 12^2+9^2)=N(10,15^2)$ である．独立なので分散は足し合わせる．\n\\[P(X<Y)=P(X-Y<0)=P\\!\\left(Z<\\tfrac{0-10}{15}\\right)=P(Z\\ge0.67)\\approx\\boldsymbol{0.251}\\]"
+   }
+  ],
+  "idea": {
+   "tex": "独立な正規変数の差も正規分布に従い，分散は和になる．あとは標準化して表を引く．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) 0.0668\n(2) ≈75.4\n(3) ≈0.251"
+  },
+  "techniques": [
+   "normal-standardize"
+  ],
+  "methods": [],
+  "tags": [
+   "正規分布",
+   "標準化",
+   "分位点",
+   "正規分布の再生性"
+  ],
+  "provenance": {
+   "created": "2026-10-31"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T2-02-014",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T2-30",
+  "level": 3,
+  "minutes": 12,
+  "theme": "指示変数による期待値と多項分布の共分散",
+  "topic": "指示変数による期待値と多項分布の共分散",
+  "statement": {
+   "tex": "公正なさいころを 10 回投げる．$(5/6)^{10}=0.1615$ を用いてよい．\n\n\\begin{enumerate}\n\\item 1 の目が少なくとも 1 回出る確率を求めよ．\n\\item 10 回の中で出た目の種類の数（1〜6 のうち少なくとも 1 回出た目の個数）の期待値を求めよ．\n\\item 1 の目が出た回数を $X$，2 の目が出た回数を $Y$ とする．共分散 $\\mathrm{Cov}(X,Y)$ を求めよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx0.838$\n(2) $\\approx5.03$\n(3) $-\\frac{5}{18}\\approx-0.278$"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "(1) 余事象「10 回とも 1 以外」の確率は $(5/6)^{10}=0.1615$ なので，$1-0.1615\\approx\\boldsymbol{0.838}$ である．\n\n(2) 目 $k$ が少なくとも 1 回出たら 1，そうでなければ 0 をとる指示変数を $I_k$ とすると，目の種類の数は $I_1+\\dots+I_6$ である．$I_k$ どうしは独立でないが，期待値の線形性は独立性を必要としない．$E(I_k)=0.838$ なので期待値は $6\\times0.8385\\approx\\boldsymbol{5.03}$ である．\n\n(3) $i$ 回目に 1 が出たら 1 をとる変数を $A_i$，2 が出たら 1 をとる変数を $B_i$ とすると $X=\\sum A_i$，$Y=\\sum B_i$ である．異なる回どうしは独立なので共分散は同じ回の項だけが残る．同じ回では $A_iB_i=0$ なので $\\mathrm{Cov}(A_i,B_i)=0-\\frac16\\cdot\\frac16=-\\frac1{36}$ である．よって\n\\[\\mathrm{Cov}(X,Y)=10\\times\\left(-\\frac{1}{36}\\right)=\\boldsymbol{-\\frac{5}{18}}\\approx-0.278\\]\nである．1 の目が多く出るとその分ほかの目が減るので，負の相関になる．"
+   }
+  ],
+  "idea": {
+   "tex": "数え上げの期待値は指示変数の和に分解して線形性を使う．多項分布の異なる度数の共分散は $-np_ip_j$ で負になる．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈0.838\n(2) ≈5.03\n(3) -5/18"
+  },
+  "techniques": [
+   "indicator"
+  ],
+  "methods": [],
+  "tags": [
+   "指示変数",
+   "期待値の線形性",
+   "多項分布",
+   "共分散",
+   "余事象"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T2-02-015",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T2-30",
+  "level": 3,
+  "minutes": 12,
+  "theme": "二項分布を尤度とするベイズの定理と予測確率",
+  "topic": "二項分布を尤度とするベイズの定理と予測確率",
+  "statement": {
+   "tex": "袋の中に硬貨 A と硬貨 B が 1 枚ずつある．A は表の出る確率が 0.5，B は 0.8 である．袋から無作為に 1 枚取り出し，その硬貨を 5 回投げたところ，表が 4 回出た．$0.8^4=0.4096$ を用いてよい．\n\n\\begin{enumerate}\n\\item 表が 4 回出る確率（どちらの硬貨かを区別しない確率）を求めよ．\n\\item 取り出した硬貨が B である確率を求めよ．\n\\item 同じ硬貨をもう 1 回投げるとき，表が出る確率はどの範囲にあるか． \\\\ ① 0.5 未満 \\\\ ② 0.5 以上 0.6 未満 \\\\ ③ 0.6 以上 0.7 未満 \\\\ ④ 0.7 以上 0.75 未満 \\\\ ⑤ 0.75 以上 \\\\ 番号で答えよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $\\approx0.283$\n(2) $\\approx0.724$\n(3) ④（番号 4）"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "各硬貨のもとで表の回数は二項分布 $B(5,p)$ に従う．\n\nA のとき $P(4\\mid A)=5\\times0.5^5=0.15625$，B のとき $P(4\\mid B)=5\\times0.8^4\\times0.2=0.4096$ である．\n\n(1) 全確率の公式より $\\frac12(0.15625+0.4096)=\\boldsymbol{0.283}$ である．\n\n(2) ベイズの定理より $P(B\\mid 4)=\\dfrac{0.4096}{0.15625+0.4096}=\\dfrac{0.4096}{0.56585}\\approx\\boldsymbol{0.724}$ である．\n\n(3) 次に表が出る確率は，事後確率で重み付けた平均\n\\[0.724\\times0.8+0.276\\times0.5\\approx0.717\\]\nであり，0.7 以上 0.75 未満なので $\\boldsymbol{④}$ である．観測によって B らしさが高まり，表の予測確率が 0.65（事前の平均）から上がっている．"
+   }
+  ],
+  "idea": {
+   "tex": "事後確率は「事前確率×尤度」に比例する．次の観測の予測は，各仮説の確率を事後確率で重み付けて平均する．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) ≈0.283\n(2) ≈0.724\n(3) 4"
+  },
+  "techniques": [
+   "bayes-theorem",
+   "discrete-distributions"
+  ],
+  "methods": [],
+  "tags": [
+   "ベイズの定理",
+   "二項分布",
+   "事後確率",
+   "全確率の公式",
+   "予測確率"
+  ],
+  "provenance": {
+   "created": "2026-11-03"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ },
+ {
+  "id": "T2-02-006",
+  "schema": "lemma.problem/1",
+  "kind": "written",
+  "field": "T2-30",
+  "level": 3,
+  "minutes": 12,
+  "theme": "同時確率分布と共分散・和の分散",
+  "topic": "同時確率分布と共分散・和の分散",
+  "statement": {
+   "tex": "確率変数 $X\\in\\{0,1\\}$，$Y\\in\\{0,1,2\\}$ の同時確率分布が次の表で与えられている．\n\n\\begin{tabular}{c|ccc} & $Y=0$ & $Y=1$ & $Y=2$ \\\\ \\hline $X=0$ & 0.1 & 0.2 & 0.1 \\\\ $X=1$ & 0.2 & 0.3 & 0.1 \\end{tabular}\n\n\\begin{enumerate}\n\\item 共分散 $\\mathrm{Cov}(X,Y)$ を求めよ．\n\\item $V[2X+Y]$ を求めよ．\n\\item $X$ と $Y$ の関係について正しいものを選べ． \\\\ ① 独立である． \\\\ ② 無相関であるが独立ではない． \\\\ ③ 負の相関があり，独立ではない． \\\\ ④ 正の相関があり，独立ではない． \\\\ ⑤ 相関係数は $-1$ である． \\\\ 番号で答えよ．\n\\end{enumerate}"
+  },
+  "answer": {
+   "tex": "(1) $-0.04$\n(2) $1.29$\n(3) ③（番号 3）"
+  },
+  "solutions": [
+   {
+    "id": "main",
+    "kind": "main",
+    "tex": "周辺分布は $P(X=1)=0.6$，$P(Y=0,1,2)=(0.3,0.5,0.2)$ である．これより $E[X]=0.6$，$E[Y]=0.5+0.4=0.9$ となる．$E[XY]=1\\cdot1\\cdot0.3+1\\cdot2\\cdot0.1=0.5$ なので\n\\[\\mathrm{Cov}(X,Y)=0.5-0.6\\times0.9=\\boldsymbol{-0.04}\\]\nである．\n\n$V[X]=0.6-0.36=0.24$，$V[Y]=(0.5+0.8)-0.81=0.49$ である．\n\\[V[2X+Y]=4V[X]+V[Y]+2\\cdot2\\,\\mathrm{Cov}(X,Y)=0.96+0.49-0.16=\\boldsymbol{1.29}\\]\n\n共分散が負なので負の相関がある．独立なら共分散は 0 になるはずなので，独立ではない．相関係数は $-0.04/\\sqrt{0.24\\times0.49}\\approx-0.117$ で $-1$ ではない．答えは $\\boldsymbol{③}$ である．"
+   }
+  ],
+  "idea": {
+   "tex": "$V[aX+bY]=a^2V[X]+b^2V[Y]+2ab\\,\\mathrm{Cov}(X,Y)$．独立ならば無相関（逆は成り立たない）．"
+  },
+  "grading": {
+   "format": "lemma-input/1",
+   "spec": "(1) -1/25\n(2) 1.29\n(3) 3"
+  },
+  "techniques": [
+   "expect-var-linearity"
+  ],
+  "methods": [],
+  "tags": [
+   "同時分布",
+   "周辺分布",
+   "共分散",
+   "分散の公式",
+   "独立"
+  ],
+  "provenance": {
+   "created": "2026-10-31"
+  },
+  "quality": {
+   "status": "published",
+   "checks": {
+    "dual": false,
+    "sympy": false,
+    "human": false
+   },
+   "verified": false
+  }
+ }
+]
