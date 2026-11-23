@@ -2,7 +2,7 @@
 import { PROBLEMS as BUILTIN, cardById, problemById as builtinById, unitOf as builtinUnit } from './content.js';
 import { retrievability, dueAt, TARGET_R } from './scheduler.js';
 
-export const FILE_VERSION = '0.27.1';
+export const FILE_VERSION = '0.27.3';
 
 // 難易度（大学数学は5段階。検定コースの問題は 1〜3 を 易・標準・難 と呼ぶ）
 export const LEVELS = { 0: '基礎', 1: '標準', 2: '演習', 3: '院試', 4: '院試難関' };
