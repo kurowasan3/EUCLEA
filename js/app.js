@@ -54,7 +54,9 @@ function ensurePractice() {
   const okLv = (a, lo, hi) => Array.isArray(a) ? a.filter(l => Number.isInteger(l) && l >= lo && l <= hi) : [];
   p.levels = okLv(p.levels, 0, 4); if (!p.levels.length) p.levels = [0, 1, 2, 3, 4];
   p.examLevels = okLv(p.examLevels, 1, 3); if (!p.examLevels.length) p.examLevels = [1, 2, 3];
-  if (!COURSES.some(c => c.id === p.course)) p.course = 'univ';
+  // 旧コース ID（v0.4 までの stat2・statp1・stat1）は統合したコースへ
+  const c = COURSES.find(x => x.id === p.course || (x.former || []).includes(p.course));
+  p.course = c ? c.id : 'univ';
 }
 ensurePractice();
 const LVP = () => ({ univ: state.practice.levels.slice(), exam: state.practice.examLevels.slice() });
@@ -702,9 +704,7 @@ function planSummary(plan) {
 const COURSE_BLURB = {
   univ: '解析・代数・幾何・確率統計など大学数学の全分野から、分野を混ぜて出します。',
   suken1: '数学検定1級の1次（計算技能）・2次（数理技能）と同じ形式の問題を、分野を混ぜて出します。',
-  stat2: '統計検定2級の範囲（記述統計・確率分布・推定・検定・回帰・標本調査）から、本番に近い形式で出します。',
-  statp1: '統計検定準1級の範囲（多変量解析・時系列・ベイズ・線形モデルなど）から、本番に近い形式で出します。',
-  stat1: '統計検定1級（統計数理・統計応用）の論述型の問題を、導出の要点まで確かめながら解きます。',
+  stat: '統計検定2級・準1級・1級の範囲から、本番に近い形式で出します。級は下の科目ごとの演習や「複数の分野を組み合わせて選ぶ」で絞れます。',
   actuary: 'アクチュアリー資格試験1次（数学・生保数理・損保数理・年金数理・会計経済投資理論）の範囲から、本番に近い形式で出します。',
 };
 function renderToday() {
@@ -751,7 +751,7 @@ function renderToday() {
       ${weak ? `<p class="weak-note">苦手な分野：<b>${esc(weak.f.name)}</b>（得意度 ${Math.round(weak.score * 100)}・${weak.n}問の結果${weak.n < 10 ? '・暫定' : ''}）<button class="linkbtn" id="weakgo">この分野だけ演習 ›</button></p>` : ''}
       ${bar.html}
       <div class="btn-row" style="margin-top:0">
-        <button class="btn" id="random">${course.exam ? 'この級をランダム' : '全分野ランダム'}</button>
+        <button class="btn" id="random">${course.exam ? 'このコースをランダム' : '全分野ランダム'}</button>
         ${due ? `<button class="btn" id="review">復習だけ ${due}問</button>` : ''}
         ${marked.length ? `<button class="btn" id="bmset">★ ブックマーク ${marked.length}問</button>` : ''}
       </div>
@@ -2271,7 +2271,7 @@ function weakestField(keys = null) {
   }
   return w;
 }
-const SUBJ_SHORT = { '数学検定1級': '数検1級', '統計検定2級': '統計2級', '統計検定準1級': '統計準1級', '統計検定1級': '統計1級', 'アクチュアリー数学': '数学', '会計・経済・投資理論': 'KKT' };
+const SUBJ_SHORT = { '数学検定1級': '数検1級', '統計検定2級': '2級', '統計検定準1級': '準1級', '統計検定1級': '1級', 'アクチュアリー数学': '数学', '会計・経済・投資理論': 'KKT' };
 // 得意度 → タイルの色（苦手＝赤系、得意＝緑系、データ不足＝無地）
 function strengthStyle(sc) {
   if (sc == null) return '';

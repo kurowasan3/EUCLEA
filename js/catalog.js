@@ -15,12 +15,11 @@ export const SUBJECT_ORDER = ['解析', '代数', '幾何', 'その他', '数学
 export const COURSES = [
   { id: 'univ', name: '大学数学', short: '大学数学', subjects: ['解析', '代数', '幾何', 'その他'] },
   { id: 'suken1', name: '数学検定1級', short: '数検1級', subjects: ['数学検定1級'], exam: true },
-  { id: 'stat2', name: '統計検定2級', short: '統計2級', subjects: ['統計検定2級'], exam: true },
-  { id: 'statp1', name: '統計検定準1級', short: '統計準1級', subjects: ['統計検定準1級'], exam: true },
-  { id: 'stat1', name: '統計検定1級', short: '統計1級', subjects: ['統計検定1級'], exam: true },
+  // 統計検定は2級・準1級・1級を1つのコースに（級は科目として並ぶ）。v0.4 までの stat2・statp1・stat1 はこのコースに読み替える
+  { id: 'stat', name: '統計検定', short: '統計検定', subjects: ['統計検定2級', '統計検定準1級', '統計検定1級'], exam: true, former: ['stat2', 'statp1', 'stat1'] },
   { id: 'actuary', name: 'アクチュアリー（1次）', short: 'アクチュアリー', subjects: ['アクチュアリー数学', '生保数理', '損保数理', '年金数理', '会計・経済・投資理論'], exam: true },
 ];
-export const courseById = (id) => COURSES.find(c => c.id === id) || COURSES[0];
+export const courseById = (id) => COURSES.find(c => c.id === id || (c.former || []).includes(id)) || COURSES[0];
 export const isExamSubject = (subject) => COURSES.some(c => c.exam && c.subjects.includes(subject));
 export const courseFieldKeys = (id) => { const c = courseById(id); return FIELDS.filter(f => c.subjects.includes(f.subject)).map(f => f.key); };
 export const courseOfField = (key) => { const f = fieldByKey[key]; return f ? (COURSES.find(c => c.subjects.includes(f.subject)) || COURSES[0]).id : null; };

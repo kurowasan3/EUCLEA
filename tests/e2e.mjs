@@ -71,15 +71,20 @@ try {
     ok((await page.locator('#lv').innerText()).includes('院試難関') && (await page.locator('#lv').innerText()).includes('演習'), 'EUCLEA の難易度名');
     ok(await page.locator('.banner').count() === 0, '起動時に警告が出ない');
     // コースの切り替え：検定コースでは難易度が 易・標準・難 の3つになり、その級の問題だけになる
-    ok(await page.locator('.course-tabs button').count() === 6, 'コースのタブが6つ（アクチュアリーを含む）');
-    await page.click('.course-tabs button[data-c="stat2"]'); await page.waitForTimeout(600);
+    ok(await page.locator('.course-tabs button').count() === 4, 'コースのタブが4つ（大学数学・数検1級・統計検定・アクチュアリー）');
+    await page.click('.course-tabs button[data-c="stat"]'); await page.waitForTimeout(600);
     ok(await page.locator('#lv button').count() === 3 && (await page.locator('#lv').innerText()).includes('易'), '検定コース：難易度が 易・標準・難 の3つ');
-    ok((await page.locator('.subj-row').allInnerTexts()).every(t => t.includes('統計検定2級')) && await page.locator('.subj-row').count() === 1, '検定コース：その級の分野だけが並ぶ');
+    const statRows = await page.locator('.subj-row').allInnerTexts();
+    ok(statRows.length === 3 && ['統計検定2級', '統計検定準1級', '統計検定1級'].every((s, i) => statRows[i].includes(s)), '統計検定コース：2級・準1級・1級が科目として並ぶ');
     await page.click('#random'); await page.waitForTimeout(1200);
     const sid = await page.evaluate(() => JSON.parse(localStorage.getItem('euclea.session.v1')).steps.map(x => x.pid));
-    ok(sid.length > 0 && sid.every(id => id.startsWith('T2-')), `検定コース：ランダム出題はその級の問題だけ（${sid.slice(0, 3)}）`);
+    ok(sid.length > 0 && sid.every(id => /^(T2|TP|T1)-/.test(id)), `統計検定コース：ランダム出題は統計検定の問題だけ（${sid.slice(0, 3)}）`);
     await page.click('#quit'); await page.waitForTimeout(500);
-    ok(await page.evaluate(() => JSON.parse(localStorage.getItem('euclea.v1')).practice.course) === 'stat2', '選んだコースが記録に残る');
+    ok(await page.evaluate(() => JSON.parse(localStorage.getItem('euclea.v1')).practice.course) === 'stat', '選んだコースが記録に残る');
+    // v0.4 までの級ごとのコース ID は統計検定コースに読み替える
+    await page.evaluate(() => { const s = JSON.parse(localStorage.getItem('euclea.v1')); s.practice.course = 'statp1'; localStorage.setItem('euclea.v1', JSON.stringify(s)); });
+    await page.reload(); await page.waitForTimeout(1500);
+    ok(await page.locator('.course-tabs button.on').getAttribute('data-c') === 'stat', '旧コース ID（statp1）は統計検定コースとして開く');
     await page.click('.course-tabs button[data-c="univ"]'); await page.waitForTimeout(600);
     ok(await page.locator('#lv button').count() === 5, '大学数学に戻すと難易度が5つ');
     await page.evaluate("__lemma.open(['AN-01-009', 'GE-02-001'])"); await page.waitForTimeout(800);
